@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 807552418}
   - component: {fileID: 807552417}
   m_Layer: 7
-  m_Name: Square
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,8 +453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6241b984fde7ad48beb4bb1ec7d53fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 4
-  maxJumpCount: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 55
@@ -496,7 +494,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.02, y: 1.36}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -574,8 +572,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: f716988690a1bca4283df8c4c42a335f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

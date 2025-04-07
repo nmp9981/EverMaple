@@ -22,4 +22,15 @@ public class PlayerManager : MonoBehaviour
                 Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
         }
     }
+
+    #region 변수 모음
+    //이동관련
+    float playerMoveSpeed = 4f;//이동 속도
+    float jumpForce = 3f;//점프력
+    int maxJumpCount = 2;//최대 점프 횟수
+
+    public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }
+    public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
+    public int MaxJumpCount { get { return maxJumpCount; } set { maxJumpCount = value; } }
+    #endregion
 }

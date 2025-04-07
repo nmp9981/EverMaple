@@ -3,19 +3,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 { 
-    [SerializeField] float jumpForce;//점프력
-    [SerializeField] int maxJumpCount;//점프 최대 횟수
-    float speed = 4f;
     int jumpCount = 0;
+    float distance;
 
+    SpriteRenderer spriteRenderer;
     Rigidbody2D rigid = null;
 
-    float distance;
+   
     [SerializeField] LayerMask layerMask = 0;
    
-    void Start()
+    void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         distance = GetComponent<BoxCollider2D>().bounds.extents.y + 0.05f;//플레이어 발밑까지 감지
     }
 
@@ -32,15 +32,16 @@ public class PlayerMove : MonoBehaviour
         }
         
         Vector3 moveVec = new Vector3(hAxis, 0, 0).normalized;//이동 방향
-        transform.position += moveVec * speed * Time.deltaTime;//실제 이동
+        transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
+        spriteRenderer.flipX = hAxis > 0 ? true : false;//이동방향을 바라보게
     }
-   
+
     public void TryJump()
     {
-        if (jumpCount < maxJumpCount)//점프 횟수 남음
+        if (jumpCount < PlayerManager.PlayerInstance.MaxJumpCount)//점프 횟수 남음
         {
             jumpCount++;
-            rigid.linearVelocity = Vector3.up * jumpForce;
+            rigid.linearVelocity = Vector3.up * PlayerManager.PlayerInstance.JumpForce;
         }
     }
     void CheckGround()

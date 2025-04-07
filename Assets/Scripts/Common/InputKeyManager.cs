@@ -8,7 +8,9 @@ public class InputKeyManager : MonoBehaviour
     {
         InputPlayerMove();
     }
-
+    /// <summary>
+    /// 이동 키
+    /// </summary>
     void InputPlayerMove()
     {
         //플레이어 이동
@@ -20,5 +22,33 @@ public class InputKeyManager : MonoBehaviour
         {
             playerMove.TryJump();
         }
+    }
+    /// <summary>
+    /// 공격키
+    /// </summary>
+    void InputPlayerAttack()
+    {
+
+    }
+    /// <summary>
+    /// 버프키
+    /// </summary>
+    void InputlPlayerBuff()
+    {
+
+    }
+    /// <summary>
+    /// UI기능
+    /// </summary>
+    void InputAboutUI()
+    {
+
+    }
+    /// <summary>
+    /// 마우스 클릭
+    /// </summary>
+    void InputMouseClick()
+    {
+
     }
 }

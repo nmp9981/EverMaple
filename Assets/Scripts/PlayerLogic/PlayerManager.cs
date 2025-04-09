@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
     #region 변수 모음
     //이동관련
     float playerMoveSpeed = 4f;//이동 속도
-    float jumpForce = 3f;//점프력
+    float jumpForce = 5f;//점프력
     int maxJumpCount = 2;//최대 점프 횟수
 
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }

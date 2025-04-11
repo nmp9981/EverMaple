@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7968897970056244840}
   - component: {fileID: -4217758799632884272}
   - component: {fileID: 4905729984134269298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: OrangeMushroom
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

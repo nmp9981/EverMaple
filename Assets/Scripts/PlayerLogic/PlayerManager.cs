@@ -29,8 +29,35 @@ public class PlayerManager : MonoBehaviour
     float jumpForce = 5f;//점프력
     int maxJumpCount = 2;//최대 점프 횟수
 
+    //플레이어 기본 정보
+    int playerLV = 200;
+    string playerJob = "Night Load";
+    string playerName = "Aruru";
+    float playerCurHP;
+    float playerMaxHP = 3000;
+    float playerCurMP;
+    float playerMaxMP = 3000;
+    float playerCurExp = 0;
+    float playerRequireExp = 20250413;
+
+    #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }
     public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
     public int MaxJumpCount { get { return maxJumpCount; } set { maxJumpCount = value; } }
+    #endregion
+
+    #region 플레이어 기본 정보
+    public int PlayerLV { get { return playerLV; } set { playerLV = value; } }
+    public string PlayerJob { get { return playerJob; } set { playerJob = value; } }
+    public string PlayerName { get { return playerName; } set { PlayerName = value; } }
+    public float PlayerCurHP { get { return playerCurHP; } set {PlayerCurHP = value; } }
+    public float PlayerMaxHP { get {return playerMaxHP; } set {playerMaxHP = value; } }
+    public float PlayerCurMP { get { return playerCurMP; } set { playerCurMP = value; } }
+    public float PlayerMaxMP { get { return playerMaxMP; } set { playerMaxMP = value; } }
+    public float PlayerCurExp { get { return playerCurExp; } set {playerCurExp = value; } }
+    public float PlayerRequireExp { get {return playerRequireExp; } set {playerCurExp=value; } }
+    #endregion
+
+
     #endregion
 }

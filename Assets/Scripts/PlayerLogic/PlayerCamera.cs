@@ -7,7 +7,7 @@ public class PlayerCamera : MonoBehaviour
 
     //플레이어로부터의 거리
     float distanceXFromPlayer = 15f;
-    float distanceYFromPlayer = 5f;
+    float distanceYFromPlayer = 3.5f;
 
     private void LateUpdate()
     {

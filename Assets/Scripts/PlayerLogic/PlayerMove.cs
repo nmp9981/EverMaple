@@ -46,7 +46,6 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            Debug.Log(Ladder.isPlayerinLadder);
             rigid.gravityScale = 1;//중력켜기
             Vector3 moveVec = new Vector3(hAxis, 0, 0).normalized;//이동 방향
             transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동

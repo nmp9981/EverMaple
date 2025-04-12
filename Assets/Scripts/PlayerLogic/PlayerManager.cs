@@ -33,8 +33,8 @@ public class PlayerManager : MonoBehaviour
     int playerLV = 200;
     string playerJob = "Night Load";
     string playerName = "Aruru";
-    float playerCurHP;
-    float playerMaxHP = 3000;
+    int playerCurHP = 3000;
+    int playerMaxHP = 3000;
     float playerCurMP;
     float playerMaxMP = 3000;
     float playerCurExp = 0;
@@ -49,9 +49,9 @@ public class PlayerManager : MonoBehaviour
     #region 플레이어 기본 정보
     public int PlayerLV { get { return playerLV; } set { playerLV = value; } }
     public string PlayerJob { get { return playerJob; } set { playerJob = value; } }
-    public string PlayerName { get { return playerName; } set { PlayerName = value; } }
-    public float PlayerCurHP { get { return playerCurHP; } set {PlayerCurHP = value; } }
-    public float PlayerMaxHP { get {return playerMaxHP; } set {playerMaxHP = value; } }
+    public string PlayerName { get { return playerName; } set { playerName = value; } }
+    public int PlayerCurHP { get { return playerCurHP; } set {playerCurHP = value; } }
+    public int PlayerMaxHP { get {return playerMaxHP; } set {playerMaxHP = value; } }
     public float PlayerCurMP { get { return playerCurMP; } set { playerCurMP = value; } }
     public float PlayerMaxMP { get { return playerMaxMP; } set { playerMaxMP = value; } }
     public float PlayerCurExp { get { return playerCurExp; } set {playerCurExp = value; } }

@@ -4,6 +4,10 @@ public class InputKeyManager : MonoBehaviour
 {
     [SerializeField]
     PlayerMove playerMove;
+
+    //데미지 UI순서
+    public static int orderSortNum { get; set; }
+
     void Update()
     {
         InputPlayerMove();

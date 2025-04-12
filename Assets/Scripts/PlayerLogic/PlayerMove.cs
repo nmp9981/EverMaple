@@ -23,19 +23,40 @@ public class PlayerMove : MonoBehaviour
     {
         CheckGround();
     }
-    public void Move(float hAxis)
+
+    /// <summary>
+    /// 캐릭터 이동
+    /// </summary>
+    /// <param name="hAxis">좌우 이동량</param>
+    /// <param name="vAxis">상하 이동량</param>
+    public void Move(float hAxis, float vAxis)
     {
         //이동량이 없음
-        if (hAxis == 0)
+        if (hAxis == 0 && vAxis == 0)
         {
             return;
         }
         
-        Vector3 moveVec = new Vector3(hAxis, 0, 0).normalized;//이동 방향
-        transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
-        spriteRenderer.flipX = hAxis > 0 ? true : false;//이동방향을 바라보게
+        //사다리 타는 중인가?
+        if (Ladder.isPlayerinLadder)
+        {
+            rigid.gravityScale = 0;//중력끄기
+            Vector3 moveVec = new Vector3(hAxis, vAxis, 0).normalized;//이동 방향
+            transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
+        }
+        else
+        {
+            Debug.Log(Ladder.isPlayerinLadder);
+            rigid.gravityScale = 1;//중력켜기
+            Vector3 moveVec = new Vector3(hAxis, 0, 0).normalized;//이동 방향
+            transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
+            spriteRenderer.flipX = hAxis > 0 ? true : false;//이동방향을 바라보게
+        }
     }
 
+    /// <summary>
+    /// 점프
+    /// </summary>
     public void TryJump()
     {
         if (jumpCount < PlayerManager.PlayerInstance.MaxJumpCount)//점프 횟수 남음
@@ -44,8 +65,19 @@ public class PlayerMove : MonoBehaviour
             rigid.linearVelocity = Vector3.up * PlayerManager.PlayerInstance.JumpForce;
         }
     }
+
+    /// <summary>
+    /// 땅에 닿았는지 체크
+    /// </summary>
     void CheckGround()
     {
+        //사다리 타는중에는 작동안함
+        if (Ladder.isPlayerinLadder)
+        {
+            jumpCount = 0;
+            return;
+        }
+
         if (rigid.linearVelocity.y < 0)//낙하할 때만
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, distance, layerMask);

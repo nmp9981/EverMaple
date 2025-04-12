@@ -15,7 +15,8 @@ public class InputKeyManager : MonoBehaviour
     {
         //플레이어 이동
         float hAxis = Input.GetAxisRaw("Horizontal");
-        playerMove.Move(hAxis);
+        float vAxis = Input.GetAxisRaw("Vertical");
+        playerMove.Move(hAxis,vAxis);
 
         //점프
         if (Input.GetKeyDown(KeyCode.LeftAlt))

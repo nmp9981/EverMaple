@@ -3,13 +3,19 @@ using UnityEngine;
 public class MonsterInfo : MonoBehaviour
 {
     public int monsterLv;
-    public float monsterMaxHP;
+    public int monsterMaxHP;
     public int monsterExp;
     public int monsterMeso;
     public int monsterAttackPower;
 
     public int monsterCurHP;
     protected bool isAttack;
+
+    //활성화시 로직
+    private void OnEnable()
+    {
+        monsterCurHP = monsterMaxHP;
+    }
 }
 
 

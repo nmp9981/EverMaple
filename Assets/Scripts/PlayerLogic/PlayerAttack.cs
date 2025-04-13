@@ -13,10 +13,13 @@ public class PlayerAttack : MonoBehaviour
     Bounds playerBound = default;
     //공격영역 바운드
     Bounds attackBound = default;
+    //스프라이트
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         playerBound = GetComponent<BoxCollider2D>().bounds;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -33,18 +36,21 @@ public class PlayerAttack : MonoBehaviour
         {
             return;
         }
+        //쿨타임 초기화
+        curAttackTime = 0;
+
         //공격 영역 세팅
         attackBound = SettingAttackArea();
 
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = NearMonserFromPlayer(attackBound.center);
-
+       
         //몬스터가 없으면 아래 로직은 실행하지않고 중단
         if (nearMob == null)
         {
             return;
         }
-
+       
         //몬스터가 캐릭터의 공격 반경 내에 있는가?
         Bounds nearMobArea= nearMob.GetComponent<Collider2D>().bounds;
         if (IsMonsterInPlayerAttackArea(nearMobArea, attackBound))
@@ -53,6 +59,7 @@ public class PlayerAttack : MonoBehaviour
             int attackPower = PlayerManager.PlayerInstance.PlayerAttack;
             int minAttackDamage = (attackPower * PlayerManager.PlayerInstance.Workmanship) / 100;
             int attackDamage = Random.Range(minAttackDamage, attackPower);
+       
             //데미지 띄우기(기본 공격은 1회 타격)
             ShowDamageAsSkin(attackDamage, nearMob,1);
             //몬스터 HP감소
@@ -66,8 +73,10 @@ public class PlayerAttack : MonoBehaviour
     Bounds SettingAttackArea()
     {
         Bounds bounds = new Bounds();
-        bounds.center = playerBound.center + Vector3.left * 0.5f;
-        bounds.size = playerBound.size;
+        //캐릭터가 바라보는 방향에따라 박스 위치가 달라짐
+        Vector3 dir = spriteRenderer.flipX ? Vector3.right : Vector3.left;
+        bounds.center = gameObject.transform.position + dir * 0.5f;
+        bounds.size = playerBound.size*2;
         return bounds;
     }
 
@@ -80,7 +89,7 @@ public class PlayerAttack : MonoBehaviour
         float dist = maxDist;
         foreach(var mob in MonsterSpawn.activeMonster)
         {
-            float curDist = Mathf.Abs(mob.transform.position.x - gameObject.transform.position.x);
+            float curDist = Vector3.Distance(mob.transform.position ,gameObject.transform.position);
             //더 가까운 거리
             if (curDist < dist)
             {
@@ -135,7 +144,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 피격 데미지 보이기
+    /// 공격 데미지 보이기
     /// </summary>
     /// <param name="Damage">데미지</param>
     /// <param name="playerPos">플레이어 위치</param>
@@ -144,12 +153,12 @@ public class PlayerAttack : MonoBehaviour
         string damageString = Damage.ToString();
         float damageLength = DamageObjectFulling.DamageSkinInstance.damageImage[0].bounds.size.x * damageString.Length;
         Bounds bounds = monsterPos.GetComponent<BoxCollider2D>().bounds;
-        Vector3 damageStartPos = bounds.center +hitNum* Vector3.up * (bounds.size.y * 0.5f + 0.5f) + damageLength * Vector3.left * 0.25f;
+        Vector3 damageStartPos = bounds.center +hitNum* Vector3.up * (bounds.size.y*0.5f+1f) + damageLength * Vector3.left * 0.2f;
 
         for (int i = 0; i < damageString.Length; i++)
         {
             GameObject damImg = DamageObjectFulling.DamageSkinInstance.MakeObj((damageString[i] - '0'));
-            damImg.transform.position = damageStartPos + Vector3.right * DamageObjectFulling.DamageSkinInstance.damageImage[0].bounds.size.x * i * 1.5f;
+            damImg.transform.position = damageStartPos + Vector3.right * DamageObjectFulling.DamageSkinInstance.damageImage[0].bounds.size.x * i*0.5f;
         }
         InputKeyManager.orderSortNum += 1;
     }

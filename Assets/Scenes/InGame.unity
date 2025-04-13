@@ -3178,6 +3178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMove: {fileID: 807552417}
+  playerAttack: {fileID: 807552425}
 --- !u!4 &1210405217
 Transform:
   m_ObjectHideFlags: 0

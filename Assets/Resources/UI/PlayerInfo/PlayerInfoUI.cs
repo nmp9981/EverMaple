@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 public class PlayerInfoUI : MonoBehaviour
 {
+    //HP 관련
     Image hpBarGage;
     TextMeshProUGUI hpText;
+
+    //MP 관련
+    Image mpBarGage;
+    TextMeshProUGUI mpText;
+
+    //Exp관련
+    Image expBarGage;
+    TextMeshProUGUI expText;
 
     private void Awake()
     {
@@ -32,6 +41,12 @@ public class PlayerInfoUI : MonoBehaviour
                 case "PlayerHPbar":
                     hpBarGage = img;
                     break;
+                case "PlayerMPbar":
+                    mpBarGage = img;
+                    break;
+                case "PlayerEXPbar":
+                   expBarGage = img;
+                    break;
                 default:
                     break;
             }
@@ -44,6 +59,12 @@ public class PlayerInfoUI : MonoBehaviour
                 case "PlayerHPText":
                     hpText = txt;
                     break;
+                case "PlayerMPText":
+                    mpText = txt;
+                    break;
+                case "PlayerEXPText":
+                    expText = txt;
+                    break;
                 default:
                     break;
             }
@@ -53,5 +74,15 @@ public class PlayerInfoUI : MonoBehaviour
     {
         hpBarGage.fillAmount = (float)PlayerManager.PlayerInstance.PlayerCurHP / PlayerManager.PlayerInstance.PlayerMaxHP;
         hpText.text = $"HP. {PlayerManager.PlayerInstance.PlayerCurHP} / {PlayerManager.PlayerInstance.PlayerMaxHP}";
+    }
+    public void ShowPlayerMPBar()
+    {
+        mpBarGage.fillAmount = (float)PlayerManager.PlayerInstance.PlayerCurMP / PlayerManager.PlayerInstance.PlayerMaxMP;
+        mpText.text = $"MP. {PlayerManager.PlayerInstance.PlayerCurMP} / {PlayerManager.PlayerInstance.PlayerMaxMP}";
+    }
+    public void ShowPlayerEXPBar()
+    {
+        expBarGage.fillAmount = (float)PlayerManager.PlayerInstance.PlayerCurExp / PlayerManager.PlayerInstance.PlayerRequireExp;
+        expText.text = $"EXP. {PlayerManager.PlayerInstance.PlayerCurExp} / {PlayerManager.PlayerInstance.PlayerRequireExp}";
     }
 }

@@ -35,10 +35,10 @@ public class PlayerManager : MonoBehaviour
     string playerName = "Aruru";
     int playerCurHP = 3000;
     int playerMaxHP = 3000;
-    float playerCurMP;
-    float playerMaxMP = 3000;
-    float playerCurExp = 0;
-    float playerRequireExp = 20250413;
+    int playerCurMP;
+    int playerMaxMP = 3000;
+    int playerCurExp = 0;
+    int playerRequireExp = 20250413;
 
     #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }
@@ -52,10 +52,10 @@ public class PlayerManager : MonoBehaviour
     public string PlayerName { get { return playerName; } set { playerName = value; } }
     public int PlayerCurHP { get { return playerCurHP; } set {playerCurHP = value; } }
     public int PlayerMaxHP { get {return playerMaxHP; } set {playerMaxHP = value; } }
-    public float PlayerCurMP { get { return playerCurMP; } set { playerCurMP = value; } }
-    public float PlayerMaxMP { get { return playerMaxMP; } set { playerMaxMP = value; } }
-    public float PlayerCurExp { get { return playerCurExp; } set {playerCurExp = value; } }
-    public float PlayerRequireExp { get {return playerRequireExp; } set {playerCurExp=value; } }
+    public int PlayerCurMP { get { return playerCurMP; } set { playerCurMP = value; } }
+    public int PlayerMaxMP { get { return playerMaxMP; } set { playerMaxMP = value; } }
+    public int PlayerCurExp { get { return playerCurExp; } set {playerCurExp = value; } }
+    public int PlayerRequireExp { get {return playerRequireExp; } set {playerCurExp=value; } }
     #endregion
 
 

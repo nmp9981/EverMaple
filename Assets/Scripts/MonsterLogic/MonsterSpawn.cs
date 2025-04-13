@@ -8,6 +8,9 @@ public class MonsterSpawn : MonoBehaviour
 
     MonsterFulling monsterFulling;
 
+    //맵에 활성화된 몬스터
+    public static List<GameObject> activeMonster = new List<GameObject>();
+
     private void Awake()
     {
         monsterFulling = GameObject.Find("MonsterSpawn").GetComponent<MonsterFulling>();
@@ -50,6 +53,7 @@ public class MonsterSpawn : MonoBehaviour
                 //최종 생성 위치(몬스터 크기 고려)
                 float randomXpos = Random.Range(-3, 3);
                 gm.transform.position = spawnPos.position + Vector3.right*randomXpos+Vector3.up*monsterYSize;
+                activeMonster.Add(gm);
             }
         }
         

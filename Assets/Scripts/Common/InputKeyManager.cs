@@ -5,12 +5,16 @@ public class InputKeyManager : MonoBehaviour
     [SerializeField]
     PlayerMove playerMove;
 
+    [SerializeField]
+    PlayerAttack playerAttack;
+
     //데미지 UI순서
     public static int orderSortNum { get; set; }
 
     void Update()
     {
         InputPlayerMove();
+        InputPlayerAttack();
     }
     /// <summary>
     /// 이동 키
@@ -33,7 +37,10 @@ public class InputKeyManager : MonoBehaviour
     /// </summary>
     void InputPlayerAttack()
     {
-
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            playerAttack.BasicAttackFlow();
+        }
     }
     /// <summary>
     /// 버프키

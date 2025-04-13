@@ -8,7 +8,7 @@ public class MonsterInfo : MonoBehaviour
     public int monsterMeso;
     public int monsterAttackPower;
 
-    protected int monsterCurHP;
+    public int monsterCurHP;
     protected bool isAttack;
 }
 

@@ -20,12 +20,14 @@ public class PlayerInfoUI : MonoBehaviour
     private void Awake()
     {
         ImageBinding();
-       
     }
 
     private void Start()
     {
+        InitUserInfoSetting();
         ShowPlayerHPBar();
+        ShowPlayerMPBar();
+        ShowPlayerEXPBar();
     }
 
     /// <summary>
@@ -70,6 +72,18 @@ public class PlayerInfoUI : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// 캐릭터 능력치 초기 설정
+    /// </summary>
+    void InitUserInfoSetting()
+    {
+        PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
+        PlayerManager.PlayerInstance.PlayerCurMP = PlayerManager.PlayerInstance.PlayerMaxMP;
+        PlayerManager.PlayerInstance.PlayerCurExp = 0;
+    }
+
+    //HP, MP, EXP바 보이기
     public void ShowPlayerHPBar()
     {
         hpBarGage.fillAmount = (float)PlayerManager.PlayerInstance.PlayerCurHP / PlayerManager.PlayerInstance.PlayerMaxHP;

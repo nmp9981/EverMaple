@@ -33,12 +33,15 @@ public class PlayerManager : MonoBehaviour
     int playerLV = 200;
     string playerJob = "Night Load";
     string playerName = "Aruru";
-    int playerCurHP = 3000;
+    int playerCurHP;
     int playerMaxHP = 3000;
     int playerCurMP;
-    int playerMaxMP = 3000;
+    int playerMaxMP = 2000;
     int playerCurExp = 0;
     int playerRequireExp = 20250413;
+
+    int playerAttack = 30;//플레이어 공격력
+    int workmanship = 20;//숙련도
 
     #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }
@@ -58,6 +61,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerRequireExp { get {return playerRequireExp; } set {playerCurExp=value; } }
     #endregion
 
-
+    public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }
+    public int Workmanship {  get { return workmanship; } set { workmanship = value; } }
     #endregion
 }

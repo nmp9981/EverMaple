@@ -142,14 +142,14 @@ public class PlayerAttack : MonoBehaviour
     void ShowDamageAsSkin(int Damage, GameObject monsterPos, int hitNum)
     {
         string damageString = Damage.ToString();
-        float damageLength = DamageObjectFulling.DamageSkinInstance.hitDamageImage[0].bounds.size.x * damageString.Length;
+        float damageLength = DamageObjectFulling.DamageSkinInstance.damageImage[0].bounds.size.x * damageString.Length;
         Bounds bounds = monsterPos.GetComponent<BoxCollider2D>().bounds;
         Vector3 damageStartPos = bounds.center +hitNum* Vector3.up * (bounds.size.y * 0.5f + 0.5f) + damageLength * Vector3.left * 0.25f;
 
         for (int i = 0; i < damageString.Length; i++)
         {
             GameObject damImg = DamageObjectFulling.DamageSkinInstance.MakeObj((damageString[i] - '0'));
-            damImg.transform.position = damageStartPos + Vector3.right * DamageObjectFulling.DamageSkinInstance.hitDamageImage[0].bounds.size.x * i * 1.5f;
+            damImg.transform.position = damageStartPos + Vector3.right * DamageObjectFulling.DamageSkinInstance.damageImage[0].bounds.size.x * i * 1.5f;
         }
         InputKeyManager.orderSortNum += 1;
     }

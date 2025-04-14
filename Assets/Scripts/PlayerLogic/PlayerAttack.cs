@@ -59,11 +59,12 @@ public class PlayerAttack : MonoBehaviour
             int attackPower = PlayerManager.PlayerInstance.PlayerAttack;
             int minAttackDamage = (attackPower * PlayerManager.PlayerInstance.Workmanship) / 100;
             int attackDamage = Random.Range(minAttackDamage, attackPower);
-       
+
+            //몬스터 HP감소
+            nearMob.GetComponent<MonsterInfo>().DecreaseMonsterHP(attackDamage);
+
             //데미지 띄우기(기본 공격은 1회 타격)
             ShowDamageAsSkin(attackDamage, nearMob,1);
-            //몬스터 HP감소
-            DecreaseMonsterHP(nearMob,attackDamage);
         }
     }
 
@@ -133,14 +134,6 @@ public class PlayerAttack : MonoBehaviour
         }
         //충돌안함
         return false;
-    }
-
-    /// <summary>
-    /// 몬스터 HP감소
-    /// </summary>
-    void DecreaseMonsterHP(GameObject targetMonster, int playerAttackDamage)
-    {
-        targetMonster.GetComponent<MonsterInfo>().monsterCurHP -=playerAttackDamage;
     }
 
     /// <summary>

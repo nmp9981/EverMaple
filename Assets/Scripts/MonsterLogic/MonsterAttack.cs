@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterInfo : MonoBehaviour
 {
@@ -11,10 +12,50 @@ public class MonsterInfo : MonoBehaviour
     public int monsterCurHP;
     protected bool isAttack;
 
+    [SerializeField]
+    protected GameObject HPBar;
+    [SerializeField]
+    protected Image HPBarValue;
+
     //활성화시 로직
     private void OnEnable()
     {
         monsterCurHP = monsterMaxHP;
+    }
+
+    private void Update()
+    {
+        MoveHPBar();
+    }
+    /// <summary>
+    /// 몬스터 위치 따라서 HP바 이동
+    /// </summary>
+    void MoveHPBar()
+    {
+        HPBar.transform.position = Camera.main.WorldToScreenPoint(this.gameObject.transform.position + new Vector3(0, 1f, 0));
+    }
+    /// <summary>
+    /// 몬스터 HP감소
+    /// </summary>
+    /// <param name="attackDamage"></param>
+    public void DecreaseMonsterHP(int attackDamage)
+    {
+        monsterCurHP = Mathf.Max(monsterCurHP - attackDamage,0);
+        HPBarValue.fillAmount = (float)monsterCurHP / monsterMaxHP;
+
+        //몬스터 사망
+        if(monsterCurHP <= 0)
+        {
+            DieMonster();
+        }
+    }
+
+    /// <summary>
+    /// 몬스터 사망
+    /// </summary>
+    void DieMonster()
+    {
+
     }
 }
 

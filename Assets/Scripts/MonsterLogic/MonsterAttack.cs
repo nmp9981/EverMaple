@@ -17,10 +17,14 @@ public class MonsterInfo : MonoBehaviour
     [SerializeField]
     protected Image HPBarValue;
 
+    [SerializeField]
+    PlayerInfo playerInfo;
+
     //활성화시 로직
     private void OnEnable()
     {
         monsterCurHP = monsterMaxHP;
+        playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
     }
 
     private void Update()
@@ -52,10 +56,16 @@ public class MonsterInfo : MonoBehaviour
 
     /// <summary>
     /// 몬스터 사망
+    /// 1) 경험치 획득
+    /// 2) 확률로 메소 떨구기
+    /// 3) 비활성화
     /// </summary>
     void DieMonster()
     {
+        playerInfo.GetPlayerExp(monsterExp);
 
+        MonsterSpawn.activeMonster.Remove(gameObject);
+        this.gameObject.SetActive(false);
     }
 }
 

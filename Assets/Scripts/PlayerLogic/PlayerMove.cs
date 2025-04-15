@@ -34,6 +34,7 @@ public class PlayerMove : MonoBehaviour
         //이동량이 없음
         if (hAxis == 0 && vAxis == 0)
         {
+            PlayerAnimation.StandAnim();
             return;
         }
         
@@ -50,6 +51,7 @@ public class PlayerMove : MonoBehaviour
             Vector3 moveVec = new Vector3(hAxis, 0, 0).normalized;//이동 방향
             transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
             spriteRenderer.flipX = hAxis > 0 ? true : false;//이동방향을 바라보게
+            PlayerAnimation.MoveAnim();
         }
     }
 
@@ -62,6 +64,7 @@ public class PlayerMove : MonoBehaviour
         {
             jumpCount++;
             rigid.linearVelocity = Vector3.up * PlayerManager.PlayerInstance.JumpForce;
+            PlayerAnimation.JumpAnim();
         }
     }
 

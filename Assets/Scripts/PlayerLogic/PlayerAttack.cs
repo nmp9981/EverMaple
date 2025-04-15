@@ -39,6 +39,9 @@ public class PlayerAttack : MonoBehaviour
         //쿨타임 초기화
         curAttackTime = 0;
 
+        //공격 모션
+        PlayerAnimation.AttackAnim();
+
         //공격 영역 세팅
         attackBound = SettingAttackArea();
 

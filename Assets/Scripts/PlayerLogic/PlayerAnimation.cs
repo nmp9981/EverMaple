@@ -15,17 +15,37 @@ public enum PlayerState
 
 public class PlayerAnimation : MonoBehaviour
 {
-    Animation animation;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    public static Animator animator;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        animator = gameObject.GetComponent<Animator>();
+        animator.SetBool("IsWalk", false);
+        animator.SetBool("IsJump", false);
+    }
+  
+    public static void MoveAnim()
+    {
+        AttackResetAnim();
+        animator.SetBool("IsWalk", true);
+    }
+    public static void StandAnim()
+    {
+        animator.SetBool("IsWalk", false);
+        animator.SetBool("IsJump", false);
+        AttackResetAnim();
+    }
+    public static void JumpAnim()
+    {
+        animator.SetBool("IsJump", true);
+    }
+    public static void AttackAnim()
+    {
+        animator.SetInteger("Attack", 1);
+    }
+    public static void AttackResetAnim()
+    {
+        animator.SetInteger("Attack", 0);
     }
 }

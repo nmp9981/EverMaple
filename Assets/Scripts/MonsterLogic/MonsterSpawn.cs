@@ -58,4 +58,20 @@ public class MonsterSpawn : MonoBehaviour
         }
         
     }
+    /// <summary>
+    /// 몬스터 리젠
+    /// </summary>
+    public void MonsterRespawn(Vector3 spawnPos)
+    {
+        int mobNum = Random.Range(0, 2);
+        GameObject gm = monsterFulling.MakeObj(mobNum);
+
+        //몬스터의 크기
+        float monsterYSize = gm.GetComponent<Collider2D>().bounds.size.y * 0.5f;
+
+        //최종 생성 위치(몬스터 크기 고려)
+        float randomXpos = Random.Range(-3, 3);
+        gm.transform.position = spawnPos + Vector3.right * randomXpos + Vector3.up * monsterYSize;
+        activeMonster.Add(gm);
+    }
 }

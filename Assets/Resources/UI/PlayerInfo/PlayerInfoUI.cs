@@ -17,6 +17,9 @@ public class PlayerInfoUI : MonoBehaviour
     Image expBarGage;
     TextMeshProUGUI expText;
 
+    //LV관련
+    TextMeshProUGUI lvText;
+
     private void Awake()
     {
         ImageBinding();
@@ -67,6 +70,9 @@ public class PlayerInfoUI : MonoBehaviour
                 case "PlayerEXPText":
                     expText = txt;
                     break;
+                case "LvText":
+                    lvText = txt;
+                    break;
                 default:
                     break;
             }
@@ -83,7 +89,7 @@ public class PlayerInfoUI : MonoBehaviour
         PlayerManager.PlayerInstance.PlayerCurExp = 0;
     }
 
-    //HP, MP, EXP바 보이기
+    //HP, MP, EXP바, LV 보이기
     public void ShowPlayerHPBar()
     {
         hpBarGage.fillAmount = (float)PlayerManager.PlayerInstance.PlayerCurHP / PlayerManager.PlayerInstance.PlayerMaxHP;
@@ -97,6 +103,11 @@ public class PlayerInfoUI : MonoBehaviour
     public void ShowPlayerEXPBar()
     {
         expBarGage.fillAmount = (float)PlayerManager.PlayerInstance.PlayerCurExp / PlayerManager.PlayerInstance.PlayerRequireExp;
-        expText.text = $"EXP. {PlayerManager.PlayerInstance.PlayerCurExp} / {PlayerManager.PlayerInstance.PlayerRequireExp}";
+        float expRate = Mathf.Round(expBarGage.fillAmount*10000)*0.01f;
+        expText.text = $"EXP. {PlayerManager.PlayerInstance.PlayerCurExp} / {PlayerManager.PlayerInstance.PlayerRequireExp} [{expRate}%]";
+    }
+    public void ShowPlayerLV()
+    {
+        lvText.text = $"Lv. {PlayerManager.PlayerInstance.PlayerLV}";
     }
 }

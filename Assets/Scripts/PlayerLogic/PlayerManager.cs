@@ -38,10 +38,10 @@ public class PlayerManager : MonoBehaviour
     int playerCurMP;
     int playerMaxMP = 2000;
     int playerCurExp = 0;
-    int playerRequireExp = 20250413;
+    int playerRequireExp = 40;
 
-    int playerAttack = 30;//플레이어 공격력
-    int workmanship = 20;//숙련도
+    int playerAttack = 80;//플레이어 공격력
+    int workmanship = 60;//숙련도
 
     #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerCurMP { get { return playerCurMP; } set { playerCurMP = value; } }
     public int PlayerMaxMP { get { return playerMaxMP; } set { playerMaxMP = value; } }
     public int PlayerCurExp { get { return playerCurExp; } set {playerCurExp = value; } }
-    public int PlayerRequireExp { get {return playerRequireExp; } set {playerCurExp=value; } }
+    public int PlayerRequireExp { get {return playerRequireExp; } set {playerRequireExp=value; } }
     #endregion
 
     public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }

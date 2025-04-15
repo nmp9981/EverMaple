@@ -22,22 +22,33 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator = gameObject.GetComponent<Animator>();
         animator.SetBool("IsWalk", false);
-        animator.SetBool("IsJump", false);
+        animator.SetBool("IsJump", false); 
+        animator.SetBool("IsLadder", false);
     }
   
     public static void MoveAnim()
     {
         AttackResetAnim();
+        animator.SetBool("IsLadder", false);
         animator.SetBool("IsWalk", true);
     }
     public static void StandAnim()
     {
         animator.SetBool("IsWalk", false);
         animator.SetBool("IsJump", false);
+        if (animator.GetBool("IsLadder"))
+        {
+            animator.SetBool("IsLadder", true);
+        }
+        else
+        {
+            animator.SetBool("IsLadder", false);
+        }
         AttackResetAnim();
     }
     public static void JumpAnim()
     {
+        animator.SetBool("IsLadder", false);
         animator.SetBool("IsJump", true);
     }
     public static void AttackAnim()
@@ -47,5 +58,11 @@ public class PlayerAnimation : MonoBehaviour
     public static void AttackResetAnim()
     {
         animator.SetInteger("Attack", 0);
+    }
+    public static void LadderAnim()
+    {
+        animator.SetBool("IsJump", false);
+        animator.SetBool("IsWalk", false);
+        animator.SetBool("IsLadder", true);
     }
 }

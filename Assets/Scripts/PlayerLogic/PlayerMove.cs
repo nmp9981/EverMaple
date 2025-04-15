@@ -44,6 +44,10 @@ public class PlayerMove : MonoBehaviour
             rigid.gravityScale = 0;//중력끄기
             Vector3 moveVec = new Vector3(hAxis, vAxis, 0).normalized;//이동 방향
             transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
+            if (vAxis != 0)
+            {
+                PlayerAnimation.LadderAnim();
+            }
         }
         else
         {

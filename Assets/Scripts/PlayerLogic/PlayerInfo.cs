@@ -28,6 +28,16 @@ public class PlayerInfo : MonoBehaviour
             int nextReauireExp = PlayerManager.PlayerInstance.PlayerRequireExp*105/100;
             PlayerManager.PlayerInstance.PlayerRequireExp = nextReauireExp;
             playerInfoUI.ShowPlayerEXPBar();
+
+            //HP,MP
+            PlayerManager.PlayerInstance.PlayerMaxHP += 20;
+            PlayerManager.PlayerInstance.PlayerMaxMP += 15;
+
+            PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
+            PlayerManager.PlayerInstance.PlayerCurMP = PlayerManager.PlayerInstance.PlayerMaxMP;
+
+            playerInfoUI.ShowPlayerHPBar();
+            playerInfoUI.ShowPlayerMPBar();
         }
     }
 }

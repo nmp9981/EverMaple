@@ -12,6 +12,9 @@ public class MonsterInfo : MonoBehaviour
     public int monsterCurHP;
     protected bool isAttack;
 
+    public int spawnPosNumber;//스폰지점
+    public string spawnMap;//스폰맵
+
     [SerializeField]
     protected GameObject HPBar;
     [SerializeField]
@@ -19,12 +22,16 @@ public class MonsterInfo : MonoBehaviour
 
     [SerializeField]
     PlayerInfo playerInfo;
+    [SerializeField]
+    MonsterSpawn monsterSpawn;
 
     //활성화시 로직
     private void OnEnable()
     {
         monsterCurHP = monsterMaxHP;
+        HPBarValue.fillAmount = 1;
         playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        monsterSpawn = GameObject.Find("Map").GetComponent<MonsterSpawn>();
     }
 
     private void Update()
@@ -65,7 +72,15 @@ public class MonsterInfo : MonoBehaviour
         playerInfo.GetPlayerExp(monsterExp);
 
         MonsterSpawn.activeMonster.Remove(gameObject);
+        Invoke("CallRespawn",5f);
         this.gameObject.SetActive(false);
+    }
+    /// <summary>
+    /// 리스폰 함수 불러오기
+    /// </summary>
+    void CallRespawn()
+    {
+        monsterSpawn.MonsterRespawn();
     }
 }
 

@@ -78,7 +78,7 @@ public class MonsterSpawn : MonoBehaviour
     {
         int spawnNum = Random.Range(0, spawnPositionList.Count);
 
-        int mobNum = Random.Range(0, 2);
+        int mobNum = Random.Range(0, 3);
         GameObject gm = monsterFulling.MakeObj(mobNum);
 
         //몬스터의 크기

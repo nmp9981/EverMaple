@@ -5881,6 +5881,7 @@ MonoBehaviour:
   monsterPrefabs:
   - {fileID: 134732394751756975, guid: 39e53da40747e2d4f90b2ddc4e416594, type: 3}
   - {fileID: 134732394751756975, guid: 7dfa6de684da22b45bd6bd8e1642ed26, type: 3}
+  - {fileID: 134732394751756975, guid: efa133f2291ffda46b2aec695355dccd, type: 3}
 --- !u!4 &1046348508
 Transform:
   m_ObjectHideFlags: 0

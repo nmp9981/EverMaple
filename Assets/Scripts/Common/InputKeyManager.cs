@@ -11,6 +11,10 @@ public class InputKeyManager : MonoBehaviour
     //데미지 UI순서
     public static int orderSortNum { get; set; }
 
+    private void Awake()
+    {
+        orderSortNum = 8;
+    }
     void Update()
     {
         InputPlayerMove();

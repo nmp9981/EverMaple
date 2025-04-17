@@ -57,7 +57,7 @@ public class MonsterSpawn : MonoBehaviour
                 float monsterYSize = gm.GetComponent<Collider2D>().bounds.size.y * 0.5f;
 
                 //최종 생성 위치(몬스터 크기 고려)
-                float randomXpos = Random.Range(-3, 3);
+                float randomXpos = Random.Range(-30, 30)*0.1f;
                 gm.transform.position = spawnPositionList[idx].position + Vector3.right*randomXpos+Vector3.up*monsterYSize;
                 activeMonster.Add(gm);
             }
@@ -89,7 +89,7 @@ public class MonsterSpawn : MonoBehaviour
         mobInfo.spawnPosNumber = spawnNum;
 
         //최종 생성 위치(몬스터 크기 고려)
-        float randomXpos = Random.Range(-3, 3);
+        float randomXpos = Random.Range(-30, 30)*0.1f;
         gm.transform.position = spawnPositionList[spawnNum].position + Vector3.right * randomXpos + Vector3.up * monsterYSize;
         activeMonster.Add(gm);
     }

@@ -65,6 +65,13 @@ public class MonsterSpawn : MonoBehaviour
         
     }
     /// <summary>
+    /// 리스폰 함수 불러오기
+    /// </summary>
+    public void CallRespawn()
+    {
+        Invoke("MonsterRespawn", 5f);
+    }
+    /// <summary>
     /// 몬스터 리젠
     /// </summary>
     public void MonsterRespawn()

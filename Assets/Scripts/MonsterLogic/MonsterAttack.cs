@@ -22,7 +22,6 @@ public class MonsterInfo : MonoBehaviour
 
     [SerializeField]
     PlayerInfo playerInfo;
-    [SerializeField]
     MonsterSpawn monsterSpawn;
 
     //활성화시 로직
@@ -31,7 +30,7 @@ public class MonsterInfo : MonoBehaviour
         monsterCurHP = monsterMaxHP;
         HPBarValue.fillAmount = 1;
         playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
-        monsterSpawn = GameObject.Find("Map").GetComponent<MonsterSpawn>();
+        monsterSpawn = GameObject.Find(PlayerManager.PlayerInstance.CurMapName).GetComponent<MonsterSpawn>();
     }
 
     private void Update()
@@ -72,15 +71,8 @@ public class MonsterInfo : MonoBehaviour
         playerInfo.GetPlayerExp(monsterExp);
 
         MonsterSpawn.activeMonster.Remove(gameObject);
-        Invoke("CallRespawn",5f);
+        monsterSpawn.CallRespawn();
         this.gameObject.SetActive(false);
-    }
-    /// <summary>
-    /// 리스폰 함수 불러오기
-    /// </summary>
-    void CallRespawn()
-    {
-        monsterSpawn.MonsterRespawn();
     }
 }
 

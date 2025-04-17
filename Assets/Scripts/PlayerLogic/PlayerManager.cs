@@ -43,6 +43,8 @@ public class PlayerManager : MonoBehaviour
     int playerAttack = 80;//플레이어 공격력
     int workmanship = 60;//숙련도
 
+    string curMapName = "Map2";
+
     #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }
     public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
@@ -63,5 +65,9 @@ public class PlayerManager : MonoBehaviour
 
     public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }
     public int Workmanship {  get { return workmanship; } set { workmanship = value; } }
+
+    #region 맵관련
+    public string CurMapName {  get { return curMapName; } set { curMapName = value; } }
+    #endregion
     #endregion
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class MonsterFulling : MonoBehaviour
 {
     //«¡∏Æ∆’ ¡ÿ∫Ò
-    const int blockMaxCount = 80;
+    const int blockMaxCount = 35;
     const int blockKinds = 3;
     public GameObject[] monsterPrefabs;
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class Portal : MapManager
 {
@@ -12,6 +13,11 @@ public class Portal : MapManager
     bool isAblePortal = false;
 
     protected override void Awake()
+    {
+        base.Awake();
+    }
+
+    private void OnEnable()
     {
         base.Awake();
     }

@@ -18,6 +18,7 @@ public class InputKeyManager : MonoBehaviour
     void Update()
     {
         InputPlayerMove();
+        InputPortalKey();
         InputPlayerAttack();
     }
     /// <summary>
@@ -34,6 +35,16 @@ public class InputKeyManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
             playerMove.TryJump();
+        }
+    }
+    /// <summary>
+    /// Æ÷Å» ÀÌµ¿ Å°
+    /// </summary>
+    void InputPortalKey()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            MapManager.isDownUpKey = true;
         }
     }
     /// <summary>

@@ -1234,6 +1234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 228482429}
+  - component: {fileID: 228482430}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -1258,6 +1259,20 @@ Transform:
   - {fileID: 1062073927}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &228482430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228482428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e59dd5c181e52fd4d86f3bda0475ef4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalList: []
+  mapList: []
 --- !u!1 &237805793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,6 +1876,7 @@ GameObject:
   - component: {fileID: 344381956}
   - component: {fileID: 344381958}
   - component: {fileID: 344381957}
+  - component: {fileID: 344381959}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -1984,6 +2000,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &344381959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344381955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf1cc8f0005ecd4e9c7e0f1ed927a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalList: []
+  mapList: []
+  nextPortalNode: 1
+  nextMapNum: 1
 --- !u!1001 &353283477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4237,11 +4269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582af0e63681697429701eb8211a86aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPositionList:
-  - {fileID: 377431122}
-  - {fileID: 618273349}
-  - {fileID: 1384788971}
-  - {fileID: 1155556545}
+  spawnPositionList: []
 --- !u!1 &750611884
 GameObject:
   m_ObjectHideFlags: 0
@@ -6035,13 +6063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582af0e63681697429701eb8211a86aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPositionList:
-  - {fileID: 1025747446}
-  - {fileID: 757946490}
-  - {fileID: 196623689}
-  - {fileID: 1299534031}
-  - {fileID: 1400978007}
-  - {fileID: 71256319}
+  spawnPositionList: []
 --- !u!1001 &1086177287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7937,6 +7959,7 @@ GameObject:
   - component: {fileID: 1393058516}
   - component: {fileID: 1393058518}
   - component: {fileID: 1393058517}
+  - component: {fileID: 1393058519}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -8060,6 +8083,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1393058519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393058515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf1cc8f0005ecd4e9c7e0f1ed927a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalList: []
+  mapList: []
+  nextPortalNode: 0
+  nextMapNum: 0
 --- !u!1 &1400978006
 GameObject:
   m_ObjectHideFlags: 0
@@ -10482,6 +10521,7 @@ GameObject:
   - component: {fileID: 2026626834}
   - component: {fileID: 2026626836}
   - component: {fileID: 2026626835}
+  - component: {fileID: 2026626837}
   m_Layer: 0
   m_Name: Portal (1)
   m_TagString: Untagged
@@ -10605,6 +10645,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2026626837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026626833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf1cc8f0005ecd4e9c7e0f1ed927a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalList: []
+  mapList: []
+  nextPortalNode: 0
+  nextMapNum: 0
 --- !u!1001 &2029433378
 PrefabInstance:
   m_ObjectHideFlags: 0

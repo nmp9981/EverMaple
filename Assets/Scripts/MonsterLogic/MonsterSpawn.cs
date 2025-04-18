@@ -19,18 +19,18 @@ public class MonsterSpawn : MonoBehaviour
         monsterFulling = GameObject.Find("MonsterSpawn").GetComponent<MonsterFulling>();
         SetSpawnPosition();
     }
-    void Start()
+    private void Start()
     {
         MonsterSpawnMapEnter();
     }
-
+   
     /// <summary>
     /// 스폰 위치 설정
     /// </summary>
     void SetSpawnPosition()
     {
         GameObject spawnPosObject = this.gameObject.transform.GetChild(2).gameObject;
-        foreach (Transform t in spawnPosObject.GetComponentInChildren<Transform>())
+        foreach (Transform t in spawnPosObject.GetComponentInChildren<Transform>(true))
         {
             spawnPositionList.Add(t);
         }

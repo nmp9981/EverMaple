@@ -20,6 +20,7 @@ public class MonsterInfo : MonoBehaviour
     private float monsterMoveSpeed = 3f;
     private float monsterMoveTime = 0;
     private float monsterMoveCoolTime = 0.1f;
+    private string wallTag = "Wall";
 
     //몬스터 HP바
     [SerializeField]
@@ -102,15 +103,33 @@ public class MonsterInfo : MonoBehaviour
         //방향 전환
         if (monsterMoveTime >= monsterMoveCoolTime)
         {
-            monsterMoveSpeed *= (-1f);
-            spriteRenderer.flipX = !spriteRenderer.flipX;
-
-            monsterMoveCoolTime = Random.Range(150, 400)*0.01f;
-            monsterMoveTime = 0;
+            ChangeMoveDirection();
         }
         //이동
         transform.position += Vector3.right*monsterMoveSpeed* Time.deltaTime;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //벽과 닿으면 방향 전환
+        if (collision.gameObject.tag == wallTag)
+        {
+            ChangeMoveDirection();
+        }
+    }
+
+    /// <summary>
+    /// 이동 방향 전환
+    /// </summary>
+    void ChangeMoveDirection()
+    {
+        monsterMoveSpeed *= (-1f);
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+
+        monsterMoveCoolTime = Random.Range(150, 400) * 0.01f;
+        monsterMoveTime = 0;
+    }
+
     /// <summary>
     /// 시간 흐름
     /// </summary>
@@ -127,6 +146,12 @@ public class MonsterAttack : MonsterInfo
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //몬스터가 피격
+
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //몬스터 피격
+
 
     }
     //몬스터가 공격

@@ -6,10 +6,13 @@ public class MonsterSpawn : MonoBehaviour
 {
     [SerializeField]
     List<Transform> spawnPositionList = new List<Transform>();
+    [SerializeField]
+    List<int> appearMonsterNum = new List<int>();
 
     MonsterFulling monsterFulling;
 
     float resenTime = 5f;
+    
 
     //맵에 활성화된 몬스터
     public static List<GameObject> activeMonster = new List<GameObject>();
@@ -52,7 +55,8 @@ public class MonsterSpawn : MonoBehaviour
 
             for (int i = 0; i < genCount; i++)
             {
-                int mobNum = Random.Range(0, 2);
+                int mobIndex = Random.Range(0, appearMonsterNum.Count);
+                int mobNum = appearMonsterNum[mobIndex];
                 GameObject gm = monsterFulling.MakeObj(mobNum);
                 
                 //몬스터 리젠 위치 등록
@@ -90,8 +94,9 @@ public class MonsterSpawn : MonoBehaviour
         }
 
         int spawnNum = Random.Range(0, this.spawnPositionList.Count);
-       
-        int mobNum = Random.Range(0, 3);
+
+        int mobIndex = Random.Range(0, appearMonsterNum.Count);
+        int mobNum = appearMonsterNum[mobIndex];
         GameObject gm = monsterFulling.MakeObj(mobNum);
 
         //몬스터의 크기
@@ -117,6 +122,8 @@ public class MonsterSpawn : MonoBehaviour
         {
             foreach (GameObject mob in activeMonster)
             {
+                if (mob == null)
+                    continue;
                 mob.gameObject.SetActive(false);
             }
             activeMonster.Clear();

@@ -466,6 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPositionList: []
+  appearMonsterNum: 0000000001000000
 --- !u!1001 &30823133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8803,6 +8804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPositionList: []
+  appearMonsterNum: 0000000001000000
 --- !u!1001 &734132365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11845,6 +11847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPositionList: []
+  appearMonsterNum: 0100000002000000
 --- !u!1001 &1073973131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20238,6 +20241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPositionList: []
+  appearMonsterNum: 0000000002000000
 --- !u!61 &1901533108 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 3802147856393677810, guid: 27f7d6b1deb770d45a39159d26b5fe6f, type: 3}

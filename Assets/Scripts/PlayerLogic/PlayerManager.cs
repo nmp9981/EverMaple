@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
 
     int playerAttack = 80;//플레이어 공격력
     int workmanship = 60;//숙련도
+    int criticalProbably = 50;//크리티컬 확률
 
     string curMapName = "Map2";
 
@@ -65,6 +66,7 @@ public class PlayerManager : MonoBehaviour
 
     public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }
     public int Workmanship {  get { return workmanship; } set { workmanship = value; } }
+    public int CriticalProbably { get { return criticalProbably; }set { criticalProbably = value; } }
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }

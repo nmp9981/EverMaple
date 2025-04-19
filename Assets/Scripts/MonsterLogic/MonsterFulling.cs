@@ -3,8 +3,8 @@ using UnityEngine;
 public class MonsterFulling : MonoBehaviour
 {
     //프리팹 준비
-    const int blockMaxCount = 35;
-    const int blockKinds = 3;
+    const int blockMaxCount = 30;
+    const int blockKinds = 9;
     public GameObject[] monsterPrefabs;
 
     //오브젝트 배열
@@ -17,6 +17,12 @@ public class MonsterFulling : MonoBehaviour
         {
              new GameObject[blockMaxCount],
              new GameObject[blockMaxCount],
+             new GameObject[blockMaxCount],
+             new GameObject[blockMaxCount],
+             new GameObject[blockMaxCount],
+             new GameObject[blockMaxCount],
+             new GameObject[blockMaxCount],
+             new GameObject[blockMaxCount],
              new GameObject[blockMaxCount]
         };
         Generate();
@@ -26,21 +32,11 @@ public class MonsterFulling : MonoBehaviour
         //블록
         for (int i = 0; i < blockKinds; i++)
         {
-            if (i >= 23 && i <= 25)
+            for (int j = 0; j < blockMaxCount; j++)
             {
-                for (int j = 0; j < 1; j++)
-                {
-                    blocks[i][j] = Instantiate(monsterPrefabs[i]);
-                    blocks[i][j].SetActive(false);
-                }
-            }
-            else
-            {
-                for (int j = 0; j < blockMaxCount; j++)
-                {
-                    blocks[i][j] = Instantiate(monsterPrefabs[i]);
-                    blocks[i][j].SetActive(false);
-                }
+                blocks[i][j] = Instantiate(monsterPrefabs[i]);
+                blocks[i][j].transform.parent = this.transform;
+                blocks[i][j].SetActive(false);
             }
         }
     }

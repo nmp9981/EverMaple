@@ -11778,9 +11778,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabs:
+  - {fileID: 134732394751756975, guid: c828151842514a147a349bd18fed5156, type: 3}
   - {fileID: 134732394751756975, guid: 39e53da40747e2d4f90b2ddc4e416594, type: 3}
   - {fileID: 134732394751756975, guid: 7dfa6de684da22b45bd6bd8e1642ed26, type: 3}
+  - {fileID: 134732394751756975, guid: 232f3dac0c5451c4c87cd8ae84ad6633, type: 3}
+  - {fileID: 134732394751756975, guid: 63018d94334ef7a46a3ba861c8711371, type: 3}
   - {fileID: 134732394751756975, guid: efa133f2291ffda46b2aec695355dccd, type: 3}
+  - {fileID: 134732394751756975, guid: 62a74369ac2494d45935569760636705, type: 3}
+  - {fileID: 134732394751756975, guid: eddbbe6a7a42f2f489539ad7163eecdd, type: 3}
+  - {fileID: 134732394751756975, guid: 33c225ba4c2089847b5d4b760daf514c, type: 3}
 --- !u!4 &1046348508
 Transform:
   m_ObjectHideFlags: 0

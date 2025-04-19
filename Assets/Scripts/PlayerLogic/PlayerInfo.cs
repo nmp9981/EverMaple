@@ -38,6 +38,9 @@ public class PlayerInfo : MonoBehaviour
 
             playerInfoUI.ShowPlayerHPBar();
             playerInfoUI.ShowPlayerMPBar();
+
+            //TODO : 공격력증가 (테스트용 임시코드로 추후 지울예정)
+            PlayerManager.PlayerInstance.PlayerAttack += 50;
         }
     }
 }

@@ -62,31 +62,7 @@ public class PlayerAttack : MonoBehaviour
         Bounds nearMobArea= nearMob.GetComponent<Collider2D>().bounds;
         if (IsMonsterInPlayerAttackArea(nearMobArea, attackBound))
         {
-            //공격 모션과 데미지
-            int attackPower = PlayerManager.PlayerInstance.PlayerAttack;
-            int minAttackDamage = (attackPower * PlayerManager.PlayerInstance.Workmanship) / 100;
-            int attackDamage = Random.Range(minAttackDamage, attackPower);
-
-            //크리티컬 판정
-            int criValue = Random.Range(0, 100);
-
-            if (criValue >= PlayerManager.PlayerInstance.CriticalProbably)
-            {
-                attackDamage *= 2;//크리티컬 데미지 반영
-            }
-
-            //몬스터 HP감소
-            nearMob.GetComponent<MonsterInfo>().DecreaseMonsterHP(attackDamage);
-
-            //데미지 띄우기(기본 공격은 1회 타격)
-            if (criValue >= PlayerManager.PlayerInstance.CriticalProbably)
-            {
-                ShowCriticalDamageAsSkin(attackDamage, nearMob, 1);
-            }
-            else
-            {
-                ShowDamageAsSkin(attackDamage, nearMob, 1);
-            }
+            PlayerAttackToMonster(nearMob);
         }
     }
 
@@ -156,6 +132,37 @@ public class PlayerAttack : MonoBehaviour
         }
         //충돌안함
         return false;
+    }
+    /// <summary>
+    /// 실제 공격
+    /// </summary>
+    void PlayerAttackToMonster(GameObject nearMob)
+    {
+        //공격 모션과 데미지
+        int attackPower = PlayerManager.PlayerInstance.PlayerAttack;
+        int minAttackDamage = (attackPower * PlayerManager.PlayerInstance.Workmanship) / 100;
+        int attackDamage = Random.Range(minAttackDamage, attackPower);
+
+        //크리티컬 판정
+        int criValue = Random.Range(0, 100);
+
+        if (criValue >= PlayerManager.PlayerInstance.CriticalProbably)
+        {
+            attackDamage *= 2;//크리티컬 데미지 반영
+        }
+
+        //몬스터 HP감소
+        nearMob.GetComponent<MonsterInfo>().DecreaseMonsterHP(attackDamage);
+
+        //데미지 띄우기(기본 공격은 1회 타격)
+        if (criValue >= PlayerManager.PlayerInstance.CriticalProbably)
+        {
+            ShowCriticalDamageAsSkin(attackDamage, nearMob, 1);
+        }
+        else
+        {
+            ShowDamageAsSkin(attackDamage, nearMob, 1);
+        }
     }
 
     /// <summary>

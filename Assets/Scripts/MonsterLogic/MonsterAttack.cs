@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class MonsterInfo : MonoBehaviour
 {
+    //몬스터 정보
     public int monsterLv;
     public int monsterMaxHP;
     public int monsterExp;
@@ -15,14 +16,22 @@ public class MonsterInfo : MonoBehaviour
     public int spawnPosNumber;//스폰지점
     public string spawnMap;//스폰맵
 
+    //몬스터 이동
+    private float monsterMoveSpeed = 3f;
+    private float monsterMoveTime = 0;
+    private float monsterMoveCoolTime = 0.1f;
+
+    //몬스터 HP바
     [SerializeField]
     protected GameObject HPBar;
     [SerializeField]
     protected Image HPBarValue;
 
+    //기타
     [SerializeField]
     PlayerInfo playerInfo;
     MonsterSpawn monsterSpawn;
+    SpriteRenderer spriteRenderer;
 
     //활성화시 로직
     private void OnEnable()
@@ -31,9 +40,19 @@ public class MonsterInfo : MonoBehaviour
         HPBarValue.fillAmount = 1;
         playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         monsterSpawn = GameObject.Find(PlayerManager.PlayerInstance.CurMapName).GetComponent<MonsterSpawn>();
+        
+        //스프라이트 관련
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.flipX = true;
     }
 
     private void Update()
+    {
+        MonsterMoveAI();
+        Timeflow();
+    }
+
+    private void LateUpdate()
     {
         MoveHPBar();
     }
@@ -74,11 +93,37 @@ public class MonsterInfo : MonoBehaviour
         monsterSpawn.CallRespawn();
         this.gameObject.SetActive(false);
     }
+
+    /// <summary>
+    /// 몬스터 이동 AI
+    /// </summary>
+    void MonsterMoveAI()
+    {
+        //방향 전환
+        if (monsterMoveTime >= monsterMoveCoolTime)
+        {
+            monsterMoveSpeed *= (-1f);
+            spriteRenderer.flipX = !spriteRenderer.flipX;
+
+            monsterMoveCoolTime = Random.Range(150, 400)*0.01f;
+            monsterMoveTime = 0;
+        }
+        //이동
+        transform.position += Vector3.right*monsterMoveSpeed* Time.deltaTime;
+    }
+    /// <summary>
+    /// 시간 흐름
+    /// </summary>
+    void Timeflow()
+    {
+        monsterMoveTime += Time.deltaTime;
+    }
 }
 
 
 public class MonsterAttack : MonsterInfo
 {
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //몬스터가 피격

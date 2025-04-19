@@ -29,8 +29,8 @@ public class MapManager : MonoBehaviour
         PlayerManager.PlayerInstance.CurMapName = MapAndProtalList.mapList[nextMapNum].name;
 
         await UniTask.Delay(100);
-        MapAndProtalList.mapList[nextMapNum].SetActive(true);
         MapAndProtalList.mapList[MapAndProtalList.curMapNum].SetActive(false);
+        MapAndProtalList.mapList[nextMapNum].SetActive(true);
         MapAndProtalList.curMapNum = nextMapNum;
 
         //캐릭터 위치를 포탈 위치로 

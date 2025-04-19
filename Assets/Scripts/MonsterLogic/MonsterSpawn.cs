@@ -17,13 +17,18 @@ public class MonsterSpawn : MonoBehaviour
     private void Awake()
     {
         monsterFulling = GameObject.Find("MonsterSpawn").GetComponent<MonsterFulling>();
-        SetSpawnPosition();
     }
-    private void Start()
+    private void OnEnable()
     {
+        SetSpawnPosition();
         MonsterSpawnMapEnter();
     }
-   
+
+    private void OnDisable()
+    {
+        MonsterListDestroy();
+    }
+
     /// <summary>
     /// 스폰 위치 설정
     /// </summary>
@@ -49,9 +54,11 @@ public class MonsterSpawn : MonoBehaviour
             {
                 int mobNum = Random.Range(0, 2);
                 GameObject gm = monsterFulling.MakeObj(mobNum);
-
+                
                 //몬스터 리젠 위치 등록
-                gm.GetComponent<MonsterInfo>().spawnPosNumber = idx;
+                MonsterInfo monsterInfo = gm.GetComponent<MonsterInfo>();
+                monsterInfo.spawnPosNumber = idx;
+                monsterInfo.spawnMap = PlayerManager.PlayerInstance.CurMapName;
 
                 //몬스터의 크기
                 float monsterYSize = gm.GetComponent<Collider2D>().bounds.size.y * 0.5f;
@@ -76,8 +83,14 @@ public class MonsterSpawn : MonoBehaviour
     /// </summary>
     public void MonsterRespawn()
     {
-        int spawnNum = Random.Range(0, spawnPositionList.Count);
+        //스폰 위치가 없을때
+        if (spawnPositionList.Count == 0)
+        {
+            SetSpawnPosition();
+        }
 
+        int spawnNum = Random.Range(0, this.spawnPositionList.Count);
+       
         int mobNum = Random.Range(0, 3);
         GameObject gm = monsterFulling.MakeObj(mobNum);
 
@@ -87,10 +100,28 @@ public class MonsterSpawn : MonoBehaviour
         //몬스터 스폰 위치
         MonsterInfo mobInfo = gm.GetComponent<MonsterInfo>();
         mobInfo.spawnPosNumber = spawnNum;
+        mobInfo.spawnMap = PlayerManager.PlayerInstance.CurMapName;
 
         //최종 생성 위치(몬스터 크기 고려)
         float randomXpos = Random.Range(-30, 30)*0.1f;
         gm.transform.position = spawnPositionList[spawnNum].position + Vector3.right * randomXpos + Vector3.up * monsterYSize;
         activeMonster.Add(gm);
+    }
+    /// <summary>
+    /// 맵에 있는 몬스터 지우기
+    /// </summary>
+    void MonsterListDestroy()
+    {
+        //활성화 몬스터가 존재할때 적용
+        if (activeMonster != null)
+        {
+            foreach (GameObject mob in activeMonster)
+            {
+                mob.gameObject.SetActive(false);
+            }
+            activeMonster.Clear();
+        }
+        //스폰위치 초기화
+        spawnPositionList.Clear();
     }
 }

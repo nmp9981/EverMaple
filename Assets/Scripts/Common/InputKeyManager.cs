@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InputKeyManager : MonoBehaviour
@@ -20,7 +21,24 @@ public class InputKeyManager : MonoBehaviour
         InputPlayerMove();
         InputPortalKey();
         InputPlayerAttack();
+        InputSkillKey();
     }
+    /// <summary>
+    /// 감지된 KeyCode를 반환한다.
+    /// </summary>
+    /// <returns>현재 틱에서 입력된 키코드를 반환</returns>
+    private KeyCode DetectPressedKeyCode()
+    {
+        foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKeyDown(kcode))
+            {
+                return kcode;
+            }
+        }
+        return KeyCode.None;
+    }
+
     /// <summary>
     /// 이동 키
     /// </summary>
@@ -55,6 +73,27 @@ public class InputKeyManager : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             playerAttack.BasicAttackFlow();
+        }
+    }
+    /// <summary>
+    /// 스킬키
+    /// </summary>
+    void InputSkillKey()
+    {
+        //어떤키라도 입력
+        KeyCode keyCode = DetectPressedKeyCode();
+        if (keyCode != KeyCode.None)
+        {
+            switch (keyCode)
+            {
+                case KeyCode.Z://럭키세븐
+                    
+                    break;
+                case KeyCode.X:
+                    break;
+                default:
+                    break;
+            }
         }
     }
     /// <summary>

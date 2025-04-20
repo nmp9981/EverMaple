@@ -190,7 +190,7 @@ public class MonsterInfo : MonoBehaviour
     {
         anim.SetBool("IsHit",true);
         monsterMoveSpeed = 0;
-        Invoke("StandState", 0.5f);
+        Invoke("StandState", 0.4f);
     }
 }
 

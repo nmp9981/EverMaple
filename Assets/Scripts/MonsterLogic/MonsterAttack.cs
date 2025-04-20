@@ -82,7 +82,7 @@ public class MonsterInfo : MonoBehaviour
         if(monsterCurHP <= 0)
         {
             anim.SetBool("IsDie", true);
-            Invoke("DieMonster", 0.4f);
+            Invoke("DieMonster", 0.5f);
         }
         else//피격 상태
         {

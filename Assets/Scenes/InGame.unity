@@ -8592,7 +8592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1abbd3245644004e886f20f50996a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 762339939}
 --- !u!4 &681109681
 Transform:
   m_ObjectHideFlags: 0
@@ -8620,6 +8620,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453b7adc86b54794b84c30d9e672bfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwPrefabs:
+  - {fileID: 4459312466849730763, guid: 7018ec8b3bac07943a47ea0511e45cb6, type: 3}
+  - {fileID: 4459312466849730763, guid: cfe022749b059cb4aa68810c203336b5, type: 3}
+  - {fileID: 4459312466849730763, guid: f30ad4b8843eff849bb3918fb43ef98e, type: 3}
+  - {fileID: 4459312466849730763, guid: b63d3b7b38a3c7b4f860ecff19fda954, type: 3}
+  - {fileID: 4459312466849730763, guid: e88fe61d139e1e346a302c197e3e7d1a, type: 3}
+  - {fileID: 4459312466849730763, guid: 940d367a2ad12dc4c9aef91e742e9d12, type: 3}
+  - {fileID: 4459312466849730763, guid: da9bf362cc481654e9da5ec42c50ac69, type: 3}
+  - {fileID: 4459312466849730763, guid: 8c50ca595a4047143bdac1897e0af995, type: 3}
+  - {fileID: 4459312466849730763, guid: cb86e8babf895974384b5adb06d375c9, type: 3}
+  - {fileID: 4459312466849730763, guid: 77f402e2bf93e3a47a0ef77a7fa50e31, type: 3}
 --- !u!1 &681897400
 GameObject:
   m_ObjectHideFlags: 0

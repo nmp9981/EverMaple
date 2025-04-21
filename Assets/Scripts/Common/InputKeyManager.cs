@@ -8,6 +8,8 @@ public class InputKeyManager : MonoBehaviour
 
     [SerializeField]
     PlayerAttack playerAttack;
+    [SerializeField]
+    SkillManager skillManager;
 
     //데미지 UI순서
     public static int orderSortNum { get; set; }
@@ -78,7 +80,7 @@ public class InputKeyManager : MonoBehaviour
     /// <summary>
     /// 스킬키
     /// </summary>
-    void InputSkillKey()
+    async void InputSkillKey()
     {
         //어떤키라도 입력
         KeyCode keyCode = DetectPressedKeyCode();
@@ -87,7 +89,7 @@ public class InputKeyManager : MonoBehaviour
             switch (keyCode)
             {
                 case KeyCode.Z://럭키세븐
-                    
+                    await skillManager.LuckySeven(2);
                     break;
                 case KeyCode.X:
                     break;

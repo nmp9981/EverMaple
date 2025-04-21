@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     float playerMoveSpeed = 4f;//이동 속도
     float jumpForce = 5f;//점프력
     int maxJumpCount = 2;//최대 점프 횟수
+    Vector3 playerLookDir = Vector3.left;//플레이어가 바라보는 방향
 
     //플레이어 기본 정보
     int playerLV = 200;
@@ -43,6 +44,7 @@ public class PlayerManager : MonoBehaviour
     int playerAttack = 80;//플레이어 공격력
     int workmanship = 60;//숙련도
     int criticalProbably = 50;//크리티컬 확률
+    int playerAttackSpeed = 500;//공격 속도
 
     string curMapName = "Map2";
 
@@ -50,6 +52,7 @@ public class PlayerManager : MonoBehaviour
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }
     public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
     public int MaxJumpCount { get { return maxJumpCount; } set { maxJumpCount = value; } }
+    public Vector3 PlayerLookDir { get { return playerLookDir; } set { playerLookDir = value; } }
     #endregion
 
     #region 플레이어 기본 정보
@@ -67,6 +70,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }
     public int Workmanship {  get { return workmanship; } set { workmanship = value; } }
     public int CriticalProbably { get { return criticalProbably; }set { criticalProbably = value; } }
+    public int PlayerAttackSpeed { get { return playerAttackSpeed; } set { playerAttackSpeed = value; } }
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }

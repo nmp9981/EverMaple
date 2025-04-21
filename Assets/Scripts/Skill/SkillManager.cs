@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 //공격 범위
@@ -9,16 +10,23 @@ public enum AttackRange
 }
 public class SkillManager : MonoBehaviour
 {
-    [SerializeField]
     GameObject player;
+    ThrowObjectFulling throwObjectFulling;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
+        throwObjectFulling = GetComponent<ThrowObjectFulling>();
     }
 
-    void SkillAttack()
+    //스킬 실행
+    public async UniTask LuckySeven(int hitNum)
     {
-
+        for(int i = 0; i < hitNum; i++)
+        {
+            GameObject throwObj = throwObjectFulling.MakeObj(0);
+            throwObj.GetComponent<ThrowObjectFunction>().hitNum = i;
+            await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed/2);
+        }
     }
 }

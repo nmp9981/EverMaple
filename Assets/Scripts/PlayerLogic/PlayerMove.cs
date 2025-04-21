@@ -54,9 +54,18 @@ public class PlayerMove : MonoBehaviour
             rigid.gravityScale = 1;//중력켜기
             Vector3 moveVec = new Vector3(hAxis, 0, 0).normalized;//이동 방향
             transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
-            spriteRenderer.flipX = hAxis > 0 ? true : false;//이동방향을 바라보게
+
+            LookPlayerMoveDirection(hAxis);//이동방향을 바라보게
             PlayerAnimation.MoveAnim();
         }
+    }
+    /// <summary>
+    /// 캐릭터의 이동방향을 바라보게 한다.
+    /// </summary>
+    void LookPlayerMoveDirection(float hAxis)
+    {
+        spriteRenderer.flipX = hAxis > 0 ? true : false;
+        PlayerManager.PlayerInstance.PlayerLookDir = spriteRenderer.flipX ? Vector3.right : Vector3.left;
     }
 
     /// <summary>

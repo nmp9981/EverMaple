@@ -8592,7 +8592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1abbd3245644004e886f20f50996a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 762339939}
 --- !u!4 &681109681
 Transform:
   m_ObjectHideFlags: 0
@@ -14398,6 +14397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMove: {fileID: 807552417}
   playerAttack: {fileID: 807552425}
+  skillManager: {fileID: 681109680}
 --- !u!4 &1210405217
 Transform:
   m_ObjectHideFlags: 0

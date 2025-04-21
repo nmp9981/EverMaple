@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
     const float maxDist = 999f;
 
     //공격 영역 크기
-    float attackBoundSize = 2f;
+    float attackBoundSize = 3f;
 
     //쿨타임
     float curAttackTime = 0;

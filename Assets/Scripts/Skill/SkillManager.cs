@@ -26,7 +26,9 @@ public class SkillManager : MonoBehaviour
         {
             GameObject throwObj = throwObjectFulling.MakeObj(0);
             throwObj.GetComponent<ThrowObjectFunction>().hitNum = i;
-            await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed/2);
+            await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed/3);
         }
     }
+
+    
 }

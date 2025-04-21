@@ -12,13 +12,17 @@ public class ThrowObjectFunction : MonoBehaviour
     private Vector3 lookDir;
     private GameObject targetMob;
 
+    float moveDist = 0;
+    float destroyDist = 8;
+
     public int hitNum { get; set; }
     
     private void OnEnable()
     {
+        GameObject player = GameObject.Find("Player");
         lookDir = PlayerManager.PlayerInstance.PlayerLookDir;
-        targetMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir,this.transform.position);
-        moveDir = (targetMob.transform.position - transform.position).normalized;
+        targetMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir,player.transform.position);
+        moveDir = (targetMob.transform.position - player.transform.position).normalized;
     }
 
     void Update()
@@ -32,7 +36,15 @@ public class ThrowObjectFunction : MonoBehaviour
     /// </summary>
     void MoveObject()
     {
-        transform.position = moveDir * moveSpeed * Time.deltaTime;
+        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        moveDist += moveSpeed * Time.deltaTime;
+
+        //사거리 넘으면 비활성화
+        if(moveDist > destroyDist)
+        {
+            moveDist = 0;
+            DestroyObject();
+        }
     }
     /// <summary>
     /// 공격 명중
@@ -48,6 +60,7 @@ public class ThrowObjectFunction : MonoBehaviour
         if (dist < judgeCollideDist)
         {
             int hitDamage = CalDamage(throwAttack);
+            targetMob.GetComponent<MonsterInfo>().DecreaseMonsterHP(hitDamage);
             PlayerAttackCommon.ShowDamageAsSkin(hitDamage,targetMob,hitNum);
 
             gameObject.SetActive(false);
@@ -61,5 +74,12 @@ public class ThrowObjectFunction : MonoBehaviour
     int CalDamage(int throwAttack)
     {
         return throwAttack;
+    }
+    /// <summary>
+    /// 오브젝트 비활성화
+    /// </summary>
+    void DestroyObject()
+    {
+        gameObject.SetActive(false);
     }
 }

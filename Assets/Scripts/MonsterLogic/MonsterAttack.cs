@@ -37,9 +37,13 @@ public class MonsterInfo : MonoBehaviour
     MonsterSpawn monsterSpawn;
     SpriteRenderer spriteRenderer;
 
+    //사망 판정용
+    private int dieCount;
+
     //활성화시 로직
     private void OnEnable()
     {
+        dieCount = 0;
         monsterCurHP = monsterMaxHP;
         HPBarValue.fillAmount = 1;
         playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
@@ -81,8 +85,12 @@ public class MonsterInfo : MonoBehaviour
         //몬스터 사망
         if(monsterCurHP <= 0)
         {
-            anim.SetBool("IsDie", true);
-            Invoke("DieMonster", 0.5f);
+            dieCount += 1;
+            if (dieCount == 1)
+            {
+                anim.SetBool("IsDie", true);
+                Invoke("DieMonster", 0.5f);
+            }
         }
         else//피격 상태
         {

@@ -5,7 +5,7 @@ public class ThrowObjectFunction : MonoBehaviour
 {
     [SerializeField]
     int throwAttack;
-    float moveSpeed = 5f;
+    float moveSpeed = 10f;
     const float judgeCollideDist = 0.1f;
 
     private Vector3 moveDir;
@@ -15,20 +15,33 @@ public class ThrowObjectFunction : MonoBehaviour
     float moveDist = 0;
     float destroyDist = 8;
 
+    public Vector3 startPos;
     public int hitNum { get; set; }
     
     private void OnEnable()
     {
-        GameObject player = GameObject.Find("Player");
+        moveDist = 0;
+        transform.position = startPos;
         lookDir = PlayerManager.PlayerInstance.PlayerLookDir;
-        targetMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir,player.transform.position);
-        moveDir = (targetMob.transform.position - player.transform.position).normalized;
+        targetMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, startPos);
+
+        SetMoveDir();
     }
 
     void Update()
     {
         MoveObject();
         CollideToMonster();
+    }
+
+    /// <summary>
+    /// 움직이는 방향 설정
+    /// </summary>
+    void SetMoveDir()
+    {
+        if (targetMob != null)
+            moveDir = (targetMob.transform.position - startPos).normalized;
+        else moveDir = lookDir;
     }
 
     /// <summary>

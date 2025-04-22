@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //공격 범위
@@ -24,8 +25,9 @@ public class SkillManager : MonoBehaviour
     {
         for(int i = 0; i < hitNum; i++)
         {
-            GameObject throwObj = throwObjectFulling.MakeObj(0);
-            throwObj.GetComponent<ThrowObjectFunction>().hitNum = i;
+            ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(0).GetComponent<ThrowObjectFunction>();
+            throwObj.hitNum = i;
+            throwObj.startPos = player.transform.position;
             await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed/3);
         }
     }

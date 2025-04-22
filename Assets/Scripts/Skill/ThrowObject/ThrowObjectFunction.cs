@@ -72,8 +72,24 @@ public class ThrowObjectFunction : MonoBehaviour
         if (dist < judgeCollideDist)
         {
             int hitDamage = CalDamage(throwAttack);
+            //크리티컬 판정
+            bool isCri = PlayerAttackCommon.IsCritical();
+            if (isCri)
+            {
+                hitDamage *= 2;//크리티컬 데미지 반영
+            }
+
             targetMob.GetComponent<MonsterInfo>().DecreaseMonsterHP(hitDamage);
-            PlayerAttackCommon.ShowDamageAsSkin(hitDamage,targetMob,hitNum);
+
+            //데미지 띄우기
+            if (isCri)
+            {
+                PlayerAttackCommon.ShowCriticalDamageAsSkin(hitDamage, targetMob, hitNum);
+            }
+            else
+            {
+                PlayerAttackCommon.ShowDamageAsSkin(hitDamage, targetMob, hitNum);
+            }
 
             gameObject.SetActive(false);
             return;

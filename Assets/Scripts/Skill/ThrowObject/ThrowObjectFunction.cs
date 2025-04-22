@@ -6,7 +6,7 @@ public class ThrowObjectFunction : MonoBehaviour
     [SerializeField]
     int throwAttack;
     float moveSpeed = 10f;
-    const float judgeCollideDist = 0.1f;
+    const float judgeCollideDist = 0.5f;
 
     private Vector3 moveDir;
     private Vector3 lookDir;

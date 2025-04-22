@@ -12,11 +12,13 @@ public enum AttackRange
 public class SkillManager : MonoBehaviour
 {
     GameObject player;
+    PlayerInfoUI playerInfoUI;
     ThrowObjectFulling throwObjectFulling;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
+        playerInfoUI = GameObject.Find("UserInfo").GetComponent<PlayerInfoUI>();
         throwObjectFulling = GetComponent<ThrowObjectFulling>();
     }
 
@@ -25,6 +27,9 @@ public class SkillManager : MonoBehaviour
     {
         //공격 모션
         PlayerAnimation.AttackAnim();
+
+        //MP 소모
+        DecreasePlayerMP(16);
 
         for (int i = 0; i < hitNum; i++)
         {
@@ -37,5 +42,12 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    
+    /// <summary>
+    /// MP 소모
+    /// </summary>
+    private void DecreasePlayerMP(int spendMP)
+    {
+        PlayerManager.PlayerInstance.PlayerCurMP = Mathf.Max(0, PlayerManager.PlayerInstance.PlayerCurMP - spendMP);
+        playerInfoUI.ShowPlayerMPBar();
+    }
 }

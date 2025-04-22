@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
     int workmanship = 60;//숙련도
     int criticalProbably = 50;//크리티컬 확률
     int playerAttackSpeed = 500;//공격 속도
-    float throwObjectMaxDist = 8;//사거리
+    float throwObjectMaxDist = 10;//사거리
 
     string curMapName = "Map2";
 

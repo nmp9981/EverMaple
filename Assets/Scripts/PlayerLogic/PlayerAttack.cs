@@ -52,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
         attackBound = SettingAttackArea(lookDir);
 
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
-        GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir ,gameObject.transform.position);
+        GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir ,gameObject.transform.position,attackBoundSize*2);
        
         //몬스터가 없으면 아래 로직은 실행하지않고 중단
         if (nearMob == null)

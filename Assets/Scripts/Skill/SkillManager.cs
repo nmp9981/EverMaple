@@ -23,12 +23,17 @@ public class SkillManager : MonoBehaviour
     //스킬 실행
     public async UniTask LuckySeven(int hitNum)
     {
-        for(int i = 0; i < hitNum; i++)
+        //공격 모션
+        PlayerAnimation.AttackAnim();
+
+        for (int i = 0; i < hitNum; i++)
         {
             ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(0).GetComponent<ThrowObjectFunction>();
+            throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
+            throwObj.startPos = throwObj.transform.position;
             throwObj.hitNum = i;
-            throwObj.startPos = player.transform.position;
-            await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed/3);
+
+            await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed/4);
         }
     }
 

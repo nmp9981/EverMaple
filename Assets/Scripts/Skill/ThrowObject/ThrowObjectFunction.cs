@@ -13,17 +13,16 @@ public class ThrowObjectFunction : MonoBehaviour
     private GameObject targetMob;
 
     float moveDist = 0;
-    float destroyDist = 8;
+    float destroyDist = 10;
 
-    public Vector3 startPos;
+    public Vector3 startPos { get; set; }
     public int hitNum { get; set; }
     
     private void OnEnable()
     {
         moveDist = 0;
-        transform.position = startPos;
         lookDir = PlayerManager.PlayerInstance.PlayerLookDir;
-        targetMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, startPos);
+        targetMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, startPos, PlayerManager.PlayerInstance.ThrowObjectMaxDist);
 
         SetMoveDir();
     }

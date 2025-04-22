@@ -45,6 +45,7 @@ public class PlayerManager : MonoBehaviour
     int workmanship = 60;//숙련도
     int criticalProbably = 50;//크리티컬 확률
     int playerAttackSpeed = 500;//공격 속도
+    float throwObjectMaxDist = 8;//사거리
 
     string curMapName = "Map2";
 
@@ -71,6 +72,7 @@ public class PlayerManager : MonoBehaviour
     public int Workmanship {  get { return workmanship; } set { workmanship = value; } }
     public int CriticalProbably { get { return criticalProbably; }set { criticalProbably = value; } }
     public int PlayerAttackSpeed { get { return playerAttackSpeed; } set { playerAttackSpeed = value; } }
+    public float ThrowObjectMaxDist { get { return throwObjectMaxDist; } set { throwObjectMaxDist = value; } }
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }

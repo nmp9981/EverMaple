@@ -26,7 +26,8 @@ public class MonsterInfo : MonoBehaviour
     [SerializeField]
     protected GameObject HPBar;
     [SerializeField]
-    protected Image HPBarValue;
+    protected Transform HPBarValue;
+    const float HPBarMaxScale = 2;
 
     //애니메이션
     Animator anim;
@@ -45,7 +46,7 @@ public class MonsterInfo : MonoBehaviour
     {
         dieCount = 0;
         monsterCurHP = monsterMaxHP;
-        HPBarValue.fillAmount = 1;
+        HPBarValue.localScale = new Vector3(HPBarMaxScale, HPBarValue.localScale.y, 1);
         playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         monsterSpawn = GameObject.Find(PlayerManager.PlayerInstance.CurMapName).GetComponent<MonsterSpawn>();
         anim = GetComponent<Animator>();
@@ -60,18 +61,7 @@ public class MonsterInfo : MonoBehaviour
         MonsterMoveAI();
         Timeflow();
     }
-
-    private void LateUpdate()
-    {
-        MoveHPBar();
-    }
-    /// <summary>
-    /// 몬스터 위치 따라서 HP바 이동
-    /// </summary>
-    void MoveHPBar()
-    {
-        HPBar.transform.position = Camera.main.WorldToScreenPoint(this.gameObject.transform.position + new Vector3(0, 1f, 0));
-    }
+   
     /// <summary>
     /// 몬스터 HP감소
     /// </summary>
@@ -80,10 +70,11 @@ public class MonsterInfo : MonoBehaviour
     {
 
         monsterCurHP = Mathf.Max(monsterCurHP - attackDamage,0);
-        HPBarValue.fillAmount = (float)monsterCurHP / monsterMaxHP;
+        float restHPRate = (float)monsterCurHP*HPBarMaxScale / monsterMaxHP;
+        HPBarValue.localScale = new Vector3(restHPRate, HPBarValue.localScale.y, 1);
 
         //몬스터 사망
-        if(monsterCurHP <= 0)
+        if (monsterCurHP <= 0)
         {
             dieCount += 1;
             if (dieCount == 1)

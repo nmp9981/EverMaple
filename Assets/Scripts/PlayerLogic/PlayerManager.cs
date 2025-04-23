@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
     Vector3 playerLookDir = Vector3.left;//플레이어가 바라보는 방향
 
     //플레이어 기본 정보
-    int playerLV = 200;
+    int playerLV = 11;
     string playerJob = "Night Load";
     string playerName = "Aruru";
     int playerCurHP;
@@ -40,6 +40,12 @@ public class PlayerManager : MonoBehaviour
     int playerMaxMP = 2000;
     int playerCurExp = 0;
     int playerRequireExp = 40;
+
+    //플레이어 스탯
+    int playerSTR = 4;
+    int playerDEX = 25;
+    int playerINT = 4;
+    int playerLUK = 42;
 
     int playerAttack = 80;//플레이어 공격력
     int workmanship = 60;//숙련도
@@ -67,6 +73,13 @@ public class PlayerManager : MonoBehaviour
     public int PlayerCurExp { get { return playerCurExp; } set {playerCurExp = value; } }
     public int PlayerRequireExp { get {return playerRequireExp; } set {playerRequireExp=value; } }
     #endregion
+
+    //플레이어 스탯
+    public int PlayerSTR { get { return playerSTR; } set { playerSTR = value; }}
+    public int PlayerDEX { get { return playerDEX; } set { playerDEX = value; } }
+    public int PlayerINT { get { return playerINT; } set { playerINT = value; } }
+    public int PlayerLUK { get { return playerLUK; } set { playerLUK = value; } }
+
 
     public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }
     public int Workmanship {  get { return workmanship; } set { workmanship = value; } }

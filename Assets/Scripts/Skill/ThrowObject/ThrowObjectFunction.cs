@@ -104,8 +104,8 @@ public class ThrowObjectFunction : MonoBehaviour
     /// <returns></returns>
     int CalDamage(int throwAttack)
     {
-        int maxDamage = throwAttack * skillCoefficient / 100;
-        int minDamage = maxDamage * PlayerManager.PlayerInstance.Workmanship / 100;
+        int maxDamage = throwAttack * skillCoefficient *(PlayerManager.PlayerInstance.PlayerLUK*5)/ 10000;
+        int minDamage = maxDamage/2;
         int damage = Random.Range(minDamage, maxDamage);
         return damage;
     }

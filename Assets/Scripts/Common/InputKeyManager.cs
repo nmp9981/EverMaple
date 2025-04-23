@@ -11,6 +11,10 @@ public class InputKeyManager : MonoBehaviour
     [SerializeField]
     SkillManager skillManager;
 
+    //UI바인딩
+    [SerializeField]
+    GameObject statUIObj;
+
     //데미지 UI순서
     public static int orderSortNum { get; set; }
 
@@ -24,6 +28,7 @@ public class InputKeyManager : MonoBehaviour
         InputPortalKey();
         InputPlayerAttack();
         InputSkillKey();
+        InputAboutUI();
     }
     /// <summary>
     /// 감지된 KeyCode를 반환한다.
@@ -110,7 +115,13 @@ public class InputKeyManager : MonoBehaviour
     /// </summary>
     void InputAboutUI()
     {
-
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if(statUIObj.activeSelf)
+                statUIObj.SetActive(false);
+            else
+                statUIObj.SetActive(true);
+        }
     }
     /// <summary>
     /// 마우스 클릭

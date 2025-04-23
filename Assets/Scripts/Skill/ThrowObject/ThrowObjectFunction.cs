@@ -4,7 +4,8 @@ using UnityEngine;
 public class ThrowObjectFunction : MonoBehaviour
 {
     [SerializeField]
-    int throwAttack;
+    private int throwAttack;
+   
     float moveSpeed = 10f;
     const float judgeCollideDist = 0.5f;
 
@@ -15,6 +16,7 @@ public class ThrowObjectFunction : MonoBehaviour
     float moveDist = 0;
     float destroyDist;
 
+    public int skillCoefficient { get; set; }
     public Vector3 startPos { get; set; }
     public int hitNum { get; set; }
     
@@ -102,7 +104,10 @@ public class ThrowObjectFunction : MonoBehaviour
     /// <returns></returns>
     int CalDamage(int throwAttack)
     {
-        return throwAttack;
+        int maxDamage = throwAttack * skillCoefficient / 100;
+        int minDamage = maxDamage * PlayerManager.PlayerInstance.Workmanship / 100;
+        int damage = Random.Range(minDamage, maxDamage);
+        return damage;
     }
     /// <summary>
     /// 오브젝트 비활성화

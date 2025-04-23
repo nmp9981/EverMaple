@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 //공격 범위
@@ -37,6 +36,7 @@ public class SkillManager : MonoBehaviour
             throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
             throwObj.startPos = throwObj.transform.position;
             throwObj.hitNum = i;
+            throwObj.skillCoefficient = SkillDamageCalCulate.LuckySevenCoff;
 
             await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed/4);
         }

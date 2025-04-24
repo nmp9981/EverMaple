@@ -247,8 +247,10 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
         PlayerManager.PlayerInstance.PlayerSTR += 1;
 
+        PlayerManager.PlayerInstance.PlayerAttack += 1;
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
+        ShowCharacterDetailStat();
     }
     public void UpDEXStat()
     {
@@ -259,8 +261,10 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
         PlayerManager.PlayerInstance.PlayerDEX += 1;
 
+        PlayerManager.PlayerInstance.PlayerAttack += 2;
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
+        ShowCharacterDetailStat();
     }
     public void UpINTStat()
     {
@@ -273,6 +277,7 @@ public class StatUI : MonoBehaviour, IDragHandler
 
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
+        ShowCharacterDetailStat();
     }
     public void UpLUKStat()
     {
@@ -283,8 +288,10 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
         PlayerManager.PlayerInstance.PlayerLUK += 1;
 
+        PlayerManager.PlayerInstance.PlayerAttack += 3;
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
+        ShowCharacterDetailStat();
     }
     /// <summary>
     /// 스탯 자동 분배

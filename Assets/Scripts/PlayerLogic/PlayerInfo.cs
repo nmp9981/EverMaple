@@ -41,9 +41,6 @@ public class PlayerInfo : MonoBehaviour
 
             //AP 증가
             PlayerManager.PlayerInstance.PlayerAPPoint += 5;
-
-            //TODO : 공격력증가 (테스트용 임시코드로 추후 지울예정)
-            PlayerManager.PlayerInstance.PlayerAttack += 10;
         }
     }
 }

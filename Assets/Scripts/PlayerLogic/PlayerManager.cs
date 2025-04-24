@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
     int playerRequireExp = 40;
 
     //플레이어 스탯
+    int playerAPPoint = 0;
     int playerSTR = 4;
     int playerDEX = 25;
     int playerINT = 4;
@@ -75,6 +76,7 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     //플레이어 스탯
+    public int PlayerAPPoint { get { return playerAPPoint; } set { playerAPPoint = value; } }
     public int PlayerSTR { get { return playerSTR; } set { playerSTR = value; }}
     public int PlayerDEX { get { return playerDEX; } set { playerDEX = value; } }
     public int PlayerINT { get { return playerINT; } set { playerINT = value; } }

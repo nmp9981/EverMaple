@@ -40,6 +40,7 @@ public class StatUI : MonoBehaviour
     Button upLUKButton;
     Button detailButton;
 
+    #region Unity 함수
     private void Awake()
     {
         BindingStatText();
@@ -49,6 +50,7 @@ public class StatUI : MonoBehaviour
     {
         ShowCharacterBasicStat();
     }
+    #endregion
 
     #region 바인딩
     /// <summary>
@@ -141,15 +143,19 @@ public class StatUI : MonoBehaviour
                     break;
                 case "STRUP":
                     upSTRButton = btn;
+                    upSTRButton.onClick.AddListener(UpSTRStat);
                     break;
                 case "DEXUP":
                     upDEXButton = btn;
+                    upDEXButton.onClick.AddListener(UpDEXStat);
                     break;
                 case "INTUP":
                     upINTButton = btn;
+                    upINTButton.onClick.AddListener(UpINTStat);
                     break;
                 case "LUKUP":
                     upLUKButton = btn;
+                    upLUKButton.onClick.AddListener(UpLUKStat);
                     break;
                 case "Detail":
                     detailButton = btn;
@@ -179,7 +185,7 @@ public class StatUI : MonoBehaviour
         rate = Mathf.Floor(rate*100);
         expText.text = $"{PlayerManager.PlayerInstance.PlayerCurExp} ({(int)rate})%";
 
-        apPointText.text = 0.ToString();
+        apPointText.text = PlayerManager.PlayerInstance.PlayerAPPoint.ToString();
         strText.text = PlayerManager.PlayerInstance.PlayerSTR.ToString();
         dexText.text = PlayerManager.PlayerInstance.PlayerDEX.ToString();
         intText.text = PlayerManager.PlayerInstance.PlayerINT.ToString();
@@ -217,6 +223,57 @@ public class StatUI : MonoBehaviour
             detailStatObject.SetActive(true);
             ShowCharacterDetailStat();
         }
+    }
+    /// <summary>
+    /// 스탯 증가
+    /// </summary>
+    public void UpSTRStat()
+    {
+        //남은 AP포인트가 없음
+        if (PlayerManager.PlayerInstance.PlayerAPPoint <= 0)
+            return;
+
+        PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
+        PlayerManager.PlayerInstance.PlayerSTR += 1;
+
+        //증가한 결과를 보여줘야함
+        ShowCharacterBasicStat();
+    }
+    public void UpDEXStat()
+    {
+        //남은 AP포인트가 없음
+        if (PlayerManager.PlayerInstance.PlayerAPPoint <= 0)
+            return;
+
+        PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
+        PlayerManager.PlayerInstance.PlayerDEX += 1;
+
+        //증가한 결과를 보여줘야함
+        ShowCharacterBasicStat();
+    }
+    public void UpINTStat()
+    {
+        //남은 AP포인트가 없음
+        if (PlayerManager.PlayerInstance.PlayerAPPoint <= 0)
+            return;
+
+        PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
+        PlayerManager.PlayerInstance.PlayerINT += 1;
+
+        //증가한 결과를 보여줘야함
+        ShowCharacterBasicStat();
+    }
+    public void UpLUKStat()
+    {
+        //남은 AP포인트가 없음
+        if (PlayerManager.PlayerInstance.PlayerAPPoint <= 0)
+            return;
+
+        PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
+        PlayerManager.PlayerInstance.PlayerLUK += 1;
+
+        //증가한 결과를 보여줘야함
+        ShowCharacterBasicStat();
     }
     #endregion
 }

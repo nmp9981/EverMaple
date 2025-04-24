@@ -1,12 +1,16 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class StatUI : MonoBehaviour
+public class StatUI : MonoBehaviour, IDragHandler
 {
     //세부 오브젝트
     [SerializeField]
     GameObject detailStatObject;
+
+    //UI위치
+    private RectTransform rectTransform;
 
     //텍스트 영역
     TextMeshProUGUI nameText;
@@ -43,6 +47,7 @@ public class StatUI : MonoBehaviour
     #region Unity 함수
     private void Awake()
     {
+        rectTransform = GetComponent<RectTransform>();
         BindingStatText();
         BindingStatButton();
     }
@@ -50,6 +55,11 @@ public class StatUI : MonoBehaviour
     {
         ShowCharacterBasicStat();
     }
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta;
+    }
+    
     #endregion
 
     #region 바인딩
@@ -140,6 +150,7 @@ public class StatUI : MonoBehaviour
             {
                 case "AutoDivide":
                     autoStatDivideButton = btn;
+                    autoStatDivideButton.onClick.AddListener(AutoDivideStat);
                     break;
                 case "STRUP":
                     upSTRButton = btn;
@@ -274,6 +285,13 @@ public class StatUI : MonoBehaviour
 
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
+    }
+    /// <summary>
+    /// 스탯 자동 분배
+    /// </summary>
+    public void AutoDivideStat()
+    {
+
     }
     #endregion
 }

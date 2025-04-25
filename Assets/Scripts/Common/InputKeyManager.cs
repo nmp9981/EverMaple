@@ -14,6 +14,8 @@ public class InputKeyManager : MonoBehaviour
     //UI바인딩
     [SerializeField]
     GameObject statUIObj;
+    [SerializeField]
+    GameObject skillUIObj;
 
     //데미지 UI순서
     public static int orderSortNum { get; set; }
@@ -121,6 +123,14 @@ public class InputKeyManager : MonoBehaviour
                 statUIObj.SetActive(false);
             else
                 statUIObj.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (skillUIObj.activeSelf)
+                skillUIObj.SetActive(false);
+            else
+                skillUIObj.SetActive(true);
         }
     }
     /// <summary>

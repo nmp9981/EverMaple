@@ -10388,6 +10388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 570099998}
+  - component: {fileID: 570099999}
   m_Layer: 5
   m_Name: SkillUI
   m_TagString: Untagged
@@ -10421,6 +10422,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &570099999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570099997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04530eb993649945b9ff2a5b06b5650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &573703352
 GameObject:
   m_ObjectHideFlags: 0
@@ -20885,6 +20898,7 @@ MonoBehaviour:
   playerAttack: {fileID: 807552425}
   skillManager: {fileID: 681109680}
   statUIObj: {fileID: 486010130}
+  skillUIObj: {fileID: 570099997}
 --- !u!4 &1210405217
 Transform:
   m_ObjectHideFlags: 0

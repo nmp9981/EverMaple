@@ -54,6 +54,9 @@ public class PlayerManager : MonoBehaviour
     int playerAttackSpeed = 500;//공격 속도
     float throwObjectMaxDist = 10;//사거리
 
+    int playerSkillPoint;//현재 스킬 포인트
+    int totalUseSkillPoint;//총 사용 스킬 포인트
+
     string curMapName = "Map2";
 
     #region 이동 관련 변수
@@ -88,6 +91,9 @@ public class PlayerManager : MonoBehaviour
     public int CriticalProbably { get { return criticalProbably; }set { criticalProbably = value; } }
     public int PlayerAttackSpeed { get { return playerAttackSpeed; } set { playerAttackSpeed = value; } }
     public float ThrowObjectMaxDist { get { return throwObjectMaxDist; } set { throwObjectMaxDist = value; } }
+
+    public int PlayerSkillPoint { get { return playerSkillPoint; } set { playerSkillPoint = value; } }
+    public int TotalUseSkillPoint { get { return totalUseSkillPoint; } set { totalUseSkillPoint = value; } }
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }

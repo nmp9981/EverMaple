@@ -114,6 +114,7 @@ MonoBehaviour:
   spawnMap: 
   HPBar: {fileID: 5347950471241383534}
   HPBarValue: {fileID: 5130158472983827513}
+  mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
 --- !u!50 &6262028703081101666
 Rigidbody2D:

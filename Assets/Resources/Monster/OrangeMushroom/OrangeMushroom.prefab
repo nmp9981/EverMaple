@@ -114,6 +114,7 @@ MonoBehaviour:
   spawnMap: 
   HPBar: {fileID: 3108824590986617880}
   HPBarValue: {fileID: 2747903942939725391}
+  mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
 --- !u!61 &-4217758799632884272
 BoxCollider2D:

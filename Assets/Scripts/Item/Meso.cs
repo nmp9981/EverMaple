@@ -40,6 +40,7 @@ public class Meso : MonoBehaviour
         if(collision.gameObject.tag == playerTag)
         {
             PlayerManager.PlayerInstance.PlayerMeso += getMeso;
+            ItemManager.itemInstance.fieldDropItems.Remove(this.gameObject);
             Destroy(gameObject);
         }
     }

@@ -30,6 +30,7 @@ public class MonsterSpawn : MonoBehaviour
     private void OnDisable()
     {
         MonsterListDestroy();
+        ItemManager.itemInstance.ClearItemInFeild();
     }
 
     /// <summary>

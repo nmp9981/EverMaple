@@ -126,6 +126,7 @@ public class MonsterInfo : MonoBehaviour
         GameObject dropMeso = Instantiate(mesoObj);
         dropMeso.transform.position = this.gameObject.transform.position;
         dropMeso.gameObject.name = $"Meso_{monsterLv}";
+        ItemManager.itemInstance.fieldDropItems.Add(dropMeso);
     }
 
     /// <summary>

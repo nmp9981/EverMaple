@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
     int playerMaxMP = 2000;
     int playerCurExp = 0;
     int playerRequireExp = 40;
+    int playerMeso;
 
     //플레이어 스탯
     int playerAPPoint = 0;
@@ -76,6 +77,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerMaxMP { get { return playerMaxMP; } set { playerMaxMP = value; } }
     public int PlayerCurExp { get { return playerCurExp; } set {playerCurExp = value; } }
     public int PlayerRequireExp { get {return playerRequireExp; } set {playerRequireExp=value; } }
+    public int PlayerMeso { get { return playerMeso; } set { playerMeso = value; } }
     #endregion
 
     //플레이어 스탯

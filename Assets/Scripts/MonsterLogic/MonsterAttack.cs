@@ -32,6 +32,10 @@ public class MonsterInfo : MonoBehaviour
     //애니메이션
     Animator anim;
 
+    //메소
+    [SerializeField]
+    GameObject mesoObj;
+
     //기타
     [SerializeField]
     PlayerInfo playerInfo;
@@ -93,7 +97,7 @@ public class MonsterInfo : MonoBehaviour
     /// 몬스터 사망
     /// 1) 몬스터 이동속도 0
     /// 2) 사망 애니메이션 실행
-    /// 3) 경험치 획득
+    /// 3) 아이템 드랍, 경험치 획득
     /// 4) 확률로 메소 떨구기
     /// 5) 비활성화
     /// </summary>
@@ -102,9 +106,26 @@ public class MonsterInfo : MonoBehaviour
         monsterMoveSpeed = 0;
         playerInfo.GetPlayerExp(monsterExp);
 
+        MesoDrop();
+
         MonsterSpawn.activeMonster.Remove(gameObject);
         monsterSpawn.CallRespawn();
         this.gameObject.SetActive(false);
+    }
+    /// <summary>
+    /// 메소 드랍
+    /// </summary>
+    void MesoDrop()
+    {
+        int mesoValue = Random.Range(0, 100);
+
+        //메소 드랍 X
+        if (mesoValue < 33)
+            return;
+       
+        GameObject dropMeso = Instantiate(mesoObj);
+        dropMeso.transform.position = this.gameObject.transform.position;
+        dropMeso.gameObject.name = $"Meso_{monsterLv}";
     }
 
     /// <summary>
@@ -115,7 +136,7 @@ public class MonsterInfo : MonoBehaviour
         //행동 결정
         if (monsterMoveTime >= monsterMoveCoolTime)
         {
-            //이동할지 서있을지
+            //이동할지 서있을지 또는 공격할지
             int ranNum = Random.Range(0, 4) % 2;
             //서있기
             if (ranNum == 0)

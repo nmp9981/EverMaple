@@ -50,6 +50,6 @@ public class ItemUI : MonoBehaviour, IDragHandler
     /// </summary>
     void ShowCharacterSkillUI()
     {
-        mesoText.text = PlayerManager.PlayerInstance.PlayerSkillPoint.ToString();
+        mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
     }
 }

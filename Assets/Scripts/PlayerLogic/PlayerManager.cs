@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
     int playerSkillPoint;//현재 스킬 포인트
     int totalUseSkillPoint;//총 사용 스킬 포인트
 
-    string curMapName = "Map2";
+    string curMapName = "Map0";
 
     #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }

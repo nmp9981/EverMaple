@@ -10,7 +10,7 @@ public class MapAndProtalList : MonoBehaviour
     public static List<GameObject> mapList = new List<GameObject>();
 
     //현재 플레이어가 있는 맵의 번호
-    public static int curMapNum = 2;
+    public static int curMapNum = 0;
 
     void Awake()
     { 

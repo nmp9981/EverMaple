@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class MonsterInfo : MonoBehaviour
 {
     //몬스터 정보
+    public int monsterID;
     public int monsterLv;
     public int monsterMaxHP;
     public int monsterExp;
@@ -107,6 +108,7 @@ public class MonsterInfo : MonoBehaviour
         playerInfo.GetPlayerExp(monsterExp);
 
         MesoDrop();
+        ItemDrop();
 
         MonsterSpawn.activeMonster.Remove(gameObject);
         monsterSpawn.CallRespawn();
@@ -127,6 +129,14 @@ public class MonsterInfo : MonoBehaviour
         dropMeso.transform.position = this.gameObject.transform.position;
         dropMeso.gameObject.name = $"Meso_{monsterLv}";
         ItemManager.itemInstance.fieldDropItems.Add(dropMeso);
+    }
+
+    /// <summary>
+    /// 아이템 드랍
+    /// </summary>
+    void ItemDrop()
+    {
+
     }
 
     /// <summary>

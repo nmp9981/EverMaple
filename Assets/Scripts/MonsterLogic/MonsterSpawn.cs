@@ -12,7 +12,7 @@ public class MonsterSpawn : MonoBehaviour
     MonsterFulling monsterFulling;
 
     float resenTime = 5f;
-    
+    const string villageTag = "Village";
 
     //맵에 활성화된 몬스터
     public static List<GameObject> activeMonster = new List<GameObject>();
@@ -38,6 +38,10 @@ public class MonsterSpawn : MonoBehaviour
     /// </summary>
     void SetSpawnPosition()
     {
+        //마을일 경우 몬스터를 소환하지 않음
+        if (gameObject.tag == villageTag)
+            return;
+
         GameObject spawnPosObject = this.gameObject.transform.GetChild(2).gameObject;
         foreach (Transform t in spawnPosObject.GetComponentInChildren<Transform>(true))
         {
@@ -50,6 +54,11 @@ public class MonsterSpawn : MonoBehaviour
     /// </summary>
     void MonsterSpawnMapEnter()
     {
+        //예외 사항
+        if (spawnPositionList.Count == 0) {
+            return;
+        }
+
         for(int idx = 0;idx < spawnPositionList.Count;idx++)
         {
             int genCount = 2;
@@ -88,6 +97,10 @@ public class MonsterSpawn : MonoBehaviour
     /// </summary>
     public void MonsterRespawn()
     {
+        //마을
+        if (gameObject.tag == villageTag)
+            return;
+
         //스폰 위치가 없을때
         if (spawnPositionList.Count == 0)
         {
@@ -130,6 +143,9 @@ public class MonsterSpawn : MonoBehaviour
             activeMonster.Clear();
         }
         //스폰위치 초기화
-        spawnPositionList.Clear();
+        if (spawnPositionList.Count > 1)
+        {
+            spawnPositionList.Clear();
+        }
     }
 }

@@ -28,6 +28,7 @@ public class InputKeyManager : MonoBehaviour
     }
     void Update()
     {
+        InputMouseClick();
         InputPlayerMove();
         InputPortalKey();
         InputPlayerAttack();
@@ -148,6 +149,6 @@ public class InputKeyManager : MonoBehaviour
     /// </summary>
     void InputMouseClick()
     {
-
+       
     }
 }

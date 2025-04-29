@@ -42,6 +42,7 @@ public class ConsumeNPC : NPCCommon
             switch (gmName)
             {
                 case "StoreExit":
+                    btn.onClick.AddListener(OutStore);
                     break;
                 case "ItemBuy":
                     break;
@@ -51,5 +52,10 @@ public class ConsumeNPC : NPCCommon
                     break;
             }
         }
+    }
+
+    public void OutStore()
+    {
+        gameObject.SetActive(false);
     }
 }

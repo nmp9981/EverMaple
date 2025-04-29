@@ -25,7 +25,7 @@ public class NPCCommon : MonoBehaviour
     protected GameObject taxiUI;
     protected GameObject questUI;
 
-    protected Sprite npcSprite;
+    protected static Sprite npcSprite;
     private SpriteRenderer npcRenderer;
 
     protected void Awake()
@@ -33,19 +33,19 @@ public class NPCCommon : MonoBehaviour
         UIBinding();
         SettingNPCImage();
     }
-
-    protected virtual void SettingNPCImage()
+   
+    protected void SettingNPCImage()
     {
-        npcRenderer = gameObject.GetComponent<SpriteRenderer>();
         npcSprite = npcRenderer.sprite;
     }
-  
+   
     void OnMouseDown()
     {
         switch (category)
         {
             case NPCCategory.Consume:
             case NPCCategory.Equipment:
+                SettingNPCImage();
                 consumeUI.SetActive(true);
                 break;
             case NPCCategory.Taxi:
@@ -65,6 +65,7 @@ public class NPCCommon : MonoBehaviour
     void UIBinding()
     {
         canvasUI = GameObject.Find("Canvas");
+        npcRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         switch (category)
         {

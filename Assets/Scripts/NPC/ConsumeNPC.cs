@@ -21,13 +21,7 @@ public class ConsumeNPC : NPCCommon
 
     private void OnEnable()
     {
-        //플레이어 이미지 표시
-        playerImage.sprite = spriteRenderer.sprite;
-        //NPC이미지 표시
-        npcImage.sprite = NPCCommon.npcSprite;
-        //메소 표시
-        mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
-
+        ShowStoreUI();
 
     }
 
@@ -53,7 +47,22 @@ public class ConsumeNPC : NPCCommon
             }
         }
     }
+    /// <summary>
+    /// 상점 UI 내용 표시
+    /// </summary>
+    void ShowStoreUI()
+    {
+        //플레이어 이미지 표시
+        playerImage.sprite = spriteRenderer.sprite;
+        //NPC이미지 표시
+        npcImage.sprite = NPCCommon.npcSprite;
+        //메소 표시
+        mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
+    }
 
+    /// <summary>
+    /// 상점 나가기
+    /// </summary>
     public void OutStore()
     {
         gameObject.SetActive(false);

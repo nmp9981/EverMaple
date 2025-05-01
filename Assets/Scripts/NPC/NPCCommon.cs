@@ -17,7 +17,9 @@ public enum NPCCategory
 public class NPCCommon : MonoBehaviour
 {
     [SerializeField]
-    NPCCategory category;
+    NPCCategory category;//NPC카테고리
+    [SerializeField]
+    int npcNum;//NPC번호 
 
     //UI 오브젝트
     protected GameObject canvasUI;
@@ -25,6 +27,8 @@ public class NPCCommon : MonoBehaviour
     protected GameObject taxiUI;
     protected GameObject questUI;
 
+    //NPC
+    protected static (int,int) storeNPCIndex;//카테고리, NPC번호
     protected static Sprite npcSprite;
     private SpriteRenderer npcRenderer;
 
@@ -37,6 +41,20 @@ public class NPCCommon : MonoBehaviour
     protected void SettingNPCImage()
     {
         npcSprite = npcRenderer.sprite;
+
+        int categoryIdx = 0;
+        switch (category)
+        {
+            case NPCCategory.Consume:
+                categoryIdx = 0;
+                break;
+            case NPCCategory.Equipment:
+                categoryIdx = 1;
+                break;
+            default:
+                break;
+        }
+        storeNPCIndex = (categoryIdx, npcNum);
     }
    
     void OnMouseDown()

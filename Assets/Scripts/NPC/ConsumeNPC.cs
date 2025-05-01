@@ -13,6 +13,7 @@ public class ConsumeNPC : NPCCommon
 
     private SpriteRenderer spriteRenderer;
 
+
     private void Awake()
     {
         spriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
@@ -22,7 +23,6 @@ public class ConsumeNPC : NPCCommon
     private void OnEnable()
     {
         ShowStoreUI();
-
     }
 
     /// <summary>
@@ -58,6 +58,24 @@ public class ConsumeNPC : NPCCommon
         npcImage.sprite = NPCCommon.npcSprite;
         //메소 표시
         mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
+        //물품 리스트 보이기
+        ShowGoodsList();
+    }
+
+    /// <summary>
+    /// 물품 리스트 보이기
+    /// </summary>
+    void ShowGoodsList()
+    {
+        //소비 리스트
+        if (storeNPCIndex.Item1 == 0)
+        {
+            
+        }
+        else//장비 리스트
+        {
+
+        }
     }
 
     /// <summary>

@@ -42,7 +42,7 @@ public class ConsumeNPC : NPCCommon
     /// </summary>
     void StoreButtonBinding()
     {
-        foreach (Button btn in gameObject.GetComponentsInChildren<Button>())
+        foreach (Button btn in gameObject.GetComponentsInChildren<Button>(true))
         {
             string gmName = btn.name;
             switch (gmName)
@@ -64,6 +64,7 @@ public class ConsumeNPC : NPCCommon
                 case "EquipmentBuySucccess":
                     break;
                 case "EquipmentBuyCancel":
+                    btn.onClick.AddListener(CancelEquipmentItemBuy);
                     break;
                 case "Goods0":
                     btn.onClick.AddListener(delegate { SettingCutSelectConsumeItem(btn.gameObject); });

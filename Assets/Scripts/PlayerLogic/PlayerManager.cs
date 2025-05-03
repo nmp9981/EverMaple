@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         PlayerSingletonObjectLoad();
+        ArrayInitAboutPlayer();
     }
    
     void PlayerSingletonObjectLoad()
@@ -20,6 +21,17 @@ public class PlayerManager : MonoBehaviour
         {
             if (PlayerInstance != this) //instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
                 Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
+        }
+    }
+
+    /// <summary>
+    /// 플레이어 관련 배열 초기화
+    /// </summary>
+    void ArrayInitAboutPlayer()
+    {
+        for(int i = 0; i < haveConsumeItem.Length; i++)
+        {
+            haveConsumeItem[i] = 0;
         }
     }
 
@@ -40,7 +52,7 @@ public class PlayerManager : MonoBehaviour
     int playerMaxMP = 2000;
     int playerCurExp = 0;
     int playerRequireExp = 40;
-    int playerMeso;
+    int playerMeso = 100000;
 
     //플레이어 스탯
     int playerAPPoint = 0;
@@ -59,6 +71,9 @@ public class PlayerManager : MonoBehaviour
     int totalUseSkillPoint;//총 사용 스킬 포인트
 
     string curMapName = "Map0";
+
+    public int[] haveConsumeItem = new int[30];
+
 
     #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }

@@ -5,6 +5,11 @@ using UnityEngine.UI;
 public class ConsumeNPC : NPCCommon
 {
     [SerializeField]
+    GameObject consumeListObj;
+    [SerializeField]
+    GameObject equipmentListObj;
+
+    [SerializeField]
     Image playerImage;
     [SerializeField]
     Image npcImage;
@@ -70,11 +75,13 @@ public class ConsumeNPC : NPCCommon
         //소비 리스트
         if (storeNPCIndex.Item1 == 0)
         {
-            
+            equipmentListObj.gameObject.SetActive(false);
+            consumeListObj.gameObject.SetActive(true);
         }
         else//장비 리스트
         {
-
+            consumeListObj.gameObject.SetActive(false);
+            equipmentListObj.gameObject.SetActive(true); 
         }
     }
 

@@ -45,6 +45,15 @@ public class ConsumeNPC : NPCCommon
         foreach (Button btn in gameObject.GetComponentsInChildren<Button>(true))
         {
             string gmName = btn.name;
+
+            //소비 아이템
+            if (gmName.Contains("Goods"))
+            {
+                btn.onClick.AddListener(delegate { SettingCutSelectConsumeItem(btn.gameObject); });
+                continue;
+            }
+
+
             switch (gmName)
             {
                 case "StoreExit":
@@ -65,9 +74,6 @@ public class ConsumeNPC : NPCCommon
                     break;
                 case "EquipmentBuyCancel":
                     btn.onClick.AddListener(CancelEquipmentItemBuy);
-                    break;
-                case "Goods0":
-                    btn.onClick.AddListener(delegate { SettingCutSelectConsumeItem(btn.gameObject); });
                     break;
                 default:
                     break;
@@ -192,6 +198,10 @@ public class ConsumeNPC : NPCCommon
                 PlayerManager.PlayerInstance.PlayerMeso -= totalPrice;
                 mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
                 CancelConsumeItemBuy();
+            }
+            else
+            {
+
             }
         }
     }

@@ -6,6 +6,8 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     GameObject enrollKwySlotObject;
+    [SerializeField]
+    GameObject selectKeyObject;
 
     RectTransform enrollKwyRectTrans;
 
@@ -33,8 +35,8 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void SettingItemKey()
     {
-        //HP관련은 A, NP관련은 D로 고정
-
+        //HP관련은 A, NP관련은 D로 고정, 엘릭서는 F로 고정
+        selectKeyObject.SetActive(true);
     }
 
     /// <summary>

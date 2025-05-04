@@ -9,11 +9,14 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     GameObject selectKeyObject;
 
+    //선택한 소비 아이템
+    GameObject clickedConsumeObject = null;
     RectTransform enrollKwyRectTrans;
 
     void Awake()
     {
         enrollKwyRectTrans = enrollKwySlotObject.GetComponent<RectTransform>();
+        SlotButtonBinding();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -21,22 +24,50 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
         GameObject clickedObject = eventData.pointerCurrentRaycast.gameObject;
         if(clickedObject.tag == ItemManager.consumeTag)
         {
+            clickedConsumeObject = clickedObject;
             enrollKwySlotObject.SetActive(true);
             enrollKwyRectTrans.position = Input.mousePosition + new Vector3(30,-30,0);
         }
         else
         {
+            clickedConsumeObject = null;
             enrollKwySlotObject.SetActive(false);
         }
     }
 
     /// <summary>
+    /// 슬롯 버튼 바인딩
+    /// </summary>
+    void SlotButtonBinding()
+    {
+        foreach (Button btn in selectKeyObject.GetComponentsInChildren<Button>())
+        {
+            string btnName = btn.gameObject.name;
+            if (!btn.name.Contains("Key"))
+                continue;
+
+            btn.onClick.AddListener(delegate { SettingItemKey(btnName.Substring(3)); });
+        }
+    }
+
+    /// <summary>
+    /// 키 등록 오브젝트 열기
+    /// </summary>
+    public void OpenSettingItemKeyWindow()
+    {
+        selectKeyObject.SetActive(true);
+    }
+
+    /// <summary>
     /// 키 등록
     /// </summary>
-    public void SettingItemKey()
+    public void SettingItemKey(string inputKey)
     {
-        //HP관련은 A, NP관련은 D로 고정, 엘릭서는 F로 고정
-        selectKeyObject.SetActive(true);
+        //HP관련은 A, MP관련은 D로 고정, 엘릭서는 F로 고정
+        //이미지 이름으로 구분
+        string itemName = clickedConsumeObject.GetComponent<Image>().sprite.name;
+
+
     }
 
     /// <summary>

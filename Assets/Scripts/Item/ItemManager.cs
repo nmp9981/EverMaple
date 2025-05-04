@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// 아이템 속성
@@ -7,6 +8,18 @@ using UnityEngine;
 public enum ItemAttribute{
     Equipment,
     consume,
+    Count
+}
+
+/// <summary>
+/// 소비 아이템 속성
+/// </summary>
+public enum ConsumeAttribute
+{
+    HPPosion,
+    MPPosion,
+    BuffPosion,
+    Etc,
     Count
 }
 
@@ -58,7 +71,10 @@ public class ItemManager : MonoBehaviour
     {
 
     }
+
     #region 아이템 데이터
+    public const string consumeTag = "ConsumeItem";
+
     //필드에 떨어진 아이템들
     public List<GameObject> fieldDropItems = new List<GameObject>();
 

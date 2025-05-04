@@ -10,6 +10,16 @@ public enum ItemAttribute{
     Count
 }
 
+/// <summary>
+/// 소비 아이템 속성
+/// </summary>
+public struct ConsumeItem
+{
+    public Sprite sprite;
+    public string name;
+    public int count;
+}
+
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager itemInstance;
@@ -44,12 +54,17 @@ public class ItemManager : MonoBehaviour
         fieldDropItems.Clear();
     }
 
+    public void GetConsumeItem()
+    {
+
+    }
     #region 아이템 데이터
     //필드에 떨어진 아이템들
     public List<GameObject> fieldDropItems = new List<GameObject>();
 
     //장비, 소비 아이템 목록들
     public List<GameObject> equipmentItems = new List<GameObject>();
-    public List<GameObject> consumeItems = new List<GameObject>();
+    public Dictionary<int, ConsumeItem> consumeItems = new Dictionary<int, ConsumeItem>();
+    public List<Sprite> consumeItemImage = new List<Sprite>();
     #endregion
 }

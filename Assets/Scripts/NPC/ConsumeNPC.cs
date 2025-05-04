@@ -197,6 +197,24 @@ public class ConsumeNPC : NPCCommon
             {
                 PlayerManager.PlayerInstance.PlayerMeso -= totalPrice;
                 mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
+
+                //새로운 아이템
+                if (!ItemManager.itemInstance.consumeItems.ContainsKey(curBuyConsumeInfo.idx))
+                {
+                    //새로운 아이템 정보 추가
+                    ConsumeItem consumeItem = new ConsumeItem();
+                    consumeItem.sprite = ItemManager.itemInstance.consumeItemImage[curBuyConsumeInfo.idx];
+                    consumeItem.name = consumeItem.sprite.name;
+                    consumeItem.count = itemCount;
+                    ItemManager.itemInstance.consumeItems.Add(curBuyConsumeInfo.idx,consumeItem);
+                }
+                else//기존 아이템에서 추가
+                {
+                    ConsumeItem curConsumeItem = ItemManager.itemInstance.consumeItems[curBuyConsumeInfo.idx];
+                    curConsumeItem.count += itemCount;
+                    ItemManager.itemInstance.consumeItems[curBuyConsumeInfo.idx] = curConsumeItem;
+                }
+                
                 CancelConsumeItemBuy();
             }
             else

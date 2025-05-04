@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Xml.Linq;
+using System.Collections.Generic;
 
 //아이템 탭 메뉴
 enum ItemTab
@@ -14,6 +14,13 @@ enum ItemTab
 
 public class ItemUI : MonoBehaviour, IDragHandler
 {
+    //아이템 리스트
+    [SerializeField]
+    GameObject ConsumeTab;
+    [SerializeField]
+    GameObject EquipmentTab;
+    List<GameObject> itemInventoryList = new List<GameObject>();
+
     //UI위치
     private RectTransform rectTransform;
 
@@ -22,19 +29,22 @@ public class ItemUI : MonoBehaviour, IDragHandler
     //현재 아이템 탭
     ItemTab itemTab;
 
+    //총 인벤토리 개수
+    const int totalInventoryCount = 24;
+
     #region Unity 함수
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         itemTab = ItemTab.Equipment;
 
+        EnrollConsumeObjectList();
         BindingSkillText();
         ItemButtonBinding();
     }
     private void OnEnable()
     {
         ShowPlayerMeso();
-        ShowItem();
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -42,6 +52,21 @@ public class ItemUI : MonoBehaviour, IDragHandler
     }
 
     #endregion
+
+    /// <summary>
+    /// 아이템 오브젝트 등록
+    /// </summary>
+    void EnrollConsumeObjectList()
+    {
+        foreach(var item in ConsumeTab.GetComponentsInChildren<TextMeshProUGUI>(true))
+        {
+            itemInventoryList.Add(item.transform.parent.gameObject);
+        }
+        for (int idx = 0; idx < totalInventoryCount; idx++)
+        {
+            itemInventoryList[idx].SetActive(false);
+        }
+    }
 
     /// <summary>
     /// 텍스트 바인딩
@@ -73,12 +98,10 @@ public class ItemUI : MonoBehaviour, IDragHandler
             switch (gmName)
             {
                 case "EquipmentTab":
-                    itemTab = ItemTab.Equipment;
-                    btn.onClick.AddListener(ShowItem);
+                    btn.onClick.AddListener(ShowEquipmentInItemInventory);
                     break;
                 case "ConsumeTab":
-                    itemTab = ItemTab.Consume;
-                    btn.onClick.AddListener(ShowItem);
+                    btn.onClick.AddListener(ShowConsumeInItemInventory);
                     break;
                 default:
                     break;
@@ -93,21 +116,51 @@ public class ItemUI : MonoBehaviour, IDragHandler
     {
         mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
     }
+
     /// <summary>
-    /// 아이템 보이기
+    /// 아이템 인벤토리 시각화
     /// </summary>
-    void ShowItem()
+    public void ShowConsumeInItemInventory()
     {
-        switch (itemTab)
+        itemTab = ItemTab.Consume;
+
+        EquipmentTab.SetActive(false);
+        ConsumeTab.SetActive(true);
+        int inventoryCount = ItemManager.itemInstance.consumeItems.Count;
+        int ableIventoryCount = 0;
+
+        foreach(int idx in ItemManager.itemInstance.consumeItems.Keys)
         {
-            case ItemTab.Equipment:
-                
-                break;
-            case ItemTab.Consume:
-                
-                break;
-            default:
-                break;
+            //아이템이 있는지 검사
+            if (!ItemManager.itemInstance.consumeItems.ContainsKey(idx))
+                continue;
+
+            ConsumeItem item = ItemManager.itemInstance.consumeItems[idx];
+            //해당 아이템이 0개일때는 표시 안함
+            if (item.count == 0)
+                continue;
+         
+            itemInventoryList[ableIventoryCount].SetActive(true);
+            itemInventoryList[ableIventoryCount].GetComponent<Image>().sprite = item.sprite;
+            itemInventoryList[ableIventoryCount].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.count.ToString();
+
+            ableIventoryCount++;
         }
+        //나머지는 안보이게
+        for(int idx = ableIventoryCount; idx < totalInventoryCount; idx++)
+        {
+            itemInventoryList[idx].SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// 장비 인벤토리 시각화
+    /// </summary>
+    public void ShowEquipmentInItemInventory()
+    {
+        itemTab = ItemTab.Equipment;
+
+        ConsumeTab.SetActive(false);
+        EquipmentTab.SetActive(true);
     }
 }

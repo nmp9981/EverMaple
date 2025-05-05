@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// 아이템 속성
@@ -72,6 +73,46 @@ public class ItemManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// HP포션 등록
+    /// </summary>
+    public void EnrollHPPosion(string itemName)
+    {
+        switch (itemName)
+        {
+            case "빨간포션":
+
+                break;
+        }
+    }
+    /// <summary>
+    /// MP포션 등록
+    /// </summary>
+    public void EnrollMPPosion(string itemName)
+    {
+
+    }
+    /// <summary>
+    /// 엘릭서 등록
+    /// </summary>
+    public void EnrollElixerPosion(string itemName)
+    {
+
+    }
+    /// <summary>
+    /// 버프 등록
+    /// </summary>
+    public void EnrollBuffPosion(string itemName)
+    {
+
+    }
+
+    //아이템 사용
+    public void UseHPPosion(string itemName)
+    {
+
+    }
+
     #region 아이템 데이터
     public const string consumeTag = "ConsumeItem";
 
@@ -82,5 +123,14 @@ public class ItemManager : MonoBehaviour
     public List<GameObject> equipmentItems = new List<GameObject>();
     public Dictionary<int, ConsumeItem> consumeItems = new Dictionary<int, ConsumeItem>();
     public List<Sprite> consumeItemImage = new List<Sprite>();
+
+    //키세팅 용 바인딩
+    public List<Image> keySlotImage = new List<Image>(); 
+
+    //회복량
+    private int healHPAmount;
+    private int healMPAmount;
+    public int HealHPAmount { get { return healHPAmount; } set { healHPAmount = value; } }
+    public int HealMPAmount { get { return healMPAmount; } set { healMPAmount = value; } }
     #endregion
 }

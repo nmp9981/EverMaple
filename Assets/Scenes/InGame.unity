@@ -42487,10 +42487,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2084836492}
-        m_TargetAssemblyTypeName: UIMouseClick, Assembly-CSharp
-        m_MethodName: CancelEnrollKey
-        m_Mode: 1
+      - m_Target: {fileID: 2113932359}
+        m_TargetAssemblyTypeName: ItemManager, Assembly-CSharp
+        m_MethodName: UseConsumeItem
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -67305,7 +67305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1994000729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70372,6 +70372,23 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7b0fa3740dc2abc449ec2ebf8470866f, type: 3}
   - {fileID: 21300000, guid: 24581e0991b20644e991d9de8f9746cd, type: 3}
   - {fileID: 21300000, guid: ea5340f8de4a17b41b689602c9dafdb2, type: 3}
+  keySlotImage:
+  - {fileID: 1803522240}
+  - {fileID: 1989367257}
+  - {fileID: 447458775}
+  - {fileID: 2092287492}
+  - {fileID: 1118723631}
+  - {fileID: 238548954}
+  - {fileID: 1808861549}
+  - {fileID: 1311696911}
+  - {fileID: 1451286429}
+  - {fileID: 1492281683}
+  - {fileID: 1872464343}
+  - {fileID: 1383641885}
+  - {fileID: 1494853326}
+  - {fileID: 1717875902}
+  - {fileID: 104807793}
+  - {fileID: 1658333649}
 --- !u!1 &2115280650
 GameObject:
   m_ObjectHideFlags: 0

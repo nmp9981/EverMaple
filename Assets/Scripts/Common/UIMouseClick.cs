@@ -66,7 +66,6 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
         //HP관련은 A, MP관련은 D로 고정, 엘릭서는 F로 고정
         //이미지 이름으로 구분
         string itemName = clickedConsumeObject.GetComponent<Image>().sprite.name;
-        Debug.Log(inputKey);
         switch (inputKey)
         {
             case "A":

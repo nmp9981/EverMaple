@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -29,9 +30,9 @@ public enum ConsumeAttribute
 /// </summary>
 public struct ConsumeItem
 {
-    public Sprite sprite;
-    public string name;
-    public int count;
+    public Sprite sprite;//이미지
+    public string name;//이름
+    public int count;//몇개남았는지
 }
 
 public class ItemManager : MonoBehaviour
@@ -74,30 +75,125 @@ public class ItemManager : MonoBehaviour
     }
 
     /// <summary>
-    /// HP포션 등록
+    /// HP포션 등록, A키 고정
     /// </summary>
     public void EnrollHPPosion(string itemName)
     {
+        Sprite posionSprite = null;
+        string posionCountText = string.Empty;
         switch (itemName)
         {
             case "빨간포션":
-
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[0].sprite;
+                posionCountText = consumeItems[0].count.ToString();
+                break;
+            case "주황포션":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[1].sprite;
+                posionCountText = consumeItems[1].count.ToString();
+                break;
+            case "하얀포션":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[2].sprite;
+                posionCountText = consumeItems[2].count.ToString();
+                break;
+            case "장어구이":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[5].sprite;
+                posionCountText = consumeItems[5].count.ToString();
+                break;
+            case "쭈쭈바":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[7].sprite;
+                posionCountText = consumeItems[7].count.ToString();
+                break;
+            default:
                 break;
         }
+
+        //HP물약이 아님
+        if (posionSprite == null)
+            return;
+
+        //A키로 등록
+        keySlotImage[0].transform.GetChild(0).GetComponent<Image>().sprite = posionSprite;
+        keySlotImage[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = posionCountText;
     }
     /// <summary>
-    /// MP포션 등록
+    /// MP포션 등록, D키 고정
     /// </summary>
     public void EnrollMPPosion(string itemName)
     {
+        Sprite posionSprite = null;
+        string posionCountText = string.Empty;
+        switch (itemName)
+        {
+            case "파란포션":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[3].sprite;
+                posionCountText = consumeItems[3].count.ToString();
+                break;
+            case "마나엘릭서":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[4].sprite;
+                posionCountText = consumeItems[4].count.ToString();
+                break;
+            case "맑은물":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[6].sprite;
+                posionCountText = consumeItems[6].count.ToString();
+                break;
+            case "팥빙수":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[8].sprite;
+                posionCountText = consumeItems[8].count.ToString();
+                break;
+            default:
+                break;
+        }
 
+        //MP물약이 아님
+        if (posionSprite == null)
+            return;
+
+        //D키로 등록
+        keySlotImage[1].transform.GetChild(0).GetComponent<Image>().sprite = posionSprite;
+        keySlotImage[1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = posionCountText;
     }
     /// <summary>
     /// 엘릭서 등록
+    /// TODO : 아이템 드랍 구현 후 작성
     /// </summary>
     public void EnrollElixerPosion(string itemName)
     {
+        return;
 
+        Sprite posionSprite = null;
+        string posionCountText = string.Empty;
+        switch (itemName)
+        {
+            case "엘릭서":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[0].sprite;
+                posionCountText = consumeItems[0].count.ToString();
+                break;
+            case "파워엘릭서":
+                //이미지, 남은 개수 표시
+                posionSprite = consumeItems[1].sprite;
+                posionCountText = consumeItems[1].count.ToString();
+                break;         
+            default:
+                break;
+        }
+
+        //엘릭서가 아님
+        if (posionSprite == null)
+            return;
+
+        //F키로 등록
+        keySlotImage[12].transform.GetChild(0).GetComponent<Image>().sprite = posionSprite;
+        keySlotImage[12].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = posionCountText;
     }
     /// <summary>
     /// 버프 등록
@@ -108,6 +204,10 @@ public class ItemManager : MonoBehaviour
     }
 
     //아이템 사용
+    public void UseConsumeItem(string itemName)
+    {
+
+    }
     public void UseHPPosion(string itemName)
     {
 
@@ -125,7 +225,7 @@ public class ItemManager : MonoBehaviour
     public List<Sprite> consumeItemImage = new List<Sprite>();
 
     //키세팅 용 바인딩
-    public List<Image> keySlotImage = new List<Image>(); 
+    public List<GameObject> keySlotImage = new List<GameObject>(); 
 
     //회복량
     private int healHPAmount;

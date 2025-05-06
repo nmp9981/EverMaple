@@ -156,6 +156,39 @@ public class InputKeyManager : MonoBehaviour
         {
             ItemManager.itemInstance.UseMPPosion(ItemManager.itemInstance.UseMPPosionIndex, ItemManager.itemInstance.HealMPAmount, true);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ItemManager.itemInstance.UseBuffItem(8);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ItemManager.itemInstance.UseBuffItem(9);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ItemManager.itemInstance.UseBuffItem(10);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ItemManager.itemInstance.UseBuffItem(11);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ItemManager.itemInstance.UseBuffItem(12);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            ItemManager.itemInstance.UseBuffItem(13);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            ItemManager.itemInstance.UseBuffItem(14);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            ItemManager.itemInstance.UseBuffItem(15);
+        }
     }
 
     /// <summary>

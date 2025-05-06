@@ -408,7 +408,6 @@ public class ItemManager : MonoBehaviour
         consumeItem.count -= 1;
         consumeItems[itemIndex] = consumeItem;
 
-        int keyIndex = keySlotBuffItems[itemIndex];
         //필요한거 : 어떤키 입력했는지 정보
         foreach(var item in keySlotImage)
         {
@@ -416,10 +415,41 @@ public class ItemManager : MonoBehaviour
             if (consumeItems[itemIndex].name == useItemName)
                 item.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = consumeItem.count.ToString();
         }
-      
+
+        //포션 효과
+        EffectBuffPosion(itemIndex);
         //UI반영
         itemUI.ShowConsumeInItemInventory();
     }
+    public void UseBuffItem(int inputKey)
+    {
+        int itemIndex = keySlotBuffItems[inputKey];
+        //포션 미등록
+        if (!consumeItems.ContainsKey(itemIndex))
+            return;
+
+        ConsumeItem consumeItem = consumeItems[itemIndex];
+        //포션이 없음
+        if (consumeItem.count < 1)
+            return;
+
+        //포션 하나 사용
+        consumeItem.count -= 1;
+        consumeItems[itemIndex] = consumeItem;
+
+        //포션 효과
+        EffectBuffPosion(itemIndex);
+        //UI반영
+        itemUI.ShowConsumeInItemInventory();
+    }
+    /// <summary>
+    /// 버프 포션 효과
+    /// </summary>
+    void EffectBuffPosion(int itemIdx)
+    {
+
+    }
+
     public void UseMoveVillagePosion()
     {
 

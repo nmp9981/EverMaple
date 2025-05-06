@@ -78,7 +78,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
                 ItemManager.itemInstance.EnrollElixerPosion(itemName);
                 break;
             default:
-                ItemManager.itemInstance.EnrollBuffPosion(itemName);
+                ItemManager.itemInstance.EnrollBuffPosion(itemName,inputKey);
                 break;
         }
     }

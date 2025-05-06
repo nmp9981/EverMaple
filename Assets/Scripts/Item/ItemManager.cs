@@ -218,18 +218,61 @@ public class ItemManager : MonoBehaviour
             return;
 
         //F키로 등록
-        keySlotImage[12].transform.GetChild(0).GetComponent<Image>().sprite = posionSprite;
-        keySlotImage[12].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = posionCountText;
+        keySlotImage[2].transform.GetChild(0).GetComponent<Image>().sprite = posionSprite;
+        keySlotImage[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = posionCountText;
     }
     /// <summary>
     /// 버프 등록
     /// </summary>
-    public void EnrollBuffPosion(string itemName)
+    public void EnrollBuffPosion(string itemName, string inputKey)
     {
+        Sprite posionSprite = null;
+        string posionCountText = string.Empty;
+        switch (itemName)
+        {
+            case "전사물약":
+                UseBuffPosionIndex = 9;
+                break;
+            case "법사물약":
+                UseBuffPosionIndex = 10;
+                break;
+            case "명사수물약":
+                UseBuffPosionIndex = 11;
+                break;
+            case "민첩물약":
+                UseBuffPosionIndex = 12;
+                break;
+            case "이속물약":
+                UseBuffPosionIndex = 13;
+                break;
+            default:
+                break;
+        }
+        //이미지, 남은 개수 표시
+        if(UseBuffPosionIndex >=9 && UseBuffPosionIndex <= 13)
+        {
+            posionSprite = consumeItems[UseBuffPosionIndex].sprite;
+            posionCountText = consumeItems[UseBuffPosionIndex].count.ToString();
+        }
+        
 
+        //MP물약이 아님
+        if (posionSprite == null)
+            return;
+
+        //키 등록(숫자키 중에 입력 가능)
+        int outNum = int.TryParse(inputKey, out outNum)?outNum+7 :-1;
+        if (outNum == -1)//숫자키가 아님
+            return;
+
+        keySlotImage[outNum].transform.GetChild(0).GetComponent<Image>().sprite = posionSprite;
+        keySlotImage[outNum].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = posionCountText;
     }
 
-    //아이템 사용
+    /// <summary>
+    /// 아이템 사용
+    /// TODO : 마을 귀환 기능은 맵을 먼저 만든 뒤에 구현
+    /// </summary>
     public void UseConsumeItem()
     {
         GameObject clickObj = uiMouseClick.clickedConsumeObject;
@@ -263,6 +306,24 @@ public class ItemManager : MonoBehaviour
                 break;
             case "팥빙수":
                 UseMPPosion(8, 2000, false);
+                break;
+            case "전사물약":
+                UseBuffPosion(9, false);
+                break;
+            case "법사물약":
+                UseBuffPosion(10, false);
+                break;
+            case "명사수물약":
+                UseBuffPosion(11, false);
+                break;
+            case "민첩물약":
+                UseBuffPosion(12, false);
+                break;
+            case "이속물약":
+                UseBuffPosion(13, false);
+                break;
+            case "마을귀환주문서":
+                UseMoveVillagePosion();
                 break;
             default:
                 break;
@@ -327,6 +388,15 @@ public class ItemManager : MonoBehaviour
         itemUI.ShowConsumeInItemInventory();
     }
 
+    public void UseBuffPosion(int itemIndex, bool inputKey)
+    {
+
+    }
+    public void UseMoveVillagePosion()
+    {
+
+    }
+
     #region 아이템 데이터
     public const string consumeTag = "ConsumeItem";
 
@@ -344,10 +414,12 @@ public class ItemManager : MonoBehaviour
     //회복
     private int useHPPosionIndex = -1;
     private int useMPPosionIndex = -1;
+    private int useBuffPosionIndex = -1;
     private int healHPAmount = 0;
     private int healMPAmount = 0;
     public int UseHPPosionIndex { get { return useHPPosionIndex; } set { useHPPosionIndex = value; } }
     public int UseMPPosionIndex { get { return useMPPosionIndex; } set { useMPPosionIndex = value; } }
+    public int UseBuffPosionIndex { get { return useBuffPosionIndex; } set { useBuffPosionIndex = value; } }
     public int HealHPAmount { get { return healHPAmount; } set { healHPAmount = value; } }
     public int HealMPAmount { get { return healMPAmount; } set { healMPAmount = value; } }
     #endregion

@@ -10,7 +10,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     GameObject selectKeyObject;
 
     //선택한 소비 아이템
-    GameObject clickedConsumeObject = null;
+    public GameObject clickedConsumeObject = null;
     RectTransform enrollKwyRectTrans;
 
     void Awake()

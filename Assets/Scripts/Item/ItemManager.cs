@@ -39,6 +39,14 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager itemInstance;
 
+    [SerializeField]
+    UIMouseClick uiMouseClick;
+
+    [SerializeField]
+    PlayerInfoUI playerInfoUI;
+    [SerializeField]
+    ItemUI itemUI;
+
     private void Awake()
     {
         ItemSingletonObjectLoad();
@@ -85,28 +93,38 @@ public class ItemManager : MonoBehaviour
         {
             case "빨간포션":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[0].sprite;
-                posionCountText = consumeItems[0].count.ToString();
+                UseHPPosionIndex = 0;
+                posionSprite = consumeItems[UseHPPosionIndex].sprite;
+                posionCountText = consumeItems[UseHPPosionIndex].count.ToString();
+                HealHPAmount = 50;
                 break;
             case "주황포션":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[1].sprite;
-                posionCountText = consumeItems[1].count.ToString();
+                UseHPPosionIndex = 1;
+                posionSprite = consumeItems[UseHPPosionIndex].sprite;
+                posionCountText = consumeItems[UseHPPosionIndex].count.ToString();
+                HealHPAmount = 150;
                 break;
             case "하얀포션":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[2].sprite;
-                posionCountText = consumeItems[2].count.ToString();
+                UseHPPosionIndex = 2;
+                posionSprite = consumeItems[UseHPPosionIndex].sprite;
+                posionCountText = consumeItems[UseHPPosionIndex].count.ToString();
+                HealHPAmount = 300;
                 break;
             case "장어구이":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[5].sprite;
-                posionCountText = consumeItems[5].count.ToString();
+                UseHPPosionIndex = 5;
+                posionSprite = consumeItems[UseHPPosionIndex].sprite;
+                posionCountText = consumeItems[UseHPPosionIndex].count.ToString();
+                HealHPAmount = 1000;
                 break;
             case "쭈쭈바":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[7].sprite;
-                posionCountText = consumeItems[7].count.ToString();
+                UseHPPosionIndex = 7;
+                posionSprite = consumeItems[UseHPPosionIndex].sprite;
+                posionCountText = consumeItems[UseHPPosionIndex].count.ToString();
+                HealHPAmount = 2000;
                 break;
             default:
                 break;
@@ -131,23 +149,31 @@ public class ItemManager : MonoBehaviour
         {
             case "파란포션":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[3].sprite;
-                posionCountText = consumeItems[3].count.ToString();
+                UseMPPosionIndex = 3;
+                posionSprite = consumeItems[UseMPPosionIndex].sprite;
+                posionCountText = consumeItems[UseMPPosionIndex].count.ToString();
+                HealMPAmount = 100;
                 break;
             case "마나엘릭서":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[4].sprite;
-                posionCountText = consumeItems[4].count.ToString();
+                UseMPPosionIndex = 4;
+                posionSprite = consumeItems[UseMPPosionIndex].sprite;
+                posionCountText = consumeItems[UseMPPosionIndex].count.ToString();
+                HealMPAmount = 300;
                 break;
             case "맑은물":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[6].sprite;
-                posionCountText = consumeItems[6].count.ToString();
+                UseMPPosionIndex = 6;
+                posionSprite = consumeItems[UseMPPosionIndex].sprite;
+                posionCountText = consumeItems[UseMPPosionIndex].count.ToString();
+                HealMPAmount = 800;
                 break;
             case "팥빙수":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[8].sprite;
-                posionCountText = consumeItems[8].count.ToString();
+                UseMPPosionIndex = 8;
+                posionSprite = consumeItems[UseMPPosionIndex].sprite;
+                posionCountText = consumeItems[UseMPPosionIndex].count.ToString();
+                HealMPAmount = 2000;
                 break;
             default:
                 break;
@@ -204,13 +230,101 @@ public class ItemManager : MonoBehaviour
     }
 
     //아이템 사용
-    public void UseConsumeItem(string itemName)
+    public void UseConsumeItem()
     {
+        GameObject clickObj = uiMouseClick.clickedConsumeObject;
+        string objName = clickObj.GetComponent<Image>().sprite.name;
+
+        switch (objName)
+        {
+            case "빨간포션":
+                UseHPPosion(0,50,false);
+                break;
+            case "주황포션":
+                UseHPPosion(1, 150, false);
+                break;
+            case "하얀포션":
+                UseHPPosion(2, 300, false);
+                break;
+            case "장어구이":
+                UseHPPosion(5, 1000, false);
+                break;
+            case "쭈쭈바":
+                UseHPPosion(7, 2000, false);
+                break;
+            case "파란포션":
+                UseMPPosion(3, 100, false);
+                break;
+            case "마나엘릭서":
+                UseMPPosion(4, 300, false);
+                break;
+            case "맑은물":
+                UseMPPosion(6, 800, false);
+                break;
+            case "팥빙수":
+                UseMPPosion(8, 2000, false);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void UseHPPosion(int itemIndex, int hpAmount, bool inputKey)
+    {
+        //포션 미등록
+        if (!consumeItems.ContainsKey(itemIndex))
+            return;
+
+        ConsumeItem consumeItem = consumeItems[itemIndex];
+        //포션이 없음
+        if (consumeItem.count < 1)
+            return;
+
+        //키입력을 통한 회복
+        if (inputKey)
+            hpAmount = HealHPAmount;
+
+        //포션 하나 사용
+        consumeItem.count -= 1;
+        consumeItems[itemIndex] = consumeItem;
+        keySlotImage[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = consumeItem.count.ToString();
+
+        //회복
+        PlayerManager.PlayerInstance.PlayerCurHP 
+            = Mathf.Min(PlayerManager.PlayerInstance.PlayerMaxHP, PlayerManager.PlayerInstance.PlayerCurHP + hpAmount);
+
+        //UI반영
+        playerInfoUI.ShowPlayerHPBar();
+        itemUI.ShowConsumeInItemInventory();
 
     }
-    public void UseHPPosion(string itemName)
+    public void UseMPPosion(int itemIndex, int mpAmount, bool inputKey)
     {
+        //포션 미등록
+        if (!consumeItems.ContainsKey(itemIndex))
+            return;
 
+        ConsumeItem consumeItem = consumeItems[itemIndex];
+        //포션이 없음
+        if (consumeItem.count < 1)
+            return;
+
+        //키입력을 통한 회복
+        if (inputKey)
+            mpAmount = HealMPAmount;
+
+        //포션 하나 사용
+        consumeItem.count -= 1;
+        consumeItems[itemIndex] = consumeItem;
+        keySlotImage[1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = consumeItem.count.ToString();
+
+        //회복
+        PlayerManager.PlayerInstance.PlayerCurMP
+            = Mathf.Min(PlayerManager.PlayerInstance.PlayerMaxMP, PlayerManager.PlayerInstance.PlayerCurMP + mpAmount);
+
+        //UI반영
+        playerInfoUI.ShowPlayerMPBar();
+        itemUI.ShowConsumeInItemInventory();
     }
 
     #region 아이템 데이터
@@ -225,11 +339,15 @@ public class ItemManager : MonoBehaviour
     public List<Sprite> consumeItemImage = new List<Sprite>();
 
     //키세팅 용 바인딩
-    public List<GameObject> keySlotImage = new List<GameObject>(); 
+    public List<GameObject> keySlotImage = new List<GameObject>();
 
-    //회복량
-    private int healHPAmount;
-    private int healMPAmount;
+    //회복
+    private int useHPPosionIndex = -1;
+    private int useMPPosionIndex = -1;
+    private int healHPAmount = 0;
+    private int healMPAmount = 0;
+    public int UseHPPosionIndex { get { return useHPPosionIndex; } set { useHPPosionIndex = value; } }
+    public int UseMPPosionIndex { get { return useMPPosionIndex; } set { useMPPosionIndex = value; } }
     public int HealHPAmount { get { return healHPAmount; } set { healHPAmount = value; } }
     public int HealMPAmount { get { return healMPAmount; } set { healMPAmount = value; } }
     #endregion

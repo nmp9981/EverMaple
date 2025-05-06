@@ -69581,6 +69581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enrollKwySlotObject: {fileID: 1994000728}
   selectKeyObject: {fileID: 1755275302}
+  clickedConsumeObject: {fileID: 0}
 --- !u!1001 &2085192774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70354,6 +70355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd815054af0fb9d4d9921f4a02f2727f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMouseClick: {fileID: 2084836492}
+  playerInfoUI: {fileID: 165880385}
+  itemUI: {fileID: 1423168609}
   fieldDropItems: []
   equipmentItems: []
   consumeItemImage:

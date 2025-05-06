@@ -33,6 +33,7 @@ public class InputKeyManager : MonoBehaviour
         InputPortalKey();
         InputPlayerAttack();
         InputSkillKey();
+        InputItemKey();
         InputAboutUI();
     }
     /// <summary>
@@ -144,6 +145,19 @@ public class InputKeyManager : MonoBehaviour
                 itemUIObj.SetActive(true);
         }
     }
+    void InputItemKey()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            ItemManager.itemInstance.UseHPPosion(ItemManager.itemInstance.UseHPPosionIndex, ItemManager.itemInstance.HealHPAmount,true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            ItemManager.itemInstance.UseMPPosion(ItemManager.itemInstance.UseMPPosionIndex, ItemManager.itemInstance.HealMPAmount, true);
+        }
+    }
+
     /// <summary>
     /// 마우스 클릭
     /// </summary>

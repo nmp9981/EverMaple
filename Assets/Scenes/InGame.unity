@@ -42490,7 +42490,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2113932359}
         m_TargetAssemblyTypeName: ItemManager, Assembly-CSharp
         m_MethodName: UseConsumeItem
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

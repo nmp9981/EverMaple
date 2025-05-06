@@ -255,7 +255,6 @@ public class ItemManager : MonoBehaviour
             posionCountText = consumeItems[UseBuffPosionIndex].count.ToString();
         }
         
-
         //MP물약이 아님
         if (posionSprite == null)
             return;
@@ -267,6 +266,12 @@ public class ItemManager : MonoBehaviour
 
         keySlotImage[outNum].transform.GetChild(0).GetComponent<Image>().sprite = posionSprite;
         keySlotImage[outNum].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = posionCountText;
+
+        //등록된 키가 이미 있는지 검사
+        if (keySlotBuffItems.ContainsKey(outNum))
+            keySlotBuffItems[outNum] = UseBuffPosionIndex;
+        else//입력키, 실제 아이템 인덱스
+            keySlotBuffItems.Add(outNum,UseBuffPosionIndex);
     }
 
     /// <summary>
@@ -390,7 +395,30 @@ public class ItemManager : MonoBehaviour
 
     public void UseBuffPosion(int itemIndex, bool inputKey)
     {
+        //포션 미등록
+        if (!consumeItems.ContainsKey(itemIndex))
+            return;
 
+        ConsumeItem consumeItem = consumeItems[itemIndex];
+        //포션이 없음
+        if (consumeItem.count < 1)
+            return;
+
+        //포션 하나 사용
+        consumeItem.count -= 1;
+        consumeItems[itemIndex] = consumeItem;
+
+        int keyIndex = keySlotBuffItems[itemIndex];
+        //필요한거 : 어떤키 입력했는지 정보
+        foreach(var item in keySlotImage)
+        {
+            string useItemName = item.transform.GetChild(0).GetComponent<Image>().sprite.name;
+            if (consumeItems[itemIndex].name == useItemName)
+                item.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = consumeItem.count.ToString();
+        }
+      
+        //UI반영
+        itemUI.ShowConsumeInItemInventory();
     }
     public void UseMoveVillagePosion()
     {
@@ -410,6 +438,8 @@ public class ItemManager : MonoBehaviour
 
     //키세팅 용 바인딩
     public List<GameObject> keySlotImage = new List<GameObject>();
+    //버프 아이템 (입력 키, 아이템 인덱스)
+    public Dictionary<int,int> keySlotBuffItems = new Dictionary<int,int>();
 
     //회복
     private int useHPPosionIndex = -1;

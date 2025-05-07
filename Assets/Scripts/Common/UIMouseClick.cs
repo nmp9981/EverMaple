@@ -40,7 +40,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     void SlotButtonBinding()
     {
-        foreach (Button btn in selectKeyObject.GetComponentsInChildren<Button>())
+        foreach (Button btn in selectKeyObject.GetComponentsInChildren<Button>(true))
         {
             string btnName = btn.gameObject.name;
             if (!btn.name.Contains("Key"))

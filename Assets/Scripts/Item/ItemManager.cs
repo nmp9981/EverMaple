@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 /// <summary>
 /// 아이템 속성
@@ -50,6 +51,7 @@ public class ItemManager : MonoBehaviour
     private void Awake()
     {
         ItemSingletonObjectLoad();
+        BuffItrmBinding();
     }
 
     void ItemSingletonObjectLoad()
@@ -65,6 +67,21 @@ public class ItemManager : MonoBehaviour
                 Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
         }
     }
+    /// <summary>
+    /// 버프 아이템 바인딩
+    /// </summary>
+    void BuffItrmBinding()
+    {
+        GameObject buffUI = GameObject.Find("BuffUI");
+        int buffID = 0;
+        foreach(Transform tr in buffUI.GetComponentInChildren<Transform>(true))
+        { 
+            buffItemList.Add(tr.gameObject);
+            tr.gameObject.GetComponent<ItemBuff>().buffIdx = buffID;
+            buffID += 1;
+        }
+    }
+
     /// <summary>
     /// 필드에 있는 아이템들 파괴
     /// </summary>
@@ -255,7 +272,7 @@ public class ItemManager : MonoBehaviour
             posionCountText = consumeItems[UseBuffPosionIndex].count.ToString();
         }
         
-        //MP물약이 아님
+        //버프 물약이 아님
         if (posionSprite == null)
             return;
 
@@ -421,8 +438,13 @@ public class ItemManager : MonoBehaviour
         //UI반영
         itemUI.ShowConsumeInItemInventory();
     }
+    /// <summary>
+    /// 버프 아이템 사용
+    /// </summary>
+    /// <param name="inputKey"></param>
     public void UseBuffItem(int inputKey)
     {
+        //실제 아이템 인덱스
         int itemIndex = keySlotBuffItems[inputKey];
         //포션 미등록
         if (!consumeItems.ContainsKey(itemIndex))
@@ -436,6 +458,7 @@ public class ItemManager : MonoBehaviour
         //포션 하나 사용
         consumeItem.count -= 1;
         consumeItems[itemIndex] = consumeItem;
+        keySlotImage[inputKey].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = consumeItem.count.ToString();
 
         //포션 효과
         EffectBuffPosion(itemIndex);
@@ -443,11 +466,41 @@ public class ItemManager : MonoBehaviour
         itemUI.ShowConsumeInItemInventory();
     }
     /// <summary>
-    /// 버프 포션 효과
+    /// 버프 활성화
+    /// 이미 켜져있는 상태면 끄고 재시작
     /// </summary>
     void EffectBuffPosion(int itemIdx)
     {
-
+        switch (itemIdx)
+        {
+            case 9:
+                if(buffItemList[0].activeSelf)
+                    buffItemList[0].SetActive(false);
+                buffItemList[0].SetActive(true);
+                break;
+            case 10:
+                if (buffItemList[1].activeSelf)
+                    buffItemList[1].SetActive(false);
+                buffItemList[1].SetActive(true);
+                break;
+            case 11:
+                if (buffItemList[2].activeSelf)
+                    buffItemList[2].SetActive(false);
+                buffItemList[2].SetActive(true);
+                break;
+            case 12:
+                if (buffItemList[3].activeSelf)
+                    buffItemList[3].SetActive(false);
+                buffItemList[3].SetActive(true);
+                break;
+            case 13:
+                if (buffItemList[4].activeSelf)
+                    buffItemList[4].SetActive(false);
+                buffItemList[4].SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
 
     public void UseMoveVillagePosion()
@@ -468,8 +521,10 @@ public class ItemManager : MonoBehaviour
 
     //키세팅 용 바인딩
     public List<GameObject> keySlotImage = new List<GameObject>();
-    //버프 아이템 (입력 키, 아이템 인덱스)
+    //버프 아이템 (입력 키, 실제 아이템 인덱스)
     public Dictionary<int,int> keySlotBuffItems = new Dictionary<int,int>();
+    //버프 아이템 사용
+    public List<GameObject> buffItemList = new List<GameObject>();
 
     //회복
     private int useHPPosionIndex = -1;

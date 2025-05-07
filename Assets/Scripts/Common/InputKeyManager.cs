@@ -18,6 +18,8 @@ public class InputKeyManager : MonoBehaviour
     GameObject skillUIObj;
     [SerializeField]
     GameObject itemUIObj;
+    [SerializeField]
+    GameObject storeUI;
 
     //데미지 UI순서
     public static int orderSortNum { get; set; }
@@ -147,6 +149,12 @@ public class InputKeyManager : MonoBehaviour
     }
     void InputItemKey()
     {
+        //상점UI가 열렸을때는 작동안함
+        if (storeUI.activeSelf)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             ItemManager.itemInstance.UseHPPosion(ItemManager.itemInstance.UseHPPosionIndex, ItemManager.itemInstance.HealHPAmount,true);

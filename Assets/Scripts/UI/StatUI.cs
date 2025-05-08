@@ -210,14 +210,14 @@ public class StatUI : MonoBehaviour, IDragHandler
         int maxAttack = PlayerManager.PlayerInstance.PlayerAttack;
         int minAttack = maxAttack * PlayerManager.PlayerInstance.Workmanship/100;
         attackText.text = $"{minAttack} ~ {maxAttack}";
-        physicsArmorText.text = "100";
-        magicPowerText.text = "30";
-        magicArmorText.text = "50";
-        accuraryText.text = "118";
-        avoidText.text = "180";
-        dexterityText.text = "130";
-        moveSpeedText.text = "110";
-        jumpText.text = "100";
+        physicsArmorText.text = $"{PlayerManager.PlayerInstance.PlayerPhysicsArmor}";
+        magicPowerText.text = $"{PlayerManager.PlayerInstance.PlayerMagicPower}";
+        magicArmorText.text = $"{PlayerManager.PlayerInstance.PlayerMagicArmor}";
+        accuraryText.text = $"{PlayerManager.PlayerInstance.PlayerAccurary}";
+        avoidText.text = $"{PlayerManager.PlayerInstance.PlayerAvoid}";
+        dexterityText.text = $"{PlayerManager.PlayerInstance.PlayerDexterity}";
+        moveSpeedText.text = $"{PlayerManager.PlayerInstance.PlayerMoveSpeedRate}%";
+        jumpText.text = $"{PlayerManager.PlayerInstance.JumpForceRate}%";
     }
     #endregion
 

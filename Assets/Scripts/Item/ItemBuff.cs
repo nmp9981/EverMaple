@@ -6,6 +6,8 @@ public class ItemBuff : MonoBehaviour
     public int buffIdx;
 
     [SerializeField]
+    StatUI statUIObj;
+    [SerializeField]
     TextMeshProUGUI timeText;
     float buffFullTime;
 
@@ -24,6 +26,29 @@ public class ItemBuff : MonoBehaviour
     void SettingBuffDurationTimeAndEffect()
     {
         buffFullTime = 30;
+
+        switch (buffIdx)
+        {
+            case 0://전사 물약
+                PlayerManager.PlayerInstance.PlayerAttack += 10;
+                break;
+            case 1://법사 물약
+                
+                break;
+            case 2://명사수 물약
+                
+                break;
+            case 3://민첩 물약
+
+                break;
+            case 4://이속 물약
+                PlayerManager.PlayerInstance.PlayerMoveSpeedRate += 10f;
+                break;
+            default:
+                break;
+        }
+        //스탯창에도 반영
+        statUIObj.ShowCharacterDetailStat();
     }
     /// <summary>
     /// 남은 버프 시간 보이기(버프 활성화 중일때만)
@@ -44,7 +69,30 @@ public class ItemBuff : MonoBehaviour
     /// </summary>
     void BuffOff()
     {
-        if(buffFullTime < 0)
+        if (buffFullTime < 0)
+        {
+            switch (buffIdx)
+            {
+                case 0://전사 물약
+                    PlayerManager.PlayerInstance.PlayerAttack -= 10;
+                    break;
+                case 1://법사 물약
+
+                    break;
+                case 2://명사수 물약
+
+                    break;
+                case 3://민첩 물약
+
+                    break;
+                case 4://이속 물약
+                    PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= 10;
+                    break;
+                default:
+                    break;
+            }
+            statUIObj.ShowCharacterDetailStat();
             gameObject.SetActive(false);
+        }
     }
 }

@@ -38,7 +38,9 @@ public class PlayerManager : MonoBehaviour
     #region 변수 모음
     //이동관련
     float playerMoveSpeed = 4f;//이동 속도
+    float playerMoveSpeedRate = 100;//이동속도 배율
     float jumpForce = 5f;//점프력
+    float jumpForceRate = 100;//점프력 배율
     int maxJumpCount = 2;//최대 점프 횟수
     Vector3 playerLookDir = Vector3.left;//플레이어가 바라보는 방향
 
@@ -67,6 +69,13 @@ public class PlayerManager : MonoBehaviour
     int playerAttackSpeed = 500;//공격 속도
     float throwObjectMaxDist = 10;//사거리
 
+    int playerPhysicsArmor = 100;//물리 방어력
+    int playerMagicPower = 30;//마력
+    int playerMagicArmor = 50;//마법 방어력
+    int playerAccurary = 125;//명중률
+    int playerAvoid = 180;//회피율
+    int playerDexterity = 130;//손재주
+
     int playerSkillPoint;//현재 스킬 포인트
     int totalUseSkillPoint;//총 사용 스킬 포인트
 
@@ -77,7 +86,9 @@ public class PlayerManager : MonoBehaviour
 
     #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }
+    public float PlayerMoveSpeedRate { get { return playerMoveSpeedRate; }set { playerMoveSpeedRate = value; } }
     public float JumpForce { get { return jumpForce; } set { jumpForce = value; } }
+    public float JumpForceRate { get { return jumpForceRate; }set { jumpForceRate = value; } }
     public int MaxJumpCount { get { return maxJumpCount; } set { maxJumpCount = value; } }
     public Vector3 PlayerLookDir { get { return playerLookDir; } set { playerLookDir = value; } }
     #endregion
@@ -111,6 +122,13 @@ public class PlayerManager : MonoBehaviour
 
     public int PlayerSkillPoint { get { return playerSkillPoint; } set { playerSkillPoint = value; } }
     public int TotalUseSkillPoint { get { return totalUseSkillPoint; } set { totalUseSkillPoint = value; } }
+
+    public int PlayerPhysicsArmor { get { return playerPhysicsArmor; } set { playerPhysicsArmor = value; }}
+    public int PlayerMagicPower { get { return playerMagicPower; }set { playerMagicPower = value; } }
+    public int PlayerMagicArmor { get { return playerMagicArmor; } set { playerMagicArmor = value; } }
+    public int PlayerAccurary { get { return playerAccurary; } set { playerAccurary = value; } }
+    public int PlayerAvoid { get { return playerAvoid; } set { playerAvoid = value; } }
+    public int PlayerDexterity { get { return playerDexterity; } set { playerDexterity = value; } }
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }

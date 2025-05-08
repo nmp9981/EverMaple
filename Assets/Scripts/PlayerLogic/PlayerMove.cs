@@ -43,7 +43,9 @@ public class PlayerMove : MonoBehaviour
         {
             rigid.gravityScale = 0;//중력끄기
             Vector3 moveVec = new Vector3(hAxis, vAxis, 0).normalized;//이동 방향
-            transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
+            float speed = PlayerManager.PlayerInstance.PlayerMoveSpeed
+                * (PlayerManager.PlayerInstance.PlayerMoveSpeedRate * 0.01f);
+            transform.position += moveVec * speed * Time.deltaTime;//실제 이동
             if (vAxis != 0)
             {
                 PlayerAnimation.LadderAnim();
@@ -53,7 +55,9 @@ public class PlayerMove : MonoBehaviour
         {
             rigid.gravityScale = 1;//중력켜기
             Vector3 moveVec = new Vector3(hAxis, 0, 0).normalized;//이동 방향
-            transform.position += moveVec * PlayerManager.PlayerInstance.PlayerMoveSpeed * Time.deltaTime;//실제 이동
+            float speed = PlayerManager.PlayerInstance.PlayerMoveSpeed
+                * (PlayerManager.PlayerInstance.PlayerMoveSpeedRate * 0.01f);
+            transform.position += moveVec * speed * Time.deltaTime;//실제 이동
 
             LookPlayerMoveDirection(hAxis);//이동방향을 바라보게
             PlayerAnimation.MoveAnim();
@@ -76,7 +80,8 @@ public class PlayerMove : MonoBehaviour
         if (jumpCount < PlayerManager.PlayerInstance.MaxJumpCount)//점프 횟수 남음
         {
             jumpCount++;
-            rigid.linearVelocity = Vector3.up * PlayerManager.PlayerInstance.JumpForce;
+            rigid.linearVelocity = Vector3.up * PlayerManager.PlayerInstance.JumpForce*
+                (PlayerManager.PlayerInstance.JumpForceRate*0.01f);
             PlayerAnimation.JumpAnim();
         }
     }

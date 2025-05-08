@@ -2245,6 +2245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 44910128}
 --- !u!114 &37050121
 MonoBehaviour:
@@ -12473,6 +12474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 20817023}
 --- !u!114 &269996612
 MonoBehaviour:
@@ -20488,6 +20490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 1671064999}
 --- !u!114 &471761951
 MonoBehaviour:
@@ -28095,6 +28098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 605897699}
 --- !u!114 &703739473
 MonoBehaviour:
@@ -34129,6 +34133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 1921561670}
 --- !u!114 &907411181
 MonoBehaviour:
@@ -34473,6 +34478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 210129804}
 --- !u!114 &918167809
 MonoBehaviour:
@@ -36385,6 +36391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 614798504}
 --- !u!114 &988117199
 MonoBehaviour:
@@ -41163,6 +41170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 914084294}
 --- !u!114 &1132421610
 MonoBehaviour:
@@ -46805,6 +46813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 302741649}
 --- !u!114 &1277684520
 MonoBehaviour:
@@ -47244,6 +47253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 842389510}
 --- !u!114 &1288372227
 MonoBehaviour:
@@ -53120,6 +53130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 279843443}
 --- !u!114 &1459298304
 MonoBehaviour:
@@ -64023,6 +64034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 1034811506}
 --- !u!114 &1767617066
 MonoBehaviour:
@@ -73423,6 +73435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 1238202083}
 --- !u!114 &2074271416
 MonoBehaviour:
@@ -74531,6 +74544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 1369680134}
 --- !u!114 &2100505069
 MonoBehaviour:
@@ -75108,6 +75122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffIdx: 0
+  statUIObj: {fileID: 486010132}
   timeText: {fileID: 327642262}
 --- !u!114 &2118178756
 MonoBehaviour:

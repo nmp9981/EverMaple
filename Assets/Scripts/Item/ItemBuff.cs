@@ -25,7 +25,7 @@ public class ItemBuff : MonoBehaviour
     /// </summary>
     void SettingBuffDurationTimeAndEffect()
     {
-        buffFullTime = 30;
+        buffFullTime = 300;
 
         switch (buffIdx)
         {
@@ -33,13 +33,13 @@ public class ItemBuff : MonoBehaviour
                 PlayerManager.PlayerInstance.PlayerAttack += 10;
                 break;
             case 1://법사 물약
-                
+                PlayerManager.PlayerInstance.PlayerMagicPower += 5;
                 break;
             case 2://명사수 물약
-                
+                PlayerManager.PlayerInstance.PlayerAccurary += 10;
                 break;
             case 3://민첩 물약
-
+                PlayerManager.PlayerInstance.PlayerAvoid += 10;
                 break;
             case 4://이속 물약
                 PlayerManager.PlayerInstance.PlayerMoveSpeedRate += 10f;
@@ -77,13 +77,13 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerAttack -= 10;
                     break;
                 case 1://법사 물약
-
+                    PlayerManager.PlayerInstance.PlayerMagicPower -= 5;
                     break;
                 case 2://명사수 물약
-
+                    PlayerManager.PlayerInstance.PlayerAccurary -= 10;
                     break;
                 case 3://민첩 물약
-
+                    PlayerManager.PlayerInstance.PlayerAvoid -= 10;
                     break;
                 case 4://이속 물약
                     PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= 10;

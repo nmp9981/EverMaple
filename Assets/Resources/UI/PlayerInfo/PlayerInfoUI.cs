@@ -103,8 +103,9 @@ public class PlayerInfoUI : MonoBehaviour
     public void ShowPlayerEXPBar()
     {
         expBarGage.fillAmount = (float)PlayerManager.PlayerInstance.PlayerCurExp / PlayerManager.PlayerInstance.PlayerRequireExp;
-        float expRate = Mathf.Round(expBarGage.fillAmount*10000)*0.01f;
-        expText.text = $"EXP. {PlayerManager.PlayerInstance.PlayerCurExp} / {PlayerManager.PlayerInstance.PlayerRequireExp} [{expRate}%]";
+        float expRate = Mathf.Round(expBarGage.fillAmount * 10000) * 0.01f;
+        string displayedExpRate = expRate.ToString("F2");//소수점 둘째자리까지 표기
+        expText.text = $"EXP. {PlayerManager.PlayerInstance.PlayerCurExp} / {PlayerManager.PlayerInstance.PlayerRequireExp} [{displayedExpRate}%]";
     }
     public void ShowPlayerLV()
     {

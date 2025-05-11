@@ -2,8 +2,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
+/// <summary>
+/// 지역 명
+/// </summary>
+public enum LocalMapName
+{
+    LithHarbor,
+    Henesys,
+    Ellinia,
+    Perion,
+    KerningCuty,
+    SleepyWood,
+    Count
+}
 public class MapManager : MonoBehaviour
 {
+    //현재 플레이어가 있는 지역
+    public static LocalMapName playerMapLocal = LocalMapName.Henesys;
+    
     protected GameObject player;
     protected const string playerTag = "Player";
 

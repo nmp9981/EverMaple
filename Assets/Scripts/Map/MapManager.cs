@@ -18,7 +18,7 @@ public enum LocalMapName
 public class MapManager : MonoBehaviour
 {
     //현재 플레이어가 있는 지역
-    public static LocalMapName playerMapLocal = LocalMapName.Henesys;
+    public static LocalMapName playerMapLocal = LocalMapName.LithHarbor;
     
     protected GameObject player;
     protected const string playerTag = "Player";

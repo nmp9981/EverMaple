@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 /// <summary>
 /// 아이템 속성
@@ -39,6 +37,7 @@ public struct ConsumeItem
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager itemInstance;
+    public MoveVillage moveVillage = new MoveVillage();
 
     [SerializeField]
     UIMouseClick uiMouseClick;
@@ -502,10 +501,29 @@ public class ItemManager : MonoBehaviour
                 break;
         }
     }
-
+    /// <summary>
+    /// 마을 귀환 주문서
+    /// </summary>
     public void UseMoveVillagePosion()
     {
+        //주문서 미등록
+        if (!consumeItems.ContainsKey(14))
+            return;
 
+        ConsumeItem consumeItem = consumeItems[14];
+        //주문서가 없음
+        if (consumeItem.count < 1)
+            return;
+
+        //주문서 하나 사용
+        consumeItem.count -= 1;
+        consumeItems[14] = consumeItem;
+
+        //마을 귀환 주문서 사용
+        moveVillage.MoveToNearVillage();
+
+        //UI반영
+        itemUI.ShowConsumeInItemInventory();
     }
 
     #region 아이템 데이터

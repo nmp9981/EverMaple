@@ -11,7 +11,7 @@ public enum LocalMapName
     Henesys,
     Ellinia,
     Perion,
-    KerningCuty,
+    KerningCity,
     SleepyWood,
     Count
 }
@@ -25,6 +25,9 @@ public class MapManager : MonoBehaviour
 
     //위 방향키 눌렀는가?
     public static bool isDownUpKey = false;
+
+    //마을 리스트
+    public int[] villageList = {0,2,6,12,17,22};
 
     protected virtual void Awake()
     {
@@ -53,5 +56,29 @@ public class MapManager : MonoBehaviour
         float margin = 0.5f;
         player.transform.position = MapAndProtalList.portalList[nextNode].gameObject.transform.position
             +Vector3.up*margin;
+
+        //지역 위치 검사
+        LocalCheck(MapAndProtalList.curMapNum);
+    }
+
+    /// <summary>
+    /// 지역 위치 검사
+    /// </summary>
+    public void LocalCheck(int mapNumber)
+    {
+        if (mapNumber <= 1)
+        {
+            playerMapLocal = LocalMapName.LithHarbor;
+        }
+        else if (mapNumber >= 2 && mapNumber <= 4)
+            playerMapLocal = LocalMapName.Henesys;
+        else if (mapNumber >= 5 && mapNumber <= 9)
+            playerMapLocal = LocalMapName.Ellinia;
+        else if (mapNumber >= 10 && mapNumber <= 15)
+            playerMapLocal = LocalMapName.Perion;
+        else if (mapNumber >= 16 && mapNumber <= 20)
+            playerMapLocal = LocalMapName.KerningCity;
+        else
+            playerMapLocal = LocalMapName.SleepyWood;
     }
 }

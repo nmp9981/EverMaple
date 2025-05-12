@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using TMPro;
 
 /// <summary>
 /// 지역 명
@@ -17,14 +18,14 @@ public enum LocalMapName
 }
 public class MapManager : MonoBehaviour
 {
-    //현재 플레이어가 있는 지역
-    public static LocalMapName playerMapLocal = LocalMapName.LithHarbor;
-    
-    protected GameObject player;
-    protected const string playerTag = "Player";
-
     //위 방향키 눌렀는가?
     public static bool isDownUpKey = false;
+    //현재 플레이어가 있는 지역
+    public static LocalMapName playerMapLocal = LocalMapName.LithHarbor;
+
+    protected TextMeshProUGUI mapRealNameText;    
+    protected GameObject player;
+    protected const string playerTag = "Player";
 
     //마을 리스트
     public int[] villageList = {0,2,6,12,17,22};
@@ -32,6 +33,7 @@ public class MapManager : MonoBehaviour
     protected virtual void Awake()
     {
         player = GameObject.Find("Player");
+        mapRealNameText = GameObject.Find("MapNameText").GetComponent<TextMeshProUGUI>();
     }
 
     /// <summary>
@@ -46,6 +48,9 @@ public class MapManager : MonoBehaviour
 
         //다음맵으로 바뀜
         PlayerManager.PlayerInstance.CurMapName = MapAndProtalList.mapList[nextMapNum].name;
+
+        //맵 UI적용
+        mapRealNameText.text = $"{realMapName[nextMapNum]}";
 
         await UniTask.Delay(100);
         MapAndProtalList.mapList[MapAndProtalList.curMapNum].SetActive(false);
@@ -81,4 +86,37 @@ public class MapManager : MonoBehaviour
         else
             playerMapLocal = LocalMapName.SleepyWood;
     }
+
+    #region 맵 실제 이름
+    protected string[] realMapName = new string[]{
+        "리스항구",
+        "리스항구 : 리스항구 오솔길",
+        "헤네시스",
+        "헤네시스 : 헤네시스 사냥터",
+        "헤네시스 : 헤네시스 숲",
+        "엘리니아 : 남쪽필드",
+        "엘리니아",
+        "엘리니아 : 솟아오른나무",
+        "엘리니아 : 북쪽필드",
+        "엘리니아 : 던전으로 가는 길",
+        "페리온 : 페리온 동쪽령",
+        "페리온 : 바위길",
+        "페리온",
+        "페리온 : 바위산",
+        "페리온 : 페리온 서쪽령",
+        "페리온 : 페리온 불타버린땅",
+        "커닝시티 : 커닝시티 공사장",
+        "커닝시티",
+        "커닝시티 : 커닝시티 해질녘",
+        "커닝시티 : 방황의 늪",
+        "커닝시티 : 위험한 크로코",
+        "슬리피우드 : 깊은숲",
+        "슬리피우드",
+        "슬리피우드 : 개미굴 I",
+        "슬리피우드 : 개미굴 II",
+        "슬리피우드 : 빛을 잃은 동굴",
+        "슬리피우드 : 신전의 입구",
+        "슬리피우드 : 저주받은신전"
+    };
+    #endregion
 }

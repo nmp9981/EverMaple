@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MonsterDie
+  m_Name: MonsterStand
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 7c6f782d688869c49b2ec5fde6b1c911, type: 3}
+      value: {fileID: 21300000, guid: 0cae5b035a563fc4185de83ed6e16535, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 635dc4f27335f254398d4a13973c8475, type: 3}
+      value: {fileID: 21300000, guid: ea7b329f1acce40468af64c3084fbfaa, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: b0601fe4232cf264984bd902c7d44af6, type: 3}
+      value: {fileID: 21300000, guid: 64349a82b7ebb294080b5e804c8e71a2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,9 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 7c6f782d688869c49b2ec5fde6b1c911, type: 3}
-    - {fileID: 21300000, guid: 635dc4f27335f254398d4a13973c8475, type: 3}
-    - {fileID: 21300000, guid: b0601fe4232cf264984bd902c7d44af6, type: 3}
+    - {fileID: 21300000, guid: 0cae5b035a563fc4185de83ed6e16535, type: 3}
+    - {fileID: 21300000, guid: ea7b329f1acce40468af64c3084fbfaa, type: 3}
+    - {fileID: 21300000, guid: 64349a82b7ebb294080b5e804c8e71a2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -61,7 +61,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

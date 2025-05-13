@@ -20,6 +20,8 @@ public class InputKeyManager : MonoBehaviour
     GameObject itemUIObj;
     [SerializeField]
     GameObject storeUI;
+    [SerializeField]
+    GameObject worldMapUIObj;
 
     //데미지 UI순서
     public static int orderSortNum { get; set; }
@@ -123,6 +125,7 @@ public class InputKeyManager : MonoBehaviour
     /// </summary>
     void InputAboutUI()
     {
+        //스탯창
         if (Input.GetKeyDown(KeyCode.S))
         {
             if(statUIObj.activeSelf)
@@ -130,7 +133,7 @@ public class InputKeyManager : MonoBehaviour
             else
                 statUIObj.SetActive(true);
         }
-
+        //스킬창
         if (Input.GetKeyDown(KeyCode.K))
         {
             if (skillUIObj.activeSelf)
@@ -138,13 +141,21 @@ public class InputKeyManager : MonoBehaviour
             else
                 skillUIObj.SetActive(true);
         }
-
+        //아이템창
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (itemUIObj.activeSelf)
                 itemUIObj.SetActive(false);
             else
                 itemUIObj.SetActive(true);
+        }
+        //월드맵창
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (worldMapUIObj.activeSelf)
+                worldMapUIObj.SetActive(false);
+            else
+                worldMapUIObj.SetActive(true);
         }
     }
     void InputItemKey()

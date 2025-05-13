@@ -89,14 +89,14 @@ public class NPCCommon : MonoBehaviour
         {
             case NPCCategory.Consume:
             case NPCCategory.Equipment:
-                consumeUI = canvasUI.transform.GetChild(5).gameObject;
+                consumeUI = canvasUI.transform.GetChild(6).gameObject;
                 npcRenderer = GetComponent<SpriteRenderer>();
                 break;
             case NPCCategory.Taxi:
-                taxiUI = canvasUI.transform.GetChild(6).gameObject;
+                taxiUI = canvasUI.transform.GetChild(7).gameObject;
                 break;
             case NPCCategory.Quest:
-                questUI = canvasUI.transform.GetChild(7).gameObject;
+                questUI = canvasUI.transform.GetChild(8).gameObject;
                 break;
             default:
                 break;

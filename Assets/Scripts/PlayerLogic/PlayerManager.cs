@@ -69,12 +69,12 @@ public class PlayerManager : MonoBehaviour
     int playerAttackSpeed = 500;//공격 속도
     float throwObjectMaxDist = 10;//사거리
 
-    int playerPhysicsArmor = 100;//물리 방어력
-    int playerMagicPower = 30;//마력
-    int playerMagicArmor = 50;//마법 방어력
-    int playerAccurary = 125;//명중률
-    int playerAvoid = 180;//회피율
-    int playerDexterity = 130;//손재주
+    int playerPhysicsArmor = 4;//물리 방어력
+    int playerMagicPower = 4;//마력
+    int playerMagicArmor = 4;//마법 방어력
+    int playerAccurary = 41;//명중률
+    int playerAvoid = 21;//회피율
+    int playerDexterity = 18;//손재주
 
     int playerSkillPoint;//현재 스킬 포인트
     int totalUseSkillPoint;//총 사용 스킬 포인트

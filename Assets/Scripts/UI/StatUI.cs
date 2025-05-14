@@ -207,6 +207,9 @@ public class StatUI : MonoBehaviour, IDragHandler
     /// </summary>
     public void ShowCharacterDetailStat()
     {
+        //상세 스탯 계산
+        CalculatorDetailStat();
+
         int maxAttack = PlayerManager.PlayerInstance.PlayerAttack;
         int minAttack = maxAttack * PlayerManager.PlayerInstance.Workmanship/100;
         attackText.text = $"{minAttack} ~ {maxAttack}";
@@ -275,6 +278,10 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
         PlayerManager.PlayerInstance.PlayerINT += 1;
 
+        //인트 1당 마력 1, 마방1 증가
+        PlayerManager.PlayerInstance.PlayerMagicPower += 1;
+        PlayerManager.PlayerInstance.PlayerMagicArmor += 1;
+
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
         ShowCharacterDetailStat();
@@ -298,7 +305,50 @@ public class StatUI : MonoBehaviour, IDragHandler
     /// </summary>
     public void AutoDivideStat()
     {
+        //남은 AP포인트가 없음
+        if (PlayerManager.PlayerInstance.PlayerAPPoint <= 0)
+            return;
 
+        //남은 AP포인트
+        int restPoint = PlayerManager.PlayerInstance.PlayerAPPoint;
+
+        //분배
+        int upDexPoint = restPoint / 5;
+        int upLukPoint = restPoint - upDexPoint;
+        PlayerManager.PlayerInstance.PlayerDEX += upDexPoint;
+        PlayerManager.PlayerInstance.PlayerLUK += upLukPoint;
+
+        //결과
+        PlayerManager.PlayerInstance.PlayerAttack += (3*upLukPoint+2*upDexPoint);
+        PlayerManager.PlayerInstance.PlayerAPPoint = 0;
+
+        //증가한 결과를 보여줘야함
+        ShowCharacterBasicStat();
+        ShowCharacterDetailStat();
+    }
+
+    /// <summary>
+    /// 상세스탯 계산
+    /// TODO : 템, 스킬로 올라가는 수치도 고려해야함
+    /// </summary>
+    void CalculatorDetailStat()
+    {
+        //물리 방어력
+        PlayerManager.PlayerInstance.PlayerPhysicsArmor =
+           (3 * PlayerManager.PlayerInstance.PlayerSTR + PlayerManager.PlayerInstance.PlayerDEX) / 9;
+
+        //명중률
+        PlayerManager.PlayerInstance.PlayerAccurary =
+            (8 * PlayerManager.PlayerInstance.PlayerDEX + 5 * PlayerManager.PlayerInstance.PlayerLUK) / 10;
+
+        //회피율
+        PlayerManager.PlayerInstance.PlayerAvoid =
+            (5 * PlayerManager.PlayerInstance.PlayerLUK) / 10;
+
+        //손재주
+        PlayerManager.PlayerInstance.PlayerDexterity =
+          (PlayerManager.PlayerInstance.PlayerSTR+ PlayerManager.PlayerInstance.PlayerDEX
+          + PlayerManager.PlayerInstance.PlayerINT + PlayerManager.PlayerInstance.PlayerLUK) / 4;
     }
     #endregion
 }

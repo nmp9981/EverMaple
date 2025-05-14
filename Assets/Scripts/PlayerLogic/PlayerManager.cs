@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
     Vector3 playerLookDir = Vector3.left;//플레이어가 바라보는 방향
 
     //플레이어 기본 정보
-    int playerLV = 11;
+    int playerLV = 10;
     string playerJob = "Night Load";
     string playerName = "Aruru";
     int playerCurHP;
@@ -61,9 +61,9 @@ public class PlayerManager : MonoBehaviour
     int playerSTR = 4;
     int playerDEX = 25;
     int playerINT = 4;
-    int playerLUK = 42;
+    int playerLUK = 37;
 
-    int playerAttack = 80;//플레이어 공격력
+    int playerAttack = 70;//플레이어 공격력
     int workmanship = 60;//숙련도
     int criticalProbably = 50;//크리티컬 확률
     int playerAttackSpeed = 500;//공격 속도
@@ -72,9 +72,9 @@ public class PlayerManager : MonoBehaviour
     int playerPhysicsArmor = 4;//물리 방어력
     int playerMagicPower = 4;//마력
     int playerMagicArmor = 4;//마법 방어력
-    int playerAccurary = 41;//명중률
-    int playerAvoid = 21;//회피율
-    int playerDexterity = 18;//손재주
+    int playerAccurary = 38;//명중률
+    int playerAvoid = 18;//회피율
+    int playerDexterity = 17;//손재주
 
     int playerSkillPoint;//현재 스킬 포인트
     int totalUseSkillPoint;//총 사용 스킬 포인트

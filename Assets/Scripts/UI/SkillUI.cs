@@ -1,19 +1,26 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class SkillUI : MonoBehaviour, IDragHandler
 {
     //UI위치
     private RectTransform rectTransform;
 
+    //스킬 포인트
     TextMeshProUGUI sppointText;
+    //0~4차스킬 창
+    [SerializeField]
+    List<GameObject> skillDimentionUI;
 
     #region Unity 함수
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         BindingSkillText();
+        BindingSkillButton();
     }
     private void OnEnable()
     {
@@ -25,6 +32,34 @@ public class SkillUI : MonoBehaviour, IDragHandler
     }
 
     #endregion
+
+    /// <summary>
+    /// 버튼 바인딩
+    /// </summary>
+    void BindingSkillButton()
+    {
+        foreach (Button btn in gameObject.GetComponentsInChildren<Button>(true))
+        {
+            string name = btn.gameObject.name;
+            switch (name)
+            {
+                case "SkillDim1":
+                    btn.onClick.AddListener(delegate { OpenSkillWindow(1); });
+                    break;
+                case "SkillDim2":
+                    btn.onClick.AddListener(delegate { OpenSkillWindow(2); });
+                    break;
+                case "SkillDim3":
+                    btn.onClick.AddListener(delegate { OpenSkillWindow(3); });
+                    break;
+                case "SkillDim4":
+                    btn.onClick.AddListener(delegate { OpenSkillWindow(4); });
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     /// <summary>
     /// 텍스트 바인딩
@@ -46,10 +81,21 @@ public class SkillUI : MonoBehaviour, IDragHandler
     }
 
     /// <summary>
-    /// 기본 스탯 보이기
+    /// 스킬포인트 보이기
     /// </summary>
     void ShowCharacterSkillUI()
     {
         sppointText.text = PlayerManager.PlayerInstance.PlayerSkillPoint.ToString();
+    }
+    /// <summary>
+    /// 차수에 맞게 스킬창 열기
+    /// </summary>
+    void OpenSkillWindow(int dim)
+    {
+        foreach(GameObject gm in skillDimentionUI)
+        {
+            gm.SetActive(false);
+        }
+        skillDimentionUI[dim].gameObject.SetActive(true);
     }
 }

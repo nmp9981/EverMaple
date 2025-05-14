@@ -55,6 +55,9 @@ public class SkillUI : MonoBehaviour, IDragHandler
                 case "SkillDim4":
                     btn.onClick.AddListener(delegate { OpenSkillWindow(4); });
                     break;
+                case "SkillUP":
+                    btn.onClick.AddListener(delegate { SkillLevelUP(btn.transform.parent.gameObject); });
+                    break;
                 default:
                     break;
             }
@@ -97,5 +100,24 @@ public class SkillUI : MonoBehaviour, IDragHandler
             gm.SetActive(false);
         }
         skillDimentionUI[dim].gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// 스킬 레벨업
+    /// </summary>
+    /// <param name="skillObj">레벨업할 스킬</param>
+    void SkillLevelUP(GameObject skillObj)
+    {
+        //스킬 포인트가 없음
+        if (PlayerManager.PlayerInstance.PlayerSkillPoint < 1)
+            return;
+
+        //스킬 포인트 소모
+        PlayerManager.PlayerInstance.PlayerSkillPoint -= 1;
+        ShowCharacterSkillUI();
+
+        //스킬 레벨업
+        TextMeshProUGUI curSkillLvText = skillObj.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+        curSkillLvText.text = (int.Parse(curSkillLvText.text) + 1).ToString();
     }
 }

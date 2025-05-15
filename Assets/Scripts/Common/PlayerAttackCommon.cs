@@ -97,4 +97,72 @@ public static class PlayerAttackCommon
         }
         InputKeyManager.orderSortNum += 1;
     }
+
+    /// <summary>
+    /// 몬스터가 캐릭터의 공격 반경 내에 있는가?
+    /// AABB충돌 검출 방식 사용
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsMonsterInPlayerAttackArea(Bounds monsterArea, Bounds playerArea)
+    {
+        Vector3 maxMob = monsterArea.max;
+        Vector3 minMob = monsterArea.min;
+        Vector3 maxPlayer = playerArea.max;
+        Vector3 minPlayer = playerArea.min;
+
+        //2D이므로 x,y좌표만 비교
+        bool isXCollide = false;
+        bool isYCollide = false;
+
+        //충돌 검사
+        if (maxMob.x > minPlayer.x && minMob.x < maxPlayer.x)
+        {
+            isXCollide = true;
+        }
+        if (maxMob.y > minPlayer.y && minMob.y < maxPlayer.y)
+        {
+            isYCollide = true;
+        }
+
+        //충돌함
+        if (isXCollide && isYCollide)
+        {
+            return true;
+        }
+        //충돌안함
+        return false;
+    }
+
+    /// <summary>
+    /// 단일 몬스터 실제 공격
+    /// </summary>
+    /// <param name="nearMob">대상 몬스터</param>
+    /// <param name="skillCoefficient">공격 계수</param>
+    public static void PlayerAttackToOneMonster(GameObject nearMob, int skillCoefficient, int hitNum)
+    {
+        //공격 모션과 데미지
+        int maxAttackDamage = (PlayerManager.PlayerInstance.PlayerAttack * skillCoefficient) / 100;
+        int minAttackDamage = (maxAttackDamage * PlayerManager.PlayerInstance.Workmanship) / 100;
+        int attackDamage = Random.Range(minAttackDamage, maxAttackDamage);
+
+        //크리티컬 판정
+        bool isCri = IsCritical();
+        if (isCri)
+        {
+            attackDamage *= 2;//크리티컬 데미지 반영
+        }
+
+        //몬스터 HP감소
+        nearMob.GetComponent<MonsterInfo>().DecreaseMonsterHP(attackDamage);
+
+        //데미지 띄우기(기본 공격은 1회 타격)
+        if (isCri)
+        {
+            ShowCriticalDamageAsSkin(attackDamage, nearMob, hitNum);
+        }
+        else
+        {
+            ShowDamageAsSkin(attackDamage, nearMob, hitNum);
+        }
+    }
 }

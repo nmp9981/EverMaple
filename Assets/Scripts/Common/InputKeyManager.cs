@@ -106,7 +106,8 @@ public class InputKeyManager : MonoBehaviour
                 case KeyCode.Z://∑∞≈∞ºº∫Ï
                     await skillManager.LuckySeven(2);
                     break;
-                case KeyCode.X:
+                case KeyCode.X://¥ı∫Ì Ω∫≈‹
+                    await skillManager.DoubleStep(2);
                     break;
                 default:
                     break;

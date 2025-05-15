@@ -6,14 +6,22 @@ using System.Collections.Generic;
 
 public class SkillUI : MonoBehaviour, IDragHandler
 {
+    //패시브 스킬 클래스
+    PassiveSkillUpgrade passiveSkillUpgrade = new PassiveSkillUpgrade();
+
     //UI위치
     private RectTransform rectTransform;
+    //패시브 스킬 검사
+    private string passiveSkillText = "PassiveSkill";
 
     //스킬 포인트
     TextMeshProUGUI sppointText;
     //0~4차스킬 창
     [SerializeField]
     List<GameObject> skillDimentionUI;
+    //스탯
+    [SerializeField]
+    StatUI statUI;
 
     #region Unity 함수
     private void Awake()
@@ -119,5 +127,13 @@ public class SkillUI : MonoBehaviour, IDragHandler
         //스킬 레벨업
         TextMeshProUGUI curSkillLvText = skillObj.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
         curSkillLvText.text = (int.Parse(curSkillLvText.text) + 1).ToString();
+
+        //패시브 스킬
+        if(skillObj.tag == passiveSkillText)
+        {
+            string skillNameText = skillObj.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
+            passiveSkillUpgrade.PassiveSkillLevelUP(skillNameText, int.Parse(curSkillLvText.text));
+            statUI.ShowCharacterDetailStat();
+        }
     }
 }

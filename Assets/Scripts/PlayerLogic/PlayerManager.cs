@@ -67,7 +67,7 @@ public class PlayerManager : MonoBehaviour
     int workmanship = 60;//숙련도
     int criticalProbably = 50;//크리티컬 확률
     int playerAttackSpeed = 500;//공격 속도
-    float throwObjectMaxDist = 10;//사거리
+    float throwObjectMaxDist = 6;//사거리
 
     int playerPhysicsArmor = 4;//물리 방어력
     int playerMagicPower = 4;//마력
@@ -75,6 +75,9 @@ public class PlayerManager : MonoBehaviour
     int playerAccurary = 38;//명중률
     int playerAvoid = 18;//회피율
     int playerDexterity = 17;//손재주
+
+    int playerAddAccurary = 0;//명중률 증가량
+    int playerAddAvoid = 0;//회피율 증가량
 
     int playerSkillPoint;//현재 스킬 포인트
     int totalUseSkillPoint;//총 사용 스킬 포인트
@@ -129,6 +132,9 @@ public class PlayerManager : MonoBehaviour
     public int PlayerAccurary { get { return playerAccurary; } set { playerAccurary = value; } }
     public int PlayerAvoid { get { return playerAvoid; } set { playerAvoid = value; } }
     public int PlayerDexterity { get { return playerDexterity; } set { playerDexterity = value; } }
+
+    public int PlayerAddAccurary { get { return playerAddAccurary; } set { playerAddAccurary = value; } }
+    public int PlayerAddAvoid { get { return playerAddAvoid; } set { playerAddAvoid = value; } }
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }

@@ -216,8 +216,8 @@ public class StatUI : MonoBehaviour, IDragHandler
         physicsArmorText.text = $"{PlayerManager.PlayerInstance.PlayerPhysicsArmor}";
         magicPowerText.text = $"{PlayerManager.PlayerInstance.PlayerMagicPower}";
         magicArmorText.text = $"{PlayerManager.PlayerInstance.PlayerMagicArmor}";
-        accuraryText.text = $"{PlayerManager.PlayerInstance.PlayerAccurary}";
-        avoidText.text = $"{PlayerManager.PlayerInstance.PlayerAvoid}";
+        accuraryText.text = $"{PlayerManager.PlayerInstance.PlayerAccurary+ PlayerManager.PlayerInstance.PlayerAddAccurary}";
+        avoidText.text = $"{PlayerManager.PlayerInstance.PlayerAvoid + PlayerManager.PlayerInstance.PlayerAddAvoid}";
         dexterityText.text = $"{PlayerManager.PlayerInstance.PlayerDexterity}";
         moveSpeedText.text = $"{PlayerManager.PlayerInstance.PlayerMoveSpeedRate}%";
         jumpText.text = $"{PlayerManager.PlayerInstance.JumpForceRate}%";
@@ -340,7 +340,7 @@ public class StatUI : MonoBehaviour, IDragHandler
         //명중률
         PlayerManager.PlayerInstance.PlayerAccurary =
             (8 * PlayerManager.PlayerInstance.PlayerDEX + 5 * PlayerManager.PlayerInstance.PlayerLUK) / 10;
-
+            
         //회피율
         PlayerManager.PlayerInstance.PlayerAvoid =
             (5 * PlayerManager.PlayerInstance.PlayerLUK) / 10;

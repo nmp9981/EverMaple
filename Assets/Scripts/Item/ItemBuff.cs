@@ -36,10 +36,10 @@ public class ItemBuff : MonoBehaviour
                 PlayerManager.PlayerInstance.PlayerMagicPower += 5;
                 break;
             case 2://명사수 물약
-                PlayerManager.PlayerInstance.PlayerAccurary += 10;
+                PlayerManager.PlayerInstance.PlayerAddAccurary += 10;
                 break;
             case 3://민첩 물약
-                PlayerManager.PlayerInstance.PlayerAvoid += 10;
+                PlayerManager.PlayerInstance.PlayerAddAvoid += 10;
                 break;
             case 4://이속 물약
                 PlayerManager.PlayerInstance.PlayerMoveSpeedRate += 10f;
@@ -80,10 +80,10 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerMagicPower -= 5;
                     break;
                 case 2://명사수 물약
-                    PlayerManager.PlayerInstance.PlayerAccurary -= 10;
+                    PlayerManager.PlayerInstance.PlayerAddAccurary -= 10;
                     break;
                 case 3://민첩 물약
-                    PlayerManager.PlayerInstance.PlayerAvoid -= 10;
+                    PlayerManager.PlayerInstance.PlayerAddAvoid -= 10;
                     break;
                 case 4://이속 물약
                     PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= 10;

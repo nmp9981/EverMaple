@@ -11,6 +11,8 @@ TagManager:
   - Village
   - ConsumeItem
   - Key
+  - PassiveSkill
+  - ActiveSkill
   layers:
   - Default
   - TransparentFX

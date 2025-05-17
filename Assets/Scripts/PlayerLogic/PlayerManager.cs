@@ -66,6 +66,7 @@ public class PlayerManager : MonoBehaviour
     int playerAttack = 70;//플레이어 공격력
     int workmanship = 10;//숙련도
     int criticalProbably = 50;//크리티컬 확률
+    int criticalDamage = 100;//크리티컬 데미지
     int playerAttackSpeed = 500;//공격 속도
     float playerAttackSkillSpeed = 0.8f;//스킬 공격 속도
     float throwObjectMaxDist = 6;//사거리
@@ -121,6 +122,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }
     public int Workmanship {  get { return workmanship; } set { workmanship = value; } }
     public int CriticalProbably { get { return criticalProbably; }set { criticalProbably = value; } }
+    public int CriticalDamagee { get { return criticalDamage; } set { criticalDamage = value; } }
     public int PlayerAttackSpeed { get { return playerAttackSpeed; } set { playerAttackSpeed = value; } }
     public float PlayerAttackSkillSpeed { get { return playerAttackSkillSpeed; } set { playerAttackSkillSpeed = value; } }
     public float ThrowObjectMaxDist { get { return throwObjectMaxDist; } set { throwObjectMaxDist = value; } }

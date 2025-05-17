@@ -21,6 +21,9 @@ public class PassiveSkillUpgrade
             case "알케미스트":
                 Alkemist(skillLv);
                 break;
+            case "크리티컬 스로우":
+                CriticalThrow(skillLv);
+                break;
             default:
                 break;
         }
@@ -61,6 +64,34 @@ public class PassiveSkillUpgrade
     /// <param name="skillLv"></param>
     public void Alkemist(int skillLv)
     {
+        int addAmountBuff = 0;
+        int addAmountHeal = 0;
+        if (skillLv < 11)
+        {
+            addAmountBuff = 3 * skillLv;
+            addAmountHeal = 3 * skillLv;
+        }
+        else
+        {
+            addAmountBuff = 30+ 2* skillLv;
+            addAmountHeal = 30+ 2* skillLv;
+        }
+    }
 
+    /// <summary>
+    /// 크리티컬 스로우
+    /// </summary>
+    /// <param name="skillLv"></param>
+    public void CriticalThrow(int skillLv)
+    {
+        if (skillLv < 21)
+        {
+            PlayerManager.PlayerInstance.CriticalProbably = 2 * skillLv;
+        }
+        else
+        {
+            PlayerManager.PlayerInstance.CriticalProbably = 40 + skillLv;
+        }
+        PlayerManager.PlayerInstance.CriticalDamagee = 110 + 3 * skillLv;
     }
 }

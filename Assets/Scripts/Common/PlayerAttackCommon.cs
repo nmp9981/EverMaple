@@ -51,7 +51,7 @@ public static class PlayerAttackCommon
     {
         int criValue = Random.Range(0, 100);
 
-        if (criValue >= PlayerManager.PlayerInstance.CriticalProbably)
+        if (criValue <= PlayerManager.PlayerInstance.CriticalProbably)
         {
             return true;
         }
@@ -149,7 +149,7 @@ public static class PlayerAttackCommon
         bool isCri = IsCritical();
         if (isCri)
         {
-            attackDamage *= 2;//크리티컬 데미지 반영
+            attackDamage = (attackDamage * PlayerManager.PlayerInstance.CriticalDamagee)/100;//크리티컬 데미지 반영
         }
 
         //몬스터 HP감소

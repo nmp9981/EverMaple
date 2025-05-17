@@ -23,6 +23,9 @@ public class InputKeyManager : MonoBehaviour
     [SerializeField]
     GameObject worldMapUIObj;
 
+    //시간
+    float curAttackSkillTime = 0;
+
     //데미지 UI순서
     public static int orderSortNum { get; set; }
 
@@ -39,6 +42,7 @@ public class InputKeyManager : MonoBehaviour
         InputSkillKey();
         InputItemKey();
         InputAboutUI();
+        TimeFlow();
     }
     /// <summary>
     /// 감지된 KeyCode를 반환한다.
@@ -97,8 +101,16 @@ public class InputKeyManager : MonoBehaviour
     /// </summary>
     async void InputSkillKey()
     {
+        //쿨타임
+        if (curAttackSkillTime < PlayerManager.PlayerInstance.PlayerAttackSkillSpeed)
+            return;
+
         //어떤키라도 입력
         KeyCode keyCode = DetectPressedKeyCode();
+
+        //스킬 쿨타임 초기화
+        curAttackSkillTime = 0;
+
         if (keyCode != KeyCode.None)
         {
             switch (keyCode)
@@ -217,5 +229,10 @@ public class InputKeyManager : MonoBehaviour
     void InputMouseClick()
     {
        
+    }
+
+    void TimeFlow()
+    {
+        curAttackSkillTime += Time.deltaTime;
     }
 }

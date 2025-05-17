@@ -12,6 +12,15 @@ public class PassiveSkillUpgrade
             case "킨 아이즈":
                 KinEyes(skillLv);
                 break;
+            case "자벨린 마스터리":
+                Mastery(skillLv);
+                break;
+            case "대거 마스터리":
+                Mastery(skillLv);
+                break;
+            case "알케미스트":
+                Alkemist(skillLv);
+                break;
             default:
                 break;
         }
@@ -34,5 +43,24 @@ public class PassiveSkillUpgrade
     public void KinEyes(int skillLv)
     {
         PlayerManager.PlayerInstance.ThrowObjectMaxDist = 6 + skillLv * 0.75f;
+    }
+
+    /// <summary>
+    /// 마스터리
+    /// </summary>
+    /// <param name="skillLv"></param>
+    public void Mastery(int skillLv)
+    {
+        PlayerManager.PlayerInstance.Workmanship = 15+5*((skillLv-1)/2);
+        PlayerManager.PlayerInstance.PlayerAddAccurary += 1;
+    }
+
+    /// <summary>
+    /// 알케미스트
+    /// </summary>
+    /// <param name="skillLv"></param>
+    public void Alkemist(int skillLv)
+    {
+
     }
 }

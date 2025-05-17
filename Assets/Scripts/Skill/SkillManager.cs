@@ -36,7 +36,7 @@ public class SkillManager : MonoBehaviour
         playerInfoUI.ShowPlayerMPBar();
     }
    
-    //스킬 실행
+    //럭키 세븐
     public async UniTask LuckySeven(int hitNum)
     {
         //공격 모션
@@ -57,7 +57,7 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    //스킬 실행
+    //더블 스텝
     public async UniTask DoubleStep(int hitNum)
     {
         //공격 모션

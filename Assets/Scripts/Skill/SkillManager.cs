@@ -39,11 +39,15 @@ public class SkillManager : MonoBehaviour
     //럭키 세븐
     public async UniTask LuckySeven(int hitNum)
     {
-        //공격 모션
-        PlayerAnimation.AttackAnim();
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 16)
+            return;
 
         //MP 소모
         DecreasePlayerMP(16);
+
+        //공격 모션
+        PlayerAnimation.AttackAnim();
 
         for (int i = 0; i < hitNum; i++)
         {
@@ -59,11 +63,15 @@ public class SkillManager : MonoBehaviour
     //트리플 스로우
     public async UniTask TripleThrow(int hitNum)
     {
-        //공격 모션
-        PlayerAnimation.AttackAnim();
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 20)
+            return;
 
         //MP 소모
         DecreasePlayerMP(20);
+
+        //공격 모션
+        PlayerAnimation.AttackAnim();
 
         for (int i = 0; i < hitNum; i++)
         {
@@ -80,11 +88,15 @@ public class SkillManager : MonoBehaviour
     //더블 스텝
     public async UniTask DoubleStep(int hitNum)
     {
-        //공격 모션
-        PlayerAnimation.AttackAnim();
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 14)
+            return;
 
         //MP 소모
         DecreasePlayerMP(14);
+
+        //공격 모션
+        PlayerAnimation.AttackAnim();
 
         //공격 영역 크기
         float attackBoundSize = 3f;
@@ -117,11 +129,15 @@ public class SkillManager : MonoBehaviour
     //새비지 블로우
     public async UniTask Savageblow(int hitNum)
     {
-        //공격 모션
-        PlayerAnimation.AttackAnim();
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 27)
+            return;
 
         //MP 소모
         DecreasePlayerMP(27);
+
+        //공격 모션
+        PlayerAnimation.AttackAnim();
 
         //공격 영역 크기
         float attackBoundSize = 3f;
@@ -154,16 +170,44 @@ public class SkillManager : MonoBehaviour
     //어벤져
     public async UniTask Avenger()
     {
-        //공격 모션
-        PlayerAnimation.AttackAnim();
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 30)
+            return;
 
         //MP 소모
         DecreasePlayerMP(30);
+
+        //공격 모션
+        PlayerAnimation.AttackAnim();
 
         ThrowAvengerFunction throwObj = throwObjectFulling.MakeObj(10).GetComponent<ThrowAvengerFunction>();
         throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
         throwObj.startPos = throwObj.transform.position;
         throwObj.hitNum = 0;
         throwObj.skillCoefficient = SkillDamageCalCulate.AvengerCoff;
+    }
+
+    public async UniTask BumerangStep(int hitNum)
+    {
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 26)
+            return;
+
+        //MP 소모
+        DecreasePlayerMP(26);
+
+        //공격 모션
+        PlayerAnimation.AttackAnim();
+
+        for (int i = 0; i < hitNum; i++)
+        {
+            ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(0).GetComponent<ThrowObjectFunction>();
+            throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
+            throwObj.startPos = throwObj.transform.position;
+            throwObj.hitNum = i;
+            throwObj.skillCoefficient = SkillDamageCalCulate.TripleThrowCoff;
+
+            await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed / 6);
+        }
     }
 }

@@ -199,15 +199,9 @@ public class SkillManager : MonoBehaviour
         //공격 모션
         PlayerAnimation.AttackAnim();
 
-        for (int i = 0; i < hitNum; i++)
-        {
-            ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(0).GetComponent<ThrowObjectFunction>();
-            throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
-            throwObj.startPos = throwObj.transform.position;
-            throwObj.hitNum = i;
-            throwObj.skillCoefficient = SkillDamageCalCulate.TripleThrowCoff;
-
-            await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed / 6);
-        }
+        BumerangStepClass throwObj = throwObjectFulling.MakeObj(11).GetComponent<BumerangStepClass>();
+        throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
+        throwObj.startPos = throwObj.transform.position;
+        throwObj.skillCoefficient = SkillDamageCalCulate.BumerangStepCoff;
     }
 }

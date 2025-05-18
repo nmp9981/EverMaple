@@ -62,7 +62,7 @@ public class ThrowAvengerFunction : MonoBehaviour
             bool isCri = PlayerAttackCommon.IsCritical();
             if (isCri)
             {
-                hitDamage *= 2;//크리티컬 데미지 반영
+                hitDamage = (hitDamage*PlayerManager.PlayerInstance.CriticalDamagee)/100;//크리티컬 데미지 반영
             }
 
             collision.gameObject.GetComponent<MonsterInfo>().DecreaseMonsterHP(hitDamage);

@@ -4,7 +4,7 @@ public class ThrowObjectFulling : MonoBehaviour
 {
     //프리팹 준비
     const int blockMaxCount = 30;
-    const int blockKinds = 10;
+    const int blockKinds = 11;
     public GameObject[] throwPrefabs;
 
     //오브젝트 배열
@@ -24,7 +24,8 @@ public class ThrowObjectFulling : MonoBehaviour
              new GameObject[blockMaxCount],
              new GameObject[blockMaxCount],
              new GameObject[blockMaxCount],
-             new GameObject[blockMaxCount]
+             new GameObject[blockMaxCount],
+              new GameObject[blockMaxCount]
         };
         Generate();
     }

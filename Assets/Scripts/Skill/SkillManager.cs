@@ -151,4 +151,19 @@ public class SkillManager : MonoBehaviour
             }
         }
     }
+    //어벤져
+    public async UniTask Avenger()
+    {
+        //공격 모션
+        PlayerAnimation.AttackAnim();
+
+        //MP 소모
+        DecreasePlayerMP(30);
+
+        ThrowAvengerFunction throwObj = throwObjectFulling.MakeObj(10).GetComponent<ThrowAvengerFunction>();
+        throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
+        throwObj.startPos = throwObj.transform.position;
+        throwObj.hitNum = 0;
+        throwObj.skillCoefficient = SkillDamageCalCulate.AvengerCoff;
+    }
 }

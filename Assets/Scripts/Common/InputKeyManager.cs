@@ -121,8 +121,11 @@ public class InputKeyManager : MonoBehaviour
                 case KeyCode.C://새비지블로우
                     await skillManager.Savageblow(6);
                     break;
-                case KeyCode.V:
+                case KeyCode.V://트리플 스로우
                     await skillManager.TripleThrow(3);
+                    break;
+                case KeyCode.B://어벤져
+                    await skillManager.Avenger();
                     break;
                 default:
                     break;

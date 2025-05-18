@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class PlayerAttackCommon
@@ -42,6 +43,45 @@ public static class PlayerAttackCommon
             }
         }
         return nearMob;
+    }
+    /// <summary>
+    /// 플레이어로부터 범위내에 있는 몬스터들 반환
+    /// 이때 플레이어가 바라보는 방향 고려
+    /// </summary>
+    public static List<GameObject> TargetMonstersFromPlayer(Vector3 lookDir, Vector3 playerPos, float limitDist, float countslimit,float limitAngle = PIDiv03)
+    {
+        List<GameObject> mobInArea = new List<GameObject>();
+        float dist = float.MaxValue;
+        foreach (var mob in MonsterSpawn.activeMonster)
+        {
+            //방향이 같은지 검사
+            Vector3 diff = mob.transform.position - playerPos;
+            //diff가 양수면 몬스터가 오른쪽, 음수면 몬스터가 왼쪽에 있다.
+            //아래 결과가 음수면 캐릭터가 바라보는 방향에는 해당 몬스터가 없다.
+            float dotValue = diff.x * lookDir.x;//내적 값
+            if (dotValue < 0)
+                continue;
+
+            //거리 검사
+            float curDist = diff.magnitude;
+            //사거리 밖
+            if (curDist > limitDist)
+                continue;
+
+            //사잇각이 너무 높으면 근처 몬스터로 보지 않는다.
+            float cos = dotValue / curDist;
+            float theta = Mathf.Abs(Mathf.Acos(cos));
+            if (theta > limitAngle)
+                continue;
+
+            //범위내에 몬스터가 있으므로 공격 대상으로 설정
+            mobInArea.Add(mob);
+
+            //최대 타깃수에 도달하면 반복문을 실행하지않고 빠져나간다.
+            if (mobInArea.Count >= countslimit)
+                break;
+        }
+        return mobInArea;
     }
     /// <summary>
     /// 크리티컬 판정

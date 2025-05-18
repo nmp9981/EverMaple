@@ -49,7 +49,7 @@ public static class PlayerAttackCommon
     /// <returns></returns>
     public static bool IsCritical()
     {
-        int criValue = Random.Range(0, 100);
+        int criValue = Random.Range(1, 101);
 
         if (criValue <= PlayerManager.PlayerInstance.CriticalProbably)
         {

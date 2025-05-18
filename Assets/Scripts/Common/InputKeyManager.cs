@@ -104,12 +104,9 @@ public class InputKeyManager : MonoBehaviour
         //쿨타임
         if (curAttackSkillTime < PlayerManager.PlayerInstance.PlayerAttackSkillSpeed)
             return;
-
+        
         //어떤키라도 입력
         KeyCode keyCode = DetectPressedKeyCode();
-
-        //스킬 쿨타임 초기화
-        curAttackSkillTime = 0;
 
         if (keyCode != KeyCode.None)
         {
@@ -121,9 +118,14 @@ public class InputKeyManager : MonoBehaviour
                 case KeyCode.X://더블 스텝
                     await skillManager.DoubleStep(2);
                     break;
+                case KeyCode.C://새비지블로우
+
+                    break;
                 default:
                     break;
             }
+            //스킬 쿨타임 초기화
+            curAttackSkillTime = 0;
         }
     }
     /// <summary>

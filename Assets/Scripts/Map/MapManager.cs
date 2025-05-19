@@ -119,7 +119,8 @@ public class MapManager : MonoBehaviour
         "슬리피우드 : 저주받은신전",
         "슬리피우드 : 슬리피 던전",
         "헤네시스 : 남의집",
-        "헤네시스 : 골렘의 사원"
+        "헤네시스 : 골렘의 사원",
+        "커닝시티 : 니은숲"
     };
     #endregion
 }

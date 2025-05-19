@@ -48,7 +48,7 @@ public static class PlayerAttackCommon
     /// 플레이어로부터 범위내에 있는 몬스터들 반환
     /// 이때 플레이어가 바라보는 방향 고려
     /// </summary>
-    public static List<GameObject> TargetMonstersFromPlayer(Vector3 lookDir, Vector3 playerPos, float limitDist, float countslimit,float limitAngle = PIDiv03)
+    public static List<GameObject> TargetMonstersFromPlayer(Vector3 lookDir, Vector3 playerPos, float limitXDist, float limitYDist, float countslimit,float limitAngle = PIDiv03)
     {
         List<GameObject> mobInArea = new List<GameObject>();
         float dist = float.MaxValue;
@@ -64,8 +64,12 @@ public static class PlayerAttackCommon
 
             //거리 검사
             float curDist = diff.magnitude;
-            //사거리 밖
-            if (curDist > limitDist)
+            //X축 범위 제한
+            if (curDist > limitXDist)
+                continue;
+
+            //y축 범위 제한
+            if (Mathf.Abs(mob.transform.position.y - playerPos.y) > limitYDist)
                 continue;
 
             //사잇각이 너무 높으면 근처 몬스터로 보지 않는다.

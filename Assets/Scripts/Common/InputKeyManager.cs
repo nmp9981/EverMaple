@@ -127,8 +127,11 @@ public class InputKeyManager : MonoBehaviour
                 case KeyCode.B://어벤져
                     await skillManager.Avenger();
                     break;
-                case KeyCode.N:
+                case KeyCode.N://부메랑 스텝
                     await skillManager.BumerangStep(2);
+                    break;
+                case KeyCode.O://시브즈
+                    await skillManager.Thieves();
                     break;
                 default:
                     break;

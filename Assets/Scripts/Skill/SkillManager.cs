@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 //공격 범위
@@ -203,5 +204,43 @@ public class SkillManager : MonoBehaviour
         throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
         throwObj.startPos = throwObj.transform.position;
         throwObj.skillCoefficient = SkillDamageCalCulate.BumerangStepCoff;
+    }
+    //시브즈
+    public async UniTask Thieves()
+    {
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 25)
+            return;
+
+        //MP 소모
+        DecreasePlayerMP(25);
+
+        //공격 모션
+        PlayerAnimation.AttackAnim();
+
+        //공격 영역 크기
+        float attackXSize = 16f;
+        float attackYSize = 3f;
+
+        //플레이어가 바라보는 방향
+        Vector3 lookDir = PlayerManager.PlayerInstance.PlayerLookDir;
+
+        //스킬 시작점
+        Vector3 skillStartPos = player.transform.position - attackXSize * 0.5f * lookDir;
+
+        //플레이어로부터 가장 가까이에 있는 몬스터들 구하기
+        List<GameObject> nearMobList = PlayerAttackCommon.TargetMonstersFromPlayer(lookDir, skillStartPos, attackXSize, attackYSize, 5);
+
+        //몬스터가 없으면 아래 로직은 실행하지않고 중단
+        if (nearMobList == null)
+        {
+            return;
+        }
+
+        //몬스터들 공격
+        foreach(var nearMob in nearMobList)
+        {
+            PlayerAttackCommon.PlayerAttackToOneMonster(nearMob, SkillDamageCalCulate.ThievesCoff, 0);
+        }
     }
 }

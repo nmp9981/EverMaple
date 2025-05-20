@@ -21,16 +21,16 @@ public class MoveVillage
                 mapManager.MoveToPortal(3, villageMapIndex);
                 break;
             case LocalMapName.Ellinia:
-                mapManager.MoveToPortal(12, villageMapIndex);
+                mapManager.MoveToPortal(17, villageMapIndex);
                 break;
             case LocalMapName.Perion:
-                mapManager.MoveToPortal(25, villageMapIndex);
+                mapManager.MoveToPortal(30, villageMapIndex);
                 break;
             case LocalMapName.KerningCity:
-                mapManager.MoveToPortal(36, villageMapIndex);
+                mapManager.MoveToPortal(41, villageMapIndex);
                 break;
             case LocalMapName.SleepyWood:
-                mapManager.MoveToPortal(49, villageMapIndex);
+                mapManager.MoveToPortal(57, villageMapIndex);
                 break;
             default:
                 break;

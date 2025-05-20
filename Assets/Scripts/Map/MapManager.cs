@@ -28,7 +28,7 @@ public class MapManager : MonoBehaviour
     protected const string playerTag = "Player";
 
     //마을 리스트
-    public int[] villageList = {0,2,6,12,17,22};
+    public int[] villageList = {0,2,8,14,19,25};
 
     protected virtual void Awake()
     {
@@ -75,13 +75,13 @@ public class MapManager : MonoBehaviour
         {
             playerMapLocal = LocalMapName.LithHarbor;
         }
-        else if (mapNumber >= 2 && mapNumber <= 4)
+        else if (mapNumber >= 2 && mapNumber <= 6)
             playerMapLocal = LocalMapName.Henesys;
-        else if (mapNumber >= 5 && mapNumber <= 9)
+        else if (mapNumber >= 7 && mapNumber <= 11)
             playerMapLocal = LocalMapName.Ellinia;
-        else if (mapNumber >= 10 && mapNumber <= 15)
+        else if (mapNumber >= 12 && mapNumber <= 17)
             playerMapLocal = LocalMapName.Perion;
-        else if (mapNumber >= 16 && mapNumber <= 20)
+        else if (mapNumber >= 18 && mapNumber <= 23)
             playerMapLocal = LocalMapName.KerningCity;
         else
             playerMapLocal = LocalMapName.SleepyWood;
@@ -94,6 +94,8 @@ public class MapManager : MonoBehaviour
         "헤네시스",
         "헤네시스 : 헤네시스 사냥터",
         "헤네시스 : 헤네시스 숲",
+        "헤네시스 : 골렘의 사원",
+        "헤네시스 : 남의 집",
         "엘리니아 : 남쪽필드",
         "엘리니아",
         "엘리니아 : 솟아오른나무",
@@ -108,19 +110,18 @@ public class MapManager : MonoBehaviour
         "커닝시티 : 커닝시티 공사장",
         "커닝시티",
         "커닝시티 : 커닝시티 해질녘",
+        "커닝시티 : 니은숲",
         "커닝시티 : 방황의 늪",
         "커닝시티 : 위험한 크로코",
         "슬리피우드 : 깊은숲",
         "슬리피우드",
+        "슬리피우드 : 슬리피 던전",
         "슬리피우드 : 개미굴 I",
         "슬리피우드 : 개미굴 II",
         "슬리피우드 : 빛을 잃은 동굴",
+        "슬리피우드 : 와일드카고의 영역",
         "슬리피우드 : 신전의 입구",
         "슬리피우드 : 저주받은신전",
-        "슬리피우드 : 슬리피 던전",
-        "헤네시스 : 남의집",
-        "헤네시스 : 골렘의 사원",
-        "커닝시티 : 니은숲"
     };
     #endregion
 }

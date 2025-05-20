@@ -133,6 +133,9 @@ public class InputKeyManager : MonoBehaviour
                 case KeyCode.O://시브즈
                     await skillManager.Thieves();
                     break;
+                case KeyCode.P://어썰터
+                    await skillManager.Assertor();
+                    break;
                 default:
                     break;
             }

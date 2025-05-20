@@ -5,10 +5,10 @@ public class MapAndProtalList : MonoBehaviour
 {
     //포탈 리스트
     public static List<Portal> portalList = new List<Portal>();
-
+   
     //맵리스트
     public static List<GameObject> mapList = new List<GameObject>();
-
+    
     //현재 플레이어가 있는 맵의 번호
     public static int curMapNum = 0;
 

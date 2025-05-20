@@ -243,4 +243,51 @@ public class SkillManager : MonoBehaviour
             PlayerAttackCommon.PlayerAttackToOneMonster(nearMob, SkillDamageCalCulate.ThievesCoff, 0);
         }
     }
+    //어썰터
+    public async UniTask Assertor()
+    {
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 25)
+            return;
+
+        //MP 소모
+        DecreasePlayerMP(25);
+
+        //공격 모션
+        PlayerAnimation.AttackAnim();
+
+        //공격 영역 크기
+        float attackBoundSize = 6f;
+
+        //플레이어가 바라보는 방향
+        Vector3 lookDir = PlayerManager.PlayerInstance.PlayerLookDir;
+        //공격 영역 세팅
+        Bounds attackBound = playerAttack.SettingAttackArea(lookDir, attackBoundSize);
+
+        //플레이어로부터 가장 가까이에 있는 몬스터 구하기
+        GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);
+
+        //몬스터가 없으면 아래 로직은 실행하지않고 중단
+        if (nearMob == null)
+        {
+            return;
+        }
+
+        //벽을 넘으면 안됨
+        RaycastHit2D hit = Physics2D.Raycast(
+            new Vector2(player.transform.position.x, player.transform.position.y), 
+            new Vector2(lookDir.x, lookDir.y), attackBoundSize*1.5f,1<<12);
+        if (hit.collider)
+        {
+            return;
+        }
+
+        //몬스터가 캐릭터의 공격 반경 내에 있는가?
+        Bounds nearMobArea = nearMob.GetComponent<Collider2D>().bounds;
+        if (PlayerAttackCommon.IsMonsterInPlayerAttackArea(nearMobArea, attackBound))
+        {
+            player.transform.position = new Vector3(player.transform.position.x + attackBoundSize * lookDir.x, nearMobArea.center.y+0.1f, 0);
+            PlayerAttackCommon.PlayerAttackToOneMonster(nearMob, SkillDamageCalCulate.AssertorCoff, 0);
+        }
+    }
 }

@@ -114,16 +114,16 @@ public class TaxiUI : MonoBehaviour
                 mapManager.MoveToPortal(3, mapManager.villageList[moveVillageIndex]);
                 break;
             case 2:
-                mapManager.MoveToPortal(12, mapManager.villageList[moveVillageIndex]);
+                mapManager.MoveToPortal(17, mapManager.villageList[moveVillageIndex]);
                 break;
             case 3:
-                mapManager.MoveToPortal(25, mapManager.villageList[moveVillageIndex]);
+                mapManager.MoveToPortal(30, mapManager.villageList[moveVillageIndex]);
                 break;
             case 4:
-                mapManager.MoveToPortal(36, mapManager.villageList[moveVillageIndex]);
+                mapManager.MoveToPortal(41, mapManager.villageList[moveVillageIndex]);
                 break;
             case 5:
-                mapManager.MoveToPortal(49, mapManager.villageList[moveVillageIndex]);
+                mapManager.MoveToPortal(57, mapManager.villageList[moveVillageIndex]);
                 break;
             default:
                 break;

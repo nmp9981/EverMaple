@@ -183,7 +183,7 @@ public class StatUI : MonoBehaviour, IDragHandler
     /// <summary>
     /// 기본 스탯 보이기
     /// </summary>
-    void ShowCharacterBasicStat()
+    public void ShowCharacterBasicStat()
     {
         nameText.text = PlayerManager.PlayerInstance.PlayerName;
         

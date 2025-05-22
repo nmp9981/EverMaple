@@ -43,4 +43,36 @@ public class BuffSkill
                 break;
         }
     }
+
+    /// <summary>
+    /// 메이플 용사 스킬
+    /// </summary>
+    /// <param name="isActive"></param>
+    public void EffextMapleWarriorSkill(bool isActive)
+    {
+        //스킬레벨이 0이라 미발동
+        if (mapleWarriorLv < 1)
+            return;
+        int addAmountPercent = (mapleWarriorLv+1) / 2;
+        int addSTR = (PlayerManager.PlayerInstance.PlayerSTR* addAmountPercent) / 100;
+        int addDEX = (PlayerManager.PlayerInstance.PlayerDEX * addAmountPercent) / 100;
+        int addINT = (PlayerManager.PlayerInstance.PlayerINT * addAmountPercent) / 100;
+        int addLUK = (PlayerManager.PlayerInstance.PlayerLUK * addAmountPercent) / 100;
+
+        //활성화시 스탯 증가
+        if (isActive)
+        {
+            PlayerManager.PlayerInstance.PlayerSTR += addSTR;
+            PlayerManager.PlayerInstance.PlayerDEX += addDEX;
+            PlayerManager.PlayerInstance.PlayerINT += addINT;
+            PlayerManager.PlayerInstance.PlayerLUK += addLUK;
+        }
+        else//비활성화시 스탯 원래대로
+        {
+            PlayerManager.PlayerInstance.PlayerSTR -= addSTR;
+            PlayerManager.PlayerInstance.PlayerDEX -= addDEX;
+            PlayerManager.PlayerInstance.PlayerINT -= addINT;
+            PlayerManager.PlayerInstance.PlayerLUK -= addLUK;
+        }
+    }
 }

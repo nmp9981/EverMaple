@@ -76,12 +76,13 @@ public class ItemBuff : MonoBehaviour
                 break;
             case 16://메이플 용사
                 buffFullTime = 30*buffSkill.mapleWarriorLv;
-                
+                buffSkill.EffextMapleWarriorSkill(true);
                 break;
             default:
                 break;
         }
         //스탯창에도 반영
+        statUIObj.ShowCharacterBasicStat();
         statUIObj.ShowCharacterDetailStat();
     }
     /// <summary>
@@ -142,11 +143,12 @@ public class ItemBuff : MonoBehaviour
                     
                     break;
                 case 16://메이플 용사
-                    
+                    buffSkill.EffextMapleWarriorSkill(false);
                     break;
                 default:
                     break;
             }
+            statUIObj.ShowCharacterBasicStat();
             statUIObj.ShowCharacterDetailStat();
             gameObject.SetActive(false);
         }

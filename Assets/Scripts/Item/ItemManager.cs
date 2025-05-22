@@ -292,7 +292,6 @@ public class ItemManager : MonoBehaviour
 
     /// <summary>
     /// 아이템 사용
-    /// TODO : 마을 귀환 기능은 맵을 먼저 만든 뒤에 구현
     /// </summary>
     public void UseConsumeItem()
     {

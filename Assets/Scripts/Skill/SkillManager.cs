@@ -31,12 +31,21 @@ public class SkillManager : MonoBehaviour
     /// <summary>
     /// MP 소모
     /// </summary>
-    private void DecreasePlayerMP(int spendMP)
+    public void DecreasePlayerMP(int spendMP)
     {
         PlayerManager.PlayerInstance.PlayerCurMP = Mathf.Max(0, PlayerManager.PlayerInstance.PlayerCurMP - spendMP);
         playerInfoUI.ShowPlayerMPBar();
     }
-   
+    /// <summary>
+    /// HP 소모
+    /// </summary>
+    public void DecreasePlayerHP(int spendHP)
+    {
+        PlayerManager.PlayerInstance.PlayerCurHP = Mathf.Max(0, PlayerManager.PlayerInstance.PlayerCurHP - spendHP);
+        playerInfoUI.ShowPlayerHPBar();
+    }
+
+    #region 공격 스킬
     //럭키 세븐
     public async UniTask LuckySeven(int hitNum)
     {
@@ -290,4 +299,109 @@ public class SkillManager : MonoBehaviour
             PlayerAttackCommon.PlayerAttackToOneMonster(nearMob, SkillDamageCalCulate.AssertorCoff, 0);
         }
     }
+    #endregion
+
+    #region 버프 스킬
+    public void UseHasteSkill()
+    {
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 30)
+            return;
+
+        //MP 소모
+        DecreasePlayerMP(30);
+
+        //버프 시전
+        if (ItemManager.itemInstance.buffItemList[10].activeSelf)
+            ItemManager.itemInstance.buffItemList[10].SetActive(false);
+        ItemManager.itemInstance.buffItemList[10].SetActive(true);
+    }
+
+    public void UseJavelinBoosterSkill()
+    {
+        //HP, MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 10 || PlayerManager.PlayerInstance.PlayerCurHP <= 10)
+            return;
+
+        //HP, MP 소모
+        DecreasePlayerHP(10);
+        DecreasePlayerMP(10);
+
+        //버프 시전
+        if (ItemManager.itemInstance.buffItemList[11].activeSelf)
+            ItemManager.itemInstance.buffItemList[11].SetActive(false);
+        ItemManager.itemInstance.buffItemList[11].SetActive(true);
+    }
+    public void UseDagerBoosterSkill()
+    {
+        //HP, MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 10 || PlayerManager.PlayerInstance.PlayerCurHP <= 10)
+            return;
+
+        //HP, MP 소모
+        DecreasePlayerHP(10);
+        DecreasePlayerMP(10);
+
+        //버프 시전
+        if (ItemManager.itemInstance.buffItemList[12].activeSelf)
+            ItemManager.itemInstance.buffItemList[12].SetActive(false);
+        ItemManager.itemInstance.buffItemList[12].SetActive(true);
+    }
+    public void UseShadowPartnerSkill()
+    {
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 55)
+            return;
+
+        //MP 소모
+        DecreasePlayerMP(55);
+
+        //버프 시전
+        if (ItemManager.itemInstance.buffItemList[13].activeSelf)
+            ItemManager.itemInstance.buffItemList[13].SetActive(false);
+        ItemManager.itemInstance.buffItemList[13].SetActive(true);
+    }
+    public void UseMesoUPSkill()
+    {
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 60)
+            return;
+
+        //MP 소모
+        DecreasePlayerMP(60);
+
+        //버프 시전
+        if (ItemManager.itemInstance.buffItemList[14].activeSelf)
+            ItemManager.itemInstance.buffItemList[14].SetActive(false);
+        ItemManager.itemInstance.buffItemList[14].SetActive(true);
+    }
+    public void UseMesoGuardSkill()
+    {
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 35)
+            return;
+
+        //MP 소모
+        DecreasePlayerMP(35);
+
+        //버프 시전
+        if (ItemManager.itemInstance.buffItemList[15].activeSelf)
+            ItemManager.itemInstance.buffItemList[15].SetActive(false);
+        ItemManager.itemInstance.buffItemList[15].SetActive(true);
+    }
+    public void UseMapleWarriorSkill()
+    {
+        //MP검사
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 50)
+            return;
+
+        //MP 소모
+        DecreasePlayerMP(50);
+
+        //버프 시전
+        if (ItemManager.itemInstance.buffItemList[16].activeSelf)
+            ItemManager.itemInstance.buffItemList[16].SetActive(false);
+        ItemManager.itemInstance.buffItemList[16].SetActive(true);
+    }
+    #endregion
 }

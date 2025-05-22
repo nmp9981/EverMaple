@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class ItemBuff : MonoBehaviour
 {
+    //버프 스킬 클래스
+    BuffSkill buffSkill = new BuffSkill();
+    
     public int buffIdx;
 
     [SerializeField]
@@ -43,6 +46,37 @@ public class ItemBuff : MonoBehaviour
                 break;
             case 4://이속 물약
                 PlayerManager.PlayerInstance.PlayerMoveSpeedRate += 10f;
+                break;
+            case 10://헤이스트
+                buffFullTime = 10* buffSkill.hasteLv;
+                PlayerManager.PlayerInstance.PlayerMoveSpeedRate += (2*buffSkill.hasteLv);
+                PlayerManager.PlayerInstance.JumpForceRate += (buffSkill.hasteLv);
+                break;
+            case 11://자벨린 부스터
+                buffFullTime = 10 * buffSkill.boosterLv;
+                PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.64f;
+                break;
+            case 12://대거 부스터
+                buffFullTime = 10 * buffSkill.boosterLv;
+                PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.64f;
+                break;
+            case 13://쉐도우 파트너
+                buffFullTime = ((buffSkill.shadowPartnerLv+9)/10)*60;
+                break;
+            case 14://메소업
+                buffFullTime = 20+5*buffSkill.mesoUpLv;
+                if(buffSkill.mesoUpLv<=10)
+                    PlayerManager.PlayerInstance.RateIncreaseGetMeso = 3 * buffSkill.mesoUpLv;
+                else
+                    PlayerManager.PlayerInstance.RateIncreaseGetMeso = 30+2 * buffSkill.mesoUpLv;
+                break;
+            case 15://메소가드
+                buffFullTime = 120+buffSkill.mesoGuardLv*3;
+                
+                break;
+            case 16://메이플 용사
+                buffFullTime = 30*buffSkill.mapleWarriorLv;
+                
                 break;
             default:
                 break;
@@ -87,6 +121,28 @@ public class ItemBuff : MonoBehaviour
                     break;
                 case 4://이속 물약
                     PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= 10;
+                    break;
+                case 10://헤이스트
+                    PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= (2 * buffSkill.hasteLv);
+                    PlayerManager.PlayerInstance.JumpForceRate -= (buffSkill.hasteLv);
+                    break;
+                case 11://자벨린 부스터
+                    PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.8f;
+                    break;
+                case 12://대거 부스터
+                    PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.8f;
+                    break;
+                case 13://쉐도우 파트너
+                    
+                    break;
+                case 14://메소업
+                    PlayerManager.PlayerInstance.RateIncreaseGetMeso = 0;
+                    break;
+                case 15://메소가드
+                    
+                    break;
+                case 16://메이플 용사
+                    
                     break;
                 default:
                     break;

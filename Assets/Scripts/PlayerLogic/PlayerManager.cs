@@ -84,6 +84,8 @@ public class PlayerManager : MonoBehaviour
     int playerSkillPoint;//현재 스킬 포인트
     int totalUseSkillPoint;//총 사용 스킬 포인트
 
+    int rateIncreaseGetMeso = 0;//메소 증가량
+
     string curMapName = "Map0";
 
     public int[] haveConsumeItem = new int[30];
@@ -136,6 +138,8 @@ public class PlayerManager : MonoBehaviour
     public int PlayerAccurary { get { return playerAccurary; } set { playerAccurary = value; } }
     public int PlayerAvoid { get { return playerAvoid; } set { playerAvoid = value; } }
     public int PlayerDexterity { get { return playerDexterity; } set { playerDexterity = value; } }
+
+    public int RateIncreaseGetMeso { get { return rateIncreaseGetMeso; } set { rateIncreaseGetMeso = value; } }
 
     public int PlayerAddAccurary { get { return playerAddAccurary; } set { playerAddAccurary = value; } }
     public int PlayerAddAvoid { get { return playerAddAvoid; } set { playerAddAvoid = value; } }

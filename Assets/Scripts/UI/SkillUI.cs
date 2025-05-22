@@ -3,16 +3,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 
 public class SkillUI : MonoBehaviour, IDragHandler
 {
     //패시브 스킬 클래스
     PassiveSkillUpgrade passiveSkillUpgrade = new PassiveSkillUpgrade();
+    //버프 스킬 클래스
+    BuffSkill buffSkill = new BuffSkill();
 
     //UI위치
     private RectTransform rectTransform;
     //패시브 스킬 검사
     private string passiveSkillText = "PassiveSkill";
+    //액티브 스킬 검사
+    private string activeSkillText = "ActiveSkill";
 
     //스킬 포인트
     TextMeshProUGUI sppointText;
@@ -134,6 +139,12 @@ public class SkillUI : MonoBehaviour, IDragHandler
             string skillNameText = skillObj.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
             passiveSkillUpgrade.PassiveSkillLevelUP(skillNameText, int.Parse(curSkillLvText.text));
             statUI.ShowCharacterDetailStat();
+        }
+        //액티브 버프 스킬
+        if(skillObj.tag == activeSkillText)
+        {
+            string skillNameText = skillObj.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
+            buffSkill.BuffSkillLevelUP(skillNameText, int.Parse(curSkillLvText.text));
         }
     }
 }

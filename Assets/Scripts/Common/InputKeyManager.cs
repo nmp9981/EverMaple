@@ -40,6 +40,7 @@ public class InputKeyManager : MonoBehaviour
         InputPortalKey();
         InputPlayerAttack();
         InputSkillKey();
+        InputlPlayerBuff();
         InputItemKey();
         InputAboutUI();
         TimeFlow();
@@ -130,10 +131,10 @@ public class InputKeyManager : MonoBehaviour
                 case KeyCode.N://부메랑 스텝
                     await skillManager.BumerangStep(2);
                     break;
-                case KeyCode.O://시브즈
+                case KeyCode.M://시브즈
                     await skillManager.Thieves();
                     break;
-                case KeyCode.P://어썰터
+                case KeyCode.L://어썰터
                     await skillManager.Assertor();
                     break;
                 default:
@@ -148,7 +149,35 @@ public class InputKeyManager : MonoBehaviour
     /// </summary>
     void InputlPlayerBuff()
     {
+        //어떤키라도 입력
+        KeyCode keyCode = DetectPressedKeyCode();
 
+        if (keyCode != KeyCode.None)
+        {
+            switch (keyCode)
+            {
+                case KeyCode.Alpha9://헤이스트
+                    skillManager.UseHasteSkill();
+                    break;
+                case KeyCode.Alpha0://부스터
+                    skillManager.UseDagerBoosterSkill();
+                    break;
+                case KeyCode.Minus://쉐도우파트너
+                    skillManager.UseShadowPartnerSkill();
+                    break;
+                case KeyCode.O://메소업
+                    skillManager.UseMesoUPSkill();
+                    break;
+                case KeyCode.P://메소가드
+                    skillManager.UseMesoGuardSkill();
+                    break;
+                case KeyCode.Equals://메이플 용사
+                    skillManager.UseMapleWarriorSkill();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     /// <summary>
     /// UI기능

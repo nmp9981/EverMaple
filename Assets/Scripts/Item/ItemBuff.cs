@@ -54,11 +54,11 @@ public class ItemBuff : MonoBehaviour
                 break;
             case 11://자벨린 부스터
                 buffFullTime = 10 * buffSkill.boosterLv;
-                PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.64f;
+                PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.5f;
                 break;
             case 12://대거 부스터
                 buffFullTime = 10 * buffSkill.boosterLv;
-                PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.64f;
+                PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.5f;
                 break;
             case 13://쉐도우 파트너
                 buffFullTime = ((buffSkill.shadowPartnerLv+9)/10)*60;
@@ -127,10 +127,10 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.JumpForceRate -= (buffSkill.hasteLv);
                     break;
                 case 11://자벨린 부스터
-                    PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.8f;
+                    PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.7f;
                     break;
                 case 12://대거 부스터
-                    PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.8f;
+                    PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.7f;
                     break;
                 case 13://쉐도우 파트너
                     

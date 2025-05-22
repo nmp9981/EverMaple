@@ -81,6 +81,7 @@ public class Meso : MonoBehaviour
         }
 
         int finalDropMeso = Random.Range(dropMeso * 4 / 5, dropMeso * 6 / 5);
-        return finalDropMeso;
+        int addDropMeso = (finalDropMeso * PlayerManager.PlayerInstance.RateIncreaseGetMeso)/100;
+        return finalDropMeso+ addDropMeso;
     }
 }

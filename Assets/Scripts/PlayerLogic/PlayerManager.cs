@@ -68,7 +68,7 @@ public class PlayerManager : MonoBehaviour
     int criticalProbably = 0;//크리티컬 확률
     int criticalDamage = 100;//크리티컬 데미지
     int playerAttackSpeed = 500;//공격 속도
-    float playerAttackSkillSpeed = 0.8f;//스킬 공격 속도
+    float playerAttackSkillSpeed = 0.7f;//스킬 공격 속도
     float throwObjectMaxDist = 6;//사거리
 
     int playerPhysicsArmor = 4;//물리 방어력

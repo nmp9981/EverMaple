@@ -4,6 +4,8 @@ public class PlayerHit : MonoBehaviour
 {
     [SerializeField]
     PlayerInfoUI playerInfoUI;
+    [SerializeField]
+    ItemUI itmeUI;
     const string monsterTag ="Monster";
 
     //무적시간
@@ -31,6 +33,20 @@ public class PlayerHit : MonoBehaviour
             //몬스터 공격력
             int monsterAttackPower = collision.gameObject.GetComponent<MonsterInfo>().monsterAttackPower;
             int finalMonsterPower = Random.Range(monsterAttackPower * 400, monsterAttackPower * 600) / 500;
+
+            //메소가드 여부
+            if (PlayerManager.PlayerInstance.IsActiveMesoGuard)
+            {
+                //메소 소비량
+                int spendMeso = (finalMonsterPower * PlayerManager.PlayerInstance.RateArmorMeso) / 100;
+                if (PlayerManager.PlayerInstance.PlayerMeso >= spendMeso)
+                {
+                    PlayerManager.PlayerInstance.PlayerMeso -= spendMeso;
+                    finalMonsterPower = finalMonsterPower / 2;
+                    itmeUI.ShowPlayerMeso();
+                }
+            }
+
             DecreasePlayerHP(finalMonsterPower);
             ShowDamageAsSkin(finalMonsterPower,this.gameObject);
             curHitTime = 0;

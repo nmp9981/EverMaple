@@ -43,17 +43,35 @@ public class BuffSkill
                 break;
         }
     }
+    /// <summary>
+    /// 메소 가드 스킬
+    /// </summary>
+    /// <param name="isActive"></param>
+    public void EffectMasoGuardSkill(bool isActive, int skillLv)
+    {
+        //스킬레벨이 0이라 미발동
+        if (skillLv < 1)
+            return;
+
+        //반값 피격 데미지
+        PlayerManager.PlayerInstance.IsActiveMesoGuard = isActive;
+        //피격시 메소 소비율
+        PlayerManager.PlayerInstance.RateArmorMeso = (skillLv<17)?90 - skillLv/2:98-skillLv;
+    }
+
 
     /// <summary>
     /// 메이플 용사 스킬
     /// </summary>
     /// <param name="isActive"></param>
-    public void EffextMapleWarriorSkill(bool isActive)
+    public void EffextMapleWarriorSkill(bool isActive, int skillLv)
     {
         //스킬레벨이 0이라 미발동
-        if (mapleWarriorLv < 1)
+        if (skillLv < 1)
             return;
-        int addAmountPercent = (mapleWarriorLv+1) / 2;
+
+        //스탯 증가량
+        int addAmountPercent = (skillLv + 1) / 2;
         int addSTR = (PlayerManager.PlayerInstance.PlayerSTR* addAmountPercent) / 100;
         int addDEX = (PlayerManager.PlayerInstance.PlayerDEX * addAmountPercent) / 100;
         int addINT = (PlayerManager.PlayerInstance.PlayerINT * addAmountPercent) / 100;

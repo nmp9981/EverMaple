@@ -112,7 +112,7 @@ public class ItemUI : MonoBehaviour, IDragHandler
     /// <summary>
     /// 기본 스탯 보이기
     /// </summary>
-    void ShowPlayerMeso()
+    public void ShowPlayerMeso()
     {
         mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
     }

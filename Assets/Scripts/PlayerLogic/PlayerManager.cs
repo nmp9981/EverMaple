@@ -85,6 +85,8 @@ public class PlayerManager : MonoBehaviour
     int totalUseSkillPoint;//총 사용 스킬 포인트
 
     int rateIncreaseGetMeso = 0;//메소 증가량
+    int rateArmorMeso = 0;//방어율
+    bool isActiveMesoGuard = false;//메소 가드 활성화 여부
 
     string curMapName = "Map0";
 
@@ -140,6 +142,8 @@ public class PlayerManager : MonoBehaviour
     public int PlayerDexterity { get { return playerDexterity; } set { playerDexterity = value; } }
 
     public int RateIncreaseGetMeso { get { return rateIncreaseGetMeso; } set { rateIncreaseGetMeso = value; } }
+    public int RateArmorMeso { get { return rateArmorMeso; } set { rateArmorMeso = value; } }
+    public bool IsActiveMesoGuard { get { return isActiveMesoGuard; } set { isActiveMesoGuard = value; } }
 
     public int PlayerAddAccurary { get { return playerAddAccurary; } set { playerAddAccurary = value; } }
     public int PlayerAddAvoid { get { return playerAddAvoid; } set { playerAddAvoid = value; } }

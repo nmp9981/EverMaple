@@ -72,11 +72,11 @@ public class ItemBuff : MonoBehaviour
                 break;
             case 15://메소가드
                 buffFullTime = 120+buffSkill.mesoGuardLv*3;
-                
+                buffSkill.EffectMasoGuardSkill(true, buffSkill.mesoGuardLv);
                 break;
             case 16://메이플 용사
                 buffFullTime = 30*buffSkill.mapleWarriorLv;
-                buffSkill.EffextMapleWarriorSkill(true);
+                buffSkill.EffextMapleWarriorSkill(true, buffSkill.mapleWarriorLv);
                 break;
             default:
                 break;
@@ -140,10 +140,10 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.RateIncreaseGetMeso = 0;
                     break;
                 case 15://메소가드
-                    
+                    buffSkill.EffectMasoGuardSkill(false, buffSkill.mesoGuardLv);
                     break;
                 case 16://메이플 용사
-                    buffSkill.EffextMapleWarriorSkill(false);
+                    buffSkill.EffextMapleWarriorSkill(false, buffSkill.mapleWarriorLv);
                     break;
                 default:
                     break;

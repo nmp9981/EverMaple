@@ -125,26 +125,62 @@ public class SkillUI : MonoBehaviour, IDragHandler
         if (PlayerManager.PlayerInstance.PlayerSkillPoint < 1)
             return;
 
+        string skillNameText = skillObj.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
+        TextMeshProUGUI curSkillLvText = skillObj.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+        int curSkillLv = int.Parse(curSkillLvText.text);
+
+        //만랩
+        if (IsMaxSkillLv(skillNameText, curSkillLv))
+            return;
+
         //스킬 포인트 소모
         PlayerManager.PlayerInstance.PlayerSkillPoint -= 1;
         ShowCharacterSkillUI();
 
         //스킬 레벨업
-        TextMeshProUGUI curSkillLvText = skillObj.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
-        curSkillLvText.text = (int.Parse(curSkillLvText.text) + 1).ToString();
+        curSkillLvText.text = (curSkillLv + 1).ToString();
 
         //패시브 스킬
         if(skillObj.tag == passiveSkillText)
         {
-            string skillNameText = skillObj.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
             passiveSkillUpgrade.PassiveSkillLevelUP(skillNameText, int.Parse(curSkillLvText.text));
             statUI.ShowCharacterDetailStat();
         }
         //액티브 버프 스킬
         if(skillObj.tag == activeSkillText)
         {
-            string skillNameText = skillObj.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
             buffSkill.BuffSkillLevelUP(skillNameText, int.Parse(curSkillLvText.text));
         }
+    }
+
+    /// <summary>
+    /// 스킬 만렙 여부 검사
+    /// </summary>
+    /// <param name="skillNameText">스킬 명</param>
+    /// <param name="curSkillLv">스킬 현재 레벨</param>
+    /// <returns></returns>
+    bool IsMaxSkillLv(string skillNameText, int curSkillLv)
+    {
+        bool flag = false;
+        switch (skillNameText)
+        {
+            case "킨 아이즈":
+                flag = (curSkillLv >= 8) ? true : false;
+                break;
+            case "새비지블로우":
+            case "크리티컬 스로우":
+            case "쉐도우파트너":
+            case "어벤져":
+            case "어썰터":
+            case "시브즈":
+            case "트리플스로우":
+            case "부메랑 스텝":
+                flag = (curSkillLv >= 30) ? true : false;
+                break;
+            default:
+                flag = (curSkillLv >= 20) ? true : false;
+                break;
+        }
+        return flag;
     }
 }

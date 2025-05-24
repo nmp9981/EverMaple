@@ -11,7 +11,8 @@ public class PlayerMove : MonoBehaviour
 
    
     [SerializeField] LayerMask layerMask = 0;
-   
+    [SerializeField] PlayerShadowMove playerShadow;
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -46,6 +47,8 @@ public class PlayerMove : MonoBehaviour
             float speed = PlayerManager.PlayerInstance.PlayerMoveSpeed
                 * (PlayerManager.PlayerInstance.PlayerMoveSpeedRate * 0.01f);
             transform.position += moveVec * speed * Time.deltaTime;//실제 이동
+
+            playerShadow.MoveLadderMotion(this.gameObject.transform.position);//그림자 위치
             if (vAxis != 0)
             {
                 PlayerAnimation.LadderAnim();
@@ -60,6 +63,7 @@ public class PlayerMove : MonoBehaviour
             transform.position += moveVec * speed * Time.deltaTime;//실제 이동
 
             LookPlayerMoveDirection(hAxis);//이동방향을 바라보게
+            playerShadow.MoveMotion(this.gameObject.transform.position, hAxis);//그림자 위치
             PlayerAnimation.MoveAnim();
         }
     }

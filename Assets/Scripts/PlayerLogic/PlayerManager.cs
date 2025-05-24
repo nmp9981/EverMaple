@@ -87,6 +87,7 @@ public class PlayerManager : MonoBehaviour
     int rateIncreaseGetMeso = 0;//메소 증가량
     int rateArmorMeso = 0;//방어율
     bool isActiveMesoGuard = false;//메소 가드 활성화 여부
+    bool isShadowPartner = false;//쉐도우파트너 진행중인가?
 
     string curMapName = "Map0";
 
@@ -144,6 +145,7 @@ public class PlayerManager : MonoBehaviour
     public int RateIncreaseGetMeso { get { return rateIncreaseGetMeso; } set { rateIncreaseGetMeso = value; } }
     public int RateArmorMeso { get { return rateArmorMeso; } set { rateArmorMeso = value; } }
     public bool IsActiveMesoGuard { get { return isActiveMesoGuard; } set { isActiveMesoGuard = value; } }
+    public bool IsShadowPartner { get { return isShadowPartner; } set { isShadowPartner = value; } }
 
     public int PlayerAddAccurary { get { return playerAddAccurary; } set { playerAddAccurary = value; } }
     public int PlayerAddAvoid { get { return playerAddAvoid; } set { playerAddAvoid = value; } }

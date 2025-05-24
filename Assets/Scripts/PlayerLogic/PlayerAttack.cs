@@ -65,6 +65,8 @@ public class PlayerAttack : MonoBehaviour
         if (PlayerAttackCommon.IsMonsterInPlayerAttackArea(nearMobArea, attackBound))
         {
             PlayerAttackCommon.PlayerAttackToOneMonster(nearMob,100,1);
+            if(PlayerManager.PlayerInstance.IsShadowPartner)
+                PlayerAttackCommon.PlayerAttackToOneMonster(nearMob, SkillDamageCalCulate.ShadowPartnerCoff, 2);
         }
     }
 

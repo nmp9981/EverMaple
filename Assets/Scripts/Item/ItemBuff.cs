@@ -9,6 +9,8 @@ public class ItemBuff : MonoBehaviour
     public int buffIdx;
 
     [SerializeField]
+    GameObject shadowObj;
+    [SerializeField]
     StatUI statUIObj;
     [SerializeField]
     TextMeshProUGUI timeText;
@@ -62,6 +64,8 @@ public class ItemBuff : MonoBehaviour
                 break;
             case 13://쉐도우 파트너
                 buffFullTime = ((buffSkill.shadowPartnerLv+9)/10)*60;
+                shadowObj.SetActive(true);
+                buffSkill.EffectShadowPartnerSkill(true, buffSkill.shadowPartnerLv);
                 break;
             case 14://메소업
                 buffFullTime = 20+5*buffSkill.mesoUpLv;
@@ -134,7 +138,8 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.7f;
                     break;
                 case 13://쉐도우 파트너
-                    
+                    shadowObj.SetActive(false);
+                    buffSkill.EffectShadowPartnerSkill(false, buffSkill.shadowPartnerLv);
                     break;
                 case 14://메소업
                     PlayerManager.PlayerInstance.RateIncreaseGetMeso = 0;

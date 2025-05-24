@@ -126,7 +126,7 @@ public class InputKeyManager : MonoBehaviour
                     await skillManager.TripleThrow(3);
                     break;
                 case KeyCode.B://¾îº¥Á®
-                    await skillManager.Avenger();
+                    await skillManager.Avenger(1);
                     break;
                 case KeyCode.N://ºÎ¸Þ¶û ½ºÅÜ
                     await skillManager.BumerangStep(2);

@@ -43,6 +43,29 @@ public class BuffSkill
                 break;
         }
     }
+
+    /// <summary>
+    /// 쉐도우 파트너 스킬
+    /// </summary>
+    /// <param name="isActive">활성화 여부</param>
+    /// <param name="skillLv">스킬 레벨</param>
+    public void EffectShadowPartnerSkill(bool isActive, int skillLv)
+    {
+        //스킬레벨이 0이라 미발동
+        if (skillLv < 1)
+            return;
+
+        //쉐도우 파트너 활성화
+        PlayerManager.PlayerInstance.IsShadowPartner = isActive;
+        //쉐도우 파트너 데미지
+        if(skillLv<8)
+            SkillDamageCalCulate.ShadowPartnerCoff = 21;
+        else if(skillLv>=8 && skillLv<=24)
+            SkillDamageCalCulate.ShadowPartnerCoff = 14+skillLv;
+        else
+            SkillDamageCalCulate.ShadowPartnerCoff = 2*skillLv-10;
+    }
+
     /// <summary>
     /// 메소 가드 스킬
     /// </summary>

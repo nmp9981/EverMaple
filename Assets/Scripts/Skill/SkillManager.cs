@@ -59,13 +59,21 @@ public class SkillManager : MonoBehaviour
         //공격 모션
         PlayerAnimation.AttackAnim();
 
+        //쉐도우 파트너 적용
+        if (PlayerManager.PlayerInstance.IsShadowPartner)
+            hitNum *= 2;
+
         for (int i = 0; i < hitNum; i++)
         {
             ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(0).GetComponent<ThrowObjectFunction>();
             throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
             throwObj.startPos = throwObj.transform.position;
             throwObj.hitNum = i;
-            throwObj.skillCoefficient = SkillDamageCalCulate.LuckySevenCoff;
+
+            if(i>=hitNum/2)
+                throwObj.skillCoefficient = (SkillDamageCalCulate.LuckySevenCoff*SkillDamageCalCulate.ShadowPartnerCoff)/100;
+            else
+                throwObj.skillCoefficient = SkillDamageCalCulate.LuckySevenCoff;
 
             await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed/4);
         }
@@ -83,13 +91,21 @@ public class SkillManager : MonoBehaviour
         //공격 모션
         PlayerAnimation.AttackAnim();
 
+        //쉐도우 파트너 적용
+        if (PlayerManager.PlayerInstance.IsShadowPartner)
+            hitNum *= 2;
+
         for (int i = 0; i < hitNum; i++)
         {
             ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(0).GetComponent<ThrowObjectFunction>();
             throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
             throwObj.startPos = throwObj.transform.position;
             throwObj.hitNum = i;
-            throwObj.skillCoefficient = SkillDamageCalCulate.TripleThrowCoff;
+
+            if (i >= hitNum / 2)
+                throwObj.skillCoefficient = (SkillDamageCalCulate.TripleThrowCoff * SkillDamageCalCulate.ShadowPartnerCoff) / 100;
+            else
+                throwObj.skillCoefficient = SkillDamageCalCulate.TripleThrowCoff;
 
             await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed / 6);
         }
@@ -178,7 +194,7 @@ public class SkillManager : MonoBehaviour
         }
     }
     //어벤져
-    public async UniTask Avenger()
+    public async UniTask Avenger(int hitNum)
     {
         //MP검사
         if (PlayerManager.PlayerInstance.PlayerCurMP < 30)
@@ -190,11 +206,25 @@ public class SkillManager : MonoBehaviour
         //공격 모션
         PlayerAnimation.AttackAnim();
 
-        ThrowAvengerFunction throwObj = throwObjectFulling.MakeObj(10).GetComponent<ThrowAvengerFunction>();
-        throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
-        throwObj.startPos = throwObj.transform.position;
-        throwObj.hitNum = 0;
-        throwObj.skillCoefficient = SkillDamageCalCulate.AvengerCoff;
+        //쉐도우 파트너 적용
+        if (PlayerManager.PlayerInstance.IsShadowPartner)
+            hitNum *= 2;
+
+        for(int i = 0; i < hitNum; i++)
+        {
+            ThrowAvengerFunction throwObj = throwObjectFulling.MakeObj(10).GetComponent<ThrowAvengerFunction>();
+            throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
+            throwObj.startPos = throwObj.transform.position;
+            throwObj.hitNum = i;
+            throwObj.skillCoefficient = SkillDamageCalCulate.AvengerCoff;
+
+            if(i==0)
+                throwObj.skillCoefficient = SkillDamageCalCulate.AvengerCoff;
+            else
+                throwObj.skillCoefficient = (SkillDamageCalCulate.AvengerCoff*SkillDamageCalCulate.ShadowPartnerCoff)/100;
+
+            await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed / 4);
+        }
     }
 
     public async UniTask BumerangStep(int hitNum)

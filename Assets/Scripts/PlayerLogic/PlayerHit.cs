@@ -6,6 +6,9 @@ public class PlayerHit : MonoBehaviour
     PlayerInfoUI playerInfoUI;
     [SerializeField]
     ItemUI itmeUI;
+    [SerializeField]
+    PlayerDie playerDie;
+    
     const string monsterTag ="Monster";
 
     //무적시간
@@ -60,6 +63,10 @@ public class PlayerHit : MonoBehaviour
     {
         PlayerManager.PlayerInstance.PlayerCurHP = Mathf.Max(0, PlayerManager.PlayerInstance.PlayerCurHP - monsterPower);
         playerInfoUI.ShowPlayerHPBar();
+
+        //사망
+        if(PlayerManager.PlayerInstance.PlayerCurHP<=0)
+            playerDie.gameObject.SetActive(true);
     }
 
     /// <summary>

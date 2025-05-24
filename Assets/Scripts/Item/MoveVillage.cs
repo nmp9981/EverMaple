@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class MoveVillage
@@ -11,7 +12,7 @@ public class MoveVillage
     {
         //마을 위치
         int villageMapIndex = SearchNearVillageIndex();
-
+ 
         switch (MapManager.playerMapLocal)
         {
             case LocalMapName.LithHarbor:

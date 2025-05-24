@@ -50,6 +50,8 @@ public class MapManager : MonoBehaviour
         PlayerManager.PlayerInstance.CurMapName = MapAndProtalList.mapList[nextMapNum].name;
 
         //맵 UI적용
+        if(mapRealNameText==null)
+            mapRealNameText = GameObject.Find("MapNameText").GetComponent<TextMeshProUGUI>();
         mapRealNameText.text = $"{realMapName[nextMapNum]}";
 
         await UniTask.Delay(100);
@@ -59,6 +61,8 @@ public class MapManager : MonoBehaviour
 
         //캐릭터 위치를 포탈 위치로 
         float margin = 0.5f;
+        if (player == null)
+            player = GameObject.Find("Player");
         player.transform.position = MapAndProtalList.portalList[nextNode].gameObject.transform.position
             +Vector3.up*margin;
 

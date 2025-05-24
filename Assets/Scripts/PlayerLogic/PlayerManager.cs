@@ -89,6 +89,8 @@ public class PlayerManager : MonoBehaviour
     bool isActiveMesoGuard = false;//메소 가드 활성화 여부
     bool isShadowPartner = false;//쉐도우파트너 진행중인가?
 
+    bool isPlayerDie = false;//캐릭터가 사망했는가?
+
     string curMapName = "Map0";
 
     public int[] haveConsumeItem = new int[30];
@@ -149,6 +151,8 @@ public class PlayerManager : MonoBehaviour
 
     public int PlayerAddAccurary { get { return playerAddAccurary; } set { playerAddAccurary = value; } }
     public int PlayerAddAvoid { get { return playerAddAvoid; } set { playerAddAvoid = value; } }
+
+    public bool IsPlayerDie { get { return isPlayerDie; } set { isPlayerDie = value; } }
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }

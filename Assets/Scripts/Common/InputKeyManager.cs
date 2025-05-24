@@ -35,13 +35,16 @@ public class InputKeyManager : MonoBehaviour
     }
     void Update()
     {
-        InputMouseClick();
-        InputPlayerMove();
-        InputPortalKey();
-        InputPlayerAttack();
-        InputSkillKey();
-        InputlPlayerBuff();
-        InputItemKey();
+        if (!PlayerManager.PlayerInstance.IsPlayerDie)
+        {
+            InputMouseClick();
+            InputPlayerMove();
+            InputPortalKey();
+            InputPlayerAttack();
+            InputSkillKey();
+            InputlPlayerBuff();
+            InputItemKey();
+        }
         InputAboutUI();
         TimeFlow();
     }

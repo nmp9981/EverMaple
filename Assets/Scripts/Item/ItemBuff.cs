@@ -84,6 +84,7 @@ public class ItemBuff : MonoBehaviour
             case 16://메이플 용사
                 buffFullTime = 30*buffSkill.mapleWarriorLv;
                 buffSkill.EffextMapleWarriorSkill(true, buffSkill.mapleWarriorLv);
+                skillEffectManager.PlaySkillAnimation("MapleWarrior", 0.01f);
                 break;
             default:
                 break;

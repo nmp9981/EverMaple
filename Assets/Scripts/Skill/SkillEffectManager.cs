@@ -15,11 +15,11 @@ public class SkillEffectManager : MonoBehaviour
             skillEffects = GetComponent<Animator>();
     }
    
-    public void PlaySkillAnimation(string stateName)
+    public void PlaySkillAnimation(string stateName, float addfloat)
     {
         if (skillEffects != null)
         {
-            this.gameObject.transform.position = playerObj.transform.position;
+            this.gameObject.transform.position = playerObj.transform.position + PlayerManager.PlayerInstance.PlayerLookDir*addfloat;
             skillEffects.Play(stateName);
         }
     }

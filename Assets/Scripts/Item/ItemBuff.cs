@@ -55,7 +55,7 @@ public class ItemBuff : MonoBehaviour
                 buffFullTime = 10* buffSkill.hasteLv;
                 PlayerManager.PlayerInstance.PlayerMoveSpeedRate += (2*buffSkill.hasteLv);
                 PlayerManager.PlayerInstance.JumpForceRate += (buffSkill.hasteLv);
-                skillEffectManager.PlaySkillAnimation("Haste");
+                skillEffectManager.PlaySkillAnimation("Haste",0);
                 break;
             case 11://자벨린 부스터
                 buffFullTime = 10 * buffSkill.boosterLv;

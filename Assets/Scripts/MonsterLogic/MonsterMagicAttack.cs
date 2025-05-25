@@ -11,6 +11,10 @@ public class MonsterMagicAttack : MonoBehaviour
     float moveDist = 0;
     float destroyDist = 15;
 
+    //양방향 공격 여부
+    public bool isSide;
+    public int sideValue = 1;
+
     public float moveSpeed = 2f;
     public int MobAttack;
     public float marginYPos;
@@ -37,7 +41,7 @@ public class MonsterMagicAttack : MonoBehaviour
     /// </summary>
     void MoveObject()
     {
-        transform.position += moveDir * moveSpeed * Time.deltaTime;//이동
+        transform.position += moveDir * moveSpeed * Time.deltaTime*sideValue;//이동
         moveDist += moveSpeed * Time.deltaTime;//총 이동거리
 
         //사거리 넘으면 비활성화

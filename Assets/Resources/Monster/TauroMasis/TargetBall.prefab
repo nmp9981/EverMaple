@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f94901403e64340abec008a739089b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSide: 1
+  sideValue: 1
   moveSpeed: 3
   MobAttack: 670
   marginYPos: 0

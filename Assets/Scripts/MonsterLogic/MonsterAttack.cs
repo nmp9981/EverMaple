@@ -262,14 +262,13 @@ public class MonsterInfo : MonoBehaviour
 
         //투사체 오브젝트 생성
         MonsterMagicAttack throwObj = Instantiate(throwBall).GetComponent<MonsterMagicAttack>();
-        int throwCount = throwObj.isSide ? 2 : 1;
-
+        
         throwObj.transform.position = gameObject.transform.position + throwObj.marginYPos * Vector3.down;
         throwObj.startPos = throwObj.transform.position;
         throwObj.sideValue = 1;
 
         //양방향
-        if (throwCount == 2)
+        if (throwObj.isSide)
         {
             MonsterMagicAttack throwObj2 = Instantiate(throwBall).GetComponent<MonsterMagicAttack>();
             throwObj2.transform.position = gameObject.transform.position + throwObj.marginYPos * Vector3.down;

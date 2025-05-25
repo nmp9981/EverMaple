@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class MonsterMagicAttack : MonoBehaviour
 {
-    float moveSpeed = 15f;
     string playerTag = "Player";
 
     private Vector3 moveDir;
     private GameObject targetPlayer;
+    private PlayerHit playerHit;
 
     float moveDist = 0;
     float destroyDist = 15;
 
+    public float moveSpeed = 2f;
     public int MobAttack;
     public float marginYPos;
     public Vector3 startPos { get; set; }
@@ -18,10 +19,11 @@ public class MonsterMagicAttack : MonoBehaviour
     private void OnEnable()
     {
         targetPlayer = GameObject.Find("Player");
+        playerHit = targetPlayer.GetComponent<PlayerHit>();
         moveDist = 0;
 
         //움직이는 방향 설정
-        moveDir = targetPlayer.transform.position-startPos - Vector3.down*marginYPos;
+        moveDir = targetPlayer.transform.position-startPos;
         moveDir.y = 0;
     }
 
@@ -50,12 +52,13 @@ public class MonsterMagicAttack : MonoBehaviour
     /// 공격 명중
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag == playerTag)
+        if (collision.gameObject.tag == playerTag)
         {
+            //피격
             int hitDamage = CalDamage();
-            collision.gameObject.GetComponent<MonsterInfo>().DecreaseMonsterHP(hitDamage);
+            playerHit.DecreasePlayerHP(hitDamage);
 
             //데미지 띄우기
             PlayerAttackCommon.ShowDamageAsSkin(hitDamage, targetPlayer);
@@ -81,6 +84,6 @@ public class MonsterMagicAttack : MonoBehaviour
     /// </summary>
     void DestroyObject()
     {
-        gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 }

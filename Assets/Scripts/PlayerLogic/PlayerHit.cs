@@ -59,7 +59,7 @@ public class PlayerHit : MonoBehaviour
     /// <summary>
     /// 몸박데미지
     /// </summary>
-    void DecreasePlayerHP(int monsterPower)
+    public void DecreasePlayerHP(int monsterPower)
     {
         PlayerManager.PlayerInstance.PlayerCurHP = Mathf.Max(0, PlayerManager.PlayerInstance.PlayerCurHP - monsterPower);
         playerInfoUI.ShowPlayerHPBar();

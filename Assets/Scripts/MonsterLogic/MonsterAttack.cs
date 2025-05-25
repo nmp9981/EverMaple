@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -255,9 +256,13 @@ public class MonsterInfo : MonoBehaviour
             return;
         }
 
+        //몬스터가 이미 죽음
+        if (!gameObject.activeSelf)
+            return;
+
         //투사체 오브젝트 생성
         MonsterMagicAttack throwObj = Instantiate(throwBall).GetComponent<MonsterMagicAttack>();
-        throwObj.transform.position = gameObject.transform.position;
+        throwObj.transform.position = gameObject.transform.position + throwObj.marginYPos*Vector3.down;
         throwObj.startPos = throwObj.transform.position;
     }
 }

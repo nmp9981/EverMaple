@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour
     string playerJob = "Night Load";
     string playerName = "Aruru";
     int playerCurHP;
-    int playerMaxHP = 2000;
+    int playerMaxHP = 9000;
     int playerCurMP;
     int playerMaxMP = 1000;
     int playerCurExp = 0;

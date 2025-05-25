@@ -109,7 +109,7 @@ MonoBehaviour:
   monsterMaxHP: 1800
   monsterExp: 90
   monsterMeso: 130
-  monsterAttackPower: 90
+  monsterAttackPower: 140
   monsterCurHP: 0
   isAttack: 1
   throwBall: {fileID: 7733869331179037602, guid: 3c1fcce9ccc835b47a7ece88c09fe63b, type: 3}

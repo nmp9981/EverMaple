@@ -152,7 +152,7 @@ public class MonsterInfo : MonoBehaviour
         if (monsterMoveTime >= monsterMoveCoolTime)
         {
             //서있을지 또는 (이동 or 공격)할지
-            int ranDivNum = isAttack ? 3 : 2;
+            int ranDivNum = (isAttack &&  monsterCurHP < monsterMaxHP) ? 3 : 2;
             int ranNum = Random.Range(0, 6) % ranDivNum;
             //서있기
             if (ranNum == 0)
@@ -164,7 +164,7 @@ public class MonsterInfo : MonoBehaviour
                 ChangeMoveDirection();
                 MoveState();
             }
-            else//공격하기
+            else//공격하기 (현재 HP < Max HP 일때만 발동)
             {
                 AttackState();
                 MonsterToPlayerAttack();
@@ -256,7 +256,9 @@ public class MonsterInfo : MonoBehaviour
         }
 
         //투사체 오브젝트 생성
-
+        MonsterMagicAttack throwObj = Instantiate(throwBall).GetComponent<MonsterMagicAttack>();
+        throwObj.transform.position = gameObject.transform.position;
+        throwObj.startPos = throwObj.transform.position;
     }
 }
 

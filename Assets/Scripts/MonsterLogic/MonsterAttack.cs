@@ -12,7 +12,11 @@ public class MonsterInfo : MonoBehaviour
     public int monsterAttackPower;
 
     public int monsterCurHP;
-    protected bool isAttack;
+
+    [SerializeField]
+    protected bool isAttack;//마공 여부
+    [SerializeField]
+    protected GameObject throwBall;//투사체
 
     public int spawnPosNumber;//스폰지점
     public string spawnMap;//스폰맵
@@ -147,17 +151,23 @@ public class MonsterInfo : MonoBehaviour
         //행동 결정
         if (monsterMoveTime >= monsterMoveCoolTime)
         {
-            //이동할지 서있을지 또는 공격할지
-            int ranNum = Random.Range(0, 4) % 2;
+            //서있을지 또는 (이동 or 공격)할지
+            int ranDivNum = isAttack ? 3 : 2;
+            int ranNum = Random.Range(0, 6) % ranDivNum;
             //서있기
             if (ranNum == 0)
             {
                 StandState();
             }
-            else//방향 바꾸면서 이동
+            else if(ranNum==1)//방향 바꾸면서 이동
             {
                 ChangeMoveDirection();
                 MoveState();
+            }
+            else//공격하기
+            {
+                AttackState();
+                MonsterToPlayerAttack();
             }
             monsterMoveTime = 0;
         }
@@ -203,6 +213,9 @@ public class MonsterInfo : MonoBehaviour
         anim.SetBool("IsStand", true);
         anim.SetBool("IsMove", false);
         anim.SetBool("IsHit", false);
+
+        if(isAttack)
+            anim.SetBool("IsAttack", false);
     }
     /// <summary>
     /// 움직이는 상테
@@ -213,6 +226,9 @@ public class MonsterInfo : MonoBehaviour
         anim.SetBool("IsMove", true);
         anim.SetBool("IsStand", false);
         anim.SetBool("IsHit", false);
+
+        if (isAttack)
+            anim.SetBool("IsAttack", false);
     }
     /// <summary>
     /// 피격 상태
@@ -222,6 +238,25 @@ public class MonsterInfo : MonoBehaviour
         anim.SetBool("IsHit",true);
         monsterMoveSpeed = 0;
         Invoke("StandState", 0.4f);
+    }
+    void AttackState()
+    {
+        anim.SetBool("IsAttack", true);
+        monsterMoveSpeed = 0;
+        Invoke("StandState", 0.4f);
+    }
+
+     //몬스터가 공격
+    void MonsterToPlayerAttack()
+    {
+        //마공을 안함
+        if (!isAttack)
+        {
+            return;
+        }
+
+        //투사체 오브젝트 생성
+
     }
 }
 

@@ -111,6 +111,8 @@ MonoBehaviour:
   monsterMeso: 130
   monsterAttackPower: 90
   monsterCurHP: 0
+  isAttack: 1
+  throwBall: {fileID: 7733869331179037602, guid: 3c1fcce9ccc835b47a7ece88c09fe63b, type: 3}
   spawnPosNumber: 0
   spawnMap: 
   HPBar: {fileID: 911171117786495154}

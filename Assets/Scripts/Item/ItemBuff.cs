@@ -9,6 +9,8 @@ public class ItemBuff : MonoBehaviour
     public int buffIdx;
 
     [SerializeField]
+    SkillEffectManager skillEffectManager;
+    [SerializeField]
     GameObject shadowObj;
     [SerializeField]
     StatUI statUIObj;
@@ -53,6 +55,7 @@ public class ItemBuff : MonoBehaviour
                 buffFullTime = 10* buffSkill.hasteLv;
                 PlayerManager.PlayerInstance.PlayerMoveSpeedRate += (2*buffSkill.hasteLv);
                 PlayerManager.PlayerInstance.JumpForceRate += (buffSkill.hasteLv);
+                skillEffectManager.PlaySkillAnimation("Haste");
                 break;
             case 11://자벨린 부스터
                 buffFullTime = 10 * buffSkill.boosterLv;

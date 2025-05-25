@@ -15,6 +15,7 @@ public class SkillManager : MonoBehaviour
     PlayerInfoUI playerInfoUI;
     PlayerAttack playerAttack;
     ThrowObjectFulling throwObjectFulling;
+    SkillEffectManager skillEffectManager;
 
     //캐릭터 크기
     Bounds playerBound = default;
@@ -26,6 +27,7 @@ public class SkillManager : MonoBehaviour
         playerInfoUI = GameObject.Find("UserInfo").GetComponent<PlayerInfoUI>();
         playerAttack = player.GetComponent<PlayerAttack>();
         throwObjectFulling = GetComponent<ThrowObjectFulling>();
+        skillEffectManager = GetComponent<SkillEffectManager>();
     }
 
     /// <summary>
@@ -164,6 +166,9 @@ public class SkillManager : MonoBehaviour
 
         //공격 모션
         PlayerAnimation.AttackAnim();
+
+        //이펙트
+        skillEffectManager.PlaySkillAnimation("SavageBlow");
 
         //공격 영역 크기
         float attackBoundSize = 3f;

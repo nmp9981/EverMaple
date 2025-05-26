@@ -60,10 +60,12 @@ public class ItemBuff : MonoBehaviour
             case 11://자벨린 부스터
                 buffFullTime = 10 * buffSkill.boosterLv;
                 PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.5f;
+                skillEffectManager.PlaySkillAnimation("Booster", 0.01f, 0);
                 break;
             case 12://대거 부스터
                 buffFullTime = 10 * buffSkill.boosterLv;
                 PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.5f;
+                skillEffectManager.PlaySkillAnimation("Booster", 0.01f, 0);
                 break;
             case 13://쉐도우 파트너
                 buffFullTime = ((buffSkill.shadowPartnerLv+9)/10)*60;
@@ -77,7 +79,7 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.RateIncreaseGetMeso = 3 * buffSkill.mesoUpLv;
                 else
                     PlayerManager.PlayerInstance.RateIncreaseGetMeso = 30+2 * buffSkill.mesoUpLv;
-
+                skillEffectManager.PlaySkillAnimation("MesoUP", 0.01f, 0.25f);
                 break;
             case 15://메소가드
                 buffFullTime = 120+buffSkill.mesoGuardLv*3;

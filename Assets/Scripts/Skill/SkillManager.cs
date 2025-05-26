@@ -140,6 +140,9 @@ public class SkillManager : MonoBehaviour
         //공격 영역 세팅
         Bounds attackBound = playerAttack.SettingAttackArea(lookDir, attackBoundSize);
 
+        //이펙트
+        skillEffectManager.PlaySkillAnimation("DoubleStep", 0.5f, 0);
+
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);
 
@@ -221,7 +224,10 @@ public class SkillManager : MonoBehaviour
         if (PlayerManager.PlayerInstance.IsShadowPartner)
             hitNum *= 2;
 
-        for(int i = 0; i < hitNum; i++)
+        //이펙트
+        skillEffectManager.PlaySkillAnimation("Avenger", -0.5f, 0);
+
+        for (int i = 0; i < hitNum; i++)
         {
             ThrowAvengerFunction throwObj = throwObjectFulling.MakeObj(10).GetComponent<ThrowAvengerFunction>();
             throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;

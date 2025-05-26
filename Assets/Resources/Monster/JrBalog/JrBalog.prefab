@@ -111,6 +111,9 @@ MonoBehaviour:
   monsterMeso: 3500
   monsterAttackPower: 1600
   monsterCurHP: 0
+  isBoss: 1
+  isAttack: 0
+  throwBall: {fileID: 0}
   spawnPosNumber: 0
   spawnMap: 
   HPBar: {fileID: 911171117786495154}

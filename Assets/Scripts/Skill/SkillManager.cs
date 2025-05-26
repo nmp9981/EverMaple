@@ -65,6 +65,9 @@ public class SkillManager : MonoBehaviour
         if (PlayerManager.PlayerInstance.IsShadowPartner)
             hitNum *= 2;
 
+        //이펙트
+        skillEffectManager.PlaySkillAnimation("LuckySeven", 0.5f, 0);
+
         for (int i = 0; i < hitNum; i++)
         {
             ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(0).GetComponent<ThrowObjectFunction>();
@@ -96,6 +99,9 @@ public class SkillManager : MonoBehaviour
         //쉐도우 파트너 적용
         if (PlayerManager.PlayerInstance.IsShadowPartner)
             hitNum *= 2;
+
+        //이펙트
+        skillEffectManager.PlaySkillAnimation("TripleThrow", 0.5f, 0);
 
         for (int i = 0; i < hitNum; i++)
         {
@@ -232,6 +238,7 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    //부메랑 스텝
     public async UniTask BumerangStep(int hitNum)
     {
         //MP검사
@@ -243,6 +250,9 @@ public class SkillManager : MonoBehaviour
 
         //공격 모션
         PlayerAnimation.AttackAnim();
+
+        //이펙트
+        skillEffectManager.PlaySkillAnimation("BumerangStep", 2f, 0);
 
         BumerangStepClass throwObj = throwObjectFulling.MakeObj(11).GetComponent<BumerangStepClass>();
         throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
@@ -307,6 +317,9 @@ public class SkillManager : MonoBehaviour
         Vector3 lookDir = PlayerManager.PlayerInstance.PlayerLookDir;
         //공격 영역 세팅
         Bounds attackBound = playerAttack.SettingAttackArea(lookDir, attackBoundSize);
+
+        //이펙트
+        skillEffectManager.PlaySkillAnimation("Assertor", 0.5f, 0);
 
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);

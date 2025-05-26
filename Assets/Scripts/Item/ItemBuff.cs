@@ -69,6 +69,7 @@ public class ItemBuff : MonoBehaviour
                 buffFullTime = ((buffSkill.shadowPartnerLv+9)/10)*60;
                 shadowObj.SetActive(true);
                 buffSkill.EffectShadowPartnerSkill(true, buffSkill.shadowPartnerLv);
+                skillEffectManager.PlaySkillAnimation("ShadowPartner", 0.01f, 0);
                 break;
             case 14://메소업
                 buffFullTime = 20+5*buffSkill.mesoUpLv;
@@ -76,15 +77,17 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.RateIncreaseGetMeso = 3 * buffSkill.mesoUpLv;
                 else
                     PlayerManager.PlayerInstance.RateIncreaseGetMeso = 30+2 * buffSkill.mesoUpLv;
+
                 break;
             case 15://메소가드
                 buffFullTime = 120+buffSkill.mesoGuardLv*3;
                 buffSkill.EffectMasoGuardSkill(true, buffSkill.mesoGuardLv);
+                skillEffectManager.PlaySkillAnimation("MesoGuard", 0, 0);
                 break;
             case 16://메이플 용사
                 buffFullTime = 30*buffSkill.mapleWarriorLv;
                 buffSkill.EffextMapleWarriorSkill(true, buffSkill.mapleWarriorLv);
-                skillEffectManager.PlaySkillAnimation("MapleWarrior", 0.01f, 2f);
+                skillEffectManager.PlaySkillAnimation("MapleWarrior", 0.01f, 3.25f);
                 break;
             default:
                 break;

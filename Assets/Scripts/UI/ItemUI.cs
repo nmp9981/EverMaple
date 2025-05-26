@@ -20,12 +20,13 @@ public class ItemUI : MonoBehaviour, IDragHandler
     [SerializeField]
     GameObject EquipmentTab;
     List<GameObject> itemInventoryList = new List<GameObject>();
+    //메소 텍스트
+    [SerializeField]
+    TextMeshProUGUI mesoText;
 
     //UI위치
     private RectTransform rectTransform;
 
-    //메소 텍스트
-    TextMeshProUGUI mesoText;
     //현재 아이템 탭
     ItemTab itemTab;
 
@@ -39,7 +40,6 @@ public class ItemUI : MonoBehaviour, IDragHandler
         itemTab = ItemTab.Equipment;
 
         EnrollConsumeObjectList();
-        BindingSkillText();
         ItemButtonBinding();
     }
     private void OnEnable()
@@ -68,24 +68,6 @@ public class ItemUI : MonoBehaviour, IDragHandler
         }
     }
 
-    /// <summary>
-    /// 텍스트 바인딩
-    /// </summary>
-    void BindingSkillText()
-    {
-        foreach (TextMeshProUGUI txt in gameObject.GetComponentsInChildren<TextMeshProUGUI>(true))
-        {
-            string name = txt.gameObject.name;
-            switch (name)
-            {
-                case "MesoText":
-                    mesoText = txt;
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
     /// <summary>
     /// 상점 버튼 바인딩
     /// </summary>

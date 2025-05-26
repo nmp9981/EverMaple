@@ -15,6 +15,8 @@ public class MonsterInfo : MonoBehaviour
     public int monsterCurHP;
 
     [SerializeField]
+    protected bool isBoss;//보스 여부
+    [SerializeField]
     protected bool isAttack;//마공 여부
     [SerializeField]
     protected GameObject throwBall;//투사체

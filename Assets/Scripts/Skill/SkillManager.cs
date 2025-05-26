@@ -176,7 +176,7 @@ public class SkillManager : MonoBehaviour
         Bounds attackBound = playerAttack.SettingAttackArea(lookDir, attackBoundSize);
 
         //이펙트
-        skillEffectManager.PlaySkillAnimation("SavageBlow", 0.5f);
+        skillEffectManager.PlaySkillAnimation("SavageBlow", 0.5f,0);
 
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);

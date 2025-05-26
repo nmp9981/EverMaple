@@ -15,11 +15,19 @@ public class SkillEffectManager : MonoBehaviour
             skillEffects = GetComponent<Animator>();
     }
    
-    public void PlaySkillAnimation(string stateName, float addfloat)
+    /// <summary>
+    /// 스킬 이펙트 재생
+    /// 캐릭터 기준 원하는 위치에서 재생
+    /// </summary>
+    /// <param name="stateName"></param>
+    /// <param name="addXfloat"></param>
+    /// <param name="addYfloat"></param>
+    public void PlaySkillAnimation(string stateName, float addXfloat, float addYfloat)
     {
         if (skillEffects != null)
         {
-            this.gameObject.transform.position = playerObj.transform.position + PlayerManager.PlayerInstance.PlayerLookDir*addfloat;
+            this.gameObject.transform.position = playerObj.transform.position 
+                + PlayerManager.PlayerInstance.PlayerLookDir*addXfloat+Vector3.up*addYfloat;
             skillEffects.Play(stateName);
         }
     }

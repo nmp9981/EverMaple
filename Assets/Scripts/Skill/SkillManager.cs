@@ -288,6 +288,9 @@ public class SkillManager : MonoBehaviour
         //스킬 시작점
         Vector3 skillStartPos = player.transform.position - attackXSize * 0.5f * lookDir;
 
+        //이펙트
+        skillEffectManager.PlaySkillAnimation("Thivse", 0.01f, 0);
+
         //플레이어로부터 가장 가까이에 있는 몬스터들 구하기
         List<GameObject> nearMobList = PlayerAttackCommon.TargetMonstersFromPlayer(lookDir, skillStartPos, attackXSize, attackYSize, 5);
 

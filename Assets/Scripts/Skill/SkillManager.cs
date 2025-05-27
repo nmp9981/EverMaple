@@ -141,7 +141,10 @@ public class SkillManager : MonoBehaviour
         Bounds attackBound = playerAttack.SettingAttackArea(lookDir, attackBoundSize);
 
         //이펙트
-        skillEffectManager.PlaySkillAnimation("DoubleStep", 0.5f, 0);
+        if(lookDir.x<0)//왼쪽
+            skillEffectManager.PlaySkillAnimation("DoubleStep", 0.5f, 0);
+        else//오른쪽
+            skillEffectManager.PlaySkillAnimation("DoubleStep2", 0.5f, 0);
 
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);
@@ -301,8 +304,11 @@ public class SkillManager : MonoBehaviour
         }
 
         //몬스터들 공격
+        int thivseCount = 0;
         foreach(var nearMob in nearMobList)
         {
+            thivseCount += 1;
+            skillEffectManager.PlayThivseSkillAnimation("Thivse", thivseCount,nearMob.transform.position ,0, 0.5f);
             PlayerAttackCommon.PlayerAttackToOneMonster(nearMob, SkillDamageCalCulate.ThievesCoff, 0);
         }
     }

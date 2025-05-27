@@ -118,7 +118,7 @@ public class MonsterInfo : MonoBehaviour
         ItemDrop();
 
         MonsterSpawn.activeMonster.Remove(gameObject);
-        monsterSpawn.CallRespawn();
+        monsterSpawn.CallRespawn(isBoss);
         this.gameObject.SetActive(false);
     }
     /// <summary>

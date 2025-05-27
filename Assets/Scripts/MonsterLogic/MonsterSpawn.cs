@@ -8,6 +8,8 @@ public class MonsterSpawn : MonoBehaviour
     List<Transform> spawnPositionList = new List<Transform>();
     [SerializeField]
     List<int> appearMonsterNum = new List<int>();
+    [SerializeField]
+    bool isBossMap;
 
     MonsterFulling monsterFulling;
 
@@ -61,7 +63,8 @@ public class MonsterSpawn : MonoBehaviour
 
         for(int idx = 0;idx < spawnPositionList.Count;idx++)
         {
-            int genCount = 2;
+            //리젠 마릿수
+            int genCount = isBossMap?1:Random.Range(2,4);
 
             for (int i = 0; i < genCount; i++)
             {
@@ -88,9 +91,12 @@ public class MonsterSpawn : MonoBehaviour
     /// <summary>
     /// 리스폰 함수 불러오기
     /// </summary>
-    public void CallRespawn()
+    public void CallRespawn(bool isBoss)
     {
-        Invoke("MonsterRespawn", 5f);
+        if(isBoss)
+            Invoke("MonsterRespawn", 60f);
+        else
+            Invoke("MonsterRespawn", 5f);
     }
     /// <summary>
     /// 몬스터 리젠

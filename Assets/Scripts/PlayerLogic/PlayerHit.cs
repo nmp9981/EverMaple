@@ -35,7 +35,7 @@ public class PlayerHit : MonoBehaviour
 
             //몬스터 공격력
             int monsterAttackPower = collision.gameObject.GetComponent<MonsterInfo>().monsterAttackPower;
-            int finalMonsterPower = Random.Range(monsterAttackPower * 400, monsterAttackPower * 600) / 500;
+            int finalMonsterPower = Random.Range(monsterAttackPower * 900, monsterAttackPower * 1100) / 1000;
 
             //메소가드 여부
             if (PlayerManager.PlayerInstance.IsActiveMesoGuard)

@@ -29,7 +29,7 @@ public class MapManager : MonoBehaviour
 
     //마을 리스트
     public int[] villageList = {0,2,8,14,19,25};
-
+   
     protected virtual void Awake()
     {
         player = GameObject.Find("Player");
@@ -68,6 +68,9 @@ public class MapManager : MonoBehaviour
 
         //지역 위치 검사
         LocalCheck(MapAndProtalList.curMapNum);
+
+        //보스 지역
+        //EnterBossMap(MapAndProtalList.curMapNum);
     }
 
     /// <summary>
@@ -90,7 +93,7 @@ public class MapManager : MonoBehaviour
         else
             playerMapLocal = LocalMapName.SleepyWood;
     }
-
+  
     #region 맵 실제 이름
     protected string[] realMapName = new string[]{
         "리스항구",

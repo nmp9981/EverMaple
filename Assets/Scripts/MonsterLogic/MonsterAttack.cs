@@ -37,6 +37,10 @@ public class MonsterInfo : MonoBehaviour
     protected Transform HPBarValue;
     const float HPBarMaxScale = 2;
 
+    //몬스터 HP바
+    [SerializeField]
+    private Image bossHPBar;
+
     //애니메이션
     Animator anim;
 
@@ -58,9 +62,19 @@ public class MonsterInfo : MonoBehaviour
     {
         dieCount = 0;
         monsterCurHP = monsterMaxHP;
-        HPBarValue.localScale = new Vector3(HPBarMaxScale, HPBarValue.localScale.y, 1);
+
+        //일반 몹
+        if(HPBarValue!=null)
+            HPBarValue.localScale = new Vector3(HPBarMaxScale, HPBarValue.localScale.y, 1);
+
+        //보스 몹
+        if (bossHPBar != null)
+        {
+            bossHPBar.fillAmount = 1;
+        }
+
         playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
-        monsterSpawn = GameObject.Find(PlayerManager.PlayerInstance.CurMapName).GetComponent<MonsterSpawn>();
+        
         anim = GetComponent<Animator>();
 
         //스프라이트 관련
@@ -80,10 +94,16 @@ public class MonsterInfo : MonoBehaviour
     /// <param name="attackDamage"></param>
     public void DecreaseMonsterHP(int attackDamage)
     {
-
         monsterCurHP = Mathf.Max(monsterCurHP - attackDamage,0);
         float restHPRate = (float)monsterCurHP*HPBarMaxScale / monsterMaxHP;
-        HPBarValue.localScale = new Vector3(restHPRate, HPBarValue.localScale.y, 1);
+
+        //일반 몹
+        if (HPBarValue != null)
+            HPBarValue.localScale = new Vector3(restHPRate, HPBarValue.localScale.y, 1);
+
+        //보스 몹
+        if (bossHPBar != null)
+            bossHPBar.fillAmount = (float)monsterCurHP / (float)monsterMaxHP;
 
         //몬스터 사망
         if (monsterCurHP <= 0)
@@ -118,6 +138,7 @@ public class MonsterInfo : MonoBehaviour
         ItemDrop();
 
         MonsterSpawn.activeMonster.Remove(gameObject);
+        monsterSpawn = GameObject.Find(PlayerManager.PlayerInstance.CurMapName).GetComponent<MonsterSpawn>();
         monsterSpawn.CallRespawn(isBoss);
         this.gameObject.SetActive(false);
     }

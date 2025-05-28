@@ -71,7 +71,7 @@ public class MonsterSpawn : MonoBehaviour
                 int mobIndex = Random.Range(0, appearMonsterNum.Count);
                 int mobNum = appearMonsterNum[mobIndex];
                 GameObject gm = monsterFulling.MakeObj(mobNum);
-                
+
                 //몬스터 리젠 위치 등록
                 MonsterInfo monsterInfo = gm.GetComponent<MonsterInfo>();
                 monsterInfo.spawnPosNumber = idx;

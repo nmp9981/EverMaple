@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6262028703081101666}
   - component: {fileID: 390083451917811733}
   - component: {fileID: 8902366385080283104}
+  - component: {fileID: 7504015461360664381}
   m_Layer: 8
   m_Name: JrBalog
   m_TagString: Monster
@@ -116,6 +117,7 @@ MonoBehaviour:
   throwBall: {fileID: 0}
   spawnPosNumber: 0
   spawnMap: 
+  monsterMoveSpeed: 3
   HPBar: {fileID: 0}
   HPBarValue: {fileID: 0}
   bossHPBar: {fileID: 6766477995592738445}
@@ -216,6 +218,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.6, y: 1.56}
   m_EdgeRadius: 0
+--- !u!114 &7504015461360664381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134732394751756975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51596ccf71ac47949a8c877efced4483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwBall: {fileID: 7733869331179037602, guid: 79d805791ae658f498d55b9d11bde27b, type: 3}
 --- !u!1 &4344994362129650476
 GameObject:
   m_ObjectHideFlags: 0

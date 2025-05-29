@@ -78,8 +78,8 @@ public class MonsterMagicAttack : MonoBehaviour
     /// <returns></returns>
     int CalDamage()
     {
-        int maxDamage = (MobAttack*110) / 100;
-        int minDamage = (maxDamage * 90) / 100;
+        int maxDamage = (MobAttack*105) / 100;
+        int minDamage = (maxDamage * 95) / 100;
         int damage = Random.Range(minDamage, maxDamage);
         return damage;
     }

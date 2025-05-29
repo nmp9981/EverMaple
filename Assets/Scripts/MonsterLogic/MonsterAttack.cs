@@ -25,7 +25,7 @@ public class MonsterInfo : MonoBehaviour
     public string spawnMap;//스폰맵
 
     //몬스터 이동
-    private float monsterMoveSpeed = 3f;
+    public float monsterMoveSpeed = 3f;
     private float monsterMoveTime = 0;
     private float monsterMoveCoolTime = 0.1f;
     private string wallTag = "Wall";
@@ -172,8 +172,8 @@ public class MonsterInfo : MonoBehaviour
     /// </summary>
     void MonsterMoveAI()
     {
-        //행동 결정
-        if (monsterMoveTime >= monsterMoveCoolTime)
+        //행동 결정 (보스가 아니거나 머쉬맘일때만 적용)
+        if (monsterMoveTime >= monsterMoveCoolTime && (monsterID==25 || !isBoss))
         {
             //서있을지 또는 (이동 or 공격)할지
             int ranDivNum = (isAttack &&  monsterCurHP < monsterMaxHP) ? 3 : 2;
@@ -212,7 +212,7 @@ public class MonsterInfo : MonoBehaviour
     /// <summary>
     /// 이동 방향 전환
     /// </summary>
-    void ChangeMoveDirection()
+    public void ChangeMoveDirection()
     {
         monsterMoveSpeed *= (-1f);
         spriteRenderer.flipX = !spriteRenderer.flipX;
@@ -244,7 +244,7 @@ public class MonsterInfo : MonoBehaviour
     /// <summary>
     /// 움직이는 상테
     /// </summary>
-    void MoveState()
+    public void MoveState()
     {
         monsterMoveSpeed = spriteRenderer.flipX?3:-3;
         anim.SetBool("IsMove", true);

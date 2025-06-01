@@ -4,15 +4,27 @@ public class JrBalogAttack : MonoBehaviour
 {
     //몬스터 이동
     private float monsterActionTime = 0;
-    private float monsterActionCoolTime = 1f;
+    private float monsterActionCoolTime = 3f;
     
     [SerializeField]
     protected GameObject throwBall;//투사체
+    [SerializeField]
+    protected GameObject throwBall2;//투사체
 
+    [SerializeField]
+    private Animator animSelf;
+    [SerializeField]
+    private Animator animToPlayer;
+
+    GameObject player;
     MonsterAttack jrBloagObj;
     Animator anim;
     SpriteRenderer spriteRenderer;
 
+    private void Awake()
+    {
+        player = GameObject.Find("Player");
+    }
     void Update()
     {
         MonsterActionAI();
@@ -90,29 +102,89 @@ public class JrBalogAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// 몬스터 공격 방식 결덩
+    /// 몬스터 공격 방식 결정
     /// </summary>
     void DecideMonsterAttackMethod()
     {
+        //공격 스킬 결정
         int ran = Random.Range(1, 4);
         switch (ran)
         {
             case 1:
-                MonsterToPlayerAttack();
+                MonsterToMeteo();
                 break;
             case 2:
-                MonsterToPlayerAttack();
+                MonsterToFireBall();
                 break;
             case 3:
-                MonsterToPlayerAttack();
+                MonsterToClaw();
                 break;
         }
         AttackState(ran);
     }
 
-    //몬스터가 공격
-    void MonsterToPlayerAttack()
+    //할퀴기
+    void MonsterToClaw()
     { 
+        //몬스터가 이미 죽음
+        if (!gameObject.activeSelf)
+            return;
+
+        //이펙트 재생
+        animSelf.SetInteger("Attack", 3);
+
+        //투사체 오브젝트 생성
+        MonsterMagicAttack throwObj = Instantiate(throwBall2).GetComponent<MonsterMagicAttack>();
+
+        throwObj.transform.position = gameObject.transform.position + throwObj.marginYPos * Vector3.down;
+        throwObj.startPos = throwObj.transform.position;
+        throwObj.sideValue = 1;
+
+        //양방향
+        if (throwObj.isSide)
+        {
+            MonsterMagicAttack throwObj2 = Instantiate(throwBall).GetComponent<MonsterMagicAttack>();
+            throwObj2.transform.position = gameObject.transform.position + throwObj.marginYPos * Vector3.down;
+            throwObj2.startPos = throwObj.transform.position;
+            throwObj2.sideValue = -1;
+        }
+
+        //플레이어 이펙트 재생
+        animToPlayer.transform.position = player.transform.position + Vector3.up*2;
+        animToPlayer.SetInteger("Attack", 3);
+    }
+    //메테오
+    void MonsterToMeteo()
+    {
+        //몬스터가 이미 죽음
+        if (!gameObject.activeSelf)
+            return;
+
+        //이펙트 재생
+        animSelf.SetInteger("Attack", 1);
+
+        //투사체 오브젝트 생성
+        MonsterMagicAttack throwObj = Instantiate(throwBall2).GetComponent<MonsterMagicAttack>();
+
+        throwObj.transform.position = gameObject.transform.position + throwObj.marginYPos * Vector3.down;
+        throwObj.startPos = throwObj.transform.position;
+        throwObj.sideValue = 1;
+
+        //양방향
+        if (throwObj.isSide)
+        {
+            MonsterMagicAttack throwObj2 = Instantiate(throwBall).GetComponent<MonsterMagicAttack>();
+            throwObj2.transform.position = gameObject.transform.position + throwObj.marginYPos * Vector3.down;
+            throwObj2.startPos = throwObj.transform.position;
+            throwObj2.sideValue = -1;
+        }
+        //플레이어 이펙트 재생
+        animToPlayer.transform.position = player.transform.position;
+        animToPlayer.SetInteger("Attack", 1);
+    }
+    //불덩이 던지기
+    void MonsterToFireBall()
+    {
         //몬스터가 이미 죽음
         if (!gameObject.activeSelf)
             return;
@@ -122,6 +194,7 @@ public class JrBalogAttack : MonoBehaviour
 
         throwObj.transform.position = gameObject.transform.position + throwObj.marginYPos * Vector3.down;
         throwObj.startPos = throwObj.transform.position;
+        throwObj.moveSpeed = 3;
         throwObj.sideValue = 1;
 
         //양방향

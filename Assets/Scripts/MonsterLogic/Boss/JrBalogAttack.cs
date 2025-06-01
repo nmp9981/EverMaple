@@ -4,7 +4,7 @@ public class JrBalogAttack : MonoBehaviour
 {
     //몬스터 이동
     private float monsterActionTime = 0;
-    private float monsterActionCoolTime = 3f;
+    private float monsterActionCoolTime = 1.5f;
     
     [SerializeField]
     protected GameObject throwBall;//투사체
@@ -96,7 +96,8 @@ public class JrBalogAttack : MonoBehaviour
     /// </summary>
     void AttackState(int attackNum)
     {
-        anim.SetInteger("AttackNum", attackNum);
+        string playName = "MonsterAttack" + attackNum.ToString();
+        anim.Play(playName);
         jrBloagObj.monsterMoveSpeed = 0;
         Invoke("StandState", 0.4f);
     }
@@ -131,7 +132,7 @@ public class JrBalogAttack : MonoBehaviour
             return;
 
         //이펙트 재생
-        animSelf.SetInteger("Attack", 3);
+        animSelf.Play("Attack31");
 
         //투사체 오브젝트 생성
         MonsterMagicAttack throwObj = Instantiate(throwBall2).GetComponent<MonsterMagicAttack>();
@@ -151,7 +152,7 @@ public class JrBalogAttack : MonoBehaviour
 
         //플레이어 이펙트 재생
         animToPlayer.transform.position = player.transform.position + Vector3.up*2;
-        animToPlayer.SetInteger("Attack", 3);
+        animToPlayer.Play("Attack32");
     }
     //메테오
     void MonsterToMeteo()
@@ -161,7 +162,7 @@ public class JrBalogAttack : MonoBehaviour
             return;
 
         //이펙트 재생
-        animSelf.SetInteger("Attack", 1);
+        animSelf.Play("Attack11");
 
         //투사체 오브젝트 생성
         MonsterMagicAttack throwObj = Instantiate(throwBall2).GetComponent<MonsterMagicAttack>();
@@ -180,7 +181,7 @@ public class JrBalogAttack : MonoBehaviour
         }
         //플레이어 이펙트 재생
         animToPlayer.transform.position = player.transform.position;
-        animToPlayer.SetInteger("Attack", 1);
+        animToPlayer.Play("Attack12");
     }
     //불덩이 던지기
     void MonsterToFireBall()

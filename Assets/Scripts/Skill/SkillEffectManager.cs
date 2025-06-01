@@ -8,11 +8,20 @@ public class SkillEffectManager : MonoBehaviour
 
     [SerializeField]
     private GameObject playerObj;
+
+    [SerializeField]
+    private GameObject thivseAnimObj;
+    List<Animator> thivseAnims = new List<Animator>();
  
     void Awake()
     {
         if (skillEffects == null)
             skillEffects = GetComponent<Animator>();
+
+        foreach(Animator anim in thivseAnimObj.GetComponentsInChildren<Animator>())
+        {
+            thivseAnims.Add(anim);
+        }
     }
    
     /// <summary>
@@ -40,12 +49,12 @@ public class SkillEffectManager : MonoBehaviour
     /// <param name="addYfloat"></param>
     public void PlayThivseSkillAnimation(string stateName,int count,Vector3 mobPos, float addXfloat, float addYfloat)
     {
-        if (skillEffects != null)
+        if (thivseAnims[count - 1] != null)
         {
             this.gameObject.transform.position = mobPos
                 + PlayerManager.PlayerInstance.PlayerLookDir * addXfloat + Vector3.up * addYfloat;
             stateName = stateName + count.ToString();
-            skillEffects.Play(stateName);
+            thivseAnims[count - 1].Play(stateName);
         }
     }
 }

@@ -51,7 +51,7 @@ public class SkillEffectManager : MonoBehaviour
     {
         if (thivseAnims[count - 1] != null)
         {
-            this.gameObject.transform.position = mobPos
+            thivseAnims[count - 1].gameObject.transform.position = mobPos
                 + PlayerManager.PlayerInstance.PlayerLookDir * addXfloat + Vector3.up * addYfloat;
             stateName = stateName + count.ToString();
             thivseAnims[count - 1].Play(stateName);

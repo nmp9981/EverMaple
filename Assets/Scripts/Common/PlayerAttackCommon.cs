@@ -204,7 +204,7 @@ public static class PlayerAttackCommon
     public static void PlayerAttackToOneMonster(GameObject nearMob, int skillCoefficient, int hitNum)
     {
         //공격 모션과 데미지
-        int maxAttackDamage = (PlayerManager.PlayerInstance.PlayerAttack * skillCoefficient) / 100;
+        int maxAttackDamage = (PlayerManager.PlayerInstance.PlayerStatAttack * skillCoefficient) / 100;
         int minAttackDamage = (maxAttackDamage * PlayerManager.PlayerInstance.Workmanship) / 100;
         int attackDamage = Random.Range(minAttackDamage, maxAttackDamage);
 

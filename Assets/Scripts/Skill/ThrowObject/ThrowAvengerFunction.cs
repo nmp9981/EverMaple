@@ -91,7 +91,7 @@ public class ThrowAvengerFunction : MonoBehaviour
     /// <returns></returns>
     int CalDamage()
     {
-        int maxDamage = (PlayerManager.PlayerInstance.PlayerAttack * skillCoefficient)/100;
+        int maxDamage = (PlayerManager.PlayerInstance.PlayerStatAttack * skillCoefficient)/100;
         int minDamage = (maxDamage * PlayerManager.PlayerInstance.Workmanship)/100;
         int damage = Random.Range(minDamage, maxDamage);
         return damage;

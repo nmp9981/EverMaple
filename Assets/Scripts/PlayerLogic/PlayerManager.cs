@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour 
@@ -63,7 +64,9 @@ public class PlayerManager : MonoBehaviour
     int playerINT = 4;
     int playerLUK = 37;
 
-    int playerAttack = 70;//플레이어 공격력
+    int weaponConst = 36;//무기 상수
+    int playerAttack = 27;//플레이어 공격력
+    int playerStatAttack;//플레이어 스탯 공격력
     int workmanship = 10;//숙련도
     int criticalProbably = 0;//크리티컬 확률
     int criticalDamage = 100;//크리티컬 데미지
@@ -126,7 +129,9 @@ public class PlayerManager : MonoBehaviour
     public int PlayerLUK { get { return playerLUK; } set { playerLUK = value; } }
 
 
+    public int WeaponConst { get { return weaponConst; } set { weaponConst = value; } }
     public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }
+    public int PlayerStatAttack { get { return playerStatAttack; } set { playerStatAttack = value; } }
     public int Workmanship {  get { return workmanship; } set { workmanship = value; } }
     public int CriticalProbably { get { return criticalProbably; }set { criticalProbably = value; } }
     public int CriticalDamagee { get { return criticalDamage; } set { criticalDamage = value; } }

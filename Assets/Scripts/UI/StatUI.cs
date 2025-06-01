@@ -51,6 +51,7 @@ public class StatUI : MonoBehaviour, IDragHandler
         BindingStatText();
         BindingStatButton();
     }
+    
     private void OnEnable()
     {
         ShowCharacterBasicStat();
@@ -210,7 +211,10 @@ public class StatUI : MonoBehaviour, IDragHandler
         //상세 스탯 계산
         CalculatorDetailStat();
 
-        int maxAttack = PlayerManager.PlayerInstance.PlayerAttack;
+        //스공
+        PlayerManager.PlayerInstance.PlayerStatAttack = CalculatorStatAttack();
+
+        int maxAttack = PlayerManager.PlayerInstance.PlayerStatAttack;
         int minAttack = maxAttack * PlayerManager.PlayerInstance.Workmanship/100;
         attackText.text = $"{minAttack} ~ {maxAttack}";
         physicsArmorText.text = $"{PlayerManager.PlayerInstance.PlayerPhysicsArmor}";
@@ -250,7 +254,7 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
         PlayerManager.PlayerInstance.PlayerSTR += 1;
 
-        PlayerManager.PlayerInstance.PlayerAttack += 1;
+        PlayerManager.PlayerInstance.PlayerStatAttack = CalculatorStatAttack();
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
         ShowCharacterDetailStat();
@@ -264,7 +268,7 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
         PlayerManager.PlayerInstance.PlayerDEX += 1;
 
-        PlayerManager.PlayerInstance.PlayerAttack += 2;
+        PlayerManager.PlayerInstance.PlayerStatAttack = CalculatorStatAttack();
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
         ShowCharacterDetailStat();
@@ -295,13 +299,13 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
         PlayerManager.PlayerInstance.PlayerLUK += 1;
 
-        PlayerManager.PlayerInstance.PlayerAttack += 3;
+        PlayerManager.PlayerInstance.PlayerStatAttack = CalculatorStatAttack();
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
         ShowCharacterDetailStat();
     }
     /// <summary>
-    /// 스탯 자동 분배
+    /// 스탯 자동 분배 (도적용)
     /// </summary>
     public void AutoDivideStat()
     {
@@ -319,7 +323,7 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerLUK += upLukPoint;
 
         //결과
-        PlayerManager.PlayerInstance.PlayerAttack += (3*upLukPoint+2*upDexPoint);
+        PlayerManager.PlayerInstance.PlayerStatAttack = CalculatorStatAttack();
         PlayerManager.PlayerInstance.PlayerAPPoint = 0;
 
         //증가한 결과를 보여줘야함
@@ -349,6 +353,16 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerDexterity =
           (PlayerManager.PlayerInstance.PlayerSTR+ PlayerManager.PlayerInstance.PlayerDEX
           + PlayerManager.PlayerInstance.PlayerINT + PlayerManager.PlayerInstance.PlayerLUK) / 4;
+    }
+    /// <summary>
+    /// 스공 계산 (도적용)
+    /// </summary>
+    int CalculatorStatAttack()
+    {
+        int statTotal = (PlayerManager.PlayerInstance.PlayerLUK * PlayerManager.PlayerInstance.WeaponConst / 10)
+            + PlayerManager.PlayerInstance.PlayerDEX + PlayerManager.PlayerInstance.PlayerSTR;
+        int finalAttack = (statTotal * PlayerManager.PlayerInstance.PlayerAttack)/100;
+        return finalAttack;
     }
     #endregion
 }

@@ -150,6 +150,7 @@ public class SkillUI : MonoBehaviour, IDragHandler
         if(skillObj.tag == activeSkillText)
         {
             buffSkill.BuffSkillLevelUP(skillNameText, int.Parse(curSkillLvText.text));
+            AttackSkillCoff(skillNameText, int.Parse(curSkillLvText.text));
         }
     }
 
@@ -182,5 +183,45 @@ public class SkillUI : MonoBehaviour, IDragHandler
                 break;
         }
         return flag;
+    }
+
+    /// <summary>
+    /// 공격 스킬 계수 결정
+    /// </summary>
+    /// <param name="skillNameText">스킬 명</param>
+    /// <param name="curSkillLv">스킬 현재 레벨</param>
+    /// <returns></returns>
+    void AttackSkillCoff(string skillNameText, int curSkillLv)
+    {
+        switch (skillNameText)
+        {
+            case "럭키세븐":
+                SkillDamageCalCulate.LuckySevenCoff = 150;
+                break;
+            case "더블 스텝":
+                SkillDamageCalCulate.DoubleStepCoff = 140;
+                break;
+            case "새비지블로우":
+                SkillDamageCalCulate.SavageblowCoff = 80;
+                SkillDamageCalCulate.SavageblowHitNum = 2*((curSkillLv + 9) / 10);
+                break;
+            case "어벤져":
+                SkillDamageCalCulate.AvengerCoff = 180;
+                break;
+            case "어썰터":
+                SkillDamageCalCulate.AssertorCoff = 450;
+                break;
+            case "시브즈":
+                SkillDamageCalCulate.ThievesCoff = 210;
+                break;
+            case "트리플스로우":
+                SkillDamageCalCulate.TripleThrowCoff = 150;
+                break;
+            case "부메랑 스텝":
+                SkillDamageCalCulate.BumerangStepCoff = 500;
+                break;
+            default:
+                break;
+        }
     }
 }

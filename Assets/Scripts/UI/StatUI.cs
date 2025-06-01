@@ -50,6 +50,8 @@ public class StatUI : MonoBehaviour, IDragHandler
         rectTransform = GetComponent<RectTransform>();
         BindingStatText();
         BindingStatButton();
+
+        PlayerManager.PlayerInstance.PlayerStatAttack = CalculatorStatAttack();
     }
     
     private void OnEnable()

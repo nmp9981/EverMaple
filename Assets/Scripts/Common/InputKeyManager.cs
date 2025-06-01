@@ -123,7 +123,7 @@ public class InputKeyManager : MonoBehaviour
                     await skillManager.DoubleStep(2);
                     break;
                 case KeyCode.C://새비지블로우
-                    await skillManager.Savageblow(6);
+                    await skillManager.Savageblow(SkillDamageCalCulate.SavageblowHitNum);
                     break;
                 case KeyCode.V://트리플 스로우
                     await skillManager.TripleThrow(3);

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public static class SkillDamageCalCulate
 {
+    //스킬 계수
     public static int LuckySevenCoff = 150;
     public static int TripleThrowCoff = 150;
     public static int DoubleStepCoff = 140;
@@ -12,4 +13,17 @@ public static class SkillDamageCalCulate
     public static int BumerangStepCoff = 500;
 
     public static int ShadowPartnerCoff = 50;
+
+    //새비지블로우 공격 횟수
+    public static int SavageblowHitNum = 0;
+
+    //스킬 레벨
+    public static int LuckySevenLv = 1;
+    public static int TripleThrowLv = 0;
+    public static int DoubleStepLv = 0;
+    public static int SavageblowLv = 0;
+    public static int AvengerLv = 0;
+    public static int ThievesLv = 0;
+    public static int AssertorLv = 0;
+    public static int BumerangStepLv = 0;
 }

@@ -43,6 +43,9 @@ public class PlayerInfo : MonoBehaviour
             PlayerManager.PlayerInstance.PlayerAPPoint += 5;
             //SP 증가
             PlayerManager.PlayerInstance.PlayerSkillPoint += 3;
+
+            //레벨업 모션
+            PlayerAnimation.LevelUPAnim();
         }
     }
 }

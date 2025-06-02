@@ -65,4 +65,10 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool("IsWalk", false);
         animator.SetBool("IsLadder", true);
     }
+    public static void LevelUPAnim()
+    {
+        animator.transform.position += Vector3.up * 1.5f;
+        animator.Play("LevelUP");
+        animator.transform.position -= Vector3.up * 1.5f;
+    }
 }

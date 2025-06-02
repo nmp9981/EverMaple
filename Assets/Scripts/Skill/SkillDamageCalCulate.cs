@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public static class SkillDamageCalCulate
@@ -16,6 +17,11 @@ public static class SkillDamageCalCulate
 
     //새비지블로우 공격 횟수
     public static int SavageblowHitNum = 0;
+
+    //타겟 인원
+    public static int ThivseTargetNum = 5;
+    public static int BumerangTargetNum = 4;
+    public static int AvengerTargetNum = 6;
 
     //스킬 레벨
     public static int LuckySevenLv = 1;

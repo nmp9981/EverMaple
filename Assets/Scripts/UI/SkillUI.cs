@@ -196,29 +196,45 @@ public class SkillUI : MonoBehaviour, IDragHandler
         switch (skillNameText)
         {
             case "럭키세븐":
-                SkillDamageCalCulate.LuckySevenCoff = 150;
+                SkillDamageCalCulate.LuckySevenLv = curSkillLv;
+                SkillDamageCalCulate.LuckySevenCoff = 50+curSkillLv*5;
                 break;
             case "더블 스텝":
-                SkillDamageCalCulate.DoubleStepCoff = 140;
+                SkillDamageCalCulate.DoubleStepLv = curSkillLv;
+                SkillDamageCalCulate.DoubleStepCoff = 70+(curSkillLv*7)/2;
                 break;
             case "새비지블로우":
                 SkillDamageCalCulate.SavageblowCoff = 80;
                 SkillDamageCalCulate.SavageblowHitNum = 2*((curSkillLv + 9) / 10);
                 break;
             case "어벤져":
-                SkillDamageCalCulate.AvengerCoff = 180;
+                SkillDamageCalCulate.AvengerLv = curSkillLv;
+                SkillDamageCalCulate.AvengerTargetNum = 3 + ((curSkillLv + 9) / 10);
+
+                if (curSkillLv <= 10)
+                    SkillDamageCalCulate.AvengerCoff = 60 + 5 * curSkillLv;
+                else if (curSkillLv > 20)
+                    SkillDamageCalCulate.AvengerCoff = 90 + 3 * curSkillLv;
+                else
+                    SkillDamageCalCulate.AvengerCoff = 70 + 4 * curSkillLv;
                 break;
             case "어썰터":
-                SkillDamageCalCulate.AssertorCoff = 450;
+                SkillDamageCalCulate.AssertorLv = curSkillLv;
+                SkillDamageCalCulate.AssertorCoff = (curSkillLv<21)?200+curSkillLv*10:300+5*curSkillLv;
                 break;
             case "시브즈":
-                SkillDamageCalCulate.ThievesCoff = 210;
+                SkillDamageCalCulate.ThievesLv = curSkillLv;
+                SkillDamageCalCulate.ThivseTargetNum = 2 + ((curSkillLv + 9) / 10);
+                SkillDamageCalCulate.ThievesCoff = 160+curSkillLv*5 - SkillDamageCalCulate.ThivseTargetNum*20;
                 break;
             case "트리플스로우":
-                SkillDamageCalCulate.TripleThrowCoff = 150;
+                SkillDamageCalCulate.TripleThrowLv = curSkillLv;
+                SkillDamageCalCulate.TripleThrowCoff = (curSkillLv > 20)?120+ curSkillLv : 100+2* curSkillLv;
                 break;
             case "부메랑 스텝":
-                SkillDamageCalCulate.BumerangStepCoff = 500;
+                SkillDamageCalCulate.BumerangStepLv = curSkillLv;
+                SkillDamageCalCulate.BumerangTargetNum = 1 + ((curSkillLv + 9) / 10);
+                SkillDamageCalCulate.BumerangStepCoff = (curSkillLv > 20) ? 350 + 5*curSkillLv : 250 + 10 * curSkillLv;
                 break;
             default:
                 break;

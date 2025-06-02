@@ -51,12 +51,17 @@ public class SkillManager : MonoBehaviour
     //럭키 세븐
     public async UniTask LuckySeven(int hitNum)
     {
+        //스킬 레벨 0
+        if (SkillDamageCalCulate.LuckySevenLv == 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 16)
+        int spendMP = 6 + SkillDamageCalCulate.LuckySevenLv / 2;
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(16);
+        DecreasePlayerMP(spendMP);
 
         //공격 모션
         PlayerAnimation.AttackAnim();
@@ -86,12 +91,17 @@ public class SkillManager : MonoBehaviour
     //트리플 스로우
     public async UniTask TripleThrow(int hitNum)
     {
+        //스킬 레벨 0
+        if (SkillDamageCalCulate.TripleThrowLv == 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 20)
+        int spendMP = 10 + (SkillDamageCalCulate.TripleThrowLv + 2) / 3;
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(20);
+        DecreasePlayerMP(spendMP);
 
         //공격 모션
         PlayerAnimation.AttackAnim();
@@ -122,12 +132,17 @@ public class SkillManager : MonoBehaviour
     //더블 스텝
     public async UniTask DoubleStep(int hitNum)
     {
+        //스킬 레벨 0
+        if (SkillDamageCalCulate.DoubleStepLv == 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 14)
+        int spendMP = 7 + (SkillDamageCalCulate.DoubleStepLv+1) / 3;
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(14);
+        DecreasePlayerMP(spendMP);
 
         //공격 모션
         PlayerAnimation.AttackAnim();
@@ -169,12 +184,17 @@ public class SkillManager : MonoBehaviour
     //새비지 블로우
     public async UniTask Savageblow(int hitNum)
     {
+        //스킬 레벨 0
+        if (SkillDamageCalCulate.SavageblowLv == 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 27)
+        int spendMP = 9* ((SkillDamageCalCulate.SavageblowLv+9) / 10);
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(27);
+        DecreasePlayerMP(spendMP);
 
         //공격 모션
         PlayerAnimation.AttackAnim();
@@ -213,12 +233,17 @@ public class SkillManager : MonoBehaviour
     //어벤져
     public async UniTask Avenger(int hitNum)
     {
+        //스킬 레벨 0
+        if (SkillDamageCalCulate.AvengerLv == 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 30)
+        int spendMP = 9+7 * ((SkillDamageCalCulate.AvengerLv + 9 )/ 10);
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(30);
+        DecreasePlayerMP(spendMP);
 
         //공격 모션
         PlayerAnimation.AttackAnim();
@@ -250,12 +275,17 @@ public class SkillManager : MonoBehaviour
     //부메랑 스텝
     public async UniTask BumerangStep(int hitNum)
     {
+        //스킬 레벨 0
+        if (SkillDamageCalCulate.BumerangStepLv == 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 26)
+        int spendMP = 13 + 3 * ((SkillDamageCalCulate.BumerangStepLv + 5 )/ 6);
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(26);
+        DecreasePlayerMP(spendMP);
 
         //공격 모션
         PlayerAnimation.AttackAnim();
@@ -271,12 +301,17 @@ public class SkillManager : MonoBehaviour
     //시브즈
     public async UniTask Thieves()
     {
+        //스킬 레벨 0
+        if (SkillDamageCalCulate.ThievesLv == 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 25)
+        int spendMP = 10 * ((SkillDamageCalCulate.ThievesLv + 9)/ 10);
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(25);
+        DecreasePlayerMP(spendMP);
 
         //공격 모션
         PlayerAnimation.AttackAnim();
@@ -295,7 +330,8 @@ public class SkillManager : MonoBehaviour
         skillEffectManager.PlaySkillAnimation("Thivse", 0.01f, 0);
 
         //플레이어로부터 가장 가까이에 있는 몬스터들 구하기
-        List<GameObject> nearMobList = PlayerAttackCommon.TargetMonstersFromPlayer(lookDir, skillStartPos, attackXSize, attackYSize, 5);
+        List<GameObject> nearMobList 
+            = PlayerAttackCommon.TargetMonstersFromPlayer(lookDir, skillStartPos, attackXSize, attackYSize,SkillDamageCalCulate.ThivseTargetNum );
 
         //몬스터가 없으면 아래 로직은 실행하지않고 중단
         if (nearMobList == null)
@@ -315,12 +351,17 @@ public class SkillManager : MonoBehaviour
     //어썰터
     public async UniTask Assertor()
     {
+        //스킬 레벨 0
+        if (SkillDamageCalCulate.AssertorLv == 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 25)
+        int spendMP = 5 + 7 * ((SkillDamageCalCulate.AssertorLv+ 9) / 10);
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(25);
+        DecreasePlayerMP(spendMP);
 
         //공격 모션
         PlayerAnimation.AttackAnim();

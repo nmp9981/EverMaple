@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class ConsumeNPC : NPCCommon
     GameObject consumeListObj;
     [SerializeField]
     GameObject equipmentListObj;
+    [SerializeField]
+    GameObject equipmentTotalListObj;//실제 장비
 
     [SerializeField]
     GameObject buyConsumeUI;
@@ -24,12 +27,14 @@ public class ConsumeNPC : NPCCommon
     private int itemCount = 0;
     private SpriteRenderer spriteRenderer;
     private (int idx,int price) curBuyConsumeInfo = (-1,-1);
+    private List<GameObject> equipmentListInStore = new List<GameObject>();
 
     private void Awake()
     {
         spriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         StoreButtonBinding();
         BindingInputfeild();
+        EnrollEquipmentInstore();
     }
 
     private void OnEnable()
@@ -130,7 +135,10 @@ public class ConsumeNPC : NPCCommon
         else//장비 리스트
         {
             consumeListObj.gameObject.SetActive(false);
-            equipmentListObj.gameObject.SetActive(true); 
+            equipmentListObj.gameObject.SetActive(true);
+
+            //판매할 장비를 정합니다.
+            DecideSellEquipment();
         }
     }
 
@@ -236,5 +244,52 @@ public class ConsumeNPC : NPCCommon
     public void SuccessEquipmentItemBuy()
     {
 
+    }
+
+    /// <summary>
+    /// 상점에 있는 장비 등록
+    /// </summary>
+    void EnrollEquipmentInstore()
+    {
+        foreach (Transform equip in equipmentTotalListObj.GetComponentInChildren<Transform>())
+        {
+            equipmentListInStore.Add(equip.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// 판매할 장비
+    /// </summary>
+    void DecideSellEquipment()
+    {
+        //물품 모두 끔
+        foreach(GameObject equip in equipmentListInStore)
+        {
+            equip.SetActive(false);
+        }
+
+        //캐릭터가 있는 마을에 따라 결정
+        List<int> setEquipmentNums = new List<int>();
+        switch (MapManager.playerMapLocal)
+        {
+            case LocalMapName.Henesys:
+                break;
+            case LocalMapName.Ellinia:
+                break;
+            case LocalMapName.Perion:
+                break;
+            case LocalMapName.KerningCity:
+                break;
+            case LocalMapName.SleepyWood:
+                break;
+            default:
+                break;
+        }
+
+        //해당 물품만 켠다
+        foreach(int equipNum in setEquipmentNums)
+        {
+            equipmentListInStore[equipNum].SetActive(true);
+        }
     }
 }

@@ -269,18 +269,23 @@ public class ConsumeNPC : NPCCommon
         }
 
         //캐릭터가 있는 마을에 따라 결정
-        List<int> setEquipmentNums = new List<int>();
+        int[] setEquipmentNums = new int[12];
         switch (MapManager.playerMapLocal)
         {
             case LocalMapName.Henesys:
+                setEquipmentNums = new int[]{0,1,9,17,22,23,28,29,34,35,40,43};
                 break;
             case LocalMapName.Ellinia:
+                setEquipmentNums = new int[] { 2,3,10,11,18,24,30,36,-1,-1,-1,-1 };
                 break;
             case LocalMapName.Perion:
+                setEquipmentNums = new int[] {3,4,11,12,19,25,31,37,41,44,-1,-1};
                 break;
             case LocalMapName.KerningCity:
+                setEquipmentNums = new int[] { 5,6,13,14,20,26,32,38, -1, -1, -1, -1 };
                 break;
             case LocalMapName.SleepyWood:
+                setEquipmentNums = new int[] { 7,8,15,16,21,27,33,39,42,45, -1, -1 };
                 break;
             default:
                 break;
@@ -289,6 +294,8 @@ public class ConsumeNPC : NPCCommon
         //해당 물품만 켠다
         foreach(int equipNum in setEquipmentNums)
         {
+            if (equipNum == -1)
+                continue;
             equipmentListInStore[equipNum].SetActive(true);
         }
     }

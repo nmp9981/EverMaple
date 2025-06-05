@@ -20,6 +20,7 @@ public class ItemUI : MonoBehaviour, IDragHandler
     [SerializeField]
     GameObject EquipmentTab;
     List<GameObject> itemInventoryList = new List<GameObject>();
+    List<GameObject> equipmentItemInventoryList = new List<GameObject>();
     //메소 텍스트
     [SerializeField]
     TextMeshProUGUI mesoText;
@@ -39,7 +40,7 @@ public class ItemUI : MonoBehaviour, IDragHandler
         rectTransform = GetComponent<RectTransform>();
         itemTab = ItemTab.Equipment;
 
-        EnrollConsumeObjectList();
+        EnrollItemObjectList();
         ItemButtonBinding();
     }
     private void OnEnable()
@@ -56,15 +57,21 @@ public class ItemUI : MonoBehaviour, IDragHandler
     /// <summary>
     /// 아이템 오브젝트 등록
     /// </summary>
-    void EnrollConsumeObjectList()
+    void EnrollItemObjectList()
     {
         foreach(var item in ConsumeTab.GetComponentsInChildren<TextMeshProUGUI>(true))
         {
             itemInventoryList.Add(item.transform.parent.gameObject);
         }
+        foreach (var item in EquipmentTab.GetComponentsInChildren<TextMeshProUGUI>(true))
+        {
+            equipmentItemInventoryList.Add(item.transform.parent.gameObject);
+        }
+        //처음엔 모두 안보이게
         for (int idx = 0; idx < totalInventoryCount; idx++)
         {
             itemInventoryList[idx].SetActive(false);
+            equipmentItemInventoryList[idx].SetActive(false);
         }
     }
 
@@ -144,5 +151,21 @@ public class ItemUI : MonoBehaviour, IDragHandler
 
         ConsumeTab.SetActive(false);
         EquipmentTab.SetActive(true);
+
+        int inventoryCount = ItemManager.itemInstance.consumeItems.Count;
+       
+        //처음엔 안보이게
+        for (int idx = 0; idx < inventoryCount; idx++)
+        {
+            equipmentItemInventoryList[idx].SetActive(false);
+        }
+
+        //가지고 있는 장비들이 보여야함
+        for(int idx=0;idx<ItemManager.itemInstance.playerHaveEquipments.Count;idx++)
+        {
+            EquipmentItem item = ItemManager.itemInstance.playerHaveEquipments[idx];
+            equipmentItemInventoryList[idx].SetActive(true);
+            equipmentItemInventoryList[idx].GetComponent<Image>().sprite = item.sprite;
+        }
     }
 }

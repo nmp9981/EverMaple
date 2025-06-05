@@ -31,7 +31,7 @@ public class ConsumeNPC : NPCCommon
     private (int idx,int price) curBuyConsumeInfo = (-1,-1);
     private List<GameObject> equipmentListInStore = new List<GameObject>();
     //선택한 장비 아이템
-    private (int idx, int price) curBuyEquipmentInfo = (-1, -1);
+    private (int idx, int price, string name, Sprite sprite) curBuyEquipmentInfo = (-1, -1, string.Empty, null);
 
     private void Awake()
     {
@@ -250,6 +250,8 @@ public class ConsumeNPC : NPCCommon
         curBuyEquipmentInfo.idx = int.Parse(btn.gameObject.name.Substring(17,2));
         string priceText = btn.gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
         curBuyEquipmentInfo.price = int.Parse(priceText.Substring(0, priceText.Length - 3));
+        curBuyEquipmentInfo.name = btn.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        curBuyEquipmentInfo.sprite = btn.gameObject.transform.GetChild(2).GetComponent<Image>().sprite;
     }
 
     /// <summary>
@@ -259,6 +261,8 @@ public class ConsumeNPC : NPCCommon
     {
         curBuyEquipmentInfo.idx = -1;
         curBuyEquipmentInfo.price = -1;
+        curBuyEquipmentInfo.name = string.Empty;
+        curBuyEquipmentInfo.sprite = null;
 
         buyEquipmentUI.SetActive(false);
     }
@@ -279,7 +283,12 @@ public class ConsumeNPC : NPCCommon
             PlayerManager.PlayerInstance.PlayerMeso -= curBuyEquipmentInfo.price;
             mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
 
-            
+            //새로운 장비 아이템 정보 추가
+            EquipmentItem equipmentItem = new EquipmentItem();
+            equipmentItem.sprite = curBuyEquipmentInfo.sprite;
+            equipmentItem.name = curBuyEquipmentInfo.name;
+
+            ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
 
             CancelEquipmentItemBuy();
         }

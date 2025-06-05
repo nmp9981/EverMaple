@@ -26,8 +26,12 @@ public class ConsumeNPC : NPCCommon
 
     private int itemCount = 0;
     private SpriteRenderer spriteRenderer;
+
+    //선택한 소비 아이템
     private (int idx,int price) curBuyConsumeInfo = (-1,-1);
     private List<GameObject> equipmentListInStore = new List<GameObject>();
+    //선택한 장비 아이템
+    private (int idx, int price) curBuyEquipmentInfo = (-1, -1);
 
     private void Awake()
     {
@@ -52,12 +56,17 @@ public class ConsumeNPC : NPCCommon
             string gmName = btn.name;
 
             //소비 아이템
-            if (gmName.Contains("Goods"))
+            if (gmName.Contains("Goods") && !gmName.Contains("Equipment"))
             {
                 btn.onClick.AddListener(delegate { SettingCutSelectConsumeItem(btn.gameObject); });
                 continue;
             }
-
+            //장비 아이템
+            if (gmName.Contains("EquipmentGoods"))
+            {
+                btn.onClick.AddListener(delegate { SettingCutSelectEqiupmentItem(btn.gameObject); });
+                continue;
+            }
 
             switch (gmName)
             {
@@ -76,6 +85,7 @@ public class ConsumeNPC : NPCCommon
                     btn.onClick.AddListener(CancelConsumeItemBuy);
                     break;
                 case "EquipmentBuySucccess":
+                    btn.onClick.AddListener(SuccessEquipmentItemBuy);
                     break;
                 case "EquipmentBuyCancel":
                     btn.onClick.AddListener(CancelEquipmentItemBuy);
@@ -231,11 +241,25 @@ public class ConsumeNPC : NPCCommon
             }
         }
     }
+
+    /// <summary>
+    /// 현재 구매할 장비 아이템 설정
+    /// </summary>
+    public void SettingCutSelectEqiupmentItem(GameObject btn)
+    {
+        curBuyEquipmentInfo.idx = int.Parse(btn.gameObject.name.Substring(17,2));
+        string priceText = btn.gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
+        curBuyEquipmentInfo.price = int.Parse(priceText.Substring(0, priceText.Length - 3));
+    }
+
     /// <summary>
     /// 장비아이템 구매 취소
     /// </summary>
     public void CancelEquipmentItemBuy()
     {
+        curBuyEquipmentInfo.idx = -1;
+        curBuyEquipmentInfo.price = -1;
+
         buyEquipmentUI.SetActive(false);
     }
     /// <summary>
@@ -243,7 +267,28 @@ public class ConsumeNPC : NPCCommon
     /// </summary>
     public void SuccessEquipmentItemBuy()
     {
+        //선택한 장비가 없음
+        if (curBuyEquipmentInfo.idx == -1)
+        {
+            return;
+        }
 
+        //구매가능
+        if (curBuyEquipmentInfo.price <= PlayerManager.PlayerInstance.PlayerMeso)
+        {
+            PlayerManager.PlayerInstance.PlayerMeso -= curBuyEquipmentInfo.price;
+            mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
+
+            
+
+            CancelEquipmentItemBuy();
+        }
+        else
+        {
+
+        }
+
+        buyEquipmentUI.SetActive(false);
     }
 
     /// <summary>

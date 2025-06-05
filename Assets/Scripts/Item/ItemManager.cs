@@ -25,6 +25,21 @@ public enum ConsumeAttribute
 }
 
 /// <summary>
+/// 장비아이템 속성
+/// </summary>
+public enum EquipmentAttribute
+{
+    Weapon_Knife,
+    Weapon_Clow,
+    Armor_Hat,
+    Armor_Top,
+    Armor_Bottom,
+    Armor_Shoes,
+    Armor_Glove,
+    Armor_Earing
+}
+
+/// <summary>
 /// 소비 아이템 속성
 /// </summary>
 public struct ConsumeItem
@@ -34,10 +49,20 @@ public struct ConsumeItem
     public int count;//몇개남았는지
 }
 
+public struct EquipmentItem
+{
+    public Sprite sprite;//이미지
+    public string name;//이름
+}
+
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager itemInstance;
     public MoveVillage moveVillage = new MoveVillage();
+
+    //플레이어가 현재 가지고 있는 장비
+    public List<EquipmentItem> playerHaveEquipments = new List<EquipmentItem>();
+
 
     [SerializeField]
     UIMouseClick uiMouseClick;

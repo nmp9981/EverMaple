@@ -289,7 +289,6 @@ public class ConsumeNPC : NPCCommon
             equipmentItem.name = curBuyEquipmentInfo.name;
 
             ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
-
             CancelEquipmentItemBuy();
         }
         else

@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using static UnityEditor.Progress;
+using System.Linq;
+using System;
 
 //아이템 탭 메뉴
 enum ItemTab
@@ -158,7 +160,7 @@ public class ItemUI : MonoBehaviour, IDragHandler
         //처음엔 안보이게
         for (int idx = 0; idx < inventoryCount; idx++)
         {
-            equipmentItemInventoryList[idx].gameObject.name = "Item";
+            equipmentItemInventoryList[idx].gameObject.name = "NULL";
             equipmentItemInventoryList[idx].SetActive(false);
         }
 
@@ -170,5 +172,23 @@ public class ItemUI : MonoBehaviour, IDragHandler
             equipmentItemInventoryList[idx].GetComponent<Image>().sprite = item.sprite;
             equipmentItemInventoryList[idx].gameObject.name = item.name;
         }
+    }
+    /// <summary>
+    /// 장비 아이템 삭제
+    /// </summary>
+    /// <param name="idx"></param>
+    public void EraseEquipmentInItemInventory(int index, string name)
+    {
+        if (ItemManager.itemInstance.playerHaveEquipments.Count < 1)
+            return;
+        for (int idx = 0; idx < ItemManager.itemInstance.playerHaveEquipments.Count; idx++)
+        {
+            if(name== ItemManager.itemInstance.playerHaveEquipments[idx].name)
+            {
+                ItemManager.itemInstance.playerHaveEquipments.RemoveAt(idx);
+                break;
+            }
+        }
+        equipmentItemInventoryList[index].SetActive(false);
     }
 }

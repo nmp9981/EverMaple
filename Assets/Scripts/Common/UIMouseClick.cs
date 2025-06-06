@@ -110,6 +110,9 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void EquipmentInstallation()
     {
+        if (clickedConsumeObject == null)
+            return;
+
         Debug.Log(clickedConsumeObject.gameObject.name);
         enrollKeySlotEquipmentObject.SetActive(false);
     }
@@ -118,10 +121,12 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void DeleteEquipmentInItemUI()
     {
+        if (clickedConsumeObject == null)
+            return;
+
         int index = int.Parse(clickedConsumeObject.GetComponentInChildren<TextMeshProUGUI>().text);
-        Debug.Log(index);
-        ItemManager.itemInstance.playerHaveEquipments.RemoveAt(index);
-        itemUI.ShowEquipmentInItemInventory();
+        itemUI.EraseEquipmentInItemInventory(index, clickedConsumeObject.gameObject.name);
+        clickedConsumeObject.gameObject.name = "NULL";
         enrollKeySlotEquipmentObject.SetActive(false);
     }
 }

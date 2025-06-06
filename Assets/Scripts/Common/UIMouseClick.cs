@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIMouseClick : MonoBehaviour, IPointerClickHandler
 {
@@ -10,6 +11,10 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     GameObject enrollKeySlotEquipmentObject;
     [SerializeField]
     GameObject selectKeyObject;
+    [SerializeField]
+    ItemUI itemUI;
+    [SerializeField]
+    GameObject equipmentUI;
 
     //선택한 소비 아이템
     public GameObject clickedConsumeObject = null;
@@ -105,6 +110,18 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void EquipmentInstallation()
     {
+        Debug.Log(clickedConsumeObject.gameObject.name);
+        enrollKeySlotEquipmentObject.SetActive(false);
+    }
+    /// <summary>
+    /// 장비 삭제
+    /// </summary>
+    public void DeleteEquipmentInItemUI()
+    {
+        int index = int.Parse(clickedConsumeObject.GetComponentInChildren<TextMeshProUGUI>().text);
+        Debug.Log(index);
+        ItemManager.itemInstance.playerHaveEquipments.RemoveAt(index);
+        itemUI.ShowEquipmentInItemInventory();
         enrollKeySlotEquipmentObject.SetActive(false);
     }
 }

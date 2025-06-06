@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using static UnityEditor.Progress;
 
 //아이템 탭 메뉴
 enum ItemTab
@@ -157,6 +158,7 @@ public class ItemUI : MonoBehaviour, IDragHandler
         //처음엔 안보이게
         for (int idx = 0; idx < inventoryCount; idx++)
         {
+            equipmentItemInventoryList[idx].gameObject.name = "Item";
             equipmentItemInventoryList[idx].SetActive(false);
         }
 
@@ -166,6 +168,7 @@ public class ItemUI : MonoBehaviour, IDragHandler
             EquipmentItem item = ItemManager.itemInstance.playerHaveEquipments[idx];
             equipmentItemInventoryList[idx].SetActive(true);
             equipmentItemInventoryList[idx].GetComponent<Image>().sprite = item.sprite;
+            equipmentItemInventoryList[idx].gameObject.name = item.name;
         }
     }
 }

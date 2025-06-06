@@ -559,6 +559,8 @@ public class ItemManager : MonoBehaviour
 
     //장비, 소비 아이템 목록들
     public List<GameObject> equipmentItems = new List<GameObject>();
+    public Dictionary<string, EquiipmentOption> equipmentItemDic = new Dictionary<string, EquiipmentOption>();
+
     public Dictionary<int, ConsumeItem> consumeItems = new Dictionary<int, ConsumeItem>();
     public List<Sprite> consumeItemImage = new List<Sprite>();
 

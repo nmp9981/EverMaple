@@ -7,15 +7,19 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     GameObject enrollKwySlotObject;
     [SerializeField]
+    GameObject enrollKeySlotEquipmentObject;
+    [SerializeField]
     GameObject selectKeyObject;
 
     //선택한 소비 아이템
     public GameObject clickedConsumeObject = null;
     RectTransform enrollKwyRectTrans;
+    RectTransform enrollKeyEquipmentRectTrans;
 
     void Awake()
     {
         enrollKwyRectTrans = enrollKwySlotObject.GetComponent<RectTransform>();
+        enrollKeyEquipmentRectTrans = enrollKeySlotEquipmentObject.GetComponent<RectTransform>();
         SlotButtonBinding();
     }
 
@@ -27,6 +31,11 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
             clickedConsumeObject = clickedObject;
             enrollKwySlotObject.SetActive(true);
             enrollKwyRectTrans.position = Input.mousePosition + new Vector3(30,-30,0);
+        }else if(clickedObject.tag == ItemManager.equipmentTag)
+        {
+            clickedConsumeObject = clickedObject;
+            enrollKeySlotEquipmentObject.SetActive(true);
+            enrollKeyEquipmentRectTrans.position = Input.mousePosition + new Vector3(30, -30, 0);
         }
         else
         {
@@ -57,7 +66,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     {
         selectKeyObject.SetActive(true);
     }
-
+   
     /// <summary>
     /// 키 등록
     /// </summary>
@@ -89,5 +98,13 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     public void CancelEnrollKey()
     {
         enrollKwySlotObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// 장비 장착
+    /// </summary>
+    public void EquipmentInstallation()
+    {
+        enrollKeySlotEquipmentObject.SetActive(false);
     }
 }

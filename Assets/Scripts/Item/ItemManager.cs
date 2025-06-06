@@ -552,6 +552,7 @@ public class ItemManager : MonoBehaviour
 
     #region 아이템 데이터
     public const string consumeTag = "ConsumeItem";
+    public const string equipmentTag = "EquipmentItem";
 
     //필드에 떨어진 아이템들
     public List<GameObject> fieldDropItems = new List<GameObject>();

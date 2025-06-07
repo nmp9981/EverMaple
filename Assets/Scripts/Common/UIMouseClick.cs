@@ -14,7 +14,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     ItemUI itemUI;
     [SerializeField]
-    GameObject equipmentUI;
+    EquiipmentUI equipmentUI;
 
     //선택한 소비 아이템
     public GameObject clickedConsumeObject = null;
@@ -110,10 +110,23 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void EquipmentInstallation()
     {
+        //선택한 오브젝트가 없음
         if (clickedConsumeObject == null)
+        {
+            enrollKeySlotEquipmentObject.SetActive(false);
             return;
+        }
 
-        Debug.Log(clickedConsumeObject.gameObject.name);
+        //장비의 정보를 받아야함
+        EquiipmentOption equipmentOption = ItemManager.itemInstance.equipmentItemDic[clickedConsumeObject.gameObject.name];
+
+        //장비 장착이 가능한지 검사
+        if (equipmentUI.CheckAbleUseEquipment(equipmentOption))
+        {
+            //해당 장비의 능력치 적용
+            equipmentUI.AddEquipmentOption(equipmentOption);
+        }
+
         enrollKeySlotEquipmentObject.SetActive(false);
     }
     /// <summary>
@@ -121,12 +134,23 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void DeleteEquipmentInItemUI()
     {
+        //선택한 오브젝트가 없음
         if (clickedConsumeObject == null)
+        {
+            enrollKeySlotEquipmentObject.SetActive(false);
             return;
+        }
 
         int index = int.Parse(clickedConsumeObject.GetComponentInChildren<TextMeshProUGUI>().text);
         itemUI.EraseEquipmentInItemInventory(index, clickedConsumeObject.gameObject.name);
         clickedConsumeObject.gameObject.name = "NULL";
+
+        //해당 장비 옵션 만큼 능력치를 빼야함
+        EquiipmentOption equipmentOption = ItemManager.itemInstance.equipmentItemDic[clickedConsumeObject.gameObject.name];
+        equipmentUI.MinusEquipmentOption(equipmentOption);
+
         enrollKeySlotEquipmentObject.SetActive(false);
     }
+
+    
 }

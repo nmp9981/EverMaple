@@ -61,4 +61,40 @@ public class EquiipmentOption : MonoBehaviour
     //명중, 회피
     public int addAccuracy;
     public int addAvoid;
+
+    //생성자
+    public EquiipmentOption(Sprite Esprite, EquipmentType EequipmentType, int EreqLV, int EreqSTR,int EreqDEX,int EreqINT,int EreqLUK,
+        string EreqJob, int EaddHP, int EaddMP, int EaddSTR, int EaddDEX, int EaddINT, int EaddLUK, 
+        int EaddAttack, int EaddMagicAttack, int EaddPArmor,int EaddMArmor,int EaddMove, int EaddJump, int EaddAcc, int EaddAvoid)
+    {
+        equipmentImage = Esprite;
+        equipmentType = EequipmentType;
+
+        reqLv = EreqLV;
+        reqSTR = EreqSTR;
+        reqDEX = EreqDEX;
+        reqINT = EreqINT;
+        reqLUK = EreqLUK;
+        reqJob = EreqJob;
+
+        addHP = EaddHP;
+        addMP = EaddMP;
+
+        addSTR = EaddSTR;
+        addDEX = EaddDEX;
+        addINT = EaddINT;
+        addLUK = EaddLUK;
+
+        addAttack = EaddAttack;
+        addMagicAttack = EaddMagicAttack;
+
+        addPhysicsArmor = EaddPArmor;
+        addMagicArmor = EaddMArmor;
+
+        addMoveSpeed = EaddMove;
+        addJumpSpeed = EaddJump;
+
+        addAccuracy = EaddAcc;
+        addAvoid = EaddAvoid;
+    }
 }

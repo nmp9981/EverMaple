@@ -64,6 +64,12 @@ public class PlayerManager : MonoBehaviour
     int playerINT = 4;
     int playerLUK = 37;
 
+    int playerAddSTR = 0;
+    int playerAddDEX = 0;
+    int playerAddINT = 0;
+    int playerAddLUK = 0;
+
+
     int weaponConst = 36;//무기 상수
     int playerAttack = 27;//플레이어 공격력
     int playerStatAttack;//플레이어 스탯 공격력
@@ -122,12 +128,18 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     //플레이어 스탯
+    #region 플레이어 기본 스탯
     public int PlayerAPPoint { get { return playerAPPoint; } set { playerAPPoint = value; } }
     public int PlayerSTR { get { return playerSTR; } set { playerSTR = value; }}
     public int PlayerDEX { get { return playerDEX; } set { playerDEX = value; } }
     public int PlayerINT { get { return playerINT; } set { playerINT = value; } }
     public int PlayerLUK { get { return playerLUK; } set { playerLUK = value; } }
 
+    public int PlayerAddSTR { get { return playerAddSTR; } set { playerAddSTR = value; } }
+    public int PlayerAddDEX { get { return playerAddDEX; } set { playerAddDEX = value; } }
+    public int PlayerAddINT { get { return playerAddINT; } set { playerAddINT = value; } }
+    public int PlayerAddLUK { get { return playerAddLUK; } set { playerAddLUK = value; } }
+    #endregion
 
     public int WeaponConst { get { return weaponConst; } set { weaponConst = value; } }
     public int PlayerAttack { get { return playerAttack; } set { playerAttack = value; } }

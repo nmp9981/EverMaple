@@ -8,6 +8,8 @@ public class EquiipmentUI : MonoBehaviour
 {
     //각 장비 유형별 이미지 위치 지정
     public List<Image> equipmentTypeImage = new List<Image>();
+    //각 부위별 어떤 장비를 끼고 있는지 데이터 보관
+    public Dictionary<EquipmentType, EquiipmentOption> playerSetEquipment = new Dictionary<EquipmentType, EquiipmentOption>(); 
 
     [SerializeField]
     StatUI statUI;
@@ -75,6 +77,41 @@ public class EquiipmentUI : MonoBehaviour
             default:
                 break;
         }
+
+        //기존에 낀 능력치는 제거
+        if (playerSetEquipment[equipmentOption.equipmentType] != null)
+        {
+            #region 기존에 낀 능력치 제거
+            //스탯 제거
+            PlayerManager.PlayerInstance.PlayerAddSTR -= playerSetEquipment[equipmentOption.equipmentType].addSTR;
+            PlayerManager.PlayerInstance.PlayerAddDEX -= playerSetEquipment[equipmentOption.equipmentType].addDEX;
+            PlayerManager.PlayerInstance.PlayerAddINT -= playerSetEquipment[equipmentOption.equipmentType].addINT;
+            PlayerManager.PlayerInstance.PlayerAddLUK -= playerSetEquipment[equipmentOption.equipmentType].addLUK;
+
+            //공격력 제거
+            PlayerManager.PlayerInstance.PlayerAttack -= playerSetEquipment[equipmentOption.equipmentType].addAttack;
+            PlayerManager.PlayerInstance.PlayerMagicPower -= playerSetEquipment[equipmentOption.equipmentType].addMagicAttack;
+
+            //체력, 마나 제거
+            PlayerManager.PlayerInstance.PlayerMaxHP -= playerSetEquipment[equipmentOption.equipmentType].addHP;
+            PlayerManager.PlayerInstance.PlayerMaxMP -= playerSetEquipment[equipmentOption.equipmentType].addMP;
+
+            //방어력
+            PlayerManager.PlayerInstance.PlayerPhysicsArmor -= playerSetEquipment[equipmentOption.equipmentType].addPhysicsArmor;
+            PlayerManager.PlayerInstance.PlayerMagicArmor -= playerSetEquipment[equipmentOption.equipmentType].addMagicArmor;
+
+            //이동 관련
+            PlayerManager.PlayerInstance.PlayerMoveSpeed -= playerSetEquipment[equipmentOption.equipmentType].addMoveSpeed;
+            PlayerManager.PlayerInstance.JumpForce -= playerSetEquipment[equipmentOption.equipmentType].addJumpSpeed;
+
+            //명중, 회피
+            PlayerManager.PlayerInstance.PlayerAddAccurary -= playerSetEquipment[equipmentOption.equipmentType].addAccuracy;
+            PlayerManager.PlayerInstance.PlayerAddAvoid -= playerSetEquipment[equipmentOption.equipmentType].addAvoid;
+            #endregion
+        }
+
+        //장비 장착
+        playerSetEquipment[equipmentOption.equipmentType] = equipmentOption;
 
         #region 능력치 추가
         //스탯 추가

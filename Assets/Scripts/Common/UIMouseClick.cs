@@ -145,12 +145,23 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
         itemUI.EraseEquipmentInItemInventory(index, clickedConsumeObject.gameObject.name);
         clickedConsumeObject.gameObject.name = "NULL";
 
-        //해당 장비 옵션 만큼 능력치를 빼야함
-        EquiipmentOption equipmentOption = ItemManager.itemInstance.equipmentItemDic[clickedConsumeObject.gameObject.name];
-        equipmentUI.MinusEquipmentOption(equipmentOption);
-
         enrollKeySlotEquipmentObject.SetActive(false);
     }
 
-    
+    /// <summary>
+    /// 장비 UI 취소
+    /// </summary>
+    public void CancelEquipmentInItemUI()
+    {
+        enrollKeySlotEquipmentObject.SetActive(false);
+    }
+    /// <summary>
+    /// 장착한 장비 착용 취소
+    /// </summary>
+    public void CancelEquipmentInstallation()
+    {
+        //해당 장비 옵션 만큼 능력치를 빼야함
+        EquiipmentOption equipmentOption = ItemManager.itemInstance.equipmentItemDic[clickedConsumeObject.gameObject.name];
+        equipmentUI.MinusEquipmentOption(equipmentOption);
+    }
 }

@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour 
@@ -71,7 +72,7 @@ public class PlayerManager : MonoBehaviour
 
 
     int weaponConst = 36;//무기 상수
-    int playerAttack = 27;//플레이어 공격력
+    int playerAttack = 15;//플레이어 공격력
     int playerStatAttack;//플레이어 스탯 공격력
     int workmanship = 10;//숙련도
     int criticalProbably = 0;//크리티컬 확률
@@ -103,6 +104,28 @@ public class PlayerManager : MonoBehaviour
     string curMapName = "Map0";
 
     public int[] haveConsumeItem = new int[30];
+
+    //각 부위별 어떤 장비를 끼고 있는지 데이터 보관
+    public Dictionary<EquipmentType, EquiipmentOption> playerSetEquipment = new Dictionary<EquipmentType, EquiipmentOption>(){
+        { EquipmentType.Claw,new EquiipmentOption(null,EquipmentType.Claw, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+        { EquipmentType.Knife, new EquiipmentOption(null,EquipmentType.Knife, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+        { EquipmentType.Hat,new EquiipmentOption(null,EquipmentType.Hat, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+        { EquipmentType.Up,new EquiipmentOption(null,EquipmentType.Up, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+        { EquipmentType.Down,new EquiipmentOption(null,EquipmentType.Down, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+        { EquipmentType.Shoes,new EquiipmentOption(null,EquipmentType.Shoes, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+        { EquipmentType.Glove,new EquiipmentOption(null,EquipmentType.Glove, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+        { EquipmentType.Earing,new EquiipmentOption(null,EquipmentType.Earing, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+        { EquipmentType.Cape,new EquiipmentOption(null,EquipmentType.Cape, 0,0,0,0,0,"",
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)}
+    };
 
 
     #region 이동 관련 변수

@@ -41,6 +41,9 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
             clickedConsumeObject = clickedObject;
             enrollKeySlotEquipmentObject.SetActive(true);
             enrollKeyEquipmentRectTrans.position = Input.mousePosition + new Vector3(30, -30, 0);
+        }else if(clickedObject.tag == "EquipmentUI")//장비 장착 취소
+        {
+            equipmentUI.CancelEquipmentInstallaion(clickedObject.gameObject.name);
         }
         else
         {
@@ -119,7 +122,6 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
 
         //장비의 정보를 받아야함
         EquiipmentOption equipmentOption = ItemManager.itemInstance.equipmentItemDic[clickedConsumeObject.gameObject.name];
-
         //장비 장착이 가능한지 검사
         if (equipmentUI.CheckAbleUseEquipment(equipmentOption))
         {
@@ -154,14 +156,5 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     public void CancelEquipmentInItemUI()
     {
         enrollKeySlotEquipmentObject.SetActive(false);
-    }
-    /// <summary>
-    /// 장착한 장비 착용 취소
-    /// </summary>
-    public void CancelEquipmentInstallation()
-    {
-        //해당 장비 옵션 만큼 능력치를 빼야함
-        EquiipmentOption equipmentOption = ItemManager.itemInstance.equipmentItemDic[clickedConsumeObject.gameObject.name];
-        equipmentUI.MinusEquipmentOption(equipmentOption);
     }
 }

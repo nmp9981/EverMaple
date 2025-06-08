@@ -83,17 +83,17 @@ public class EquipmentDataBase : MonoBehaviour
         ItemManager.itemInstance.equipmentItemDic.Add("칸디네", equiipmentOption11);
 
         EquiipmentOption equiipmentOption12
-           = new EquiipmentOption(equipmentImageList[12], EquipmentType.Knife, 70, 0, 75, 0, 200, "",
+           = new EquiipmentOption(equipmentImageList[12], EquipmentType.Knife, 70, 0, 75, 0, 210, "",
            0, 0, 0, 0, 0, 5, 80, 0, 0, 0, 0, 0, 0, 0);
         ItemManager.itemInstance.equipmentItemDic.Add("용천권", equiipmentOption12);
 
         EquiipmentOption equiipmentOption13
-           = new EquiipmentOption(equipmentImageList[13], EquipmentType.Knife, 80, 0, 80, 0, 220, "",
+           = new EquiipmentOption(equipmentImageList[13], EquipmentType.Knife, 80, 0, 80, 0, 240, "",
            0, 0, 0, 0, 0, 6, 85, 0, 0, 0, 0, 0, 0, 0);
         ItemManager.itemInstance.equipmentItemDic.Add("커세어", equiipmentOption13);
 
         EquiipmentOption equiipmentOption14
-           = new EquiipmentOption(equipmentImageList[14], EquipmentType.Knife, 90, 0, 85, 0, 250, "",
+           = new EquiipmentOption(equipmentImageList[14], EquipmentType.Knife, 90, 0, 85, 0, 280, "",
            0, 0, 0, 0, 0, 6, 90, 0, 0, 0, 0, 0, 0, 0);
         ItemManager.itemInstance.equipmentItemDic.Add("드래곤 칸자르", equiipmentOption14);
         #endregion
@@ -155,20 +155,87 @@ public class EquipmentDataBase : MonoBehaviour
         ItemManager.itemInstance.equipmentItemDic.Add("코브라스티어", equiipmentOption25);
 
         EquiipmentOption equiipmentOption26
-           = new EquiipmentOption(equipmentImageList[26], EquipmentType.Claw, 70, 0, 75, 0, 200, "",
+           = new EquiipmentOption(equipmentImageList[26], EquipmentType.Claw, 70, 0, 75, 0, 210, "",
            0, 0, 0, 0, 0, 5, 36, 0, 0, 0, 0, 0, 0, 0);
         ItemManager.itemInstance.equipmentItemDic.Add("캐스터스", equiipmentOption26);
 
         EquiipmentOption equiipmentOption27
-           = new EquiipmentOption(equipmentImageList[27], EquipmentType.Claw, 80, 0, 80, 0, 220, "",
+           = new EquiipmentOption(equipmentImageList[27], EquipmentType.Claw, 80, 0, 80, 0, 240, "",
            0, 0, 0, 0, 0, 6, 40, 0, 0, 0, 0, 0, 0, 0);
         ItemManager.itemInstance.equipmentItemDic.Add("레드 크리븐", equiipmentOption27);
 
         EquiipmentOption equiipmentOption28
-           = new EquiipmentOption(equipmentImageList[28], EquipmentType.Claw, 90, 0, 85, 0, 250, "",
+           = new EquiipmentOption(equipmentImageList[28], EquipmentType.Claw, 90, 0, 85, 0, 280, "",
            0, 0, 0, 0, 0, 6, 44, 0, 0, 0, 0, 0, 0, 0);
         ItemManager.itemInstance.equipmentItemDic.Add("드래곤 퍼플 슬레브", equiipmentOption28);
         #endregion
+
+        #region 모자
+        EquiipmentOption equiipmentOption29
+           = new EquiipmentOption(equipmentImageList[29], EquipmentType.Hat, 8, 0, 0, 0, 0, "",
+           0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("빨간 머리띠", equiipmentOption29);
+
+        EquiipmentOption equiipmentOption30
+          = new EquiipmentOption(equipmentImageList[30], EquipmentType.Hat, 14, 0, 20, 0, 35, "",
+          0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("시프 후드", equiipmentOption30);
+
+        EquiipmentOption equiipmentOption31
+         = new EquiipmentOption(equipmentImageList[31], EquipmentType.Hat, 20, 0, 25, 0, 50, "",
+         0, 0, 0, 0, 0, 1, 0, 0, 15, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("루즈캡", equiipmentOption31);
+
+        EquiipmentOption equiipmentOption32
+         = new EquiipmentOption(equipmentImageList[32], EquipmentType.Hat, 30, 0, 30, 0, 80, "",
+         0, 0, 0, 0, 0, 2, 0, 0, 20, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("갈색 삿갓", equiipmentOption32);
+
+        EquiipmentOption equiipmentOption33
+        = new EquiipmentOption(equipmentImageList[33], EquipmentType.Hat, 40, 0, 40, 0, 110, "",
+        0, 0, 0, 0, 0, 3, 0, 0, 25, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("가이즈", equiipmentOption33);
+
+        EquiipmentOption equiipmentOption34
+        = new EquiipmentOption(equipmentImageList[34], EquipmentType.Hat, 50, 0, 50, 0, 140, "",
+        0, 0, 0, 0, 0, 4, 0, 0, 30, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("필퍼", equiipmentOption34);
+
+        EquiipmentOption equiipmentOption35
+        = new EquiipmentOption(equipmentImageList[35], EquipmentType.Hat, 60, 0, 60, 0, 170, "",
+        0, 0, 0, 0, 0, 5, 0, 0, 35, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("하이드후드", equiipmentOption35);
+
+        EquiipmentOption equiipmentOption36
+        = new EquiipmentOption(equipmentImageList[36], EquipmentType.Hat, 80, 0, 75, 0, 220, "",
+        0, 0, 0, 0, 0, 7, 0, 0, 45, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("피레타햇", equiipmentOption36);
+        #endregion
+
+        #region 상의
+        EquiipmentOption equiipmentOption37
+        = new EquiipmentOption(equipmentImageList[37], EquipmentType.Up, 0, 0, 0, 0, 0, "",
+        0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("하얀 반팔티", equiipmentOption37);
+
+        EquiipmentOption equiipmentOption38
+        = new EquiipmentOption(equipmentImageList[38], EquipmentType.Up, 8, 0, 0, 0, 0, "",
+        0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("흑몽", equiipmentOption38);
+
+        EquiipmentOption equiipmentOption39
+        = new EquiipmentOption(equipmentImageList[39], EquipmentType.Hat, 14, 0, 20, 0, 35, "",
+        0, 0, 0, 0, 0, 1, 0, 0, 14, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("흑야", equiipmentOption39);
+
+        EquiipmentOption equiipmentOption40
+         = new EquiipmentOption(equipmentImageList[40], EquipmentType.Hat, 20, 0, 25, 0, 50, "",
+         0, 0, 0, 1, 0, 1, 0, 0, 18, 0, 0, 0, 0, 0);
+        ItemManager.itemInstance.equipmentItemDic.Add("파오", equiipmentOption40);
+
+
+        #endregion
+
     }
     #endregion
 }

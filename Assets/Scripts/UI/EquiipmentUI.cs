@@ -89,7 +89,6 @@ public class EquiipmentUI : MonoBehaviour
         //기존에 낀 능력치는 제거
         if (eauipSP!=null)
         {
-            Debug.Log(eauipSP.name);
             #region 기존에 낀 능력치 제거
             //스탯 제거
             PlayerManager.PlayerInstance.PlayerAddSTR -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addSTR;

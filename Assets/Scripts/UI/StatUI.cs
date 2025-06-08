@@ -199,11 +199,17 @@ public class StatUI : MonoBehaviour, IDragHandler
         rate = Mathf.Floor(rate*100);
         expText.text = $"{PlayerManager.PlayerInstance.PlayerCurExp} ({(int)rate})%";
 
+        //각 총합 스탯
+        int totalLUK = PlayerManager.PlayerInstance.PlayerLUK + PlayerManager.PlayerInstance.PlayerAddLUK;
+        int totalDEX = PlayerManager.PlayerInstance.PlayerDEX + PlayerManager.PlayerInstance.PlayerAddDEX;
+        int totalSTR = PlayerManager.PlayerInstance.PlayerSTR + PlayerManager.PlayerInstance.PlayerAddSTR;
+        int totalINT = PlayerManager.PlayerInstance.PlayerINT + PlayerManager.PlayerInstance.PlayerAddINT;
+
         apPointText.text = PlayerManager.PlayerInstance.PlayerAPPoint.ToString();
-        strText.text = PlayerManager.PlayerInstance.PlayerSTR.ToString();
-        dexText.text = PlayerManager.PlayerInstance.PlayerDEX.ToString();
-        intText.text = PlayerManager.PlayerInstance.PlayerINT.ToString();
-        lukText.text = PlayerManager.PlayerInstance.PlayerLUK.ToString();
+        strText.text = $"{totalSTR} ({PlayerManager.PlayerInstance.PlayerSTR} + {PlayerManager.PlayerInstance.PlayerAddSTR})";
+        dexText.text = $"{totalDEX} ({PlayerManager.PlayerInstance.PlayerDEX} + {PlayerManager.PlayerInstance.PlayerAddDEX})";
+        intText.text = $"{totalINT} ({PlayerManager.PlayerInstance.PlayerINT} + {PlayerManager.PlayerInstance.PlayerAddINT})";
+        lukText.text = $"{totalLUK} ({PlayerManager.PlayerInstance.PlayerLUK} + {PlayerManager.PlayerInstance.PlayerAddLUK})";
     }
     /// <summary>
     /// 상세 스탯 보이기
@@ -284,10 +290,7 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerAPPoint -= 1;
         PlayerManager.PlayerInstance.PlayerINT += 1;
 
-        //인트 1당 마력 1, 마방1 증가
-        PlayerManager.PlayerInstance.PlayerMagicPower += 1;
-        PlayerManager.PlayerInstance.PlayerMagicArmor += 1;
-
+        PlayerManager.PlayerInstance.PlayerStatAttack = CalculatorStatAttack();
         //증가한 결과를 보여줘야함
         ShowCharacterBasicStat();
         ShowCharacterDetailStat();
@@ -339,30 +342,41 @@ public class StatUI : MonoBehaviour, IDragHandler
     /// </summary>
     void CalculatorDetailStat()
     {
+        //각 총합 스탯
+        int totalLUK = PlayerManager.PlayerInstance.PlayerLUK + PlayerManager.PlayerInstance.PlayerAddLUK;
+        int totalDEX = PlayerManager.PlayerInstance.PlayerDEX + PlayerManager.PlayerInstance.PlayerAddDEX;
+        int totalSTR = PlayerManager.PlayerInstance.PlayerSTR + PlayerManager.PlayerInstance.PlayerAddSTR;
+        int totalINT = PlayerManager.PlayerInstance.PlayerINT + PlayerManager.PlayerInstance.PlayerAddINT;
+
+        //인트 1당 마력 1, 마방1 증가
+        PlayerManager.PlayerInstance.PlayerMagicPower = totalINT;
+
         //물리 방어력
-        PlayerManager.PlayerInstance.PlayerPhysicsArmor =
-           (3 * PlayerManager.PlayerInstance.PlayerSTR + PlayerManager.PlayerInstance.PlayerDEX) / 9;
+        PlayerManager.PlayerInstance.PlayerPhysicsArmor = (3 * totalSTR + totalDEX) / 9;
+
+        //마법 방어력
+        PlayerManager.PlayerInstance.PlayerMagicArmor  = totalINT;
 
         //명중률
-        PlayerManager.PlayerInstance.PlayerAccurary =
-            (8 * PlayerManager.PlayerInstance.PlayerDEX + 5 * PlayerManager.PlayerInstance.PlayerLUK) / 10;
+        PlayerManager.PlayerInstance.PlayerAccurary = (8 * totalDEX + 5 * totalLUK) / 10;
             
         //회피율
-        PlayerManager.PlayerInstance.PlayerAvoid =
-            (5 * PlayerManager.PlayerInstance.PlayerLUK) / 10;
+        PlayerManager.PlayerInstance.PlayerAvoid = (5 * totalLUK) / 10;
 
         //손재주
         PlayerManager.PlayerInstance.PlayerDexterity =
-          (PlayerManager.PlayerInstance.PlayerSTR+ PlayerManager.PlayerInstance.PlayerDEX
-          + PlayerManager.PlayerInstance.PlayerINT + PlayerManager.PlayerInstance.PlayerLUK) / 4;
+          (totalSTR+totalDEX+totalINT+totalLUK) / 4;
     }
     /// <summary>
     /// 스공 계산 (도적용)
     /// </summary>
     int CalculatorStatAttack()
     {
-        int statTotal = (PlayerManager.PlayerInstance.PlayerLUK * PlayerManager.PlayerInstance.WeaponConst / 10)
-            + PlayerManager.PlayerInstance.PlayerDEX + PlayerManager.PlayerInstance.PlayerSTR;
+        int totalLUK = PlayerManager.PlayerInstance.PlayerLUK + PlayerManager.PlayerInstance.PlayerAddLUK;
+        int totalDEX = PlayerManager.PlayerInstance.PlayerDEX + PlayerManager.PlayerInstance.PlayerAddDEX;
+        int totalSTR = PlayerManager.PlayerInstance.PlayerSTR + PlayerManager.PlayerInstance.PlayerAddSTR;
+
+        int statTotal = (totalLUK* PlayerManager.PlayerInstance.WeaponConst / 10)+ totalDEX + totalSTR;
         int finalAttack = (statTotal * PlayerManager.PlayerInstance.PlayerAttack)/100;
         return finalAttack;
     }

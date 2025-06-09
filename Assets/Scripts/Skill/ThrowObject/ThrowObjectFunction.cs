@@ -74,7 +74,8 @@ public class ThrowObjectFunction : MonoBehaviour
         //공격 명중
         if (dist < judgeCollideDist)
         {
-            int hitDamage = CalDamage(throwAttack);
+            MonsterInfo mobInfo = targetMob.GetComponent<MonsterInfo>();
+            int hitDamage = CalDamage(mobInfo,throwAttack);
             //크리티컬 판정
             bool isCri = PlayerAttackCommon.IsCritical();
             if (isCri)
@@ -82,7 +83,7 @@ public class ThrowObjectFunction : MonoBehaviour
                 hitDamage = (hitDamage *PlayerManager.PlayerInstance.CriticalDamagee)/100;//크리티컬 데미지 반영
             }
 
-            targetMob.GetComponent<MonsterInfo>().DecreaseMonsterHP(hitDamage);
+            mobInfo.DecreaseMonsterHP(hitDamage);
 
             //데미지 띄우기
             if (isCri)
@@ -102,15 +103,21 @@ public class ThrowObjectFunction : MonoBehaviour
     /// 데미지 계산
     /// </summary>
     /// <returns></returns>
-    int CalDamage(int throwAttack)
+    int CalDamage(MonsterInfo mobInfo,int throwAttack)
     {
         //총 럭, 총 공격력
         int totalLUK = PlayerManager.PlayerInstance.PlayerLUK + PlayerManager.PlayerInstance.PlayerAddLUK;
         int totalAttackValue = throwAttack + PlayerManager.PlayerInstance.PlayerAttack;
 
+        //데미지
         int maxDamage = totalAttackValue * skillCoefficient *(totalLUK*5)/ 10000;
         int minDamage = maxDamage/2;
         int damage = Random.Range(minDamage, maxDamage);
+
+        //데미지 감소
+        int diffLV = Mathf.Max(0, mobInfo.monsterLv - PlayerManager.PlayerInstance.PlayerLV);
+        int decreaseDamage = (diffLV * damage)/100;
+        damage = damage - decreaseDamage;
         return damage;
     }
     /// <summary>

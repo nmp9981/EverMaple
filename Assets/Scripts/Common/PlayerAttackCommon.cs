@@ -203,10 +203,18 @@ public static class PlayerAttackCommon
     /// <param name="skillCoefficient">공격 계수</param>
     public static void PlayerAttackToOneMonster(GameObject nearMob, int skillCoefficient, int hitNum)
     {
+        //몬스터 정보
+        MonsterInfo mobInfo = nearMob.GetComponent<MonsterInfo>();
+
         //공격 모션과 데미지
         int maxAttackDamage = (PlayerManager.PlayerInstance.PlayerStatAttack * skillCoefficient) / 100;
         int minAttackDamage = (maxAttackDamage * PlayerManager.PlayerInstance.Workmanship) / 100;
         int attackDamage = Random.Range(minAttackDamage, maxAttackDamage);
+
+        //데미지 감소
+        int diffLV = Mathf.Max(0, mobInfo.monsterLv - PlayerManager.PlayerInstance.PlayerLV);
+        int decreaseDamage = (diffLV * attackDamage) / 100;
+        attackDamage = attackDamage - decreaseDamage;
 
         //크리티컬 판정
         bool isCri = IsCritical();

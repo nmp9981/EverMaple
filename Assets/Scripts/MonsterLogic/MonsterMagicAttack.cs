@@ -81,6 +81,10 @@ public class MonsterMagicAttack : MonoBehaviour
         int maxDamage = (MobAttack*105) / 100;
         int minDamage = (maxDamage * 95) / 100;
         int damage = Random.Range(minDamage, maxDamage);
+
+        //피격데미지 감소
+        damage = Mathf.Max(1, damage - PlayerManager.PlayerInstance.PlayerMagicArmor);
+
         return damage;
     }
     /// <summary>

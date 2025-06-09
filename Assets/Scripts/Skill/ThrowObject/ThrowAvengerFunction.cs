@@ -57,7 +57,8 @@ public class ThrowAvengerFunction : MonoBehaviour
     {
         if(collision.tag == monsterTag)
         {
-            int hitDamage = CalDamage();
+            MonsterInfo mobInfo = collision.gameObject.GetComponent<MonsterInfo>();
+            int hitDamage = CalDamage(mobInfo);
             //크리티컬 판정
             bool isCri = PlayerAttackCommon.IsCritical();
             if (isCri)
@@ -65,7 +66,7 @@ public class ThrowAvengerFunction : MonoBehaviour
                 hitDamage = (hitDamage*PlayerManager.PlayerInstance.CriticalDamagee)/100;//크리티컬 데미지 반영
             }
 
-            collision.gameObject.GetComponent<MonsterInfo>().DecreaseMonsterHP(hitDamage);
+            mobInfo.DecreaseMonsterHP(hitDamage);
 
             //데미지 띄우기
             if (isCri)
@@ -89,11 +90,16 @@ public class ThrowAvengerFunction : MonoBehaviour
     /// 데미지 계산
     /// </summary>
     /// <returns></returns>
-    int CalDamage()
+    int CalDamage(MonsterInfo mobInfo)
     {
         int maxDamage = (PlayerManager.PlayerInstance.PlayerStatAttack * skillCoefficient)/100;
         int minDamage = (maxDamage * PlayerManager.PlayerInstance.Workmanship)/100;
         int damage = Random.Range(minDamage, maxDamage);
+
+        //데미지 감소
+        int diffLV = Mathf.Max(0, mobInfo.monsterLv - PlayerManager.PlayerInstance.PlayerLV);
+        int decreaseDamage = (diffLV * damage) / 100;
+        damage = damage - decreaseDamage;
         return damage;
     }
     /// <summary>

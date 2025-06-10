@@ -9,6 +9,7 @@ public class PlayerInfo : MonoBehaviour
     {
         PlayerManager.PlayerInstance.PlayerCurExp += getExp;
         playerInfoUI.ShowPlayerEXPBar();
+        playerInfoUI.ShowGetExpMessage(getExp);
         PlayereLevelUP();
     }
 

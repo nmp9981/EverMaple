@@ -1,4 +1,4 @@
-using System.Threading;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,8 +20,13 @@ public class PlayerInfoUI : MonoBehaviour
     //LV관련
     TextMeshProUGUI lvText;
 
+    //메세지 관련
+    List<TextMeshProUGUI> getMessageList = new List<TextMeshProUGUI>();
+    int getMessageCurCount = 0;
+
     private void Awake()
     {
+        MessageBinding();
         ImageBinding();
     }
 
@@ -31,6 +36,19 @@ public class PlayerInfoUI : MonoBehaviour
         ShowPlayerHPBar();
         ShowPlayerMPBar();
         ShowPlayerEXPBar();
+    }
+
+    /// <summary>
+    /// 메세지 바인딩
+    /// </summary>
+    void MessageBinding()
+    {
+        GameObject messageObj = GameObject.Find("MessageUI");
+        foreach (TextMeshProUGUI msg in messageObj.GetComponentsInChildren<TextMeshProUGUI>(true))
+        {
+            getMessageList.Add(msg);
+            msg.text = string.Empty;
+        }
     }
 
     /// <summary>
@@ -110,5 +128,66 @@ public class PlayerInfoUI : MonoBehaviour
     public void ShowPlayerLV()
     {
         lvText.text = $"Lv. {PlayerManager.PlayerInstance.PlayerLV}";
+    }
+
+    //메세지
+    public void ShowGetExpMessage(int getExp)
+    {
+        string message = $"경험치를 얻었습니다 (+{getExp})";
+
+        int getMessageIndex = getMessageCurCount % 5;
+        getMessageList[getMessageIndex].text = message;
+        getMessageCurCount += 1;
+
+        if (getMessageCurCount >= 5)
+        {
+            Invoke("DeleteMessage", 0.01f);
+        }
+        else
+        {
+            Invoke("DeleteMessage", 0.5f);
+        }
+    }
+    public void ShowGetMesoMessage(int getMeso)
+    {
+        string message = $"메소를 얻었습니다 (+{getMeso})";
+
+        int getMessageIndex = getMessageCurCount % 5;
+        getMessageList[getMessageIndex].text = message;
+        getMessageCurCount += 1;
+
+        if (getMessageCurCount >= 5)
+        {
+            Invoke("DeleteMessage", 0.01f);
+        }
+        else
+        {
+            Invoke("DeleteMessage", 0.5f);
+        }
+    }
+    public void ShowGetItemMessage(string getItem)
+    {
+        string message = $"아이템를 얻었습니다 ({getItem})";
+
+        int getMessageIndex = getMessageCurCount % 5;
+        getMessageList[getMessageIndex].text = message;
+        getMessageCurCount += 1;
+
+        if (getMessageCurCount >= 5)
+        {
+            Invoke("DeleteMessage", 0.01f);
+        }
+        else
+        {
+            Invoke("DeleteMessage", 0.5f);
+        }
+    }
+    /// <summary>
+    /// 메세지 지우기
+    /// </summary>
+    void DeleteMessage()
+    {
+        getMessageCurCount = Mathf.Max(0, getMessageCurCount-1);
+        getMessageList[getMessageCurCount].text = string.Empty;
     }
 }

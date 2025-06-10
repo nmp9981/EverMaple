@@ -1,9 +1,9 @@
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Meso : MonoBehaviour
 {
+    PlayerInfoUI playerInfoUI;
     [SerializeField]
     List<Sprite> mesoImg = new List<Sprite> ();
     SpriteRenderer spriteRenderer;
@@ -16,7 +16,8 @@ public class Meso : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer> ();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        playerInfoUI = GameObject.Find("UserInfo").GetComponent<PlayerInfoUI>();
     }
     private void OnEnable()
     {
@@ -41,6 +42,7 @@ public class Meso : MonoBehaviour
         {
             PlayerManager.PlayerInstance.PlayerMeso += getMeso;
             ItemManager.itemInstance.fieldDropItems.Remove(this.gameObject);
+            playerInfoUI.ShowGetMesoMessage(getMeso);
             Destroy(gameObject);
         }
     }

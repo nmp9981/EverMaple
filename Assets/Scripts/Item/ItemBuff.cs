@@ -4,9 +4,17 @@ using UnityEngine;
 public class ItemBuff : MonoBehaviour
 {
     //버프 스킬 클래스
-    BuffSkill buffSkill = new BuffSkill();
+    BuffSkill buffSkill;
     
     public int buffIdx;
+
+    //버프 진행 여부
+    private bool[] buffSkillIng = new bool[17]
+    {
+        false, false, false, false, false, false,
+         false, false, false, false, false, false,
+          false, false, false, false, false
+    };
 
     [SerializeField]
     SkillEffectManager skillEffectManager;
@@ -18,6 +26,10 @@ public class ItemBuff : MonoBehaviour
     TextMeshProUGUI timeText;
     float buffFullTime;
 
+    private void Awake()
+    {
+        buffSkill = new BuffSkill();
+    }
     private void OnEnable()
     {
         SettingBuffDurationTimeAndEffect();
@@ -37,58 +49,86 @@ public class ItemBuff : MonoBehaviour
         switch (buffIdx)
         {
             case 0://전사 물약
-                PlayerManager.PlayerInstance.PlayerAttack += 10;
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerAttack += 10;
+                    buffSkillIng[buffIdx] = true;
+                }
                 break;
             case 1://법사 물약
-                PlayerManager.PlayerInstance.PlayerMagicPower += 5;
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerMagicPower += 5;
+                    buffSkillIng[buffIdx] = true;
+                }
                 break;
             case 2://명사수 물약
-                PlayerManager.PlayerInstance.PlayerAddAccurary += 10;
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerAddAccurary += 10;
+                    buffSkillIng[buffIdx] = true;
+                }
                 break;
             case 3://민첩 물약
-                PlayerManager.PlayerInstance.PlayerAddAvoid += 10;
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerAddAvoid += 10;
+                    buffSkillIng[buffIdx] = true;
+                }
                 break;
             case 4://이속 물약
-                PlayerManager.PlayerInstance.PlayerMoveSpeedRate += 10f;
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerMoveSpeedRate += 10f;
+                    buffSkillIng[buffIdx] = true;
+                }
                 break;
             case 10://헤이스트
-                buffFullTime = 10* buffSkill.hasteLv;
-                PlayerManager.PlayerInstance.PlayerMoveSpeedRate += (2*buffSkill.hasteLv);
-                PlayerManager.PlayerInstance.JumpForceRate += (buffSkill.hasteLv);
+                buffFullTime = 10* SkillLvManager.hasteLv;
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerMoveSpeedRate += (2 * SkillLvManager.hasteLv);
+                    PlayerManager.PlayerInstance.JumpForceRate += (SkillLvManager.hasteLv);
+                    buffSkillIng[buffIdx] = true;
+                }
                 skillEffectManager.PlaySkillAnimation("Haste",0,0);
                 break;
             case 11://자벨린 부스터
-                buffFullTime = 10 * buffSkill.boosterLv;
+                buffFullTime = 10 * SkillLvManager.boosterLv;
                 PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.5f;
                 skillEffectManager.PlaySkillAnimation("Booster", 0.01f, 0);
                 break;
             case 12://대거 부스터
-                buffFullTime = 10 * buffSkill.boosterLv;
+                buffFullTime = 10 * SkillLvManager.boosterLv;
                 PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.5f;
                 skillEffectManager.PlaySkillAnimation("Booster", 0.01f, 0);
                 break;
             case 13://쉐도우 파트너
-                buffFullTime = ((buffSkill.shadowPartnerLv+9)/10)*60;
+                buffFullTime = ((SkillLvManager.shadowPartnerLv +9)/10)*60;
                 shadowObj.SetActive(true);
-                buffSkill.EffectShadowPartnerSkill(true, buffSkill.shadowPartnerLv);
+                buffSkill.EffectShadowPartnerSkill(true, SkillLvManager.shadowPartnerLv);
                 skillEffectManager.PlaySkillAnimation("ShadowPartner", 0.01f, 0);
                 break;
             case 14://메소업
-                buffFullTime = 20+5*buffSkill.mesoUpLv;
-                if(buffSkill.mesoUpLv<=10)
-                    PlayerManager.PlayerInstance.RateIncreaseGetMeso = 3 * buffSkill.mesoUpLv;
+                buffFullTime = 20+5* SkillLvManager.mesoUpLv;
+                if(SkillLvManager.mesoUpLv <=10)
+                    PlayerManager.PlayerInstance.RateIncreaseGetMeso = 3 * SkillLvManager.mesoUpLv;
                 else
-                    PlayerManager.PlayerInstance.RateIncreaseGetMeso = 30+2 * buffSkill.mesoUpLv;
+                    PlayerManager.PlayerInstance.RateIncreaseGetMeso = 30+2 * SkillLvManager.mesoUpLv;
                 skillEffectManager.PlaySkillAnimation("MesoUP", 0.01f, 0.25f);
                 break;
             case 15://메소가드
-                buffFullTime = 120+buffSkill.mesoGuardLv*3;
-                buffSkill.EffectMasoGuardSkill(true, buffSkill.mesoGuardLv);
+                buffFullTime = 120+ SkillLvManager.mesoGuardLv *3;
+                buffSkill.EffectMasoGuardSkill(true, SkillLvManager.mesoGuardLv);
                 skillEffectManager.PlaySkillAnimation("MesoGuard", 0, 0);
                 break;
             case 16://메이플 용사
-                buffFullTime = 30*buffSkill.mapleWarriorLv;
-                buffSkill.EffextMapleWarriorSkill(true, buffSkill.mapleWarriorLv);
+                buffFullTime = 30* SkillLvManager.mapleWarriorLv;
+                if (!buffSkillIng[buffIdx])
+                {
+                    buffSkill.EffextMapleWarriorSkill(true, SkillLvManager.mapleWarriorLv);
+                    buffSkillIng[buffIdx] = true;
+                }
                 skillEffectManager.PlaySkillAnimation("MapleWarrior", 0.01f, 3.25f);
                 break;
             default:
@@ -137,8 +177,8 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= 10;
                     break;
                 case 10://헤이스트
-                    PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= (2 * buffSkill.hasteLv);
-                    PlayerManager.PlayerInstance.JumpForceRate -= (buffSkill.hasteLv);
+                    PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= (2 * SkillLvManager.hasteLv);
+                    PlayerManager.PlayerInstance.JumpForceRate -= (SkillLvManager.hasteLv);
                     break;
                 case 11://자벨린 부스터
                     PlayerManager.PlayerInstance.PlayerAttackSkillSpeed = 0.7f;
@@ -148,20 +188,21 @@ public class ItemBuff : MonoBehaviour
                     break;
                 case 13://쉐도우 파트너
                     shadowObj.SetActive(false);
-                    buffSkill.EffectShadowPartnerSkill(false, buffSkill.shadowPartnerLv);
+                    buffSkill.EffectShadowPartnerSkill(false, SkillLvManager.shadowPartnerLv);
                     break;
                 case 14://메소업
                     PlayerManager.PlayerInstance.RateIncreaseGetMeso = 0;
                     break;
                 case 15://메소가드
-                    buffSkill.EffectMasoGuardSkill(false, buffSkill.mesoGuardLv);
+                    buffSkill.EffectMasoGuardSkill(false, SkillLvManager.mesoGuardLv);
                     break;
                 case 16://메이플 용사
-                    buffSkill.EffextMapleWarriorSkill(false, buffSkill.mapleWarriorLv);
+                    buffSkill.EffextMapleWarriorSkill(false, SkillLvManager.mapleWarriorLv);
                     break;
                 default:
                     break;
             }
+            buffSkillIng[buffIdx] = false;
             statUIObj.ShowCharacterBasicStat();
             statUIObj.ShowCharacterDetailStat();
             gameObject.SetActive(false);

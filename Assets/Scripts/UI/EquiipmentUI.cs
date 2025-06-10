@@ -109,8 +109,8 @@ public class EquiipmentUI : MonoBehaviour
             PlayerManager.PlayerInstance.PlayerMagicArmor -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMagicArmor;
 
             //이동 관련
-            PlayerManager.PlayerInstance.PlayerMoveSpeed -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMoveSpeed;
-            PlayerManager.PlayerInstance.JumpForce -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addJumpSpeed;
+            PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMoveSpeed;
+            PlayerManager.PlayerInstance.JumpForceRate -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addJumpSpeed;
 
             //명중, 회피
             PlayerManager.PlayerInstance.PlayerAddAccurary -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAccuracy;
@@ -140,8 +140,8 @@ public class EquiipmentUI : MonoBehaviour
         PlayerManager.PlayerInstance.PlayerMagicArmor += equipmentOption.addMagicArmor;
 
         //이동 관련
-        PlayerManager.PlayerInstance.PlayerMoveSpeed += equipmentOption.addMoveSpeed;
-        PlayerManager.PlayerInstance.JumpForce += equipmentOption.addJumpSpeed;
+        PlayerManager.PlayerInstance.PlayerMoveSpeedRate += equipmentOption.addMoveSpeed;
+        PlayerManager.PlayerInstance.JumpForceRate += equipmentOption.addJumpSpeed;
 
         //명중, 회피
         PlayerManager.PlayerInstance.PlayerAddAccurary += equipmentOption.addAccuracy;
@@ -213,8 +213,8 @@ public class EquiipmentUI : MonoBehaviour
         PlayerManager.PlayerInstance.PlayerMagicArmor -= equipmentOption.addMagicArmor;
 
         //이동 관련
-        PlayerManager.PlayerInstance.PlayerMoveSpeed -= equipmentOption.addMoveSpeed;
-        PlayerManager.PlayerInstance.JumpForce -= equipmentOption.addJumpSpeed;
+        PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= equipmentOption.addMoveSpeed;
+        PlayerManager.PlayerInstance.JumpForceRate -= equipmentOption.addJumpSpeed;
 
         //명중, 회피
         PlayerManager.PlayerInstance.PlayerAddAccurary -= equipmentOption.addAccuracy;

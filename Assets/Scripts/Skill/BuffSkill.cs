@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class BuffSkill
 {
-    public int hasteLv = 20;
-    public int boosterLv = 20;
-    public int shadowPartnerLv = 30;
-    public int mesoUpLv = 20;
-    public int mesoGuardLv = 20;
-    public int mapleWarriorLv = 20;
-
     /// <summary>
     /// 버프 스킬 업그레이드
     /// </summary>
@@ -19,25 +12,25 @@ public class BuffSkill
         switch (skillName)
         {
             case "헤이스트":
-                hasteLv = skillLv;
+                SkillLvManager.hasteLv = skillLv;
                 break;
             case "자벨린 부스터":
-                boosterLv = skillLv;
+                SkillLvManager.boosterLv = skillLv;
                 break;
             case "대거 부스터":
-                boosterLv = skillLv;
+                SkillLvManager.boosterLv = skillLv;
                 break;
             case "쉐도우파트너":
-                shadowPartnerLv = skillLv;
+                SkillLvManager.shadowPartnerLv = skillLv;
                 break;
             case "메소업":
-                mesoUpLv = skillLv;
+                SkillLvManager.mesoUpLv = skillLv;
                 break;
             case "메소가드":
-                mesoGuardLv = skillLv;
+                SkillLvManager.mesoGuardLv = skillLv;
                 break;
             case "메이플 용사":
-                mapleWarriorLv = skillLv;
+                SkillLvManager.mapleWarriorLv = skillLv;
                 break;
             default:
                 break;

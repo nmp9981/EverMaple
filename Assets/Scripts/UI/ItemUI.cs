@@ -3,9 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using static UnityEditor.Progress;
-using System.Linq;
-using System;
 
 //아이템 탭 메뉴
 enum ItemTab

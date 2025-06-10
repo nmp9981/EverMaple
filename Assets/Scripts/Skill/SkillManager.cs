@@ -9,6 +9,16 @@ public enum AttackRange
     Far,
     Count
 }
+
+public static class SkillLvManager
+{
+    public static int hasteLv;
+    public static int boosterLv;
+    public static int shadowPartnerLv;
+    public static int mesoUpLv;
+    public static int mesoGuardLv;
+    public static int mapleWarriorLv;
+}
 public class SkillManager : MonoBehaviour
 {
     GameObject player;

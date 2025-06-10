@@ -19,6 +19,10 @@ public class PlayerInfo : MonoBehaviour
     {
         if (PlayerManager.PlayerInstance.PlayerCurExp >= PlayerManager.PlayerInstance.PlayerRequireExp)
         {
+            //¸¸·¾
+            if (PlayerManager.PlayerInstance.PlayerLV >= PlayerManager.PlayerInstance.PlayerMaxLV)
+                return;
+            
             //·¹º§¾÷
             PlayerManager.PlayerInstance.PlayerCurExp -= PlayerManager.PlayerInstance.PlayerRequireExp;
             PlayerManager.PlayerInstance.PlayerLV += 1;

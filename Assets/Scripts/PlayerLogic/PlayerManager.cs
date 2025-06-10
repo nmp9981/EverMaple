@@ -48,6 +48,7 @@ public class PlayerManager : MonoBehaviour
 
     //플레이어 기본 정보
     int playerLV = 10;
+    int playerMaxLV = 100;
     string playerJob = "Night Load";
     string playerName = "Aruru";
     int playerCurHP;
@@ -139,6 +140,7 @@ public class PlayerManager : MonoBehaviour
 
     #region 플레이어 기본 정보
     public int PlayerLV { get { return playerLV; } set { playerLV = value; } }
+    public int PlayerMaxLV { get { return playerMaxLV; } set { playerMaxLV = value; } }
     public string PlayerJob { get { return playerJob; } set { playerJob = value; } }
     public string PlayerName { get { return playerName; } set { playerName = value; } }
     public int PlayerCurHP { get { return playerCurHP; } set {playerCurHP = value; } }

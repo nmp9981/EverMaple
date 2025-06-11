@@ -34,7 +34,8 @@ public class PlayerHit : MonoBehaviour
             }
 
             //몬스터 공격력
-            int monsterAttackPower = collision.gameObject.GetComponent<MonsterInfo>().monsterAttackPower;
+            MonsterInfo mobInfo = collision.gameObject.GetComponent<MonsterInfo>();
+            int monsterAttackPower = mobInfo.monsterAttackPower;
             int finalMonsterPower = Random.Range(monsterAttackPower * 900, monsterAttackPower * 1100) / 1000;
 
             //피격데미지 감소
@@ -53,8 +54,14 @@ public class PlayerHit : MonoBehaviour
                 }
             }
 
-            DecreasePlayerHP(finalMonsterPower);
-            PlayerAttackCommon.ShowDamageAsSkin(finalMonsterPower,this.gameObject);
+            //미스 판정
+            if (PlayerAttackCommon.IsHitMiss(mobInfo.monsterLv))
+                PlayerAttackCommon.ShowMissHitDamageAsSkin(this.gameObject);
+            else
+            {
+                DecreasePlayerHP(finalMonsterPower);
+                PlayerAttackCommon.ShowDamageAsSkin(finalMonsterPower, this.gameObject);
+            }
             curHitTime = 0;
         }
     }

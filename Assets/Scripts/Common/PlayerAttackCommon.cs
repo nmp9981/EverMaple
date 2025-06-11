@@ -103,6 +103,39 @@ public static class PlayerAttackCommon
     }
 
     /// <summary>
+    /// 공격 데미지 미스 판정
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsAttackMiss()
+    {
+        int diffLv = 0;
+        int totalAvoid = PlayerManager.PlayerInstance.PlayerAvoid + PlayerManager.PlayerInstance.PlayerAddAvoid;
+        int accRate = 0;
+        int avoidRan = Random.Range(0, 100);
+
+        if (accRate >= avoidRan)
+            return true;
+        return false;
+    }
+
+    /// <summary>
+    /// 피격 데미지 미스 판정
+    /// 플레이어의 회피율에만 영향 받음
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsHitMiss(int mobLv)
+    {
+        int diffLV = Mathf.Max(0, mobLv - PlayerManager.PlayerInstance.PlayerLV);
+        int totalAvoid = PlayerManager.PlayerInstance.PlayerAvoid + PlayerManager.PlayerInstance.PlayerAddAvoid;
+        int avoidRate = 900+diffLV-totalAvoid/2;
+        int avoidRan = Random.Range(0,1000);
+
+        if (avoidRate <= avoidRan)
+            return true;
+        return false;
+    }
+
+    /// <summary>
     /// 공격 데미지 보이기
     /// </summary>
     /// <param name="Damage">데미지</param>
@@ -119,6 +152,20 @@ public static class PlayerAttackCommon
             GameObject damImg = DamageObjectFulling.DamageSkinInstance.MakeObj((damageString[i] - '0'));
             damImg.transform.position = damageStartPos + Vector3.right * DamageObjectFulling.DamageSkinInstance.damageImage[0].bounds.size.x * i * 0.5f;
         }
+        InputKeyManager.orderSortNum += 1;
+    }
+    /// <summary>
+    /// 공격 미스 데미지 보이기
+    /// </summary>
+    /// <param name="Damage">데미지</param>
+    /// <param name="playerPos">플레이어 위치</param>
+    public static void ShowMissAttackDamageAsSkin(GameObject monsterPos, int hitNum)
+    {
+        Bounds bounds = monsterPos.GetComponent<BoxCollider2D>().bounds;
+        Vector3 damageStartPos = bounds.center + Vector3.up * (hitNum * DamageObjectFulling.DamageSkinInstance.damageImage[0].bounds.size.y * 0.5f + 0.5f);
+
+        GameObject damImg = DamageObjectFulling.DamageSkinInstance.MakeObj(30);
+        damImg.transform.position = damageStartPos;
         InputKeyManager.orderSortNum += 1;
     }
 
@@ -158,6 +205,21 @@ public static class PlayerAttackCommon
             GameObject damImg = DamageObjectFulling.DamageSkinInstance.MakeObj((damageString[i] - '0') + 20);
             damImg.transform.position = damageStartPos + Vector3.right * DamageObjectFulling.DamageSkinInstance.hitDamageImage[0].bounds.size.x * i * 1.5f;
         }
+        InputKeyManager.orderSortNum += 1;
+    }
+
+    /// <summary>
+    /// 피격 미스 데미지 보이기
+    /// </summary>
+    /// <param name="Damage">데미지</param>
+    /// <param name="playerPos">플레이어 위치</param>
+    public static void ShowMissHitDamageAsSkin(GameObject playerPos)
+    {
+        Bounds bounds = playerPos.GetComponent<BoxCollider2D>().bounds;
+        Vector3 damageStartPos = bounds.center + Vector3.up * (bounds.size.y * 0.5f + 0.5f);
+
+        GameObject damImg = DamageObjectFulling.DamageSkinInstance.MakeObj(31);
+        damImg.transform.position = damageStartPos;
         InputKeyManager.orderSortNum += 1;
     }
 

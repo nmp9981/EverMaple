@@ -60,12 +60,18 @@ public class MonsterMagicAttack : MonoBehaviour
     {
         if (collision.gameObject.tag == playerTag)
         {
-            //피격
-            int hitDamage = CalDamage();
-            playerHit.DecreasePlayerHP(hitDamage);
+            //미스 판정
+            if (PlayerAttackCommon.IsHitMiss(80))
+                PlayerAttackCommon.ShowMissHitDamageAsSkin(targetPlayer);
+            else
+            {
+                //피격
+                int hitDamage = CalDamage();
+                playerHit.DecreasePlayerHP(hitDamage);
 
-            //데미지 띄우기
-            PlayerAttackCommon.ShowDamageAsSkin(hitDamage, targetPlayer);
+                //데미지 띄우기
+                PlayerAttackCommon.ShowDamageAsSkin(hitDamage, targetPlayer);
+            }
 
             //투사체 파괴
             DestroyObject();

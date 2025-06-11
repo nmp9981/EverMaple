@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.AudioSettings;
 
 public static class PlayerAttackCommon
 {
@@ -106,16 +107,26 @@ public static class PlayerAttackCommon
     /// 공격 데미지 미스 판정
     /// </summary>
     /// <returns></returns>
-    public static bool IsAttackMiss()
+    public static bool IsAttackMiss(int mobLv, int mobAvoid)
     {
-        int diffLv = 0;
-        int totalAvoid = PlayerManager.PlayerInstance.PlayerAvoid + PlayerManager.PlayerInstance.PlayerAddAvoid;
-        int accRate = 0;
-        int avoidRan = Random.Range(0, 100);
+        int diffLv = Mathf.Max(0, mobLv - PlayerManager.PlayerInstance.PlayerLV);
+        int totalPlayerAcc = PlayerManager.PlayerInstance.PlayerAccurary + PlayerManager.PlayerInstance.PlayerAddAccurary;
 
-        if (accRate >= avoidRan)
-            return true;
-        return false;
+        //요구 명중치
+        int requireAcc = (diffLv*mobAvoid*2)/15 + (mobAvoid*11)/3;
+        
+        //확정 공격
+        if (totalPlayerAcc >= requireAcc)
+            return false;
+
+        //명중 확률 구하기
+        int accRate = ((totalPlayerAcc * 2 - requireAcc) * 100) / totalPlayerAcc;
+        int accRan = Random.Range(0, 100);
+        if (accRate >= accRan)
+            return false;
+
+        //최종 미스
+        return true;
     }
 
     /// <summary>
@@ -267,6 +278,13 @@ public static class PlayerAttackCommon
     {
         //몬스터 정보
         MonsterInfo mobInfo = nearMob.GetComponent<MonsterInfo>();
+
+        //미스 판정
+        if (IsAttackMiss(mobInfo.monsterLv, 10))
+        {
+            ShowMissAttackDamageAsSkin(nearMob, hitNum);
+            return;
+        }
 
         //공격 모션과 데미지
         int maxAttackDamage = (PlayerManager.PlayerInstance.PlayerStatAttack * skillCoefficient) / 100;

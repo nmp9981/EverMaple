@@ -9,10 +9,11 @@ public class DamageObjectFulling : MonoBehaviour
     public List<Sprite> damageImage = new List<Sprite>();
     public List<Sprite> criticalDamageImage = new List<Sprite>();
     public List<Sprite> hitDamageImage = new List<Sprite>();
+    public List<Sprite> missDamageImage = new List<Sprite>();
 
     //프리팹 준비
     const int blockMaxCount = 9;
-    const int blockKinds = 30;
+    const int blockKinds = 32;
     public GameObject[] blockPrefabs;
 
     //오브젝트 배열
@@ -25,6 +26,8 @@ public class DamageObjectFulling : MonoBehaviour
 
         blocks = new GameObject[blockKinds][]
         {
+             new GameObject[blockMaxCount],
+             new GameObject[blockMaxCount],
              new GameObject[blockMaxCount],
              new GameObject[blockMaxCount],
              new GameObject[blockMaxCount],

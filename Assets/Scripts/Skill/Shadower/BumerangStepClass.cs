@@ -73,6 +73,14 @@ public class BumerangStepClass : MonoBehaviour
         if (collision.tag == monsterTag)
         {
             MonsterInfo mobInfo = collision.gameObject.GetComponent<MonsterInfo>();
+
+            //미스 판정
+            if (PlayerAttackCommon.IsAttackMiss(mobInfo.monsterLv, mobInfo.monsterAvoid))
+            {
+                PlayerAttackCommon.ShowMissAttackDamageAsSkin(mobInfo.gameObject, hitNum);
+                return;
+            }
+
             int hitDamage = CalDamage(mobInfo);
             //크리티컬 판정
             bool isCri = PlayerAttackCommon.IsCritical();
@@ -113,6 +121,14 @@ public class BumerangStepClass : MonoBehaviour
         for(int i = hitMonters.Count - 1; i >= 0; i--)
         {
             MonsterInfo mobInfo = hitMonters[i].GetComponent<MonsterInfo>();
+            
+            //미스 판정
+            if (PlayerAttackCommon.IsAttackMiss(mobInfo.monsterLv, mobInfo.monsterAvoid))
+            {
+                PlayerAttackCommon.ShowMissAttackDamageAsSkin(mobInfo.gameObject, hitNum);
+                return;
+            }
+
             int hitDamage = CalDamage(mobInfo);
             //크리티컬 판정
             bool isCri = PlayerAttackCommon.IsCritical();
@@ -148,7 +164,7 @@ public class BumerangStepClass : MonoBehaviour
         //데미지 감소
         int diffLV = Mathf.Max(0, mobInfo.monsterLv - PlayerManager.PlayerInstance.PlayerLV);
         int decreaseDamage = (diffLV * damage) / 100;
-        damage = damage - decreaseDamage;
+        damage =Mathf.Max(1, damage - decreaseDamage - mobInfo.monsterArmor);
         return damage;
     }
     /// <summary>

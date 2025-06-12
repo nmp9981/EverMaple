@@ -280,7 +280,7 @@ public static class PlayerAttackCommon
         MonsterInfo mobInfo = nearMob.GetComponent<MonsterInfo>();
 
         //미스 판정
-        if (IsAttackMiss(mobInfo.monsterLv, 10))
+        if (IsAttackMiss(mobInfo.monsterLv, mobInfo.monsterAvoid))
         {
             ShowMissAttackDamageAsSkin(nearMob, hitNum);
             return;
@@ -294,7 +294,7 @@ public static class PlayerAttackCommon
         //데미지 감소
         int diffLV = Mathf.Max(0, mobInfo.monsterLv - PlayerManager.PlayerInstance.PlayerLV);
         int decreaseDamage = (diffLV * attackDamage) / 100;
-        attackDamage = attackDamage - decreaseDamage;
+        attackDamage =Mathf.Max(1, attackDamage - decreaseDamage - mobInfo.monsterArmor);
 
         //크리티컬 판정
         bool isCri = IsCritical();

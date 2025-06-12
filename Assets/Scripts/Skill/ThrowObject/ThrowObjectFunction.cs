@@ -75,6 +75,14 @@ public class ThrowObjectFunction : MonoBehaviour
         if (dist < judgeCollideDist)
         {
             MonsterInfo mobInfo = targetMob.GetComponent<MonsterInfo>();
+
+            //미스 판정
+            if (PlayerAttackCommon.IsAttackMiss(mobInfo.monsterLv, mobInfo.monsterAvoid))
+            {
+                PlayerAttackCommon.ShowMissAttackDamageAsSkin(mobInfo.gameObject, hitNum);
+                return;
+            }
+
             int hitDamage = CalDamage(mobInfo,throwAttack);
             //크리티컬 판정
             bool isCri = PlayerAttackCommon.IsCritical();
@@ -117,7 +125,7 @@ public class ThrowObjectFunction : MonoBehaviour
         //데미지 감소
         int diffLV = Mathf.Max(0, mobInfo.monsterLv - PlayerManager.PlayerInstance.PlayerLV);
         int decreaseDamage = (diffLV * damage)/100;
-        damage = damage - decreaseDamage;
+        damage = Mathf.Max(1, damage - decreaseDamage - mobInfo.monsterArmor);
         return damage;
     }
     /// <summary>

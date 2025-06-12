@@ -12,6 +12,9 @@ public class MonsterInfo : MonoBehaviour
     public int monsterMeso;
     public int monsterAttackPower;
 
+    public int monsterArmor;//방어력
+    public int monsterAvoid;//회피율
+
     public int monsterCurHP;
 
     [SerializeField]

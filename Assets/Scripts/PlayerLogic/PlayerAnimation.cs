@@ -67,8 +67,8 @@ public class PlayerAnimation : MonoBehaviour
     }
     public static void LevelUPAnim()
     {
-        animator.transform.position += Vector3.up * 1.5f;
+        animator.transform.position += Vector3.up * 3f;
         animator.Play("LevelUP");
-        animator.transform.position -= Vector3.up * 1.5f;
+        animator.transform.position -= Vector3.up * 3f;
     }
 }

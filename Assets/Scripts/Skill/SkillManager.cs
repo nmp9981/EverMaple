@@ -85,7 +85,7 @@ public class SkillManager : MonoBehaviour
 
         for (int i = 0; i < hitNum; i++)
         {
-            ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(9).GetComponent<ThrowObjectFunction>();
+            ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(PlayerManager.PlayerInstance.ShootDragNum).GetComponent<ThrowObjectFunction>();
             throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
             throwObj.startPos = throwObj.transform.position;
             throwObj.hitNum = i;
@@ -125,7 +125,7 @@ public class SkillManager : MonoBehaviour
 
         for (int i = 0; i < hitNum; i++)
         {
-            ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(0).GetComponent<ThrowObjectFunction>();
+            ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(PlayerManager.PlayerInstance.ShootDragNum).GetComponent<ThrowObjectFunction>();
             throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
             throwObj.startPos = throwObj.transform.position;
             throwObj.hitNum = i;

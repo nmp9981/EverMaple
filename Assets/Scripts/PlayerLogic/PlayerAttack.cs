@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
         playerBound = GetComponent<BoxCollider2D>().bounds;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        PlayerManager.PlayerInstance.PlayerStatAttack = 43;
+        PlayerManager.PlayerInstance.PlayerStatAttack = 40;
     }
 
     void Update()

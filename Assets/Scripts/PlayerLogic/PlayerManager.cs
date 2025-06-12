@@ -73,7 +73,7 @@ public class PlayerManager : MonoBehaviour
 
 
     int weaponConst = 36;//무기 상수
-    int playerAttack = 15;//플레이어 공격력
+    int playerAttack = 10;//플레이어 공격력
     int playerStatAttack;//플레이어 스탯 공격력
     int workmanship = 10;//숙련도
     int criticalProbably = 0;//크리티컬 확률
@@ -103,6 +103,16 @@ public class PlayerManager : MonoBehaviour
     bool isPlayerDie = false;//캐릭터가 사망했는가?
 
     string curMapName = "Map0";
+
+    int shootDragNum = 0;//던질 표창의 번호
+    public int[] dragAttackPower = new int[10]//표창 공격력
+    {
+        15,17,17,19,19,21,21,23,25,27
+    };
+    public int[] dragUpgradeLV = new int[11]//표창 업그레이드 레벨
+    {
+        10,15,20,25,30,35,40,50,70,85,111
+    };
 
     public int[] haveConsumeItem = new int[30];
 
@@ -199,5 +209,10 @@ public class PlayerManager : MonoBehaviour
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }
     #endregion
+
+    #region 표창 관련
+    public int ShootDragNum { get { return shootDragNum; } set { shootDragNum = value; } }    
+    #endregion
+
     #endregion
 }

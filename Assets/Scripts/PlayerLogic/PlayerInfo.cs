@@ -49,8 +49,22 @@ public class PlayerInfo : MonoBehaviour
             //SP 증가
             PlayerManager.PlayerInstance.PlayerSkillPoint += 3;
 
+            //표창 업그레이드
+            UpgradeDrag();
+
             //레벨업 모션
             PlayerAnimation.LevelUPAnim();
+        }
+    }
+
+    /// <summary>
+    /// 표창 업그레이드
+    /// </summary>
+    void UpgradeDrag()
+    {
+        if(PlayerManager.PlayerInstance.PlayerLV >= PlayerManager.PlayerInstance.dragUpgradeLV[PlayerManager.PlayerInstance.ShootDragNum+1])
+        {
+            PlayerManager.PlayerInstance.ShootDragNum += 1;
         }
     }
 }

@@ -1,14 +1,13 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class EquiipmentUI : MonoBehaviour
 {
     //각 장비 유형별 이미지 위치 지정
     public List<Image> equipmentTypeImage = new List<Image>();
-    
+    public List<Sprite> dragImageList = new List<Sprite>();
+
     [SerializeField]
     StatUI statUI;
 
@@ -295,5 +294,13 @@ public class EquiipmentUI : MonoBehaviour
         {
             MinusEquipmentOption(equipmentOption);
         }
+    }
+    /// <summary>
+    /// 표창 이미지 변경
+    /// </summary>
+    /// <param name="dragNum"></param>
+    public void ChangeDragImage(int dragNum)
+    {
+        equipmentTypeImage[8].sprite = dragImageList[dragNum];
     }
 }

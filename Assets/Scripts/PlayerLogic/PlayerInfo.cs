@@ -1,9 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
     [SerializeField]
     PlayerInfoUI playerInfoUI;//플레이어 UI
+    [SerializeField]
+    EquiipmentUI equiipmentUI;//장비 UI
 
     public void GetPlayerExp(int getExp)
     {
@@ -35,8 +39,10 @@ public class PlayerInfo : MonoBehaviour
             playerInfoUI.ShowPlayerEXPBar();
 
             //HP,MP
-            PlayerManager.PlayerInstance.PlayerMaxHP += 20;
-            PlayerManager.PlayerInstance.PlayerMaxMP += 15;
+            int increaseHP = Random.Range(20, 25);
+            int increaseMP = Random.Range(14, 17) + (PlayerManager.PlayerInstance.PlayerINT+PlayerManager.PlayerInstance.PlayerAddINT)/10;
+            PlayerManager.PlayerInstance.PlayerMaxHP += increaseHP;
+            PlayerManager.PlayerInstance.PlayerMaxMP += increaseMP;
 
             PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
             PlayerManager.PlayerInstance.PlayerCurMP = PlayerManager.PlayerInstance.PlayerMaxMP;
@@ -65,6 +71,7 @@ public class PlayerInfo : MonoBehaviour
         if(PlayerManager.PlayerInstance.PlayerLV >= PlayerManager.PlayerInstance.dragUpgradeLV[PlayerManager.PlayerInstance.ShootDragNum+1])
         {
             PlayerManager.PlayerInstance.ShootDragNum += 1;
+            equiipmentUI.ChangeDragImage(PlayerManager.PlayerInstance.ShootDragNum);
         }
     }
 }

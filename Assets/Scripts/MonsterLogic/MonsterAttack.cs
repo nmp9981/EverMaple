@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,6 +57,12 @@ public class MonsterInfo : MonoBehaviour
     PlayerInfo playerInfo;
     MonsterSpawn monsterSpawn;
     SpriteRenderer spriteRenderer;
+
+    //드랍 장비 아이템
+    [SerializeField]
+    GameObject dropEquipmentItemPrefab;
+    [SerializeField]
+    List<string> dropItemNames = new List<string>();
 
     //사망 판정용
     private int dieCount;
@@ -167,7 +174,16 @@ public class MonsterInfo : MonoBehaviour
     /// </summary>
     void ItemDrop()
     {
-
+        for(int i = 0; i < dropItemNames.Count; i++)
+        {
+            int dropRan = Random.Range(0, 10000);
+            if(dropRan < 9000)
+            {
+                GameObject dropEquipment = Instantiate(dropEquipmentItemPrefab);
+                dropEquipment.transform.position = this.gameObject.transform.position;
+                dropEquipment.GetComponent<MonsterDropItem>().itemName = dropItemNames[i];
+            }
+        }
     }
 
     /// <summary>

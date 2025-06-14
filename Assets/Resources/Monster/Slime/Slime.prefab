@@ -175,6 +175,8 @@ MonoBehaviour:
   - "\uD2F0\uD0C4\uC988"
   - "\uC2DC\uD504 \uD6C4\uB4DC"
   - "\uAC00\uC774\uC988"
+  dropConsumeItemPrefab: {fileID: 7748565253450076650, guid: 1a7544cb6cf588b4b9e221ff62ccf5b4, type: 3}
+  dropConsumeItemIndexList: 000000000000000001000000
 --- !u!50 &6262028703081101666
 Rigidbody2D:
   serializedVersion: 5

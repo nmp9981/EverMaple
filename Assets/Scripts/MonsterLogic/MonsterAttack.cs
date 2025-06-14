@@ -64,6 +64,12 @@ public class MonsterInfo : MonoBehaviour
     [SerializeField]
     List<string> dropItemNames = new List<string>();
 
+    //드랍 소비 아이템
+    [SerializeField]
+    GameObject dropConsumeItemPrefab;
+    [SerializeField]
+    List<int> dropConsumeItemIndexList = new List<int>();
+
     //사망 판정용
     private int dieCount;
 
@@ -174,14 +180,26 @@ public class MonsterInfo : MonoBehaviour
     /// </summary>
     void ItemDrop()
     {
+        //정비 드랍률은 1%
         for(int i = 0; i < dropItemNames.Count; i++)
         {
             int dropRan = Random.Range(0, 10000);
-            if(dropRan < 9000)
+            if(dropRan <= 100)
             {
                 GameObject dropEquipment = Instantiate(dropEquipmentItemPrefab);
                 dropEquipment.transform.position = this.gameObject.transform.position+Vector3.right*i;
                 dropEquipment.GetComponent<MonsterDropItem>().itemName = dropItemNames[i];
+            }
+        }
+        //소비 아이템 드랍
+        for (int i = 0; i < dropConsumeItemIndexList.Count; i++)
+        {
+            int dropRan = Random.Range(0, 10000);
+            if (dropRan <= 9000)
+            {
+                GameObject dropEquipment = Instantiate(dropConsumeItemPrefab);
+                dropEquipment.transform.position = this.gameObject.transform.position + Vector3.left * i;
+                dropEquipment.GetComponent<MonsterDropConsumeItem>().itemIndex = dropConsumeItemIndexList[i];
             }
         }
     }

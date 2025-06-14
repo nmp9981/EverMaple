@@ -187,7 +187,7 @@ public class PlayerInfoUI : MonoBehaviour
     /// </summary>
     void DeleteMessage()
     {
-        getMessageCurCount = Mathf.Max(0, getMessageCurCount-1);
+        getMessageCurCount = Mathf.Max(0, Mathf.Min(4, getMessageCurCount-1));
         getMessageList[getMessageCurCount].text = string.Empty;
     }
 }

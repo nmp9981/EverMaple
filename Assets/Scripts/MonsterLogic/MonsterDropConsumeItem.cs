@@ -4,6 +4,8 @@ public class MonsterDropConsumeItem : MonoBehaviour
 {
     string playerTag = "Player";
 
+    PlayerInfoUI playerInfoUI;
+
     public int itemIndex;
     public int itemCount;
     public SpriteRenderer itemImage;
@@ -11,6 +13,7 @@ public class MonsterDropConsumeItem : MonoBehaviour
     private void Awake()
     {
         itemImage = GetComponent<SpriteRenderer>();
+        playerInfoUI = GameObject.Find("UserInfo").GetComponent<PlayerInfoUI>();
     }
     private void Start()
     {
@@ -38,6 +41,8 @@ public class MonsterDropConsumeItem : MonoBehaviour
                 curConsumeItem.count += itemCount;
                 ItemManager.itemInstance.consumeItems[itemIndex] = curConsumeItem;
             }
+
+            playerInfoUI.ShowGetItemMessage(ItemManager.itemInstance.consumeItems[itemIndex].name);
             Destroy(gameObject);
         }
     }

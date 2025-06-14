@@ -5,12 +5,15 @@ public class MonsterDropItem : MonoBehaviour
 {
     string playerTag = "Player";
 
+    PlayerInfoUI playerInfoUI;
+
     public string itemName;
     public SpriteRenderer itemImage;
 
     private void Awake()
     {
         itemImage = GetComponent<SpriteRenderer>();
+        playerInfoUI = GameObject.Find("UserInfo").GetComponent<PlayerInfoUI>();
     }
     private void Start()
     {
@@ -27,6 +30,7 @@ public class MonsterDropItem : MonoBehaviour
             equipmentItem.name = itemName;
 
             ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
+            playerInfoUI.ShowGetItemMessage(itemName);
             Destroy(gameObject);
         }
     }

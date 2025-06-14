@@ -195,7 +195,7 @@ public class MonsterInfo : MonoBehaviour
         for (int i = 0; i < dropConsumeItemIndexList.Count; i++)
         {
             int dropRan = Random.Range(0, 10000);
-            if (dropRan <= 9000)
+            if (dropRan <= 1500)
             {
                 GameObject dropEquipment = Instantiate(dropConsumeItemPrefab);
                 dropEquipment.transform.position = this.gameObject.transform.position + Vector3.left * i;

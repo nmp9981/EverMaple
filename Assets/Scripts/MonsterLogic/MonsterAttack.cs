@@ -180,7 +180,7 @@ public class MonsterInfo : MonoBehaviour
             if(dropRan < 9000)
             {
                 GameObject dropEquipment = Instantiate(dropEquipmentItemPrefab);
-                dropEquipment.transform.position = this.gameObject.transform.position;
+                dropEquipment.transform.position = this.gameObject.transform.position+Vector3.right*i;
                 dropEquipment.GetComponent<MonsterDropItem>().itemName = dropItemNames[i];
             }
         }

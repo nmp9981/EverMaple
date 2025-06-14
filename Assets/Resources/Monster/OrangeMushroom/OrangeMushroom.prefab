@@ -127,6 +127,8 @@ MonoBehaviour:
   dropEquipmentItemPrefab: {fileID: 7748565253450076650, guid: 2363dad048e37114ca7a9e3a25341dfe, type: 3}
   dropItemNames:
   - "\uAC00\uB2C8\uC5B4"
+  - "\uAE30\uAC04\uD2F1"
+  - "\uCE90\uC2A4\uD130\uC2A4"
 --- !u!61 &-4217758799632884272
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -247,6 +247,10 @@ public class InputKeyManager : MonoBehaviour
         {
             ItemManager.itemInstance.UseMPPosion(ItemManager.itemInstance.UseMPPosionIndex, ItemManager.itemInstance.HealMPAmount, true);
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ItemManager.itemInstance.UseElixerPosion(ItemManager.itemInstance.UseElixerPosionIndex);
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

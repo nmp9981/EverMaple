@@ -51,7 +51,7 @@ public class ItemBuff : MonoBehaviour
             case 0://전사 물약
                 if (!buffSkillIng[buffIdx])
                 {
-                    PlayerManager.PlayerInstance.PlayerAttack += 10;
+                    PlayerManager.PlayerInstance.PlayerAttack += 5;
                     buffSkillIng[buffIdx] = true;
                 }
                 break;
@@ -80,6 +80,34 @@ public class ItemBuff : MonoBehaviour
                 if (!buffSkillIng[buffIdx])
                 {
                     PlayerManager.PlayerInstance.PlayerMoveSpeedRate += 10f;
+                    buffSkillIng[buffIdx] = true;
+                }
+                break;
+            case 5://현자 물약
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerMagicPower += 10;
+                    buffSkillIng[buffIdx] = true;
+                }
+                break;
+            case 6://고목나무 수액
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerMagicArmor += 10;
+                    buffSkillIng[buffIdx] = true;
+                }
+                break;
+            case 7://드레이크 피
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerAttack += 8;
+                    buffSkillIng[buffIdx] = true;
+                }
+                break;
+            case 8://드레이크의 고기
+                if (!buffSkillIng[buffIdx])
+                {
+                    PlayerManager.PlayerInstance.PlayerPhysicsArmor += 10;
                     buffSkillIng[buffIdx] = true;
                 }
                 break;
@@ -175,6 +203,18 @@ public class ItemBuff : MonoBehaviour
                     break;
                 case 4://이속 물약
                     PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= 10;
+                    break;
+                case 5://현자 물약
+                    PlayerManager.PlayerInstance.PlayerMagicPower -= 10;
+                    break;
+                case 6://고목나무의 수액
+                    PlayerManager.PlayerInstance.PlayerMagicArmor -= 10;
+                    break;
+                case 7://드레이크의 피
+                    PlayerManager.PlayerInstance.PlayerAttack -= 8;
+                    break;
+                case 8://드레이크의 고기
+                    PlayerManager.PlayerInstance.PlayerPhysicsArmor -= 10;
                     break;
                 case 10://헤이스트
                     PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= (2 * SkillLvManager.hasteLv);

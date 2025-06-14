@@ -230,25 +230,24 @@ public class ItemManager : MonoBehaviour
     }
     /// <summary>
     /// 엘릭서 등록
-    /// TODO : 아이템 드랍 구현 후 작성
     /// </summary>
     public void EnrollElixerPosion(string itemName)
     {
-        return;
-
         Sprite posionSprite = null;
         string posionCountText = string.Empty;
         switch (itemName)
         {
             case "엘릭서":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[0].sprite;
-                posionCountText = consumeItems[0].count.ToString();
+                UseElixerPosionIndex = 19;
+                posionSprite = consumeItems[UseElixerPosionIndex].sprite;
+                posionCountText = consumeItems[UseElixerPosionIndex].count.ToString();
                 break;
             case "파워엘릭서":
                 //이미지, 남은 개수 표시
-                posionSprite = consumeItems[1].sprite;
-                posionCountText = consumeItems[1].count.ToString();
+                UseElixerPosionIndex = 20;
+                posionSprite = consumeItems[UseElixerPosionIndex].sprite;
+                posionCountText = consumeItems[UseElixerPosionIndex].count.ToString();
                 break;         
             default:
                 break;
@@ -286,14 +285,29 @@ public class ItemManager : MonoBehaviour
             case "이속물약":
                 UseBuffPosionIndex = 13;
                 break;
+            case "현자물약":
+                UseBuffPosionIndex = 15;
+                break;
+            case "고목나무수액":
+                UseBuffPosionIndex = 16;
+                break;
+            case "드레이크피":
+                UseBuffPosionIndex = 17;
+                break;
+            case "드레이크의고기":
+                UseBuffPosionIndex = 18;
+                break;
             default:
                 break;
         }
         //이미지, 남은 개수 표시
-        if(UseBuffPosionIndex >=9 && UseBuffPosionIndex <= 13)
+        if(UseBuffPosionIndex >=9 && UseBuffPosionIndex <= 18)
         {
-            posionSprite = consumeItems[UseBuffPosionIndex].sprite;
-            posionCountText = consumeItems[UseBuffPosionIndex].count.ToString();
+            if (UseBuffPosionIndex != 14)
+            {
+                posionSprite = consumeItems[UseBuffPosionIndex].sprite;
+                posionCountText = consumeItems[UseBuffPosionIndex].count.ToString();
+            }
         }
         
         //버프 물약이 아님
@@ -370,6 +384,24 @@ public class ItemManager : MonoBehaviour
             case "마을귀환주문서":
                 UseMoveVillagePosion();
                 break;
+            case "현자물약":
+                UseBuffPosion(15, false);
+                break;
+            case "고목나무수액":
+                UseBuffPosion(16, false);
+                break;
+            case "드레이크피":
+                UseBuffPosion(17, false);
+                break;
+            case "드레이크의고기":
+                UseBuffPosion(18, false);
+                break;
+            case "엘릭서":
+                UseElixerPosion(19);
+                break;
+            case "파워엘릭서":
+                UseElixerPosion(20);
+                break;
             default:
                 break;
         }
@@ -432,6 +464,41 @@ public class ItemManager : MonoBehaviour
         playerInfoUI.ShowPlayerMPBar();
         itemUI.ShowConsumeInItemInventory();
     }
+
+    /// <summary>
+    /// 엘릭서 사용
+    /// </summary>
+    public void UseElixerPosion(int itemIndex)
+    {
+        //포션 미등록
+        if (!consumeItems.ContainsKey(itemIndex))
+            return;
+
+        ConsumeItem consumeItem = consumeItems[itemIndex];
+        //포션이 없음
+        if (consumeItem.count < 1)
+            return;
+
+        //포션 하나 사용
+        consumeItem.count -= 1;
+        consumeItems[itemIndex] = consumeItem;
+        keySlotImage[1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = consumeItem.count.ToString();
+
+        int hpAmount = (itemIndex==19)? PlayerManager.PlayerInstance.PlayerMaxHP/2:PlayerManager.PlayerInstance.PlayerMaxHP;
+        int mpAmount = (itemIndex == 19) ? PlayerManager.PlayerInstance.PlayerMaxMP / 2 : PlayerManager.PlayerInstance.PlayerMaxMP;
+
+        //회복
+        PlayerManager.PlayerInstance.PlayerCurHP
+           = Mathf.Min(PlayerManager.PlayerInstance.PlayerMaxHP, PlayerManager.PlayerInstance.PlayerCurHP + hpAmount);
+        PlayerManager.PlayerInstance.PlayerCurMP
+            = Mathf.Min(PlayerManager.PlayerInstance.PlayerMaxMP, PlayerManager.PlayerInstance.PlayerCurMP + mpAmount);
+
+        //UI반영
+        playerInfoUI.ShowPlayerHPBar();
+        playerInfoUI.ShowPlayerMPBar();
+        itemUI.ShowConsumeInItemInventory();
+    }
+
 
     public void UseBuffPosion(int itemIndex, bool inputKey)
     {
@@ -521,6 +588,26 @@ public class ItemManager : MonoBehaviour
                     buffItemList[4].SetActive(false);
                 buffItemList[4].SetActive(true);
                 break;
+            case 15:
+                if (buffItemList[5].activeSelf)
+                    buffItemList[5].SetActive(false);
+                buffItemList[5].SetActive(true);
+                break;
+            case 16:
+                if (buffItemList[6].activeSelf)
+                    buffItemList[6].SetActive(false);
+                buffItemList[6].SetActive(true);
+                break;
+            case 17:
+                if (buffItemList[7].activeSelf)
+                    buffItemList[7].SetActive(false);
+                buffItemList[7].SetActive(true);
+                break;
+            case 18:
+                if (buffItemList[8].activeSelf)
+                    buffItemList[8].SetActive(false);
+                buffItemList[8].SetActive(true);
+                break;
             default:
                 break;
         }
@@ -574,11 +661,13 @@ public class ItemManager : MonoBehaviour
     //회복
     private int useHPPosionIndex = -1;
     private int useMPPosionIndex = -1;
+    private int useElixerPosionIndex = -1;
     private int useBuffPosionIndex = -1;
     private int healHPAmount = 0;
     private int healMPAmount = 0;
     public int UseHPPosionIndex { get { return useHPPosionIndex; } set { useHPPosionIndex = value; } }
     public int UseMPPosionIndex { get { return useMPPosionIndex; } set { useMPPosionIndex = value; } }
+    public int UseElixerPosionIndex { get { return useElixerPosionIndex; } set { useElixerPosionIndex = value; } }
     public int UseBuffPosionIndex { get { return useBuffPosionIndex; } set { useBuffPosionIndex = value; } }
     public int HealHPAmount { get { return healHPAmount; } set { healHPAmount = value; } }
     public int HealMPAmount { get { return healMPAmount; } set { healMPAmount = value; } }

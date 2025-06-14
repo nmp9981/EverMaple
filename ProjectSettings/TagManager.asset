@@ -15,6 +15,7 @@ TagManager:
   - ActiveSkill
   - EquipmentItem
   - EquipmentUI
+  - DropItem
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2083906348468147734}
   m_Layer: 10
   m_Name: Meso
-  m_TagString: Untagged
+  m_TagString: DropItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

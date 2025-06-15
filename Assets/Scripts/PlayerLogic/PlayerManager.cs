@@ -48,8 +48,8 @@ public class PlayerManager : MonoBehaviour
     //플레이어 기본 정보
     int playerLV = 10;
     int playerMaxLV = 110;
-    string playerJob = "Night Load";
-    PlayerJobClass playerJobClass;
+    string playerJob = "초보자";
+    PlayerJobClass playerJobClass = PlayerJobClass.Beginer;
     string playerName = "Aruru";
     int playerCurHP;
     int playerMaxHP = 9000;

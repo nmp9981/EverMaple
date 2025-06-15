@@ -83,8 +83,17 @@ public class JobUpgradeNPC : MonoBehaviour
     /// </summary>
     public void LogUpgrade()
     {
-        PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Log;
-        playerInfoUI.ShowPlayerJob("로그");
+        if (PlayerManager.PlayerInstance.PlayerLV >= 8 && PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Beginer)
+        {
+            PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Log;
+            playerInfoUI.ShowPlayerJob("로그");
+            SuccessUpgrade(0, "로그");
+        }
+        else
+        {
+            FailUpgrade(0);
+        }
+        
     }
 
     /// <summary>

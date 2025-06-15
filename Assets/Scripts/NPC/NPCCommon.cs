@@ -11,6 +11,7 @@ public enum NPCCategory
     Quest,
     Taxi,
     MoveWorld,
+    UpgradeJob,
     Count
 };
 
@@ -26,6 +27,7 @@ public class NPCCommon : MonoBehaviour
     protected GameObject consumeUI;
     protected GameObject taxiUI;
     protected GameObject questUI;
+    protected GameObject upgradeJobUI;
 
     //NPC
     protected static (int,int) storeNPCIndex;//카테고리, NPC번호
@@ -72,6 +74,9 @@ public class NPCCommon : MonoBehaviour
             case NPCCategory.Quest:
                 questUI.SetActive(true);
                 break;
+            case NPCCategory.UpgradeJob:
+                upgradeJobUI.SetActive(true);
+                break;
             default:
                 break;
         }
@@ -97,6 +102,9 @@ public class NPCCommon : MonoBehaviour
                 break;
             case NPCCategory.Quest:
                 questUI = canvasUI.transform.GetChild(8).gameObject;
+                break;
+            case NPCCategory.UpgradeJob:
+                upgradeJobUI = canvasUI.transform.GetChild(9).gameObject;
                 break;
             default:
                 break;

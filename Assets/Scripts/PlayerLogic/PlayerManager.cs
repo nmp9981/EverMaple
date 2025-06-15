@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,7 +47,7 @@ public class PlayerManager : MonoBehaviour
 
     //플레이어 기본 정보
     int playerLV = 10;
-    int playerMaxLV = 100;
+    int playerMaxLV = 110;
     string playerJob = "Night Load";
     string playerName = "Aruru";
     int playerCurHP;

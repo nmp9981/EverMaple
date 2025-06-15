@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -21,6 +22,8 @@ public class NPCCommon : MonoBehaviour
     NPCCategory category;//NPC카테고리
     [SerializeField]
     int npcNum;//NPC번호 
+    [SerializeField]
+    int upgradeDim;//업그레이트 차수
 
     //UI 오브젝트
     protected GameObject canvasUI;
@@ -75,7 +78,7 @@ public class NPCCommon : MonoBehaviour
                 questUI.SetActive(true);
                 break;
             case NPCCategory.UpgradeJob:
-                upgradeJobUI.SetActive(true);
+                SetActiveUpgradeNPC();
                 break;
             default:
                 break;
@@ -109,5 +112,41 @@ public class NPCCommon : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    /// <summary>
+    /// 전직 교관 NPC 활성화
+    /// </summary>
+    void SetActiveUpgradeNPC()
+    {
+        //전직 교관이 아님
+        if (upgradeDim < 1)
+            return;
+
+        GameObject upgradeObj = upgradeJobUI.transform.GetChild(upgradeDim - 1).gameObject;
+        upgradeObj.SetActive(true);
+
+        if (upgradeDim == 3)
+        {
+            upgradeObj.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =string.Empty;
+            switch (PlayerManager.PlayerInstance.PlayerJOBEnum)
+            {
+                case PlayerJobClass.Assassin:
+                    upgradeObj.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "허밋 (Hermit)";
+                    break;
+                case PlayerJobClass.Hermit:
+                    upgradeObj.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "나이트로드 (NightLoad)";
+                    break;
+                case PlayerJobClass.Thief:
+                    upgradeObj.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "시프마스터 (ThiefMaster)";
+                    break;
+                case PlayerJobClass.ThiefMaster:
+                    upgradeObj.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "섀도어 (Shadower)";
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }

@@ -20,6 +20,9 @@ public class PlayerInfoUI : MonoBehaviour
     //LV관련
     TextMeshProUGUI lvText;
 
+    //직업 관련
+    TextMeshProUGUI jobText;
+
     //메세지 관련
     List<TextMeshProUGUI> getMessageList = new List<TextMeshProUGUI>();
     int getMessageCurCount = 0;
@@ -91,6 +94,9 @@ public class PlayerInfoUI : MonoBehaviour
                 case "LvText":
                     lvText = txt;
                     break;
+                case "JobText":
+                    jobText = txt;
+                    break;
                 default:
                     break;
             }
@@ -128,6 +134,10 @@ public class PlayerInfoUI : MonoBehaviour
     public void ShowPlayerLV()
     {
         lvText.text = $"Lv. {PlayerManager.PlayerInstance.PlayerLV}";
+    }
+    public void ShowPlayerJob(string jobName)
+    {
+        jobText.text = $"{jobName}";
     }
 
     //메세지

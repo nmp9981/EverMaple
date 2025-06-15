@@ -49,6 +49,7 @@ public class PlayerManager : MonoBehaviour
     int playerLV = 10;
     int playerMaxLV = 110;
     string playerJob = "Night Load";
+    PlayerJobClass playerJobClass;
     string playerName = "Aruru";
     int playerCurHP;
     int playerMaxHP = 9000;
@@ -151,6 +152,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerLV { get { return playerLV; } set { playerLV = value; } }
     public int PlayerMaxLV { get { return playerMaxLV; } set { playerMaxLV = value; } }
     public string PlayerJob { get { return playerJob; } set { playerJob = value; } }
+    public PlayerJobClass PlayerJOBEnum { get { return playerJobClass; } set { playerJobClass = value; } }
     public string PlayerName { get { return playerName; } set { playerName = value; } }
     public int PlayerCurHP { get { return playerCurHP; } set {playerCurHP = value; } }
     public int PlayerMaxHP { get {return playerMaxHP; } set {playerMaxHP = value; } }

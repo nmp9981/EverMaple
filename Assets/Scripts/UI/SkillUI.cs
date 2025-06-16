@@ -135,6 +135,7 @@ public class SkillUI : MonoBehaviour, IDragHandler
 
         //스킬 포인트 소모
         PlayerManager.PlayerInstance.PlayerSkillPoint -= 1;
+        PlayerManager.PlayerInstance.TotalUseSkillPoint += 1;//총 사용 스킬포인트 증가
         ShowCharacterSkillUI();
 
         //스킬 레벨업

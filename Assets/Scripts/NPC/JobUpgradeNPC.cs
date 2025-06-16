@@ -101,8 +101,18 @@ public class JobUpgradeNPC : MonoBehaviour
     /// </summary>
     public void AssasinUpgrade()
     {
-        PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Assassin;
-        playerInfoUI.ShowPlayerJob("어쌔신");
+        if (PlayerManager.PlayerInstance.PlayerLV >= 25 && PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Log
+            && PlayerManager.PlayerInstance.TotalUseSkillPoint>=52)
+        {
+            PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Assassin;
+            playerInfoUI.ShowPlayerJob("어쌔신");
+            SuccessUpgrade(1, "어쌔신");
+        }
+        else
+        {
+            FailUpgrade(1);
+        }
+            
     }
 
     /// <summary>
@@ -110,8 +120,17 @@ public class JobUpgradeNPC : MonoBehaviour
     /// </summary>
     public void ThiefUpgrade()
     {
-        PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Thief;
-        playerInfoUI.ShowPlayerJob("시프");
+        if (PlayerManager.PlayerInstance.PlayerLV >= 25 && PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Log
+            && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 52)
+        {
+            PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Thief;
+            playerInfoUI.ShowPlayerJob("시프");
+            SuccessUpgrade(1, "시프");
+        }
+        else{
+            FailUpgrade(1);
+        }
+            
     }
 
     /// <summary>
@@ -122,20 +141,56 @@ public class JobUpgradeNPC : MonoBehaviour
         switch (PlayerManager.PlayerInstance.PlayerJOBEnum)
         {
             case PlayerJobClass.Assassin:
-                PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Hermit;
-                playerInfoUI.ShowPlayerJob("허밋");
+                if (PlayerManager.PlayerInstance.PlayerLV >= 55
+                    && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 143)
+                {
+                    PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Hermit;
+                    playerInfoUI.ShowPlayerJob("허밋");
+                    SuccessUpgrade(2, "허밋");
+                }
+                else
+                {
+                    FailUpgrade(2);
+                }
                 break;
             case PlayerJobClass.Hermit:
-                PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.NightLoad;
-                playerInfoUI.ShowPlayerJob("나이트로드");
+                if (PlayerManager.PlayerInstance.PlayerLV >= 90
+                    && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 249)
+                {
+                    PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.NightLoad;
+                    playerInfoUI.ShowPlayerJob("나이트로드");
+                    SuccessUpgrade(2, "나이트로드");
+                }
+                else
+                {
+                    FailUpgrade(2);
+                }
                 break;
             case PlayerJobClass.Thief:
-                PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.ThiefMaster;
-                playerInfoUI.ShowPlayerJob("시프마스터");
+                if (PlayerManager.PlayerInstance.PlayerLV >= 55
+                    && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 143)
+                {
+                    PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.ThiefMaster;
+                    playerInfoUI.ShowPlayerJob("시프마스터");
+                    SuccessUpgrade(2, "시프마스터");
+                }
+                else
+                {
+                    FailUpgrade(2);
+                }
                 break;
             case PlayerJobClass.ThiefMaster:
-                PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Shadower;
-                playerInfoUI.ShowPlayerJob("섀도어");
+                if (PlayerManager.PlayerInstance.PlayerLV >= 95
+                    && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 249)
+                {
+                    PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Shadower;
+                    playerInfoUI.ShowPlayerJob("섀도어");
+                    SuccessUpgrade(2, "섀도어");
+                }
+                else
+                {
+                    FailUpgrade(2);
+                }
                 break;
             default:
                 break;
@@ -149,7 +204,8 @@ public class JobUpgradeNPC : MonoBehaviour
     {
         successUpgradeObj.SetActive(true);
         successUpgradeObj.transform.GetChild(0).transform.GetChild(3).GetComponent<Image>().sprite = npcSprite[dim];
-        successUpgradeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"이제부터 {jobName}이라네";
+        successUpgradeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"이제부터 {jobName}이라네\n그리고 약간의 SP를 지급해줬다네";
+        PlayerManager.PlayerInstance.PlayerSkillPoint += 1;
     }
     /// <summary>
     /// 전직 실패

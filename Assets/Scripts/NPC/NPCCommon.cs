@@ -144,6 +144,7 @@ public class NPCCommon : MonoBehaviour
                     upgradeObj.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "섀도어 (Shadower)";
                     break;
                 default:
+                    upgradeObj.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "3차 전직은 레벨 55이상!!";
                     break;
             }
         }

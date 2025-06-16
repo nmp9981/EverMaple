@@ -88,6 +88,17 @@ public class JobUpgradeNPC : MonoBehaviour
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Log;
             playerInfoUI.ShowPlayerJob("로그");
             SuccessUpgrade(0, "로그");
+
+            //체력, 마나 보너스, 부족한 SP보충
+            PlayerManager.PlayerInstance.PlayerSkillPoint += 3*(PlayerManager.PlayerInstance.PlayerLV-8);
+            PlayerManager.PlayerInstance.PlayerMaxHP += 300;
+            PlayerManager.PlayerInstance.PlayerMaxMP += 200;
+
+            PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
+            PlayerManager.PlayerInstance.PlayerCurMP = PlayerManager.PlayerInstance.PlayerMaxMP;
+
+            playerInfoUI.ShowPlayerHPBar();
+            playerInfoUI.ShowPlayerMPBar();
         }
         else
         {

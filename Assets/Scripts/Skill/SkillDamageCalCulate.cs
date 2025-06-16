@@ -24,7 +24,7 @@ public static class SkillDamageCalCulate
     public static int AvengerTargetNum = 6;
 
     //스킬 레벨
-    public static int LuckySevenLv = 1;
+    public static int LuckySevenLv = 0;
     public static int TripleThrowLv = 0;
     public static int DoubleStepLv = 0;
     public static int SavageblowLv = 0;

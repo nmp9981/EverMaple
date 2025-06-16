@@ -112,7 +112,63 @@ public class SkillUI : MonoBehaviour, IDragHandler
         {
             gm.SetActive(false);
         }
-        skillDimentionUI[dim].gameObject.SetActive(true);
+
+        //해당 스킬창을 열 수 있는가?
+        if (CheckAbleSkillWindow(dim))
+        {
+            if((PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Shadower ||
+                PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.ThiefMaster||
+                PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Thief) && dim >= 2)
+            {
+                skillDimentionUI[dim+3].gameObject.SetActive(true);
+            }
+            else
+                skillDimentionUI[dim].gameObject.SetActive(true);
+        }
+        else
+            skillDimentionUI[0].gameObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// 해당 스킬창을 열 수 있는지 체크
+    /// </summary>
+    /// <param name="dim"></param>
+    /// <returns></returns>
+    bool CheckAbleSkillWindow(int dim)
+    {
+        int currentDim = 0;
+        switch (PlayerManager.PlayerInstance.PlayerJOBEnum)
+        {
+            case PlayerJobClass.Beginer:
+                break;
+            case PlayerJobClass.Log:
+                currentDim = 1;
+                break;
+            case PlayerJobClass.Assassin:
+                currentDim = 2;
+                break;
+            case PlayerJobClass.Thief:
+                currentDim = 2;
+                break;
+            case PlayerJobClass.Hermit:
+                currentDim = 3;
+                break;
+            case PlayerJobClass.ThiefMaster:
+                currentDim = 3;
+                break;
+            case PlayerJobClass.NightLoad:
+                currentDim = 4;
+                break;
+            case PlayerJobClass.Shadower:
+                currentDim = 4;
+                break;
+            default:
+                break;
+        }
+        //조건 만족 검사
+        if (dim <= currentDim)
+            return true;
+        return false;
     }
 
     /// <summary>

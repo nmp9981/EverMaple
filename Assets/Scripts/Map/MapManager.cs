@@ -71,6 +71,12 @@ public class MapManager : MonoBehaviour
 
         //보스 지역
         //EnterBossMap(MapAndProtalList.curMapNum);
+
+        //퀘스트 NPC
+        foreach(var npc in MapAndProtalList.mapList[MapAndProtalList.curMapNum].GetComponentsInChildren<QuestNPC>())
+        {
+            npc.ShowQuestState();
+        }
     }
 
     /// <summary>

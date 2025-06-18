@@ -35,6 +35,7 @@ public class NPCCommon : MonoBehaviour
     //NPC
     protected static (int,int) storeNPCIndex;//카테고리, NPC번호
     public static Sprite npcSprite;
+    public static QuestNPC npcObj;
     private SpriteRenderer npcRenderer;
 
     protected void Awake()
@@ -46,7 +47,7 @@ public class NPCCommon : MonoBehaviour
     protected void SettingNPCImage()
     {
         npcSprite = npcRenderer.sprite;
-
+        
         int categoryIdx = 0;
         switch (category)
         {
@@ -76,6 +77,7 @@ public class NPCCommon : MonoBehaviour
                 break;
             case NPCCategory.Quest:
                 npcSprite = npcRenderer.sprite;
+                npcObj = npcRenderer.gameObject.GetComponent<QuestNPC>();
                 questUI.SetActive(true);
                 break;
             case NPCCategory.UpgradeJob:

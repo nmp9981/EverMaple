@@ -47,6 +47,7 @@ public class MapManager : MonoBehaviour
         isDownUpKey = false;
 
         //다음맵으로 바뀜
+        string prevMapName = PlayerManager.PlayerInstance.CurMapName;
         PlayerManager.PlayerInstance.CurMapName = MapAndProtalList.mapList[nextMapNum].name;
 
         //맵 UI적용
@@ -71,6 +72,9 @@ public class MapManager : MonoBehaviour
 
         //보스 지역
         //EnterBossMap(MapAndProtalList.curMapNum);
+
+        //사운드 적용
+        SoundManager._sound.MapBGMSetting(prevMapName);
 
         //퀘스트 NPC
         foreach(var npc in MapAndProtalList.mapList[MapAndProtalList.curMapNum].GetComponentsInChildren<QuestNPC>())

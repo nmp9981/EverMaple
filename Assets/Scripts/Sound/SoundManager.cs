@@ -56,6 +56,13 @@ public class SoundManager : MonoBehaviour
         Init();
     }
 
+    //임시 로직
+    private void Start()
+    {
+        //처음에는 리스항구에 있음
+        PlayBGM(0);
+    }
+
     void Update()
     {
         _audioBgmSource.volume = bgmVolume;
@@ -82,5 +89,78 @@ public class SoundManager : MonoBehaviour
         _audioSfxSource.playOnAwake = true;
         _audioSfxSource.loop = false;
         _audioSfxSource.PlayOneShot(_sfxClip[soundNum]);//한개만 적용
+    }
+
+    /// <summary>
+    /// 각 맵의 bgm재생
+    /// 시점 : 맵 이동후
+    /// </summary>
+    public void MapBGMSetting(string prevMapName)
+    {
+        string playerCurMapname = PlayerManager.PlayerInstance.CurMapName;
+        int curMapNum = MapAndProtalList.curMapNum;
+
+        //지역이 같은가?
+        if (playerCurMapname.Substring(0,3) == prevMapName.Substring(0,3))
+        {
+            //커닝시티일 경우
+            if(MapManager.playerMapLocal == LocalMapName.KerningCity)
+            {
+                if (curMapNum == 21)
+                {
+                    PlayBGM(5);
+                }
+                else if (curMapNum > 21)
+                    PlayBGM(6);
+                else
+                    PlayBGM(4);
+            }
+            else if(MapManager.playerMapLocal == LocalMapName.SleepyWood)
+            {
+                if (curMapNum <= 26)
+                    PlayBGM(7);
+                else if (curMapNum >= 29)
+                    PlayBGM(9);
+                else
+                    PlayBGM(8);
+            }
+        }
+        else//다르면 다른 bgm재생
+        {
+            switch (MapManager.playerMapLocal)
+            {
+                case LocalMapName.LithHarbor:
+                    PlayBGM(0);
+                    break;
+                case LocalMapName.Henesys:
+                    PlayBGM(1);
+                    break;
+                case LocalMapName.Ellinia:
+                    PlayBGM(2);
+                    break;
+                case LocalMapName.Perion:
+                    PlayBGM(3);
+                    break;
+                case LocalMapName.KerningCity:
+                    if(curMapNum == 21)
+                    {
+                        PlayBGM(5);
+                    }else if (curMapNum>21)
+                        PlayBGM(6);
+                    else
+                        PlayBGM(4);
+                    break;
+                case LocalMapName.SleepyWood:
+                    if (curMapNum <=26)
+                        PlayBGM(7);
+                    else if (curMapNum >= 29)
+                        PlayBGM(9);
+                    else
+                        PlayBGM(8);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

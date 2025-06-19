@@ -212,7 +212,7 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     #region 표창 관련
-    public int ShootDragNum { get { return shootDragNum; } set { shootDragNum = value; } }    
+    public int ShootDragNum { get { return shootDragNum; } set { shootDragNum = value; } }
     #endregion
 
     #endregion

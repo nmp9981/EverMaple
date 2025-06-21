@@ -6,10 +6,12 @@ using UnityEngine;
 /// </summary>
 public class QuestData
 {
+    //퀘스트 기본 정보
     public int questNum;//퀘스트 번호
     public int prevQuestNum;//선행 퀘스트 번호
     public int reqLv;//요구 레벨
     public int questState = 0;//퀘 상태, 1:시작, 2:진행중, 3:완료, 4:클리어
+    public string questTitle;//퀘스트 제목
 
     //스크립트 내용
     public string startScript;//시작 스크립트
@@ -27,12 +29,14 @@ public class QuestData
     public int rewardMeso;//보상 메소
     public string rewardItem;//보상 아이템
 
-    public QuestData(int questNum, int prevQuestNum, int reqLv, int questState, string startScript, string[] questSctipt, string notFinishScript, string finishScript, int[] reqmonsterNum, int[] reqMonsterCount, int[] reqMonsterGoalCount, int rewardExp, int rewardMeso, string rewardItem)
+    //생성자
+    public QuestData(int questNum, int prevQuestNum, int reqLv, int questState, string questTitle,string startScript, string[] questSctipt, string notFinishScript, string finishScript, int[] reqmonsterNum, int[] reqMonsterCount, int[] reqMonsterGoalCount, int rewardExp, int rewardMeso, string rewardItem)
     {
         this.questNum = questNum;
         this.prevQuestNum = prevQuestNum;
         this.reqLv = reqLv;
         this.questState = questState;
+        this.questTitle = questTitle;
         this.startScript = startScript;
         this.questSctipt = questSctipt;
         this.notFinishScript = notFinishScript;
@@ -48,11 +52,9 @@ public class QuestData
 
 public class QuestDataBase : MonoBehaviour
 {
-    public static QuestDataBase questInstance;//싱글톤
+    public static List<QuestData> questDataList = new List<QuestData>();
 
-    public List<QuestData> questDataList = new List<QuestData>();
-
-    private void Start()
+    private void Awake()
     {
         EnrollQuestData();
     }
@@ -70,7 +72,7 @@ public class QuestDataBase : MonoBehaviour
         int[] reqMonsterCount0 = new int[1] {0 };
         int[] reqMonsterGoalCount0 = new int[1] { 5 };
         QuestData questData0
-            = new QuestData(0,-1,1,0,"1더하기1은 창문",questSctipt0,"좀만 힘내","잘했다. 다음 수련으로 가즈아",
+            = new QuestData(0,-1,1,1,"쿤의 수련 I","1더하기1은 창문",questSctipt0,"좀만 힘내","잘했다. 다음 수련으로 가즈아",
             reqmonsterNum0,reqMonsterCount0, reqMonsterGoalCount0,
             30, 1500,string.Empty);
         questDataList.Add(questData0);
@@ -82,7 +84,7 @@ public class QuestDataBase : MonoBehaviour
         int[] reqMonsterCount1 = new int[1] { 0 };
         int[] reqMonsterGoalCount1 = new int[1] { 10 };
         QuestData questData1
-            = new QuestData(1, 0, 2, 0, "1더하기1은 창문", questSctipt1, "좀만 힘내", "잘했다. 한번만더 가즈아",
+            = new QuestData(1, 0, 2, 0,"쿤의 수련 II", "1더하기1은 창문", questSctipt1, "좀만 힘내", "잘했다. 한번만더 가즈아",
             reqmonsterNum1, reqMonsterCount1, reqMonsterGoalCount1,
             50, 2500, string.Empty);
         questDataList.Add(questData1);
@@ -94,7 +96,7 @@ public class QuestDataBase : MonoBehaviour
         int[] reqMonsterCount2 = new int[2] { 0,0 };
         int[] reqMonsterGoalCount2 = new int[2] { 10,15 };
         QuestData questData2
-            = new QuestData(2, 1, 3, 0, "1더하기1은 창문", questSctipt2, "좀만 힘내", "잘했다. 초반에 폐사하면 안되니까 훈지좀 해줄게",
+            = new QuestData(2, 1, 3, 0, "쿤의 수련 III","1더하기1은 창문", questSctipt2, "좀만 힘내", "잘했다. 초반에 폐사하면 안되니까 훈지좀 해줄게",
             reqmonsterNum2, reqMonsterCount2, reqMonsterGoalCount2,
             100, 4000, string.Empty);
         questDataList.Add(questData2);

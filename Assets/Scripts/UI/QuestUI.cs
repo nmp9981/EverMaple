@@ -9,6 +9,13 @@ public class QuestUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI npcMainText;
 
+    [SerializeField]
+    GameObject QuestStart;
+    [SerializeField]
+    GameObject QuestIng;
+    [SerializeField]
+    GameObject QuestFinishIng;
+
     private void OnEnable()
     {
         QuestMain();
@@ -21,12 +28,36 @@ public class QuestUI : MonoBehaviour
     public void QuestMain()
     {
         npcImage.sprite = NPCCommon.npcSprite;
-        npcMainText.text = "1 더하기 1은 창문";//TODO : 퀘 DB에서 가져올 예정
+        int curQuestNumber = NPCCommon.npcObj.GetComponent<QuestNPC>().curQuestNum;
+       
+        npcMainText.text = QuestDataBase.questDataList[curQuestNumber].finishScript;
+
+        //초기 설정
+        InitQuestUI();
 
         //퀘스트 상태에 따라 다른 스크립트 출력
-        switch (NPCCommon.npcObj.questState)
+        switch (QuestDataBase.questDataList[curQuestNumber].questState)
         {
             case 0:
+                break;
+            case 1:
+                QuestStart.SetActive(true);
+                QuestStart.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                    QuestDataBase.questDataList[curQuestNumber].questTitle;
+                break;
+            case 2:
+                QuestIng.SetActive(true);
+                QuestIng.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                   QuestDataBase.questDataList[curQuestNumber].questTitle;
+                break;
+            case 3:
+                QuestFinishIng.SetActive(true);
+                QuestFinishIng.transform.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                   QuestDataBase.questDataList[curQuestNumber].questTitle;
+                break;
+            case 4:
+                break;
+            default:
                 break;
         }
     }
@@ -35,6 +66,17 @@ public class QuestUI : MonoBehaviour
     /// </summary>
     public void QuestCloseButton()
     {
+        InitQuestUI();
         gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// 퀘스트 창 초기화
+    /// </summary>
+    public void InitQuestUI()
+    {
+        QuestStart.SetActive(false);
+        QuestIng.SetActive(false);
+        QuestFinishIng.SetActive(false);
     }
 }

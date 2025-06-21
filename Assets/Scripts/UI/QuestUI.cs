@@ -18,6 +18,10 @@ public class QuestUI : MonoBehaviour
 
     [SerializeField]
     GameObject acceptButton;
+    [SerializeField]
+    GameObject completeButton;
+    [SerializeField]
+    GameObject rewardObj;
 
     int curQuestNumber = 0;
 
@@ -84,6 +88,8 @@ public class QuestUI : MonoBehaviour
         QuestIng.SetActive(false);
         QuestFinishIng.SetActive(false);
         acceptButton.SetActive(false);
+        completeButton.SetActive(false);
+        rewardObj.SetActive(false);
     }
 
     #region 퀘스트 버튼
@@ -105,6 +111,15 @@ public class QuestUI : MonoBehaviour
     {
         InitQuestUI();
         npcMainText.text = QuestDataBase.questDataList[curQuestNumber].finishScript;
+
+        rewardObj.SetActive(true);
+
+        //보상 받기
+        int addExp = QuestDataBase.questDataList[curQuestNumber].rewardExp;
+        int addMeso = QuestDataBase.questDataList[curQuestNumber].rewardMeso;
+        string addItem = QuestDataBase.questDataList[curQuestNumber].rewardItem;
+
+        completeButton.SetActive(true);
     }
 
     /// <summary>
@@ -113,6 +128,21 @@ public class QuestUI : MonoBehaviour
     public void AcceptQuest()
     {
         QuestDataBase.questDataList[curQuestNumber].questState = 2;
+        QuestCloseButton();
+    }
+
+    /// <summary>
+    /// 퀘스트 완료
+    /// </summary>
+    public void CompleteQuest()
+    {
+        QuestDataBase.questDataList[curQuestNumber].questState = 4;
+
+        //보상 받기
+        int addExp = QuestDataBase.questDataList[curQuestNumber].rewardExp;
+        int addMeso = QuestDataBase.questDataList[curQuestNumber].rewardMeso;
+        string addItem = QuestDataBase.questDataList[curQuestNumber].rewardItem;
+
         QuestCloseButton();
     }
     #endregion

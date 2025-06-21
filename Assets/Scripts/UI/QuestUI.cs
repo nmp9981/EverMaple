@@ -16,6 +16,11 @@ public class QuestUI : MonoBehaviour
     [SerializeField]
     GameObject QuestFinishIng;
 
+    [SerializeField]
+    GameObject acceptButton;
+
+    int curQuestNumber = 0;
+
     private void OnEnable()
     {
         QuestMain();
@@ -28,7 +33,7 @@ public class QuestUI : MonoBehaviour
     public void QuestMain()
     {
         npcImage.sprite = NPCCommon.npcSprite;
-        int curQuestNumber = NPCCommon.npcObj.GetComponent<QuestNPC>().curQuestNum;
+        curQuestNumber = NPCCommon.npcObj.GetComponent<QuestNPC>().curQuestNum;
        
         npcMainText.text = QuestDataBase.questDataList[curQuestNumber].finishScript;
 
@@ -78,5 +83,37 @@ public class QuestUI : MonoBehaviour
         QuestStart.SetActive(false);
         QuestIng.SetActive(false);
         QuestFinishIng.SetActive(false);
+        acceptButton.SetActive(false);
     }
+
+    #region Äù½ºÆ® ¹öÆ°
+
+    public void StartQuestButton()
+    {
+        InitQuestUI();
+        npcMainText.text = QuestDataBase.questDataList[curQuestNumber].questSctipt[0];
+        acceptButton.SetActive(true);
+    }
+
+    public void QuestINGButton()
+    {
+        InitQuestUI();
+        npcMainText.text = QuestDataBase.questDataList[curQuestNumber].notFinishScript;
+    }
+
+    public void FinishQuestButton()
+    {
+        InitQuestUI();
+        npcMainText.text = QuestDataBase.questDataList[curQuestNumber].finishScript;
+    }
+
+    /// <summary>
+    /// Äù½ºÆ® ¼ö¶ô
+    /// </summary>
+    public void AcceptQuest()
+    {
+        QuestDataBase.questDataList[curQuestNumber].questState = 2;
+        QuestCloseButton();
+    }
+    #endregion
 }

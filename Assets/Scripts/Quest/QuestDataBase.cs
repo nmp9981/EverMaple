@@ -64,9 +64,8 @@ public class QuestDataBase : MonoBehaviour
     /// </summary>
     void EnrollQuestData()
     {
-        string[] questSctipt0 = new string[2]{
-            "내가 수련을 도와주지!",
-            "파란 달팽이 5마리를 잡아와"
+        string[] questSctipt0 = new string[1]{
+            "내가 수련을 도와주지!\n파란 달팽이 5마리를 잡아와",
         };
         int[] reqmonsterNum0 = new int[1]{ 0};
         int[] reqMonsterCount0 = new int[1] {0 };

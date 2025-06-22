@@ -24,6 +24,8 @@ public class InputKeyManager : MonoBehaviour
     GameObject worldMapUIObj;
     [SerializeField]
     GameObject equipmemtUIObj;
+    [SerializeField]
+    GameObject questManagerUIObj;
 
     //시간
     float curAttackSkillTime = 0;
@@ -228,6 +230,14 @@ public class InputKeyManager : MonoBehaviour
                 equipmemtUIObj.SetActive(false);
             else
                  equipmemtUIObj.SetActive(true);
+        }
+        //퀘스트창
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (questManagerUIObj.activeSelf)
+                questManagerUIObj.SetActive(false);
+            else
+                questManagerUIObj.SetActive(true);
         }
     }
     void InputItemKey()

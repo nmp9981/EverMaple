@@ -157,6 +157,7 @@ public class QuestUI : MonoBehaviour
     public void AcceptQuest()
     {
         QuestDataBase.questDataList[curQuestNumber].questState = 2;
+        NPCCommon.npcObj.GetComponent<QuestNPC>().ShowQuestState();
         QuestCloseButton();
     }
 
@@ -187,6 +188,7 @@ public class QuestUI : MonoBehaviour
             ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
         }
 
+        NPCCommon.npcObj.GetComponent<QuestNPC>().ShowQuestState();
         QuestCloseButton();
     }
     #endregion

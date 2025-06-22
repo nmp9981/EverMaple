@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,6 +72,9 @@ public class MonsterInfo : MonoBehaviour
     [SerializeField]
     List<int> dropConsumeItemIndexList = new List<int>();
 
+    //퀘스트 UI
+    TextMeshProUGUI questingText;
+
     //사망 판정용
     private int dieCount;
 
@@ -96,6 +101,10 @@ public class MonsterInfo : MonoBehaviour
         //스프라이트 관련
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.flipX = true;
+
+        //퀘스트 관련
+        questingText = GameObject.Find("QuestMessageUI").GetComponent<TextMeshProUGUI>();
+        OffQuestMessage();
     }
 
     private void Update()
@@ -152,6 +161,7 @@ public class MonsterInfo : MonoBehaviour
 
         MesoDrop();
         ItemDrop();
+        QuestingCheck();
 
         MonsterSpawn.activeMonster.Remove(gameObject);
         monsterSpawn = GameObject.Find(PlayerManager.PlayerInstance.CurMapName).GetComponent<MonsterSpawn>();
@@ -202,6 +212,51 @@ public class MonsterInfo : MonoBehaviour
                 dropEquipment.GetComponent<MonsterDropConsumeItem>().itemIndex = dropConsumeItemIndexList[i];
             }
         }
+    }
+    /// <summary>
+    /// 퀘스트 체크
+    /// </summary>
+    void QuestingCheck()
+    {
+        foreach(var quest in QuestDataBase.questDataList)
+        {
+            int state = quest.questState;
+            //진행중일때만 카운트
+            if (state == 2)
+            {
+                //퀘스트 진행 몬스터
+               for(int idx =0;idx<quest.reqmonsterNum.Length;idx++)
+               {
+                    if (quest.reqmonsterNum[idx] == monsterID)
+                    {
+                        quest.reqMonsterCount[idx] += 1;
+                        questingText.text = $"{name} ({quest.reqMonsterCount[idx]}/{quest.reqMonsterGoalCount[idx]})";
+                        Invoke("OffQuestMessage", 1f);
+                    }
+               }
+
+                //퀘스트 완료 검사
+                int finishNum = 0;
+                for (int idx = 0; idx < quest.reqmonsterNum.Length; idx++)
+                {
+                    if (quest.reqMonsterCount[idx] >= quest.reqMonsterGoalCount[idx])
+                    {
+                        finishNum += 1;
+                    }
+                }
+
+                //퀘스트 완료
+                if (finishNum >= quest.reqmonsterNum.Length)
+                    quest.questState = 3;
+            }
+        }
+    }
+    /// <summary>
+    /// 퀘스트 메세지 끄기
+    /// </summary>
+    void OffQuestMessage()
+    {
+        questingText.text = string.Empty;
     }
 
     /// <summary>

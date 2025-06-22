@@ -23,6 +23,11 @@ public class QuestUI : MonoBehaviour
     [SerializeField]
     GameObject rewardObj;
 
+    [SerializeField]
+    PlayerInfoUI playerInfoUIObj;
+    [SerializeField]
+    PlayerInfo playerInfo;
+
     int curQuestNumber = 0;
 
     private void OnEnable()
@@ -119,6 +124,30 @@ public class QuestUI : MonoBehaviour
         int addMeso = QuestDataBase.questDataList[curQuestNumber].rewardMeso;
         string addItem = QuestDataBase.questDataList[curQuestNumber].rewardItem;
 
+        //UI표시
+        //경험치
+        if(addExp!=0)
+            rewardObj.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{addExp} exp";
+        else {
+            rewardObj.transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{0} exp";
+        }
+        
+        //메소
+        if(addMeso!=0)
+            rewardObj.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{addMeso} 메소";
+        else
+        {
+            rewardObj.transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{0} 메소";
+        }
+
+        //아이템
+        if(addItem != string.Empty)
+        {
+            rewardObj.transform.GetChild(2).gameObject.SetActive(true);
+        }
+        else
+            rewardObj.transform.GetChild(2).gameObject.SetActive(false);
+
         completeButton.SetActive(true);
     }
 
@@ -138,10 +167,25 @@ public class QuestUI : MonoBehaviour
     {
         QuestDataBase.questDataList[curQuestNumber].questState = 4;
 
-        //보상 받기
+        //보상 목록
         int addExp = QuestDataBase.questDataList[curQuestNumber].rewardExp;
         int addMeso = QuestDataBase.questDataList[curQuestNumber].rewardMeso;
         string addItem = QuestDataBase.questDataList[curQuestNumber].rewardItem;
+
+        //보상 받기
+        playerInfo.GetPlayerExp(addExp);
+        PlayerManager.PlayerInstance.PlayerMeso += addMeso;
+        playerInfoUIObj.ShowGetMesoMessage(addMeso);
+
+        //새로운 장비 아이템 정보 추가
+        if (addItem != string.Empty)
+        {
+            EquipmentItem equipmentItem = new EquipmentItem();
+            equipmentItem.sprite = ItemManager.itemInstance.equipmentItemDic[addItem].equipmentImage;
+            equipmentItem.name = ItemManager.itemInstance.equipmentItemDic[addItem].name;
+
+            ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
+        }
 
         QuestCloseButton();
     }

@@ -198,7 +198,7 @@ public class QuestDataBase : MonoBehaviour
         QuestData questData10
             = new QuestData(10, 9, 70, 0, "보석장식", "나는 MZ소녀", questSctipt10, "이거 비싸보여야 가오가 살아", "인스타에 또 자랑해야지",
             reqmonsterNum10, reqMonsterCount10, reqMonsterGoalCount10,
-            50000, 50000, string.Empty);
+            50000, 50000, "캐스터스");
         questDataList.Add(questData10);
     }
 }

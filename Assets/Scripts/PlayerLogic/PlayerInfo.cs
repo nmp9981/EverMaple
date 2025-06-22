@@ -58,6 +58,15 @@ public class PlayerInfo : MonoBehaviour
             //표창 업그레이드
             UpgradeDrag();
 
+            //퀘스트 업데이트
+            foreach(var quest in QuestDataBase.questDataList)
+            {
+                if(PlayerManager.PlayerInstance.PlayerLV>= quest.reqLv)
+                {
+                    quest.questState = 1;
+                }
+            }
+
             //레벨업 모션
             PlayerAnimation.LevelUPAnim();
         }

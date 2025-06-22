@@ -42,7 +42,7 @@ public class QuestUI : MonoBehaviour
     public void QuestMain()
     {
         npcImage.sprite = NPCCommon.npcSprite;
-        curQuestNumber = NPCCommon.npcObj.GetComponent<QuestNPC>().curQuestNum;
+        curQuestNumber = NPCCommon.npcObj.curQuestNum;
        
         npcMainText.text = QuestDataBase.questDataList[curQuestNumber].finishScript;
 
@@ -157,7 +157,7 @@ public class QuestUI : MonoBehaviour
     public void AcceptQuest()
     {
         QuestDataBase.questDataList[curQuestNumber].questState = 2;
-        NPCCommon.npcObj.GetComponent<QuestNPC>().ShowQuestState();
+        NPCCommon.npcObj.ShowQuestState();
         QuestCloseButton();
     }
 
@@ -188,8 +188,35 @@ public class QuestUI : MonoBehaviour
             ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
         }
 
-        NPCCommon.npcObj.GetComponent<QuestNPC>().ShowQuestState();
+        NPCCommon.npcObj.ShowQuestState();
+        NextQuest();
+
         QuestCloseButton();
+    }
+
+    /// <summary>
+    /// ´ÙÀ½ Äù½ºÆ®
+    /// </summary>
+    void NextQuest()
+    {
+        switch (NPCCommon.npcObj.questNPCNum)
+        {
+            case 0:
+                NPCCommon.npcObj.curQuestNum = Mathf.Min(NPCCommon.npcObj.curQuestNum + 1, 2);
+                break;
+            case 1:
+                NPCCommon.npcObj.curQuestNum = Mathf.Min(NPCCommon.npcObj.curQuestNum + 1, 4);
+                break;
+            case 2:
+                NPCCommon.npcObj.curQuestNum = Mathf.Min(NPCCommon.npcObj.curQuestNum + 1, 6);
+                break;
+            case 5:
+                NPCCommon.npcObj.curQuestNum = Mathf.Min(NPCCommon.npcObj.curQuestNum + 1, 10);
+                break;
+            default:
+                break;
+        }
+        NPCCommon.npcObj.ShowNextQuestState(NPCCommon.npcObj.curQuestNum);
     }
     #endregion
 }

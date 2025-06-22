@@ -9,6 +9,7 @@ public class MonsterInfo : MonoBehaviour
 {
     //몬스터 정보
     public int monsterID;
+    public string realName;
     public int monsterLv;
     public int monsterMaxHP;
     public int monsterExp;
@@ -230,7 +231,7 @@ public class MonsterInfo : MonoBehaviour
                     if (quest.reqmonsterNum[idx] == monsterID)
                     {
                         quest.reqMonsterCount[idx] += 1;
-                        questingText.text = $"{name} ({quest.reqMonsterCount[idx]}/{quest.reqMonsterGoalCount[idx]})";
+                        questingText.text = $"{realName} ({quest.reqMonsterCount[idx]}/{quest.reqMonsterGoalCount[idx]})";
                         Invoke("OffQuestMessage", 1f);
                     }
                }

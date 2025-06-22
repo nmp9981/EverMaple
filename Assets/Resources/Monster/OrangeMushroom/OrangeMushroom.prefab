@@ -104,7 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da992626de43ef54fb33efd9be0f0e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterID: 0
+  monsterID: 4
+  realName: "\uC8FC\uD669\uBC84\uC12F"
   monsterLv: 8
   monsterMaxHP: 80
   monsterExp: 15

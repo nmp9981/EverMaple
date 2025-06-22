@@ -104,18 +104,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da992626de43ef54fb33efd9be0f0e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterID: 2
+  realName: "\uC2A4\uD140\uD504"
   monsterLv: 4
   monsterMaxHP: 45
   monsterExp: 8
   monsterMeso: 15
   monsterAttackPower: 8
+  monsterArmor: 0
+  monsterAvoid: 0
   monsterCurHP: 0
+  isBoss: 0
+  isAttack: 0
+  throwBall: {fileID: 0}
   spawnPosNumber: 0
   spawnMap: 
+  monsterMoveSpeed: 3
   HPBar: {fileID: 5347950471241383534}
   HPBarValue: {fileID: 5130158472983827513}
+  bossHPBar: {fileID: 0}
   mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
+  dropEquipmentItemPrefab: {fileID: 0}
+  dropItemNames: []
+  dropConsumeItemPrefab: {fileID: 0}
+  dropConsumeItemIndexList: 
 --- !u!50 &6262028703081101666
 Rigidbody2D:
   serializedVersion: 5

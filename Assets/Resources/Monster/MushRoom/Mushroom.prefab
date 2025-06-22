@@ -200,22 +200,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterID: 25
+  realName: "\uBA38\uC26C\uB9D8"
   monsterLv: 60
   monsterMaxHP: 20000
   monsterExp: 1000
   monsterMeso: 1500
   monsterAttackPower: 300
+  monsterArmor: 0
+  monsterAvoid: 0
   monsterCurHP: 0
   isBoss: 1
   isAttack: 1
   throwBall: {fileID: 7733869331179037602, guid: 189e35c805fe990498e18f3445583cbe, type: 3}
   spawnPosNumber: 0
   spawnMap: 
+  monsterMoveSpeed: 3
   HPBar: {fileID: 0}
   HPBarValue: {fileID: 0}
   bossHPBar: {fileID: 7195120280854816748}
   mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
+  dropEquipmentItemPrefab: {fileID: 0}
+  dropItemNames: []
+  dropConsumeItemPrefab: {fileID: 0}
+  dropConsumeItemIndexList: 
 --- !u!1 &329813243733221912
 GameObject:
   m_ObjectHideFlags: 0

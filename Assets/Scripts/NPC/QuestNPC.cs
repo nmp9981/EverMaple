@@ -28,9 +28,9 @@ public class QuestNPC : MonoBehaviour
         if (QuestDataBase.questDataList[state].reqLv <= PlayerManager.PlayerInstance.PlayerLV)
         {
             if (CheckBeforeQuest())
-                curQuestState = 1;
+                QuestDataBase.questDataList[state].questState = 1;
         }
-        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = stateSpriteList[curQuestState];
+        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = stateSpriteList[1];
     }
 
     /// <summary>

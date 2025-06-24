@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ConsumeNPC : NPCCommon
@@ -33,8 +34,12 @@ public class ConsumeNPC : NPCCommon
     //선택한 장비 아이템
     private (int idx, int price, string name, Sprite sprite) curBuyEquipmentInfo = (-1, -1, string.Empty, null);
 
+    //UI위치
+    private RectTransform rectTransform;
+
     private void Awake()
     {
+        rectTransform = GetComponent<RectTransform>();
         spriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         StoreButtonBinding();
         BindingInputfeild();
@@ -45,7 +50,10 @@ public class ConsumeNPC : NPCCommon
     {
         ShowStoreUI();
     }
-
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta;
+    }
     /// <summary>
     /// 상점 버튼 바인딩
     /// </summary>

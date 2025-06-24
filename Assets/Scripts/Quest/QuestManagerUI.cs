@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class QuestManagerUI : MonoBehaviour
@@ -15,14 +16,18 @@ public class QuestManagerUI : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI questInfoText;
 
+    //UIÀ§Ä¡
+    private RectTransform rectTransform;
+
     private void Awake()
     {
+        rectTransform = GetComponent<RectTransform>();
         BindingQuestButton();
         foreach(GameObject questButton in questButtonList) { questButton.SetActive(false); }
     }
-    private void OnEnable()
+    public void OnDrag(PointerEventData eventData)
     {
-
+        rectTransform.anchoredPosition += eventData.delta;
     }
 
     /// <summary>

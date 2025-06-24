@@ -56,7 +56,7 @@ public class PlayerManager : MonoBehaviour
     int playerCurMP;
     int playerMaxMP = 1000;
     int playerCurExp = 0;
-    int playerRequireExp = 40;
+    int playerRequireExp = 20;
     int playerMeso = 100000;
 
     //플레이어 스탯
@@ -109,9 +109,9 @@ public class PlayerManager : MonoBehaviour
     {
         15,17,17,19,19,21,21,23,25,27
     };
-    public int[] dragUpgradeLV = new int[11]//표창 업그레이드 레벨
+    public int[] dragUpgradeLV = new int[12]//표창 업그레이드 레벨
     {
-        10,15,20,25,30,35,40,50,70,85,111
+        10,15,20,25,30,35,40,50,70,85,111,200
     };
 
     public int[] haveConsumeItem = new int[30];

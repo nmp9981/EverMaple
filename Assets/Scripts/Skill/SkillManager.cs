@@ -410,7 +410,7 @@ public class SkillManager : MonoBehaviour
         skillEffectManager.PlaySkillAnimation("Assertor", 0.5f, 0);
 
         //사운드
-        SoundManager._sound.PlaySfx(14);
+        SoundManager._sound.PlaySfx(34);
 
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);

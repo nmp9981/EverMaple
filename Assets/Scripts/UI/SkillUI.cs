@@ -261,6 +261,7 @@ public class SkillUI : MonoBehaviour, IDragHandler
                 SkillDamageCalCulate.DoubleStepCoff = 70+(curSkillLv*7)/2;
                 break;
             case "새비지블로우":
+                SkillDamageCalCulate.SavageblowLv = curSkillLv;
                 SkillDamageCalCulate.SavageblowCoff = 80;
                 SkillDamageCalCulate.SavageblowHitNum = 2*((curSkillLv + 9) / 10);
                 break;

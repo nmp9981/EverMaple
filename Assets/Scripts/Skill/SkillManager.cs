@@ -83,6 +83,9 @@ public class SkillManager : MonoBehaviour
         //이펙트
         skillEffectManager.PlaySkillAnimation("LuckySeven", 0.5f, 0);
 
+        //사운드
+        SoundManager._sound.PlaySfx(4);
+
         for (int i = 0; i < hitNum; i++)
         {
             ThrowObjectFunction throwObj = throwObjectFulling.MakeObj(PlayerManager.PlayerInstance.ShootDragNum).GetComponent<ThrowObjectFunction>();
@@ -122,6 +125,9 @@ public class SkillManager : MonoBehaviour
 
         //이펙트
         skillEffectManager.PlaySkillAnimation("TripleThrow", 0.5f, 0);
+
+        //사운드
+        SoundManager._sound.PlaySfx(15);
 
         for (int i = 0; i < hitNum; i++)
         {
@@ -170,6 +176,9 @@ public class SkillManager : MonoBehaviour
             skillEffectManager.PlaySkillAnimation("DoubleStep", 0.5f, 0);
         else//오른쪽
             skillEffectManager.PlaySkillAnimation("DoubleStep2", 0.5f, 0);
+
+        //사운드
+        SoundManager._sound.PlaySfx(3);
 
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);
@@ -220,6 +229,9 @@ public class SkillManager : MonoBehaviour
         //이펙트
         skillEffectManager.PlaySkillAnimation("SavageBlow", 0.5f,0);
 
+        //사운드
+        SoundManager._sound.PlaySfx(11);
+
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);
 
@@ -236,6 +248,7 @@ public class SkillManager : MonoBehaviour
             for (int i = 1; i <= hitNum; i++)
             {
                 PlayerAttackCommon.PlayerAttackToOneMonster(nearMob, SkillDamageCalCulate.SavageblowCoff, i);
+                SoundManager._sound.PlaySfx(12);
                 await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed / 8);
             }
         }
@@ -264,6 +277,9 @@ public class SkillManager : MonoBehaviour
 
         //이펙트
         skillEffectManager.PlaySkillAnimation("Avenger", -0.5f, 0);
+
+        //사운드
+        SoundManager._sound.PlaySfx(14);
 
         for (int i = 0; i < hitNum; i++)
         {
@@ -303,6 +319,9 @@ public class SkillManager : MonoBehaviour
         //이펙트
         skillEffectManager.PlaySkillAnimation("BumerangStep", 2f, 0);
 
+        //사운드
+        SoundManager._sound.PlaySfx(8);
+
         BumerangStepClass throwObj = throwObjectFulling.MakeObj(11).GetComponent<BumerangStepClass>();
         throwObj.transform.position = player.transform.position + 0.5f * PlayerManager.PlayerInstance.PlayerLookDir;
         throwObj.startPos = throwObj.transform.position;
@@ -338,6 +357,9 @@ public class SkillManager : MonoBehaviour
 
         //이펙트
         skillEffectManager.PlaySkillAnimation("Thivse", 0.01f, 0);
+
+        //사운드
+        SoundManager._sound.PlaySfx(17);
 
         //플레이어로부터 가장 가까이에 있는 몬스터들 구하기
         List<GameObject> nearMobList 
@@ -387,6 +409,9 @@ public class SkillManager : MonoBehaviour
         //이펙트
         skillEffectManager.PlaySkillAnimation("Assertor", 0.5f, 0);
 
+        //사운드
+        SoundManager._sound.PlaySfx(14);
+
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, player.transform.position, attackBoundSize * 2);
 
@@ -425,6 +450,9 @@ public class SkillManager : MonoBehaviour
         //MP 소모
         DecreasePlayerMP(30);
 
+        //사운드
+        SoundManager._sound.PlaySfx(18);
+
         //버프 시전
         if (ItemManager.itemInstance.buffItemList[10].activeSelf)
             ItemManager.itemInstance.buffItemList[10].SetActive(false);
@@ -441,6 +469,9 @@ public class SkillManager : MonoBehaviour
         DecreasePlayerHP(10);
         DecreasePlayerMP(10);
 
+        //사운드
+        SoundManager._sound.PlaySfx(10);
+
         //버프 시전
         if (ItemManager.itemInstance.buffItemList[11].activeSelf)
             ItemManager.itemInstance.buffItemList[11].SetActive(false);
@@ -456,6 +487,9 @@ public class SkillManager : MonoBehaviour
         DecreasePlayerHP(10);
         DecreasePlayerMP(10);
 
+        //사운드
+        SoundManager._sound.PlaySfx(10);
+
         //버프 시전
         if (ItemManager.itemInstance.buffItemList[12].activeSelf)
             ItemManager.itemInstance.buffItemList[12].SetActive(false);
@@ -469,6 +503,9 @@ public class SkillManager : MonoBehaviour
 
         //MP 소모
         DecreasePlayerMP(55);
+
+        //사운드
+        SoundManager._sound.PlaySfx(13);
 
         //버프 시전
         if (ItemManager.itemInstance.buffItemList[13].activeSelf)
@@ -484,6 +521,9 @@ public class SkillManager : MonoBehaviour
         //MP 소모
         DecreasePlayerMP(60);
 
+        //사운드
+        SoundManager._sound.PlaySfx(6);
+
         //버프 시전
         if (ItemManager.itemInstance.buffItemList[14].activeSelf)
             ItemManager.itemInstance.buffItemList[14].SetActive(false);
@@ -498,6 +538,9 @@ public class SkillManager : MonoBehaviour
         //MP 소모
         DecreasePlayerMP(35);
 
+        //사운드
+        SoundManager._sound.PlaySfx(5);
+
         //버프 시전
         if (ItemManager.itemInstance.buffItemList[15].activeSelf)
             ItemManager.itemInstance.buffItemList[15].SetActive(false);
@@ -511,6 +554,9 @@ public class SkillManager : MonoBehaviour
 
         //MP 소모
         DecreasePlayerMP(50);
+
+        //사운드
+        SoundManager._sound.PlaySfx(7);
 
         //버프 시전
         if (ItemManager.itemInstance.buffItemList[16].activeSelf)

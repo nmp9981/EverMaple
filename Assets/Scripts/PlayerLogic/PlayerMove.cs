@@ -86,6 +86,7 @@ public class PlayerMove : MonoBehaviour
             jumpCount++;
             rigid.linearVelocity = Vector3.up * PlayerManager.PlayerInstance.JumpForce*
                 (PlayerManager.PlayerInstance.JumpForceRate*0.01f);
+            SoundManager._sound.PlaySfx(33);
             PlayerAnimation.JumpAnim();
         }
     }

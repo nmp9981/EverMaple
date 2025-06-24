@@ -31,6 +31,7 @@ public class MonsterDropItem : MonoBehaviour
 
             ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
             playerInfoUI.ShowGetItemMessage(itemName);
+            SoundManager._sound.PlaySfx(24);
             Destroy(gameObject);
         }
     }

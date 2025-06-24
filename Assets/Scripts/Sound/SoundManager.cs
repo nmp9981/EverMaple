@@ -95,9 +95,8 @@ public class SoundManager : MonoBehaviour
     /// 각 맵의 bgm재생
     /// 시점 : 맵 이동후
     /// </summary>
-    public void MapBGMSetting(string prevMapName)
+    public void MapBGMSetting(string prevMapName, string playerCurMapname)
     {
-        string playerCurMapname = PlayerManager.PlayerInstance.CurMapName;
         int curMapNum = MapAndProtalList.curMapNum;
 
         //지역이 같은가?

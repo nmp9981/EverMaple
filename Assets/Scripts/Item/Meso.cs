@@ -42,6 +42,7 @@ public class Meso : MonoBehaviour
         {
             PlayerManager.PlayerInstance.PlayerMeso += getMeso;
             ItemManager.itemInstance.fieldDropItems.Remove(this.gameObject);
+            SoundManager._sound.PlaySfx(24);
             playerInfoUI.ShowGetMesoMessage(getMeso);
             Destroy(gameObject);
         }

@@ -47,7 +47,7 @@ public class MapManager : MonoBehaviour
         isDownUpKey = false;
 
         //´ÙÀ½¸ÊÀ¸·Î ¹Ù²ñ
-        string prevMapName = PlayerManager.PlayerInstance.CurMapName;
+        string prevMapName =realMapName[int.Parse(PlayerManager.PlayerInstance.CurMapName.Substring(3))];
         PlayerManager.PlayerInstance.CurMapName = MapAndProtalList.mapList[nextMapNum].name;
 
         //¸Ê UIÀû¿ë
@@ -74,7 +74,8 @@ public class MapManager : MonoBehaviour
         //EnterBossMap(MapAndProtalList.curMapNum);
 
         //»ç¿îµå Àû¿ë
-        SoundManager._sound.MapBGMSetting(prevMapName);
+        string curMapRealName = realMapName[int.Parse(PlayerManager.PlayerInstance.CurMapName.Substring(3))];
+        SoundManager._sound.MapBGMSetting(prevMapName, curMapRealName);
 
         //Äù½ºÆ® NPC
         foreach(var npc in MapAndProtalList.mapList[MapAndProtalList.curMapNum].GetComponentsInChildren<QuestNPC>())

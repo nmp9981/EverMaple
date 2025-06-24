@@ -68,6 +68,8 @@ public class PlayerDie : MonoBehaviour, IDragHandler
         playerCol.isTrigger = true;
         //오브젝트 활성화
         tombObj.SetActive(true);
+        //사운드
+        SoundManager._sound.PlaySfx(27);
     }
     /// <summary>
     /// 캐릭터 활성화

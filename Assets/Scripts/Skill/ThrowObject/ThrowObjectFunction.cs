@@ -103,6 +103,9 @@ public class ThrowObjectFunction : MonoBehaviour
                 PlayerAttackCommon.ShowDamageAsSkin(hitDamage, targetMob, hitNum);
             }
 
+            //»ç¿îµå
+            SoundManager._sound.PlaySfx(16);
+
             gameObject.SetActive(false);
             return;
         }

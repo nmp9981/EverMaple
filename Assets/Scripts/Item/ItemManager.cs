@@ -431,6 +431,9 @@ public class ItemManager : MonoBehaviour
         PlayerManager.PlayerInstance.PlayerCurHP 
             = Mathf.Min(PlayerManager.PlayerInstance.PlayerMaxHP, PlayerManager.PlayerInstance.PlayerCurHP + hpAmount);
 
+        //사운드
+        SoundManager._sound.PlaySfx(30);
+
         //UI반영
         playerInfoUI.ShowPlayerHPBar();
         itemUI.ShowConsumeInItemInventory();
@@ -459,6 +462,9 @@ public class ItemManager : MonoBehaviour
         //회복
         PlayerManager.PlayerInstance.PlayerCurMP
             = Mathf.Min(PlayerManager.PlayerInstance.PlayerMaxMP, PlayerManager.PlayerInstance.PlayerCurMP + mpAmount);
+
+        //사운드
+        SoundManager._sound.PlaySfx(30);
 
         //UI반영
         playerInfoUI.ShowPlayerMPBar();
@@ -493,6 +499,9 @@ public class ItemManager : MonoBehaviour
         PlayerManager.PlayerInstance.PlayerCurMP
             = Mathf.Min(PlayerManager.PlayerInstance.PlayerMaxMP, PlayerManager.PlayerInstance.PlayerCurMP + mpAmount);
 
+        //사운드
+        SoundManager._sound.PlaySfx(31);
+
         //UI반영
         playerInfoUI.ShowPlayerHPBar();
         playerInfoUI.ShowPlayerMPBar();
@@ -525,6 +534,8 @@ public class ItemManager : MonoBehaviour
 
         //포션 효과
         EffectBuffPosion(itemIndex);
+        //사운드
+        SoundManager._sound.PlaySfx(32);
         //UI반영
         itemUI.ShowConsumeInItemInventory();
     }

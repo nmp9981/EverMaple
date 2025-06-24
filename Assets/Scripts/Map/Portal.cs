@@ -53,6 +53,8 @@ public class Portal : MapManager
     {
         //포탈 활성화일 경우에만 이동 가능
         if (!isAblePortal) return;
+        //사운드
+        SoundManager._sound.PlaySfx(19);
         //포탈로 다음 맵 이동
         MoveToPortal(nextPortalNode, nextMapNum);
     }

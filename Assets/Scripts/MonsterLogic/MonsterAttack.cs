@@ -184,6 +184,7 @@ public class MonsterInfo : MonoBehaviour
         dropMeso.transform.position = this.gameObject.transform.position;
         dropMeso.gameObject.name = $"Meso_{monsterLv}";
         ItemManager.itemInstance.fieldDropItems.Add(dropMeso);
+        SoundManager._sound.PlaySfx(21);
     }
 
     /// <summary>
@@ -200,6 +201,7 @@ public class MonsterInfo : MonoBehaviour
                 GameObject dropEquipment = Instantiate(dropEquipmentItemPrefab);
                 dropEquipment.transform.position = this.gameObject.transform.position+Vector3.right*i;
                 dropEquipment.GetComponent<MonsterDropItem>().itemName = dropItemNames[i];
+                SoundManager._sound.PlaySfx(21);
             }
         }
         //소비 아이템 드랍
@@ -211,6 +213,7 @@ public class MonsterInfo : MonoBehaviour
                 GameObject dropEquipment = Instantiate(dropConsumeItemPrefab);
                 dropEquipment.transform.position = this.gameObject.transform.position + Vector3.left * i;
                 dropEquipment.GetComponent<MonsterDropConsumeItem>().itemIndex = dropConsumeItemIndexList[i];
+                SoundManager._sound.PlaySfx(21);
             }
         }
     }

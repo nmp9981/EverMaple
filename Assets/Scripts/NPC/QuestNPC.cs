@@ -15,6 +15,9 @@ public class QuestNPC : MonoBehaviour
     {
         int curQuestState = QuestDataBase.questDataList[curQuestNum].questState;
         transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = stateSpriteList[curQuestState];
+
+        if(curQuestState==1)
+            SoundManager._sound.PlaySfx(25);
     }
 
     /// <summary>

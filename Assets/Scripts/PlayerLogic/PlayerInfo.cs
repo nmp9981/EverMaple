@@ -69,6 +69,8 @@ public class PlayerInfo : MonoBehaviour
 
             //레벨업 모션
             PlayerAnimation.LevelUPAnim();
+            //사운드
+            SoundManager._sound.PlaySfx(23);
         }
     }
 

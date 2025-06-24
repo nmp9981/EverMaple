@@ -53,6 +53,9 @@ public class PlayerAttack : MonoBehaviour
         //공격 영역 세팅
         attackBound = SettingAttackArea(lookDir, attackBoundSize);
 
+        //효과음
+        SoundManager._sound.PlaySfx(0);
+
         //플레이어로부터 가장 가까이에 있는 몬스터 구하기
         GameObject nearMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir ,gameObject.transform.position,attackBoundSize*2);
        

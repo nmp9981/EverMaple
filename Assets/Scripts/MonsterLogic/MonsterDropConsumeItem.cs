@@ -42,6 +42,7 @@ public class MonsterDropConsumeItem : MonoBehaviour
                 ItemManager.itemInstance.consumeItems[itemIndex] = curConsumeItem;
             }
 
+            SoundManager._sound.PlaySfx(24);
             playerInfoUI.ShowGetItemMessage(ItemManager.itemInstance.consumeItems[itemIndex].name);
             Destroy(gameObject);
         }

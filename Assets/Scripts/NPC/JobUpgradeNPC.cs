@@ -217,6 +217,7 @@ public class JobUpgradeNPC : MonoBehaviour
         successUpgradeObj.transform.GetChild(0).transform.GetChild(3).GetComponent<Image>().sprite = npcSprite[dim];
         successUpgradeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"이제부터 {jobName}이라네\n그리고 약간의 SP를 지급해줬다네";
         PlayerManager.PlayerInstance.PlayerSkillPoint += 1;
+        SoundManager._sound.PlaySfx(22);
     }
     /// <summary>
     /// 전직 실패

@@ -191,6 +191,9 @@ public class QuestUI : MonoBehaviour
         NPCCommon.npcObj.ShowQuestState();
         NextQuest();
 
+        //»ç¿îµå
+        SoundManager._sound.PlaySfx(26);
+
         QuestCloseButton();
     }
 

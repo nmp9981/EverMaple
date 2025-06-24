@@ -102,7 +102,10 @@ public class BumerangStepClass : MonoBehaviour
             }
 
             restCount -= 1;
-            
+
+            //사운드
+            SoundManager._sound.PlaySfx(9);
+
             //최대 타깃 수만큼 공격
             if (restCount == 0)
             {

@@ -106,13 +106,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterID: 17
   realName: "\uCF5C\uB4DC\uC544\uC774"
-  monsterLv: 40
-  monsterMaxHP: 2000
-  monsterExp: 85
-  monsterMeso: 150
-  monsterAttackPower: 170
-  monsterArmor: 0
-  monsterAvoid: 0
+  monsterLv: 64
+  monsterMaxHP: 7700
+  monsterExp: 250
+  monsterMeso: 420
+  monsterAttackPower: 400
+  monsterArmor: 220
+  monsterAvoid: 25
   monsterCurHP: 0
   isBoss: 0
   isAttack: 0
@@ -125,10 +125,15 @@ MonoBehaviour:
   bossHPBar: {fileID: 0}
   mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
-  dropEquipmentItemPrefab: {fileID: 0}
-  dropItemNames: []
-  dropConsumeItemPrefab: {fileID: 0}
-  dropConsumeItemIndexList: 
+  dropEquipmentItemPrefab: {fileID: 7748565253450076650, guid: 2363dad048e37114ca7a9e3a25341dfe, type: 3}
+  dropItemNames:
+  - "\uCE90\uC2A4\uD130\uC2A4"
+  - "\uC2A4\uCF5C\uD53C\uC624"
+  - "\uC2A4\uCF5C\uD53C\uC624 \uBC14\uC9C0"
+  - "\uBA54\uC774\uD50C \uC774\uC5B4\uB9C1"
+  - "\uC6A9\uCC9C\uAD8C"
+  dropConsumeItemPrefab: {fileID: 7748565253450076650, guid: 1a7544cb6cf588b4b9e221ff62ccf5b4, type: 3}
+  dropConsumeItemIndexList: 05000000060000000f000000130000000b000000
 --- !u!50 &6262028703081101666
 Rigidbody2D:
   serializedVersion: 5

@@ -150,5 +150,5 @@ MonoBehaviour:
   isSide: 1
   sideValue: 1
   moveSpeed: 3
-  MobAttack: 670
+  MobAttack: 1500
   marginYPos: 0

@@ -111,8 +111,8 @@ MonoBehaviour:
   monsterExp: 77
   monsterMeso: 115
   monsterAttackPower: 130
-  monsterArmor: 0
-  monsterAvoid: 0
+  monsterArmor: 40
+  monsterAvoid: 20
   monsterCurHP: 0
   isBoss: 0
   isAttack: 1
@@ -125,10 +125,15 @@ MonoBehaviour:
   bossHPBar: {fileID: 0}
   mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
-  dropEquipmentItemPrefab: {fileID: 0}
-  dropItemNames: []
-  dropConsumeItemPrefab: {fileID: 0}
-  dropConsumeItemIndexList: 
+  dropEquipmentItemPrefab: {fileID: 7748565253450076650, guid: 2363dad048e37114ca7a9e3a25341dfe, type: 3}
+  dropItemNames:
+  - "\uB9AC\uD504 \uD06C\uB85C"
+  - "\uAC00\uC988"
+  - "\uAC00\uB514\uC5B8"
+  - "\uAC08\uC0C9 \uC0BF\uAC13"
+  - "\uC2A4\uB2C8\uD06C \uBC14\uC9C0"
+  dropConsumeItemPrefab: {fileID: 7748565253450076650, guid: 1a7544cb6cf588b4b9e221ff62ccf5b4, type: 3}
+  dropConsumeItemIndexList: 02000000040000000a0000000d000000
 --- !u!50 &6262028703081101666
 Rigidbody2D:
   serializedVersion: 5

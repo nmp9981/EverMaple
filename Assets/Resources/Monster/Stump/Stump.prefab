@@ -107,7 +107,7 @@ MonoBehaviour:
   monsterID: 2
   realName: "\uC2A4\uD140\uD504"
   monsterLv: 4
-  monsterMaxHP: 45
+  monsterMaxHP: 65
   monsterExp: 8
   monsterMeso: 15
   monsterAttackPower: 8
@@ -125,10 +125,13 @@ MonoBehaviour:
   bossHPBar: {fileID: 0}
   mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
-  dropEquipmentItemPrefab: {fileID: 0}
-  dropItemNames: []
-  dropConsumeItemPrefab: {fileID: 0}
-  dropConsumeItemIndexList: 
+  dropEquipmentItemPrefab: {fileID: 7748565253450076650, guid: 2363dad048e37114ca7a9e3a25341dfe, type: 3}
+  dropItemNames:
+  - "\uCD94 \uADC0\uACE0\uB9AC"
+  - "\uCCAD \uBC18\uBC14\uC9C0"
+  - "\uB2CC\uC790 \uC0CC\uB4E4"
+  dropConsumeItemPrefab: {fileID: 7748565253450076650, guid: 1a7544cb6cf588b4b9e221ff62ccf5b4, type: 3}
+  dropConsumeItemIndexList: 000000000300000003000000
 --- !u!50 &6262028703081101666
 Rigidbody2D:
   serializedVersion: 5

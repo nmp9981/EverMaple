@@ -92,6 +92,12 @@ public class ItemUI : MonoBehaviour, IDragHandler
                 case "ConsumeTab":
                     btn.onClick.AddListener(ShowConsumeInItemInventory);
                     break;
+                case "EquipmentTabImage":
+                    btn.onClick.AddListener(ShowEquipmentInItemInventory);
+                    break;
+                case "ConsumeTabImage":
+                    btn.onClick.AddListener(ShowConsumeInItemInventory);
+                    break;
                 default:
                     break;
             }

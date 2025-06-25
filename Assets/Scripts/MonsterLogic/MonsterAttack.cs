@@ -234,6 +234,7 @@ public class MonsterInfo : MonoBehaviour
                     if (quest.reqmonsterNum[idx] == monsterID)
                     {
                         quest.reqMonsterCount[idx] += 1;
+                        questingText.gameObject.SetActive(true);
                         questingText.text = $"{realName} ({quest.reqMonsterCount[idx]}/{quest.reqMonsterGoalCount[idx]})";
                         Invoke("OffQuestMessage", 1f);
                     }
@@ -261,6 +262,7 @@ public class MonsterInfo : MonoBehaviour
     void OffQuestMessage()
     {
         questingText.text = string.Empty;
+        questingText.gameObject.SetActive(false);
     }
 
     /// <summary>

@@ -56,7 +56,7 @@ public class PlayerManager : MonoBehaviour
     int playerCurMP;
     int playerMaxMP = 5;
     int playerCurExp = 0;
-    int playerRequireExp = 20;
+    int playerRequireExp = 12;
     int playerMeso = 0;
 
     //플레이어 스탯
@@ -138,6 +138,11 @@ public class PlayerManager : MonoBehaviour
             0,0,0,0,0,0,-1,0,0,0,0,0,0,0)}
     };
 
+    //초기 요구 겸험치
+    public int[] ealryRequireExpArray = new int[21]
+    {
+        12,12,20,40,72,120,180,280,420,630,960,1320, 1880, 2530,3250,4000, 5000,6200,7700,9600,12100
+    };
 
     #region 이동 관련 변수
     public float PlayerMoveSpeed {  get { return playerMoveSpeed; } set { playerMoveSpeed = value; } }

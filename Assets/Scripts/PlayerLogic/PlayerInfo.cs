@@ -34,7 +34,8 @@ public class PlayerInfo : MonoBehaviour
             playerInfoUI.ShowPlayerLV();
 
             //요구경험치 증가
-            int nextReauireExp = PlayerManager.PlayerInstance.PlayerRequireExp*105/100;
+            int nextReauireExp = (PlayerManager.PlayerInstance.PlayerLV>20)?PlayerManager.PlayerInstance.PlayerRequireExp*105/100:
+                PlayerManager.PlayerInstance.ealryRequireExpArray[PlayerManager.PlayerInstance.PlayerLV];
             PlayerManager.PlayerInstance.PlayerRequireExp = nextReauireExp;
             playerInfoUI.ShowPlayerEXPBar();
 

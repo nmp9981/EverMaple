@@ -206,8 +206,8 @@ MonoBehaviour:
   monsterExp: 1000
   monsterMeso: 1500
   monsterAttackPower: 300
-  monsterArmor: 0
-  monsterAvoid: 0
+  monsterArmor: 320
+  monsterAvoid: 27
   monsterCurHP: 0
   isBoss: 1
   isAttack: 1
@@ -220,10 +220,20 @@ MonoBehaviour:
   bossHPBar: {fileID: 7195120280854816748}
   mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
-  dropEquipmentItemPrefab: {fileID: 0}
-  dropItemNames: []
-  dropConsumeItemPrefab: {fileID: 0}
-  dropConsumeItemIndexList: 
+  dropEquipmentItemPrefab: {fileID: 7748565253450076650, guid: 2363dad048e37114ca7a9e3a25341dfe, type: 3}
+  dropItemNames:
+  - "\uC774\uCE74\uB8E8\uC2A4\uC758 \uB9DD\uD1A0"
+  - "\uBA54\uC774\uD50C \uC774\uC5B4\uB9C1"
+  - "\uD558\uC774\uB4DC\uD6C4\uB4DC"
+  - "\uCE78\uB514\uB124"
+  - "\uCF54\uBE0C\uB77C\uC2A4\uD2F0\uC5B4"
+  - "\uC640\uC774\uC5B4\uC2A4"
+  - "\uD30C\uC6B0"
+  - "\uB8E8\uD2F0\uB4DC\uC288\uC988"
+  - "\uC250\uB3C4\uC6B0"
+  - "\uC250\uB3C4\uC6B0 \uBC14\uC9C0"
+  dropConsumeItemPrefab: {fileID: 7748565253450076650, guid: 1a7544cb6cf588b4b9e221ff62ccf5b4, type: 3}
+  dropConsumeItemIndexList: 090000000a0000000b0000000c0000000d000000100000001300000013000000140000001400000005000000050000000600000006000000130000000f0000000f000000
 --- !u!1 &329813243733221912
 GameObject:
   m_ObjectHideFlags: 0

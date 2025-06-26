@@ -191,7 +191,7 @@ public class JobUpgradeNPC : MonoBehaviour
                 }
                 break;
             case PlayerJobClass.ThiefMaster:
-                if (PlayerManager.PlayerInstance.PlayerLV >= 95
+                if (PlayerManager.PlayerInstance.PlayerLV >= 90
                     && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 249)
                 {
                     PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Shadower;

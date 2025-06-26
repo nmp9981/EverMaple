@@ -46,25 +46,25 @@ public class PlayerManager : MonoBehaviour
     Vector3 playerLookDir = Vector3.left;//플레이어가 바라보는 방향
 
     //플레이어 기본 정보
-    int playerLV = 10;
+    int playerLV = 1;
     int playerMaxLV = 110;
     string playerJob = "초보자";
     PlayerJobClass playerJobClass = PlayerJobClass.Beginer;
     string playerName = "Aruru";
     int playerCurHP;
-    int playerMaxHP = 9000;
+    int playerMaxHP = 50;
     int playerCurMP;
-    int playerMaxMP = 1000;
+    int playerMaxMP = 5;
     int playerCurExp = 0;
     int playerRequireExp = 20;
-    int playerMeso = 100000;
+    int playerMeso = 0;
 
     //플레이어 스탯
     int playerAPPoint = 0;
     int playerSTR = 4;
-    int playerDEX = 25;
+    int playerDEX = 5;
     int playerINT = 4;
-    int playerLUK = 37;
+    int playerLUK = 12;
 
     int playerAddSTR = 0;
     int playerAddDEX = 0;

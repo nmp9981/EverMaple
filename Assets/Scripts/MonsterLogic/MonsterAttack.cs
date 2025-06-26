@@ -79,6 +79,13 @@ public class MonsterInfo : MonoBehaviour
     //사망 판정용
     private int dieCount;
 
+    private void Awake()
+    {
+        //퀘스트 관련
+        questingText = GameObject.Find("QuestMessageUI").GetComponent<TextMeshProUGUI>();
+        Invoke("OffQuestMessage", 1);
+    }
+
     //활성화시 로직
     private void OnEnable()
     {
@@ -102,10 +109,6 @@ public class MonsterInfo : MonoBehaviour
         //스프라이트 관련
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.flipX = true;
-
-        //퀘스트 관련
-        questingText = GameObject.Find("QuestMessageUI").GetComponent<TextMeshProUGUI>();
-        OffQuestMessage();
     }
 
     private void Update()

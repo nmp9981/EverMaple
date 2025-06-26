@@ -63,7 +63,8 @@ public class PlayerInfo : MonoBehaviour
             {
                 if(PlayerManager.PlayerInstance.PlayerLV>= quest.reqLv)
                 {
-                    quest.questState = 1;
+                    if(quest.questState==0)
+                        quest.questState = 1;
                 }
             }
 

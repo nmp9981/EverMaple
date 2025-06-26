@@ -83,7 +83,8 @@ public class JobUpgradeNPC : MonoBehaviour
     /// </summary>
     public void LogUpgrade()
     {
-        if (PlayerManager.PlayerInstance.PlayerLV >= 8 && PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Beginer)
+        if (PlayerManager.PlayerInstance.PlayerLV >= 8 && PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Beginer
+            && PlayerManager.PlayerInstance.PlayerDEX>=25)
         {
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Log;
             playerInfoUI.ShowPlayerJob("로그");
@@ -91,8 +92,8 @@ public class JobUpgradeNPC : MonoBehaviour
 
             //체력, 마나 보너스, 부족한 SP보충
             PlayerManager.PlayerInstance.PlayerSkillPoint += 3*(PlayerManager.PlayerInstance.PlayerLV-8);
-            PlayerManager.PlayerInstance.PlayerMaxHP += 300;
-            PlayerManager.PlayerInstance.PlayerMaxMP += 200;
+            PlayerManager.PlayerInstance.PlayerMaxHP += 150;
+            PlayerManager.PlayerInstance.PlayerMaxMP += 50;
 
             PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
             PlayerManager.PlayerInstance.PlayerCurMP = PlayerManager.PlayerInstance.PlayerMaxMP;
@@ -118,6 +119,16 @@ public class JobUpgradeNPC : MonoBehaviour
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Assassin;
             playerInfoUI.ShowPlayerJob("어쌔신");
             SuccessUpgrade(1, "어쌔신");
+            
+            //체력, 마나 보너스
+            PlayerManager.PlayerInstance.PlayerMaxHP += 300;
+            PlayerManager.PlayerInstance.PlayerMaxMP += 200;
+
+            PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
+            PlayerManager.PlayerInstance.PlayerCurMP = PlayerManager.PlayerInstance.PlayerMaxMP;
+
+            playerInfoUI.ShowPlayerHPBar();
+            playerInfoUI.ShowPlayerMPBar();
         }
         else
         {
@@ -137,6 +148,16 @@ public class JobUpgradeNPC : MonoBehaviour
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Thief;
             playerInfoUI.ShowPlayerJob("시프");
             SuccessUpgrade(1, "시프");
+
+            //체력, 마나 보너스
+            PlayerManager.PlayerInstance.PlayerMaxHP += 300;
+            PlayerManager.PlayerInstance.PlayerMaxMP += 200;
+
+            PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
+            PlayerManager.PlayerInstance.PlayerCurMP = PlayerManager.PlayerInstance.PlayerMaxMP;
+
+            playerInfoUI.ShowPlayerHPBar();
+            playerInfoUI.ShowPlayerMPBar();
         }
         else{
             FailUpgrade(1);
@@ -171,6 +192,11 @@ public class JobUpgradeNPC : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.NightLoad;
                     playerInfoUI.ShowPlayerJob("나이트로드");
                     SuccessUpgrade(2, "나이트로드");
+
+                    //체력 보너스
+                    PlayerManager.PlayerInstance.PlayerMaxHP += 450; 
+                    PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;                  
+                    playerInfoUI.ShowPlayerHPBar();
                 }
                 else
                 {
@@ -197,6 +223,11 @@ public class JobUpgradeNPC : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Shadower;
                     playerInfoUI.ShowPlayerJob("섀도어");
                     SuccessUpgrade(2, "섀도어");
+
+                    //체력 보너스
+                    PlayerManager.PlayerInstance.PlayerMaxHP += 450;
+                    PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
+                    playerInfoUI.ShowPlayerHPBar();
                 }
                 else
                 {
@@ -226,6 +257,7 @@ public class JobUpgradeNPC : MonoBehaviour
     {
         failUpgradeObj.SetActive(true);
         failUpgradeObj.transform.GetChild(0).transform.GetChild(3).GetComponent<Image>().sprite = npcSprite[dim];
-        failUpgradeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"다 소모하지 않은 SP가 있는지 \n레벨이 부족하지 않은지 확인하길 바라네";
+        failUpgradeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"다 소모하지 않은 SP가 있는지 \n레벨이 부족하지 않은지 확인하길 바라네\n" +
+            $"1차 전직인 경우 순수 DEX가 25이상이 되어야 한다네";
     }
 }

@@ -192,6 +192,23 @@ public class PlayerInfoUI : MonoBehaviour
             Invoke("DeleteMessage", 0.5f);
         }
     }
+    public void ShowNotGetItemMessage()
+    {
+        string message = $"아이템을 더 이상 가질 수 없습니다";
+
+        int getMessageIndex = getMessageCurCount % 5;
+        getMessageList[getMessageIndex].text = message;
+        getMessageCurCount += 1;
+
+        if (getMessageCurCount >= 5)
+        {
+            Invoke("DeleteMessage", 0.01f);
+        }
+        else
+        {
+            Invoke("DeleteMessage", 0.5f);
+        }
+    }
     /// <summary>
     /// 메세지 지우기
     /// </summary>

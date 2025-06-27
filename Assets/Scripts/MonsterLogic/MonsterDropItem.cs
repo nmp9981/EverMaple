@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MonsterDropItem : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class MonsterDropItem : MonoBehaviour
     public string itemName;
     public SpriteRenderer itemImage;
 
+    float curTime = 0;
     private void Awake()
     {
         itemImage = GetComponent<SpriteRenderer>();
@@ -18,6 +18,17 @@ public class MonsterDropItem : MonoBehaviour
     private void Start()
     {
         itemImage.sprite = ItemManager.itemInstance.equipmentItemDic[itemName].equipmentImage;
+    }
+
+
+    private void OnEnable()
+    {
+        curTime = 0;
+    }
+
+    private void Update()
+    {
+        TimeOut();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,10 +40,28 @@ public class MonsterDropItem : MonoBehaviour
             equipmentItem.sprite = itemImage.sprite;
             equipmentItem.name = itemName;
 
-            ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
-            playerInfoUI.ShowGetItemMessage(itemName);
-            SoundManager._sound.PlaySfx(24);
-            Destroy(gameObject);
+            if (ItemManager.itemInstance.playerHaveEquipments.Count < 24)
+            {
+                ItemManager.itemInstance.playerHaveEquipments.Add(equipmentItem);
+                playerInfoUI.ShowGetItemMessage(itemName);
+                SoundManager._sound.PlaySfx(24);
+                Destroy(gameObject);
+            }
+            else
+            {
+                playerInfoUI.ShowNotGetItemMessage();
+            }
+            
         }
+    }
+
+    /// <summary>
+    /// 시간 초과
+    /// </summary>
+    void TimeOut()
+    {
+        curTime += Time.deltaTime;
+        if(curTime>100)
+            Destroy(gameObject);
     }
 }

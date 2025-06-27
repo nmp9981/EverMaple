@@ -103,7 +103,7 @@ public class QuestDataBase : MonoBehaviour
         QuestData questData2
             = new QuestData(2, 1, 8, 0, "쿤의 수련 III","1더하기1은 창문", questSctipt2, "좀만 힘내", "잘했다. 초반에 폐사하면 안되니까 훈지좀 해줄게",
             reqmonsterNum2,reqMonsterName2, reqMonsterCount2, reqMonsterGoalCount2,
-            450, 4000, string.Empty);
+            500, 4000, string.Empty);
         questDataList.Add(questData2);
 
         //헤네시스

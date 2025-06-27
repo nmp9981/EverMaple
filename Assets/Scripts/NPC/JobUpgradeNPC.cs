@@ -84,7 +84,7 @@ public class JobUpgradeNPC : MonoBehaviour
     public void LogUpgrade()
     {
         if (PlayerManager.PlayerInstance.PlayerLV >= 8 && PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Beginer
-            && PlayerManager.PlayerInstance.PlayerDEX>=25)
+            && PlayerManager.PlayerInstance.PlayerDEX>=21)
         {
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Log;
             playerInfoUI.ShowPlayerJob("로그");
@@ -257,7 +257,7 @@ public class JobUpgradeNPC : MonoBehaviour
     {
         failUpgradeObj.SetActive(true);
         failUpgradeObj.transform.GetChild(0).transform.GetChild(3).GetComponent<Image>().sprite = npcSprite[dim];
-        failUpgradeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"다 소모하지 않은 SP가 있는지 \n레벨이 부족하지 않은지 확인하길 바라네\n" +
-            $"1차 전직인 경우 순수 DEX가 25이상이 되어야 한다네";
+        failUpgradeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"\n다 소모하지 않은 SP가 있는지 \n레벨이 부족하지 않은지 확인하길 바라네\n" +
+            $"1차 전직인 경우 순수 DEX가 21이상이 되어야 한다네";
     }
 }

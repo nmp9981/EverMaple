@@ -83,7 +83,7 @@ public class MonsterInfo : MonoBehaviour
     {
         //퀘스트 관련
         questingText = GameObject.Find("QuestMessageUI").GetComponent<TextMeshProUGUI>();
-        Invoke("OffQuestMessage", 1);
+        Invoke("OffQuestMessage", 0.4f);
     }
 
     //활성화시 로직

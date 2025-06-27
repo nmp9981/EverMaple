@@ -34,8 +34,7 @@ public class PlayerInfo : MonoBehaviour
             playerInfoUI.ShowPlayerLV();
 
             //요구경험치 증가
-            int nextReauireExp = (PlayerManager.PlayerInstance.PlayerLV>=25)?PlayerManager.PlayerInstance.PlayerRequireExp*105/100:
-                PlayerManager.PlayerInstance.ealryRequireExpArray[PlayerManager.PlayerInstance.PlayerLV];
+            int nextReauireExp = SettingRequireExp(PlayerManager.PlayerInstance.PlayerLV);
             PlayerManager.PlayerInstance.PlayerRequireExp = nextReauireExp;
             playerInfoUI.ShowPlayerEXPBar();
 
@@ -86,5 +85,21 @@ public class PlayerInfo : MonoBehaviour
             PlayerManager.PlayerInstance.ShootDragNum += 1;
             equiipmentUI.ChangeDragImage(PlayerManager.PlayerInstance.ShootDragNum);
         }
+    }
+    /// <summary>
+    /// 요구 경험치 세팅
+    /// </summary>
+    int SettingRequireExp(int lv)
+    {
+        int reqExp = 0;
+        if(lv>=100)
+            reqExp = PlayerManager.PlayerInstance.PlayerRequireExp * 110 / 100;
+        else if (lv >= 25 && lv<100)
+            reqExp = PlayerManager.PlayerInstance.PlayerRequireExp * 105 / 100;
+        else if(lv<25 && lv>=15)
+            reqExp = PlayerManager.PlayerInstance.PlayerRequireExp * 115 / 100;
+        else
+            reqExp = PlayerManager.PlayerInstance.ealryRequireExpArray[PlayerManager.PlayerInstance.PlayerLV];
+        return reqExp;
     }
 }

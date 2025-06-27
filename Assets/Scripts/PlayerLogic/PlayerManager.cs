@@ -139,9 +139,9 @@ public class PlayerManager : MonoBehaviour
     };
 
     //초기 요구 겸험치
-    public int[] ealryRequireExpArray = new int[25]
+    public int[] ealryRequireExpArray = new int[15]
     {
-        12,12,20,40,72,120,180,280,420,630,960,1320, 1880, 2530,3250,4000, 5000,6200,7700,9600,12100,15000,18400,22200,27000
+        12,12,20,40,72,120,180,270,400,570,800,1100,1500,1950,2500
     };
 
     #region 이동 관련 변수

@@ -19,6 +19,16 @@ public class ConsumeNPC : NPCCommon
     GameObject buyEquipmentUI;
 
     [SerializeField]
+    GameObject sellConsumeUICheck;
+    [SerializeField]
+    GameObject sellEquipmentUICheck;
+
+    [SerializeField]
+    GameObject sellEquipUI;
+    [SerializeField]
+    GameObject sellConsumeUI;
+
+    [SerializeField]
     Image playerImage;
     [SerializeField]
     Image npcImage;
@@ -26,16 +36,26 @@ public class ConsumeNPC : NPCCommon
     TextMeshProUGUI mesoText;
 
     private int itemCount = 0;
+    private int maxEquipmentCount = 24;
+    private int maxConsumeNumber = 21;
     private SpriteRenderer spriteRenderer;
 
-    //선택한 소비 아이템
+    //선택한 구매 소비 아이템
     private (int idx,int price) curBuyConsumeInfo = (-1,-1);
     private List<GameObject> equipmentListInStore = new List<GameObject>();
-    //선택한 장비 아이템
+    //선택한 구매 장비 아이템
     private (int idx, int price, string name, Sprite sprite) curBuyEquipmentInfo = (-1, -1, string.Empty, null);
+    //선택한 판매 소비 아이템
+    private (int idx, int price, int maxCount) curSellConsumeInfo = (-1, -1,-1);
+    //선택한 판매 장비 아이템
+    private (int price, string name, Sprite sprite) curSellEquipmentInfo = (-1, string.Empty, null);
 
     //UI위치
     private RectTransform rectTransform;
+
+    //판매 장비, 소비 오브젝트 리스트
+    private List<GameObject> sellEquipmentSpaceList = new List<GameObject>();
+    private List<GameObject> sellConsumeSpaceList = new List<GameObject>();
 
     private void Awake()
     {
@@ -43,7 +63,7 @@ public class ConsumeNPC : NPCCommon
         spriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         StoreButtonBinding();
         BindingInputfeild();
-        EnrollEquipmentInstore();
+        EnrollEquipmentAndConsumeInstore();
     }
 
     private void OnEnable()
@@ -64,16 +84,35 @@ public class ConsumeNPC : NPCCommon
             string gmName = btn.name;
 
             //소비 아이템
-            if (gmName.Contains("Goods") && !gmName.Contains("Equipment"))
+            if (btn.gameObject.tag.Contains("SellItem"))
             {
-                btn.onClick.AddListener(delegate { SettingCutSelectConsumeItem(btn.gameObject); });
-                continue;
+                //소비 아이템
+                if (gmName.Contains("Goods") && !gmName.Contains("Equipment"))
+                {
+                    btn.onClick.AddListener(delegate { SettingSellSelectConsumeItem(btn.gameObject); });
+                    continue;
+                }
+                //장비 아이템
+                if (gmName.Contains("EquipmentGoods"))
+                {
+                    btn.onClick.AddListener(delegate { SettingSellSelectEquipmentItem(btn.gameObject); });
+                    continue;
+                }
             }
-            //장비 아이템
-            if (gmName.Contains("EquipmentGoods"))
+            else
             {
-                btn.onClick.AddListener(delegate { SettingCutSelectEqiupmentItem(btn.gameObject); });
-                continue;
+                //소비 아이템
+                if (gmName.Contains("Goods") && !gmName.Contains("Equipment"))
+                {
+                    btn.onClick.AddListener(delegate { SettingCutSelectConsumeItem(btn.gameObject); });
+                    continue;
+                }
+                //장비 아이템
+                if (gmName.Contains("EquipmentGoods"))
+                {
+                    btn.onClick.AddListener(delegate { SettingCutSelectEqiupmentItem(btn.gameObject); });
+                    continue;
+                }
             }
 
             switch (gmName)
@@ -85,6 +124,7 @@ public class ConsumeNPC : NPCCommon
                     btn.onClick.AddListener(delegate { QuestionItemBuy(btn.gameObject); });
                     break;
                 case "ItemSell":
+                    btn.onClick.AddListener(delegate { QuestionItemSell(btn.gameObject); });
                     break;
                 case "ConsumeBuySucccess":
                     btn.onClick.AddListener(SuccessConsumeItemBuy);
@@ -97,6 +137,24 @@ public class ConsumeNPC : NPCCommon
                     break;
                 case "EquipmentBuyCancel":
                     btn.onClick.AddListener(CancelEquipmentItemBuy);
+                    break;
+                case "ConsumeSellSucccess":
+                    btn.onClick.AddListener(SuccessConsumeItemSell);
+                    break;
+                case "ConsumeSellCancel":
+                    btn.onClick.AddListener(CancelConsumeItemSell);
+                    break;
+                case "EquipmentSellSucccess":
+                    btn.onClick.AddListener(SuccessEquipmentItemSell);
+                    break;
+                case "EquipmentSellCancel":
+                    btn.onClick.AddListener(CancelEquipmentItemSell);
+                    break;
+                case "EquipmentSellTab":
+                    btn.onClick.AddListener(OnEquipmentSellTab);
+                    break;
+                case "ComsumeSellTab":
+                    btn.onClick.AddListener(OnConsumeSellUI);
                     break;
                 default:
                     break;
@@ -112,6 +170,9 @@ public class ConsumeNPC : NPCCommon
             switch (gmName)
             {
                 case "BuyCountText":
+                    inp.onEndEdit.AddListener(delegate { SettingCountItem(inp); });
+                    break;
+                case "SellCountText":
                     inp.onEndEdit.AddListener(delegate { SettingCountItem(inp); });
                     break;
                 default:
@@ -310,11 +371,22 @@ public class ConsumeNPC : NPCCommon
     /// <summary>
     /// 상점에 있는 장비 등록
     /// </summary>
-    void EnrollEquipmentInstore()
+    void EnrollEquipmentAndConsumeInstore()
     {
+        //구매 장비
         foreach (Transform equip in equipmentTotalListObj.GetComponentInChildren<Transform>())
         {
             equipmentListInStore.Add(equip.gameObject);
+        }
+        //판매 장비
+        foreach(Button equip in sellEquipUI.GetComponentsInChildren<Button>())
+        {
+            sellEquipmentSpaceList.Add(equip.gameObject);
+        }
+        //판매 소비템
+        foreach (Button cons in sellConsumeUI.GetComponentsInChildren<Button>())
+        {
+           sellConsumeSpaceList.Add(cons.gameObject);
         }
     }
 
@@ -360,4 +432,186 @@ public class ConsumeNPC : NPCCommon
             equipmentListInStore[equipNum].SetActive(true);
         }
     }
+    #region 아이템 판매
+    /// <summary>
+    /// 아이템 판매 확정 여부
+    /// </summary>
+    /// <param name="btn"></param>
+    public void QuestionItemSell(GameObject btn)
+    {
+        sellConsumeUICheck.SetActive(false);
+        sellEquipmentUICheck.SetActive(false);
+        //판매 창 열림
+        if (sellConsumeUI.activeSelf)
+        {
+            sellConsumeUICheck.SetActive(true);
+        }else if(sellEquipUI.activeSelf)
+            sellEquipmentUICheck.SetActive(true);
+    }
+
+    /// <summary>
+    /// 장비 판매 목록 켜기
+    /// </summary>
+    public void OnEquipmentSellTab()
+    {
+        sellConsumeUI.SetActive(false);
+        sellEquipUI.SetActive(true);
+
+        for (int i = 0; i < maxEquipmentCount; i++)
+        {
+            sellEquipmentSpaceList[i].SetActive(false);
+        }
+
+        for (int i=0;i<ItemManager.itemInstance.playerHaveEquipments.Count;i++)
+        {
+            sellEquipmentSpaceList[i].SetActive(true);
+
+            sellEquipmentSpaceList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                ItemManager.itemInstance.playerHaveEquipments[i].name;
+            sellEquipmentSpaceList[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+               $"{CalSellEquipmentMeso(ItemManager.itemInstance.playerHaveEquipments[i].name)} 메소";
+            sellEquipmentSpaceList[i].transform.GetChild(2).GetComponent<Image>().sprite =
+               ItemManager.itemInstance.playerHaveEquipments[i].sprite;
+        }
+    }
+    /// <summary>
+    /// 장비 판매 메소
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    int CalSellEquipmentMeso(string name)
+    {
+        int calLv = ItemManager.itemInstance.equipmentItemDic[name].reqLv;
+        EquipmentType calType = ItemManager.itemInstance.equipmentItemDic[name].equipmentType;
+
+        int sellMeso = 0;
+        if (calType == EquipmentType.Claw || calType == EquipmentType.Knife)
+        {
+            sellMeso = (calLv<30)?calLv*calLv*25: calLv * calLv * calLv;
+        }
+        else if (calType == EquipmentType.Glove)
+            sellMeso = calLv*calLv*20;
+        else
+            sellMeso = calLv * calLv * 12;
+        return sellMeso;
+    }
+    /// <summary>
+    /// 소비 판매 목록 켜기
+    /// </summary>
+    public void OnConsumeSellUI()
+    {
+        sellEquipUI.SetActive(false);
+        sellConsumeUI.SetActive(true);
+
+        for(int idx=0;idx<maxConsumeNumber;idx++)
+        {
+            ConsumeItem consumeItem = ItemManager.itemInstance.consumeItems[idx];
+            if (consumeItem.count != 0)
+            {
+                sellConsumeSpaceList[idx].SetActive(true);
+                sellConsumeSpaceList[idx].gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text 
+                    = consumeItem.count.ToString();
+            }
+        }
+    }
+
+    /// <summary>
+    /// 현재 판매할 소비 아이템 설정
+    /// </summary>
+    public void SettingSellSelectConsumeItem(GameObject btn)
+    {
+        curSellConsumeInfo.idx = int.Parse(btn.gameObject.name.Substring(5));
+        string priceText = btn.gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
+        curSellConsumeInfo.price = int.Parse(priceText.Substring(0, priceText.Length - 3));
+        string maxSellCountText = btn.gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
+        curSellConsumeInfo.maxCount = int.Parse(maxSellCountText);
+    }
+    /// <summary>
+    /// 현재 판매할 장비 아이템 설정
+    /// </summary>
+    public void SettingSellSelectEquipmentItem(GameObject btn)
+    {
+        string priceText = btn.gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
+        curSellEquipmentInfo.price = int.Parse(priceText.Substring(0, priceText.Length - 3));
+        curSellEquipmentInfo.name = btn.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        curSellEquipmentInfo.sprite = btn.gameObject.transform.GetChild(2).GetComponent<Image>().sprite;
+    }
+
+    /// <summary>
+    /// 소비아이템 구매 취소
+    /// </summary>
+    public void CancelConsumeItemSell()
+    {
+        curSellConsumeInfo.idx = -1;
+        curSellConsumeInfo.price = -1;
+        curSellConsumeInfo.maxCount = -1;
+
+        sellConsumeUICheck.SetActive(false);
+    }
+    /// <summary>
+    /// 소비아이템 구매 확정
+    /// </summary>
+    public void SuccessConsumeItemSell()
+    {
+        //선택한 아이템이 없음
+        if (curSellConsumeInfo.idx == -1)
+        {
+            return;
+        }
+
+        //판매 개수 조건
+        if (itemCount > 0)
+        {
+            int totalPrice = itemCount * curSellConsumeInfo.price;
+
+            //메소 획득
+            PlayerManager.PlayerInstance.PlayerMeso += totalPrice;
+            mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
+
+            //아이템 개수 수정
+            ConsumeItem curConsumeItem = ItemManager.itemInstance.consumeItems[curBuyConsumeInfo.idx];
+            curConsumeItem.count -= itemCount;
+            ItemManager.itemInstance.consumeItems[curBuyConsumeInfo.idx] = curConsumeItem;
+
+            CancelConsumeItemSell();
+        }
+    }
+
+    /// <summary>
+    /// 장비아이템 구매 취소
+    /// </summary>
+    public void CancelEquipmentItemSell()
+    {
+        curSellEquipmentInfo.price = -1;
+        curSellEquipmentInfo.name = string.Empty;
+        curSellEquipmentInfo.sprite = null;
+
+        sellEquipmentUICheck.SetActive(false);
+    }
+    /// <summary>
+    /// 장비아이템 구매 확정
+    /// </summary>
+    public void SuccessEquipmentItemSell()
+    {
+        //선택한 장비가 없음
+        if (curSellEquipmentInfo.price == -1)
+        {
+            return;
+        }
+
+        //판매하기
+        PlayerManager.PlayerInstance.PlayerMeso += curSellEquipmentInfo.price;
+        mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
+
+        //새로운 장비 아이템 정보 추가
+        EquipmentItem equipmentItem = new EquipmentItem();
+        equipmentItem.sprite = curBuyEquipmentInfo.sprite;
+        equipmentItem.name = curBuyEquipmentInfo.name;
+
+        ItemManager.itemInstance.playerHaveEquipments.Remove(equipmentItem);
+        CancelEquipmentItemBuy();
+
+        sellEquipmentUICheck.SetActive(false);
+    }
+    #endregion
 }

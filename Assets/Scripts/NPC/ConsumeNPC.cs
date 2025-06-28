@@ -457,12 +457,19 @@ public class ConsumeNPC : NPCCommon
         sellConsumeUI.SetActive(false);
         sellEquipUI.SetActive(true);
 
+        ShowEquipmentSellUI();
+    }
+    /// <summary>
+    /// 장비아이템 판매 목록 보이기
+    /// </summary>
+    void ShowEquipmentSellUI()
+    {
         for (int i = 0; i < maxEquipmentCount; i++)
         {
             sellEquipmentSpaceList[i].SetActive(false);
         }
 
-        for (int i=0;i<ItemManager.itemInstance.playerHaveEquipments.Count;i++)
+        for (int i = 0; i < ItemManager.itemInstance.playerHaveEquipments.Count; i++)
         {
             sellEquipmentSpaceList[i].SetActive(true);
 
@@ -503,7 +510,14 @@ public class ConsumeNPC : NPCCommon
         sellEquipUI.SetActive(false);
         sellConsumeUI.SetActive(true);
 
-        for(int idx=0;idx<maxConsumeNumber;idx++)
+        ShowConsumeSellUI();
+    }
+    /// <summary>
+    /// 소비아이템 판매 목록 보이기
+    /// </summary>
+    void ShowConsumeSellUI()
+    {
+        for (int idx = 0; idx < maxConsumeNumber; idx++)
         {
             sellConsumeSpaceList[idx].SetActive(false);
             if (ItemManager.itemInstance.consumeItems.ContainsKey(idx))
@@ -566,19 +580,26 @@ public class ConsumeNPC : NPCCommon
         //판매 개수 조건
         if (itemCount > 0)
         {
-            int totalPrice = itemCount * curSellConsumeInfo.price;
+            //현재 아이템
+            ConsumeItem curConsumeItem = ItemManager.itemInstance.consumeItems[curSellConsumeInfo.idx];
 
-            //메소 획득
-            PlayerManager.PlayerInstance.PlayerMeso += totalPrice;
-            mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
+            //현재 가지고 있는 개수보다 많으면 안됨
+            if(itemCount <= curConsumeItem.count)
+            {
+                int totalPrice = itemCount * curSellConsumeInfo.price;
 
-            //아이템 개수 수정
-            ConsumeItem curConsumeItem = ItemManager.itemInstance.consumeItems[curBuyConsumeInfo.idx];
-            curConsumeItem.count -= itemCount;
-            ItemManager.itemInstance.consumeItems[curBuyConsumeInfo.idx] = curConsumeItem;
+                //메소 획득
+                PlayerManager.PlayerInstance.PlayerMeso += totalPrice;
+                mesoText.text = PlayerManager.PlayerInstance.PlayerMeso.ToString();
 
-            CancelConsumeItemSell();
+                //아이템 개수 수정
+                curConsumeItem.count -= itemCount;
+                ItemManager.itemInstance.consumeItems[curSellConsumeInfo.idx] = curConsumeItem;
+
+                ShowConsumeSellUI();
+            }
         }
+        CancelConsumeItemSell();
     }
 
     /// <summary>
@@ -593,7 +614,7 @@ public class ConsumeNPC : NPCCommon
         sellEquipmentUICheck.SetActive(false);
     }
     /// <summary>
-    /// 장비아이템 구매 확정
+    /// 장비아이템 판매 확정
     /// </summary>
     public void SuccessEquipmentItemSell()
     {
@@ -609,10 +630,11 @@ public class ConsumeNPC : NPCCommon
 
         //새로운 장비 아이템 정보 추가
         EquipmentItem equipmentItem = new EquipmentItem();
-        equipmentItem.sprite = curBuyEquipmentInfo.sprite;
-        equipmentItem.name = curBuyEquipmentInfo.name;
+        equipmentItem.sprite = curSellEquipmentInfo.sprite;
+        equipmentItem.name = curSellEquipmentInfo.name;
 
         ItemManager.itemInstance.playerHaveEquipments.Remove(equipmentItem);
+        ShowEquipmentSellUI();
         CancelEquipmentItemBuy();
 
         sellEquipmentUICheck.SetActive(false);

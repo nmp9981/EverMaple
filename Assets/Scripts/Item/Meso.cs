@@ -74,16 +74,20 @@ public class Meso : MonoBehaviour
         int mobLv = int.Parse(gameObjName.Substring(5));
         int dropMeso = 0;
 
-        if (mobLv<30)
+        if (mobLv < 20)
         {
-            dropMeso = (mobLv * mobLv * mobLv) / 100 - 4 * mobLv * mobLv / 10 + 6 * mobLv - 10;
+            dropMeso = 2 * mobLv+2;
+        }
+        else if (mobLv>=20 && mobLv<30)
+        {
+            dropMeso = 43+(9*(mobLv-20))/2;
         }
         else
         {
             dropMeso = (mobLv * mobLv + mobLv) / 10 - mobLv/15;
         }
 
-        int finalDropMeso = Random.Range(dropMeso * 4 / 5, dropMeso * 6 / 5);
+        int finalDropMeso = Mathf.Min(4, Random.Range(dropMeso * 4 / 5, dropMeso * 6 / 5));
         int addDropMeso = (finalDropMeso * PlayerManager.PlayerInstance.RateIncreaseGetMeso)/100;
         return finalDropMeso+ addDropMeso;
     }

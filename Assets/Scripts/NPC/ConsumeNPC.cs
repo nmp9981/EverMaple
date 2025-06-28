@@ -505,12 +505,16 @@ public class ConsumeNPC : NPCCommon
 
         for(int idx=0;idx<maxConsumeNumber;idx++)
         {
-            ConsumeItem consumeItem = ItemManager.itemInstance.consumeItems[idx];
-            if (consumeItem.count != 0)
+            sellConsumeSpaceList[idx].SetActive(false);
+            if (ItemManager.itemInstance.consumeItems.ContainsKey(idx))
             {
-                sellConsumeSpaceList[idx].SetActive(true);
-                sellConsumeSpaceList[idx].gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text 
-                    = consumeItem.count.ToString();
+                ConsumeItem consumeItem = ItemManager.itemInstance.consumeItems[idx];
+                if (consumeItem.count != 0)
+                {
+                    sellConsumeSpaceList[idx].SetActive(true);
+                    sellConsumeSpaceList[idx].gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text
+                        = consumeItem.count.ToString();
+                }
             }
         }
     }

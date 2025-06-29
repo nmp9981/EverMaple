@@ -488,19 +488,7 @@ public class ConsumeNPC : NPCCommon
     /// <returns></returns>
     int CalSellEquipmentMeso(string name)
     {
-        int calLv = ItemManager.itemInstance.equipmentItemDic[name].reqLv;
-        EquipmentType calType = ItemManager.itemInstance.equipmentItemDic[name].equipmentType;
-
-        int sellMeso = 0;
-        if (calType == EquipmentType.Claw || calType == EquipmentType.Knife)
-        {
-            sellMeso = (calLv<30)?calLv*calLv*25: calLv * calLv * calLv;
-        }
-        else if (calType == EquipmentType.Glove)
-            sellMeso = calLv*calLv*20;
-        else
-            sellMeso = calLv * calLv * 12;
-        return sellMeso;
+        return ItemManager.itemInstance.equipmentItemDic[name].sellPrice;
     }
     /// <summary>
     /// 소비 판매 목록 켜기

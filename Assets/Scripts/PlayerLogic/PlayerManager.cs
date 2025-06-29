@@ -119,23 +119,23 @@ public class PlayerManager : MonoBehaviour
     //각 부위별 어떤 장비를 끼고 있는지 데이터 보관
     public Dictionary<EquipmentType, EquiipmentOption> playerSetEquipment = new Dictionary<EquipmentType, EquiipmentOption>(){
         { EquipmentType.Claw,new EquiipmentOption(null,EquipmentType.Claw, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)},
         { EquipmentType.Knife, new EquiipmentOption(null,EquipmentType.Knife, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)},
         { EquipmentType.Hat,new EquiipmentOption(null,EquipmentType.Hat, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)},
         { EquipmentType.Up,new EquiipmentOption(null,EquipmentType.Up, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)},
         { EquipmentType.Down,new EquiipmentOption(null,EquipmentType.Down, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)},
         { EquipmentType.Shoes,new EquiipmentOption(null,EquipmentType.Shoes, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)},
         { EquipmentType.Glove,new EquiipmentOption(null,EquipmentType.Glove, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)},
         { EquipmentType.Earing,new EquiipmentOption(null,EquipmentType.Earing, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)},
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)},
         { EquipmentType.Cape,new EquiipmentOption(null,EquipmentType.Cape, 0,0,0,0,0,"",
-            0,0,0,0,0,0,-1,0,0,0,0,0,0,0)}
+            0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0)}
     };
 
     //초기 요구 겸험치

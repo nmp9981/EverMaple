@@ -62,10 +62,13 @@ public class EquiipmentOption : MonoBehaviour
     public int addAccuracy;
     public int addAvoid;
 
+    //상점 판매가 
+    public int sellPrice;
+
     //생성자
     public EquiipmentOption(Sprite Esprite, EquipmentType EequipmentType, int EreqLV, int EreqSTR,int EreqDEX,int EreqINT,int EreqLUK,
         string EreqJob, int EaddHP, int EaddMP, int EaddSTR, int EaddDEX, int EaddINT, int EaddLUK, 
-        int EaddAttack, int EaddMagicAttack, int EaddPArmor,int EaddMArmor,int EaddMove, int EaddJump, int EaddAcc, int EaddAvoid)
+        int EaddAttack, int EaddMagicAttack, int EaddPArmor,int EaddMArmor,int EaddMove, int EaddJump, int EaddAcc, int EaddAvoid, int EsellPrice)
     {
         equipmentImage = Esprite;
         equipmentType = EequipmentType;
@@ -96,5 +99,7 @@ public class EquiipmentOption : MonoBehaviour
 
         addAccuracy = EaddAcc;
         addAvoid = EaddAvoid;
+
+        sellPrice = EsellPrice;
     }
 }

@@ -107,7 +107,7 @@ MonoBehaviour:
   monsterID: 1
   realName: "\uBE68\uAC04 \uB2EC\uD33D\uC774"
   monsterLv: 4
-  monsterMaxHP: 40
+  monsterMaxHP: 45
   monsterExp: 8
   monsterMeso: 15
   monsterAttackPower: 9

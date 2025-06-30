@@ -125,12 +125,12 @@ MonoBehaviour:
   bossHPBar: {fileID: 0}
   mesoObj: {fileID: 7748565253450076650, guid: 0fb24b0f4c787914b8ac580dcd75eb49, type: 3}
   playerInfo: {fileID: 0}
-  dropEquipmentItemPrefab: {fileID: 0}
+  dropEquipmentItemPrefab: {fileID: 7748565253450076650, guid: 2363dad048e37114ca7a9e3a25341dfe, type: 3}
   dropItemNames:
   - "\uBA54\uBC14"
   - "\uB8E8\uC988\uCEA1"
   - "\uC5D0\uB098\uBA5C \uBD80\uCE20"
-  dropConsumeItemPrefab: {fileID: 0}
+  dropConsumeItemPrefab: {fileID: 7748565253450076650, guid: 1a7544cb6cf588b4b9e221ff62ccf5b4, type: 3}
   dropConsumeItemIndexList: 0000000001000000030000000c000000
 --- !u!50 &6262028703081101666
 Rigidbody2D:

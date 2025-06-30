@@ -87,6 +87,7 @@ public class JobUpgradeNPC : MonoBehaviour
             && PlayerManager.PlayerInstance.PlayerDEX>=21)
         {
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Log;
+            PlayerManager.PlayerInstance.PlayerJob = "로그";
             playerInfoUI.ShowPlayerJob("로그");
             SuccessUpgrade(0, "로그");
 
@@ -117,6 +118,7 @@ public class JobUpgradeNPC : MonoBehaviour
             && PlayerManager.PlayerInstance.TotalUseSkillPoint>=52)
         {
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Assassin;
+            PlayerManager.PlayerInstance.PlayerJob = "어쌔신";
             playerInfoUI.ShowPlayerJob("어쌔신");
             SuccessUpgrade(1, "어쌔신");
             
@@ -146,6 +148,7 @@ public class JobUpgradeNPC : MonoBehaviour
             && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 52)
         {
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Thief;
+            PlayerManager.PlayerInstance.PlayerJob = "시프";
             playerInfoUI.ShowPlayerJob("시프");
             SuccessUpgrade(1, "시프");
 
@@ -177,6 +180,7 @@ public class JobUpgradeNPC : MonoBehaviour
                     && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 143)
                 {
                     PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Hermit;
+                    PlayerManager.PlayerInstance.PlayerJob = "허밋";
                     playerInfoUI.ShowPlayerJob("허밋");
                     SuccessUpgrade(2, "허밋");
                 }
@@ -190,6 +194,7 @@ public class JobUpgradeNPC : MonoBehaviour
                     && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 249)
                 {
                     PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.NightLoad;
+                    PlayerManager.PlayerInstance.PlayerJob = "나이트로드";
                     playerInfoUI.ShowPlayerJob("나이트로드");
                     SuccessUpgrade(2, "나이트로드");
 
@@ -208,6 +213,7 @@ public class JobUpgradeNPC : MonoBehaviour
                     && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 143)
                 {
                     PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.ThiefMaster;
+                    PlayerManager.PlayerInstance.PlayerJob = "시프마스터";
                     playerInfoUI.ShowPlayerJob("시프마스터");
                     SuccessUpgrade(2, "시프마스터");
                 }
@@ -221,6 +227,7 @@ public class JobUpgradeNPC : MonoBehaviour
                     && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 249)
                 {
                     PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Shadower;
+                    PlayerManager.PlayerInstance.PlayerJob = "쌔도어";
                     playerInfoUI.ShowPlayerJob("섀도어");
                     SuccessUpgrade(2, "섀도어");
 

@@ -87,7 +87,7 @@ public class Meso : MonoBehaviour
             dropMeso = (mobLv * mobLv + mobLv) / 10 - mobLv/15;
         }
 
-        int finalDropMeso = Mathf.Min(4, Random.Range(dropMeso * 4 / 5, dropMeso * 6 / 5));
+        int finalDropMeso = Mathf.Max(4, Random.Range(dropMeso * 4 / 5, dropMeso * 6 / 5));
         int addDropMeso = (finalDropMeso * PlayerManager.PlayerInstance.RateIncreaseGetMeso)/100;
         return finalDropMeso+ addDropMeso;
     }

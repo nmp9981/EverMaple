@@ -89,6 +89,16 @@ public class MonsterMagicAttack : MonoBehaviour
         int damage = Random.Range(minDamage, maxDamage);
 
         //피격데미지 감소
+        if (PlayerManager.PlayerInstance.IsActiveMesoGuard)
+        {
+            //메소 소비량
+            int spendMeso = (damage * PlayerManager.PlayerInstance.RateArmorMeso) / 100;
+            if (PlayerManager.PlayerInstance.PlayerMeso >= spendMeso)
+            {
+                PlayerManager.PlayerInstance.PlayerMeso -= spendMeso;
+                damage = damage / 2;
+            }
+        }
         damage = Mathf.Max(1, damage - PlayerManager.PlayerInstance.PlayerMagicArmor);
 
         return damage;

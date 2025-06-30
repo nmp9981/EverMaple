@@ -82,7 +82,8 @@ public class PlayerManager : MonoBehaviour
     float playerAttackSkillSpeed = 0.7f;//스킬 공격 속도
     float throwObjectMaxDist = 6;//사거리
 
-    int playerPhysicsArmor = 4;//물리 방어력
+    int playerPhysicsArmor = 0;//물리 방어력
+    int playerStatPhysicsArmor = 4;//물리 방어력
     int playerMagicPower = 4;//마력
     int playerMagicArmor = 4;//마법 방어력
     int playerAccurary = 38;//명중률
@@ -196,6 +197,7 @@ public class PlayerManager : MonoBehaviour
     public int TotalUseSkillPoint { get { return totalUseSkillPoint; } set { totalUseSkillPoint = value; } }
 
     public int PlayerPhysicsArmor { get { return playerPhysicsArmor; } set { playerPhysicsArmor = value; }}
+    public int PlayerStatPhysicsArmor { get { return playerStatPhysicsArmor; } set { playerStatPhysicsArmor = value; } }
     public int PlayerMagicPower { get { return playerMagicPower; }set { playerMagicPower = value; } }
     public int PlayerMagicArmor { get { return playerMagicArmor; } set { playerMagicArmor = value; } }
     public int PlayerAccurary { get { return playerAccurary; } set { playerAccurary = value; } }

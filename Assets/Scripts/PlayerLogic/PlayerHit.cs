@@ -39,7 +39,7 @@ public class PlayerHit : MonoBehaviour
             int finalMonsterPower = Random.Range(monsterAttackPower * 900, monsterAttackPower * 1100) / 1000;
 
             //피격데미지 감소
-            finalMonsterPower = Mathf.Max(1, finalMonsterPower - PlayerManager.PlayerInstance.PlayerPhysicsArmor);
+            finalMonsterPower = Mathf.Max(1, finalMonsterPower - PlayerManager.PlayerInstance.PlayerPhysicsArmor - PlayerManager.PlayerInstance.PlayerStatPhysicsArmor);
 
             //메소가드 여부
             if (PlayerManager.PlayerInstance.IsActiveMesoGuard)

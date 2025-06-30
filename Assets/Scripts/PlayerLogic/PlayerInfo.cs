@@ -81,7 +81,11 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     void UpgradeDrag()
     {
-        if(PlayerManager.PlayerInstance.PlayerLV >= PlayerManager.PlayerInstance.dragUpgradeLV[PlayerManager.PlayerInstance.ShootDragNum+1])
+        if (PlayerManager.PlayerInstance.PlayerLV >= 86)
+        {
+            return;
+        }
+        if (PlayerManager.PlayerInstance.PlayerLV >= PlayerManager.PlayerInstance.dragUpgradeLV[PlayerManager.PlayerInstance.ShootDragNum+1])
         {
             PlayerManager.PlayerInstance.ShootDragNum += 1;
             equiipmentUI.ChangeDragImage(PlayerManager.PlayerInstance.ShootDragNum);

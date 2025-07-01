@@ -83,9 +83,11 @@ public class PlayerManager : MonoBehaviour
     float throwObjectMaxDist = 6;//사거리
 
     int playerPhysicsArmor = 0;//물리 방어력
-    int playerStatPhysicsArmor = 4;//물리 방어력
+    int playerStatPhysicsArmor = 4;//물리 방어력 스탯
     int playerMagicPower = 4;//마력
-    int playerMagicArmor = 4;//마법 방어력
+    int playerMagicArmor = 0;//마법 방어력
+    int playerStatMagicArmor = 4;//마법 방어력 스탯
+
     int playerAccurary = 38;//명중률
     int playerAvoid = 18;//회피율
     int playerDexterity = 17;//손재주
@@ -200,6 +202,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerStatPhysicsArmor { get { return playerStatPhysicsArmor; } set { playerStatPhysicsArmor = value; } }
     public int PlayerMagicPower { get { return playerMagicPower; }set { playerMagicPower = value; } }
     public int PlayerMagicArmor { get { return playerMagicArmor; } set { playerMagicArmor = value; } }
+    public int PlayerStatMagicArmor { get { return playerStatMagicArmor; } set { playerStatMagicArmor = value; } }
     public int PlayerAccurary { get { return playerAccurary; } set { playerAccurary = value; } }
     public int PlayerAvoid { get { return playerAvoid; } set { playerAvoid = value; } }
     public int PlayerDexterity { get { return playerDexterity; } set { playerDexterity = value; } }

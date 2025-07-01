@@ -49,7 +49,7 @@ public class PlayerHit : MonoBehaviour
                 if (PlayerManager.PlayerInstance.PlayerMeso >= spendMeso)
                 {
                     PlayerManager.PlayerInstance.PlayerMeso -= spendMeso;
-                    finalMonsterPower = finalMonsterPower / 2;
+                    finalMonsterPower = Mathf.Max(1, finalMonsterPower / 2);
                     itmeUI.ShowPlayerMeso();
                 }
             }

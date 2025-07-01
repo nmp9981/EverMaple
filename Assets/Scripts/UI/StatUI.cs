@@ -227,7 +227,7 @@ public class StatUI : MonoBehaviour, IDragHandler
         attackText.text = $"{minAttack} ~ {maxAttack}";
         physicsArmorText.text = $"{PlayerManager.PlayerInstance.PlayerPhysicsArmor+ PlayerManager.PlayerInstance.PlayerStatPhysicsArmor}";
         magicPowerText.text = $"{PlayerManager.PlayerInstance.PlayerMagicPower}";
-        magicArmorText.text = $"{PlayerManager.PlayerInstance.PlayerMagicArmor}";
+        magicArmorText.text = $"{PlayerManager.PlayerInstance.PlayerMagicArmor + PlayerManager.PlayerInstance.PlayerStatMagicArmor}";
         accuraryText.text = $"{PlayerManager.PlayerInstance.PlayerAccurary+ PlayerManager.PlayerInstance.PlayerAddAccurary}";
         avoidText.text = $"{PlayerManager.PlayerInstance.PlayerAvoid + PlayerManager.PlayerInstance.PlayerAddAvoid}";
         dexterityText.text = $"{PlayerManager.PlayerInstance.PlayerDexterity}";
@@ -355,7 +355,7 @@ public class StatUI : MonoBehaviour, IDragHandler
         PlayerManager.PlayerInstance.PlayerStatPhysicsArmor = (3 * totalSTR + totalDEX) / 9;
 
         //마법 방어력
-        PlayerManager.PlayerInstance.PlayerMagicArmor  = totalINT;
+        PlayerManager.PlayerInstance.PlayerStatMagicArmor  = totalINT;
 
         //명중률
         PlayerManager.PlayerInstance.PlayerAccurary = (8 * totalDEX + 5 * totalLUK) / 10;

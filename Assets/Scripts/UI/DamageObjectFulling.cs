@@ -12,7 +12,7 @@ public class DamageObjectFulling : MonoBehaviour
     public List<Sprite> missDamageImage = new List<Sprite>();
 
     //«¡∏Æ∆’ ¡ÿ∫Ò
-    const int blockMaxCount = 9;
+    const int blockMaxCount = 27;
     const int blockKinds = 32;
     public GameObject[] blockPrefabs;
 

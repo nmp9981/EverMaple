@@ -128,7 +128,7 @@ MonoBehaviour:
   dropEquipmentItemPrefab: {fileID: 7748565253450076650, guid: 2363dad048e37114ca7a9e3a25341dfe, type: 3}
   dropItemNames:
   - "\uC2A4\uD2F8\uB7EC \uBC14\uC9C0"
-  - "\uD558\uD504 \uC288\uC988"
+  - "\uD558\uD504\uC288\uC988"
   - "\uD074\uB9AC\uBE0C"
   - "\uBE14\uB8E8 \uBB38"
   - "\uBCF4\uB2CC"

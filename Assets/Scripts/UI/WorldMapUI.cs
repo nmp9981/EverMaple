@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WorldMapUI : MonoBehaviour
@@ -18,7 +17,7 @@ public class WorldMapUI : MonoBehaviour
     private void OnEnable()
     {
         //带傈 康开 抗寇贸府
-        int nodeNum = Mathf.Min(MapAndProtalList.curMapNum,21);
+        int nodeNum = Mathf.Min(MapAndProtalList.curMapNum,24);
         posObj.anchoredPosition = worldNodeList[nodeNum]+Vector2.up*50f;
     }
     /// <summary>

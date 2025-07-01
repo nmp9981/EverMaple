@@ -197,7 +197,7 @@ public class StatUI : MonoBehaviour, IDragHandler
 
         float rate = (float)PlayerManager.PlayerInstance.PlayerCurExp / PlayerManager.PlayerInstance.PlayerRequireExp;
         rate = Mathf.Floor(rate*100);
-        expText.text = $"{PlayerManager.PlayerInstance.PlayerCurExp} ({(int)rate})%";
+        expText.text = $"{PlayerManager.PlayerInstance.PlayerCurExp} ({(int)rate}%)";
 
         //∞¢ √—«’ Ω∫≈»
         int totalLUK = PlayerManager.PlayerInstance.PlayerLUK + PlayerManager.PlayerInstance.PlayerAddLUK;

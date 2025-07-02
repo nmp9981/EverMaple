@@ -94,7 +94,7 @@ public class MonsterSpawn : MonoBehaviour
     public void CallRespawn(bool isBoss)
     {
         if(isBoss)
-            Invoke("MonsterRespawn", 60f);
+            Invoke("MonsterRespawn", 3600f);
         else
             Invoke("MonsterRespawn", 5f);
     }

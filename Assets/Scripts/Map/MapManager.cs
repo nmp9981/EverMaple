@@ -103,6 +103,17 @@ public class MapManager : MonoBehaviour
             playerMapLocal = LocalMapName.KerningCity;
         else
             playerMapLocal = LocalMapName.SleepyWood;
+
+        //마을 여부
+        PlayerManager.PlayerInstance.IsVillage = false;
+        foreach (int villageNum in villageList)
+        {
+            if (villageNum == mapNumber)
+            {
+                PlayerManager.PlayerInstance.IsVillage = true;
+                break;
+            }
+        }
     }
   
     #region 맵 실제 이름

@@ -93,7 +93,7 @@ public class MonsterSpawn : MonoBehaviour
     /// </summary>
     public void CallRespawn(bool isBoss)
     {
-        if(isBoss)
+        if (isBoss)
             Invoke("MonsterRespawn", 3600f);
         else
             Invoke("MonsterRespawn", 5f);
@@ -103,9 +103,13 @@ public class MonsterSpawn : MonoBehaviour
     /// </summary>
     public void MonsterRespawn()
     {
+
         //마을
-        if (gameObject.tag == villageTag)
+        if (PlayerManager.PlayerInstance.IsVillage == true)
             return;
+        //맵 변경
+        //if (diedMapName != PlayerManager.PlayerInstance.CurMapName)
+        //    return;
 
         //스폰 위치가 없을때
         if (spawnPositionList.Count == 0)

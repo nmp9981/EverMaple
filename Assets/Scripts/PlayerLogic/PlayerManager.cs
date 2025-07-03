@@ -106,6 +106,7 @@ public class PlayerManager : MonoBehaviour
     bool isPlayerDie = false;//캐릭터가 사망했는가?
 
     string curMapName = "Map0";
+    bool isVillage = true;
 
     int shootDragNum = 0;//던질 표창의 번호
     public int[] dragAttackPower = new int[10]//표창 공격력
@@ -219,6 +220,7 @@ public class PlayerManager : MonoBehaviour
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }
+    public bool IsVillage { get { return isVillage; } set { isVillage = value; } }
     #endregion
 
     #region 표창 관련

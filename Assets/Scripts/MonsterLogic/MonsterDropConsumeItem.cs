@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class MonsterDropConsumeItem : MonoBehaviour
@@ -40,11 +41,39 @@ public class MonsterDropConsumeItem : MonoBehaviour
                 ConsumeItem curConsumeItem = ItemManager.itemInstance.consumeItems[itemIndex];
                 curConsumeItem.count += itemCount;
                 ItemManager.itemInstance.consumeItems[itemIndex] = curConsumeItem;
+
+                AddConsumeItemInKeySlot(curConsumeItem);
             }
 
             SoundManager._sound.PlaySfx(24);
             playerInfoUI.ShowGetItemMessage(ItemManager.itemInstance.consumeItems[itemIndex].name);
             Destroy(gameObject);
         }
+    }
+
+    /// <summary>
+    /// 키슬롯에 소비아이템 추가
+    /// </summary>
+    void AddConsumeItemInKeySlot(ConsumeItem curConsumeItem)
+    {
+        //itemIndex는 실제 아이템 인덱스
+        if (itemIndex == ItemManager.itemInstance.UseHPPosionIndex)
+            ItemManager.itemInstance.keySlotImage[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
+
+        if (itemIndex == ItemManager.itemInstance.UseMPPosionIndex)
+            ItemManager.itemInstance.keySlotImage[1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
+
+        if (itemIndex == ItemManager.itemInstance.UseElixerPosionIndex)
+            ItemManager.itemInstance.keySlotImage[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
+
+
+        int inputKey = -1;
+        foreach (var key in ItemManager.itemInstance.keySlotBuffItems)
+        {
+            if (key.Key == itemIndex)
+                inputKey = key.Key;
+        }
+        if (inputKey != -1)
+            ItemManager.itemInstance.keySlotImage[inputKey].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
     }
 }

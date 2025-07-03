@@ -488,7 +488,7 @@ public class ItemManager : MonoBehaviour
         //포션 하나 사용
         consumeItem.count -= 1;
         consumeItems[itemIndex] = consumeItem;
-        keySlotImage[1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = consumeItem.count.ToString();
+        keySlotImage[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = consumeItem.count.ToString();
 
         int hpAmount = (itemIndex==19)? PlayerManager.PlayerInstance.PlayerMaxHP/2:PlayerManager.PlayerInstance.PlayerMaxHP;
         int mpAmount = (itemIndex == 19) ? PlayerManager.PlayerInstance.PlayerMaxMP / 2 : PlayerManager.PlayerInstance.PlayerMaxMP;

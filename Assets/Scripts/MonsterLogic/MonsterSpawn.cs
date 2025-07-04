@@ -7,7 +7,7 @@ public class MonsterSpawn : MonoBehaviour
     [SerializeField]
     List<Transform> spawnPositionList = new List<Transform>();
     [SerializeField]
-    List<int> appearMonsterNum = new List<int>();
+    public List<int> appearMonsterNum = new List<int>();
     [SerializeField]
     bool isBossMap;
 
@@ -103,14 +103,10 @@ public class MonsterSpawn : MonoBehaviour
     /// </summary>
     public void MonsterRespawn()
     {
-
         //마을
         if (PlayerManager.PlayerInstance.IsVillage == true)
             return;
-        //맵 변경
-        //if (diedMapName != PlayerManager.PlayerInstance.CurMapName)
-        //    return;
-
+       
         //스폰 위치가 없을때
         if (spawnPositionList.Count == 0)
         {

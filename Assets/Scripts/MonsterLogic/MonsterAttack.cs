@@ -20,6 +20,7 @@ public class MonsterInfo : MonoBehaviour
     public int monsterAvoid;//회피율
 
     public int monsterCurHP;
+    public string monsterMapName;//몬스터가 현재 있는 맵
 
     [SerializeField]
     protected bool isBoss;//보스 여부
@@ -89,6 +90,13 @@ public class MonsterInfo : MonoBehaviour
     //활성화시 로직
     private void OnEnable()
     {
+        //해당 맵에 있어도 되는가?
+        if (!CheckEnableInMap())
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         dieCount = 0;
         monsterCurHP = monsterMaxHP;
 
@@ -117,6 +125,21 @@ public class MonsterInfo : MonoBehaviour
         Timeflow();
     }
    
+    /// <summary>
+    /// 몬스터가 해당 맵에 있어도 되는가?
+    /// </summary>
+    /// <returns></returns>
+    bool CheckEnableInMap()
+    {
+        List<int> appearMobNum = GameObject.Find(PlayerManager.PlayerInstance.CurMapName).GetComponent<MonsterSpawn>().appearMonsterNum;
+        foreach (int idx in appearMobNum)
+        {
+            if (idx == monsterID)
+                return true;
+        }
+        return false;
+    }
+
     /// <summary>
     /// 몬스터 HP감소
     /// </summary>
@@ -169,6 +192,7 @@ public class MonsterInfo : MonoBehaviour
 
         MonsterSpawn.activeMonster.Remove(gameObject);
         monsterSpawn = GameObject.Find(PlayerManager.PlayerInstance.CurMapName).GetComponent<MonsterSpawn>();
+        monsterMapName = PlayerManager.PlayerInstance.CurMapName;
         monsterSpawn.CallRespawn(isBoss);
         this.gameObject.SetActive(false);
     }

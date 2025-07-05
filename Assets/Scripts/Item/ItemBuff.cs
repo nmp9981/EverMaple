@@ -118,18 +118,6 @@ public class ItemBuff : MonoBehaviour
             case 6://고목나무 수액
                 if (!buffSkillIng[buffIdx])
                 {
-                    //중첩 방지
-                    if (buffSkillIng[1])
-                    {
-                        buffSkillIng[1] = false;
-                        PlayerManager.PlayerInstance.PlayerMagicPower -= 5;
-                    }
-                    if (buffSkillIng[5])
-                    {
-                        buffSkillIng[5] = false;
-                        PlayerManager.PlayerInstance.PlayerMagicPower -= 10;
-                    }
-
                     PlayerManager.PlayerInstance.PlayerMagicArmor += 10;
                     buffSkillIng[buffIdx] = true;
                 }
@@ -254,8 +242,7 @@ public class ItemBuff : MonoBehaviour
                         PlayerManager.PlayerInstance.PlayerMagicPower -= 10;
                     break;
                 case 6://고목나무의 수액
-                    if (buffSkillIng[buffIdx])
-                        PlayerManager.PlayerInstance.PlayerMagicArmor -= 10;
+                    PlayerManager.PlayerInstance.PlayerMagicArmor -= 10;
                     break;
                 case 7://드레이크의 피
                     if (buffSkillIng[buffIdx])

@@ -51,6 +51,12 @@ public class ItemBuff : MonoBehaviour
             case 0://전사 물약
                 if (!buffSkillIng[buffIdx])
                 {
+                    //중첩 방지
+                    if (buffSkillIng[7])
+                    {
+                        buffSkillIng[7] = false;
+                        PlayerManager.PlayerInstance.PlayerAttack -= 10;
+                    }
                     PlayerManager.PlayerInstance.PlayerAttack += 5;
                     buffSkillIng[buffIdx] = true;
                 }
@@ -58,6 +64,13 @@ public class ItemBuff : MonoBehaviour
             case 1://법사 물약
                 if (!buffSkillIng[buffIdx])
                 {
+                    //중첩 방지
+                    if (buffSkillIng[5] || buffSkillIng[6])
+                    {
+                        buffSkillIng[5] = false;
+                        buffSkillIng[6] = false;
+                        PlayerManager.PlayerInstance.PlayerMagicPower -= 10;
+                    }
                     PlayerManager.PlayerInstance.PlayerMagicPower += 5;
                     buffSkillIng[buffIdx] = true;
                 }
@@ -86,6 +99,18 @@ public class ItemBuff : MonoBehaviour
             case 5://현자 물약
                 if (!buffSkillIng[buffIdx])
                 {
+                    //중첩 방지
+                    if (buffSkillIng[1])
+                    {
+                        buffSkillIng[1] = false;
+                        PlayerManager.PlayerInstance.PlayerMagicPower -= 5;
+                    }
+                    if (buffSkillIng[6])
+                    {
+                        buffSkillIng[6] = false;
+                        PlayerManager.PlayerInstance.PlayerMagicPower -= 10;
+                    }
+
                     PlayerManager.PlayerInstance.PlayerMagicPower += 10;
                     buffSkillIng[buffIdx] = true;
                 }
@@ -93,6 +118,18 @@ public class ItemBuff : MonoBehaviour
             case 6://고목나무 수액
                 if (!buffSkillIng[buffIdx])
                 {
+                    //중첩 방지
+                    if (buffSkillIng[1])
+                    {
+                        buffSkillIng[1] = false;
+                        PlayerManager.PlayerInstance.PlayerMagicPower -= 5;
+                    }
+                    if (buffSkillIng[5])
+                    {
+                        buffSkillIng[5] = false;
+                        PlayerManager.PlayerInstance.PlayerMagicPower -= 10;
+                    }
+
                     PlayerManager.PlayerInstance.PlayerMagicArmor += 10;
                     buffSkillIng[buffIdx] = true;
                 }
@@ -100,6 +137,12 @@ public class ItemBuff : MonoBehaviour
             case 7://드레이크 피
                 if (!buffSkillIng[buffIdx])
                 {
+                    //중첩 방지
+                    if (buffSkillIng[0])
+                    {
+                        buffSkillIng[0] = false;
+                        PlayerManager.PlayerInstance.PlayerAttack -= 5;
+                    }
                     PlayerManager.PlayerInstance.PlayerAttack += 8;
                     buffSkillIng[buffIdx] = true;
                 }
@@ -190,10 +233,12 @@ public class ItemBuff : MonoBehaviour
             switch (buffIdx)
             {
                 case 0://전사 물약
-                    PlayerManager.PlayerInstance.PlayerAttack -= 10;
+                    if (buffSkillIng[buffIdx])
+                        PlayerManager.PlayerInstance.PlayerAttack -= 5;
                     break;
                 case 1://법사 물약
-                    PlayerManager.PlayerInstance.PlayerMagicPower -= 5;
+                    if (buffSkillIng[buffIdx])
+                        PlayerManager.PlayerInstance.PlayerMagicPower -= 5;
                     break;
                 case 2://명사수 물약
                     PlayerManager.PlayerInstance.PlayerAddAccurary -= 10;
@@ -205,13 +250,16 @@ public class ItemBuff : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= 10;
                     break;
                 case 5://현자 물약
-                    PlayerManager.PlayerInstance.PlayerMagicPower -= 10;
+                    if (buffSkillIng[buffIdx])
+                        PlayerManager.PlayerInstance.PlayerMagicPower -= 10;
                     break;
                 case 6://고목나무의 수액
-                    PlayerManager.PlayerInstance.PlayerMagicArmor -= 10;
+                    if (buffSkillIng[buffIdx])
+                        PlayerManager.PlayerInstance.PlayerMagicArmor -= 10;
                     break;
                 case 7://드레이크의 피
-                    PlayerManager.PlayerInstance.PlayerAttack -= 8;
+                    if (buffSkillIng[buffIdx])
+                        PlayerManager.PlayerInstance.PlayerAttack -= 8;
                     break;
                 case 8://드레이크의 고기
                     PlayerManager.PlayerInstance.PlayerPhysicsArmor -= 10;

@@ -15,6 +15,8 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     ItemUI itemUI;
     [SerializeField]
     EquiipmentUI equipmentUI;
+    [SerializeField]
+    GameObject notWearUI;
 
     //선택한 소비 아이템
     public GameObject clickedConsumeObject = null;
@@ -128,6 +130,10 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
             //해당 장비의 능력치 적용
             equipmentUI.AddEquipmentOption(equipmentOption);
         }
+        else
+        {
+            notWearUI.SetActive(true);
+        }
 
         enrollKeySlotEquipmentObject.SetActive(false);
     }
@@ -156,5 +162,10 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     public void CancelEquipmentInItemUI()
     {
         enrollKeySlotEquipmentObject.SetActive(false);
+    }
+
+    public void CheckNotWearUI()
+    {
+        notWearUI.SetActive(false);
     }
 }

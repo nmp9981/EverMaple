@@ -379,12 +379,12 @@ public class ConsumeNPC : NPCCommon
             equipmentListInStore.Add(equip.gameObject);
         }
         //판매 장비
-        foreach(Button equip in sellEquipUI.GetComponentsInChildren<Button>())
+        foreach(Button equip in sellEquipUI.GetComponentsInChildren<Button>(true))
         {
             sellEquipmentSpaceList.Add(equip.gameObject);
         }
         //판매 소비템
-        foreach (Button cons in sellConsumeUI.GetComponentsInChildren<Button>())
+        foreach (Button cons in sellConsumeUI.GetComponentsInChildren<Button>(true))
         {
            sellConsumeSpaceList.Add(cons.gameObject);
         }

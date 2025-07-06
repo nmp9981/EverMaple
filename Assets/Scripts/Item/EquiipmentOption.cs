@@ -22,6 +22,9 @@ public enum EquipmentType
 /// </summary>
 public class EquiipmentOption : MonoBehaviour
 {
+    //장비 명
+    public string name;
+
     //장비 이미지
     public Sprite equipmentImage;
 
@@ -66,10 +69,11 @@ public class EquiipmentOption : MonoBehaviour
     public int sellPrice;
 
     //생성자
-    public EquiipmentOption(Sprite Esprite, EquipmentType EequipmentType, int EreqLV, int EreqSTR,int EreqDEX,int EreqINT,int EreqLUK,
+    public EquiipmentOption(string Ename,Sprite Esprite, EquipmentType EequipmentType, int EreqLV, int EreqSTR,int EreqDEX,int EreqINT,int EreqLUK,
         string EreqJob, int EaddHP, int EaddMP, int EaddSTR, int EaddDEX, int EaddINT, int EaddLUK, 
         int EaddAttack, int EaddMagicAttack, int EaddPArmor,int EaddMArmor,int EaddMove, int EaddJump, int EaddAcc, int EaddAvoid, int EsellPrice)
     {
+        name = Ename;
         equipmentImage = Esprite;
         equipmentType = EequipmentType;
 

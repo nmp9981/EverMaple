@@ -11,7 +11,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void GetPlayerExp(int getExp)
     {
-        PlayerManager.PlayerInstance.PlayerCurExp += (getExp*100);
+        PlayerManager.PlayerInstance.PlayerCurExp += (getExp*300);
         playerInfoUI.ShowPlayerEXPBar();
         playerInfoUI.ShowGetExpMessage(getExp);
         PlayereLevelUP();
@@ -52,8 +52,8 @@ public class PlayerInfo : MonoBehaviour
 
             //AP 증가
             PlayerManager.PlayerInstance.PlayerAPPoint += 5;
-            //SP 증가
-            if(PlayerManager.PlayerInstance.PlayerLV>=9)
+            //SP 증가(단, 초보자일때는 SP지급 못받음)
+            if(PlayerManager.PlayerInstance.PlayerLV>=9 && PlayerManager.PlayerInstance.PlayerJOBEnum != PlayerJobClass.Beginer)
                 PlayerManager.PlayerInstance.PlayerSkillPoint += 3;
 
             //표창 업그레이드

@@ -227,7 +227,7 @@ public class JobUpgradeNPC : MonoBehaviour
                     && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 249)
                 {
                     PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Shadower;
-                    PlayerManager.PlayerInstance.PlayerJob = "½Øµµ¾î";
+                    PlayerManager.PlayerInstance.PlayerJob = "¼¨µµ¾î";
                     playerInfoUI.ShowPlayerJob("¼¨µµ¾î");
                     SuccessUpgrade(2, "¼¨µµ¾î");
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterFulling : MonoBehaviour
@@ -6,6 +7,7 @@ public class MonsterFulling : MonoBehaviour
     const int blockMaxCount = 30;
     const int blockKinds = 27;
     public GameObject[] monsterPrefabs;
+    public List<GameObject> bossPrefabObjList = new List<GameObject>();
 
     //오브젝트 배열
     GameObject[][] blocks;
@@ -50,11 +52,18 @@ public class MonsterFulling : MonoBehaviour
         //블록
         for (int i = 0; i < blockKinds; i++)
         {
-            for (int j = 0; j < blockMaxCount; j++)
+            int mobCount = (i >= 25) ? 1 : blockMaxCount;
+            for (int j = 0; j < mobCount; j++)
             {
                 blocks[i][j] = Instantiate(monsterPrefabs[i]);
                 blocks[i][j].transform.parent = this.transform;
                 blocks[i][j].SetActive(false);
+
+                //보스 등록
+                if (i >= 25)
+                {
+                    bossPrefabObjList.Add(blocks[i][j]);
+                }
             }
         }
     }

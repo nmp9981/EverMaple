@@ -321,7 +321,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
             reqINTText.color = Color.white;
         else reqINTText.color = Color.red;
 
-        reqLUKText.text = $"Req Lv : {equip.reqLUK}";
+        reqLUKText.text = $"Req LUK : {equip.reqLUK}";
         if (PlayerManager.PlayerInstance.PlayerLUK + PlayerManager.PlayerInstance.PlayerAddLUK >= equip.reqLUK)
             reqLUKText.color = Color.white;
         else reqLUKText.color = Color.red;

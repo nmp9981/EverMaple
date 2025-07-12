@@ -70,6 +70,13 @@ public class MonsterSpawn : MonoBehaviour
             {
                 int mobIndex = Random.Range(0, appearMonsterNum.Count);
                 int mobNum = appearMonsterNum[mobIndex];
+
+                //보스가 이미 스폰되어 있으면 더 스폰하지 못하도록 막음
+                if (IsBossSpawn(mobNum))
+                {
+                    return;
+                }
+
                 GameObject gm = monsterFulling.MakeObj(mobNum);
 
                 //몬스터 리젠 위치 등록
@@ -117,6 +124,12 @@ public class MonsterSpawn : MonoBehaviour
 
         int mobIndex = Random.Range(0, appearMonsterNum.Count);
         int mobNum = appearMonsterNum[mobIndex];
+        
+        //보스가 이미 스폰되어 있으면 더 스폰하지 못하도록 막음
+        if (IsBossSpawn(mobNum))
+        {
+            return;
+        }
         GameObject gm = monsterFulling.MakeObj(mobNum);
 
         //몬스터의 크기
@@ -153,5 +166,30 @@ public class MonsterSpawn : MonoBehaviour
         {
             spawnPositionList.Clear();
         }
+    }
+
+    /// <summary>
+    /// 보스 스폰 검사
+    /// </summary>
+    /// <returns></returns>
+    bool IsBossSpawn(int mobNum)
+    {
+        if(mobNum<25)
+            return false;
+
+        switch (mobNum)
+        {
+            case 25://머쉬맘
+                if(monsterFulling.bossPrefabObjList[0].activeSelf)
+                    return true;
+                break;
+            case 26://주니어 발록
+                if (monsterFulling.bossPrefabObjList[1].activeSelf)
+                    return true;
+                break;
+            default:
+                return false;
+        }
+        return false;
     }
 }

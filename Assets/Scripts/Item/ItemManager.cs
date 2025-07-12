@@ -118,11 +118,6 @@ public class ItemManager : MonoBehaviour
         fieldDropItems.Clear();
     }
 
-    public void GetConsumeItem()
-    {
-
-    }
-
     /// <summary>
     /// HP포션 등록, A키 고정
     /// </summary>

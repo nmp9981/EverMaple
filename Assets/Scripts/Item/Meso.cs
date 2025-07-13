@@ -40,7 +40,7 @@ public class Meso : MonoBehaviour
     {
         if(collision.gameObject.tag == playerTag)
         {
-            PlayerManager.PlayerInstance.PlayerMeso += getMeso;
+            PlayerManager.PlayerInstance.PlayerMeso += (getMeso);
             ItemManager.itemInstance.fieldDropItems.Remove(this.gameObject);
             SoundManager._sound.PlaySfx(24);
             playerInfoUI.ShowGetMesoMessage(getMeso);

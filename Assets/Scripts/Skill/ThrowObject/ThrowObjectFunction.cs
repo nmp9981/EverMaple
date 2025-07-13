@@ -7,6 +7,7 @@ public class ThrowObjectFunction : MonoBehaviour
     private int throwAttack;
    
     float moveSpeed = 10f;
+    string monsterTag = "Monster";
     const float judgeCollideDist = 0.5f;
 
     private Vector3 moveDir;
@@ -33,7 +34,6 @@ public class ThrowObjectFunction : MonoBehaviour
     void Update()
     {
         MoveObject();
-        CollideToMonster();
     }
 
     /// <summary>
@@ -61,20 +61,16 @@ public class ThrowObjectFunction : MonoBehaviour
             DestroyObject();
         }
     }
+
     /// <summary>
     /// 공격 명중
     /// </summary>
-    void CollideToMonster()
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //타겟몹이 있을때만 적용
-        if (targetMob == null)
-            return;
-
-        float dist = Vector3.Distance(targetMob.transform.position, gameObject.transform.position);
-        //공격 명중
-        if (dist < judgeCollideDist)
+        if (collision.tag == monsterTag)
         {
-            MonsterInfo mobInfo = targetMob.GetComponent<MonsterInfo>();
+            MonsterInfo mobInfo = collision.gameObject.GetComponent<MonsterInfo>();
 
             //미스 판정
             if (PlayerAttackCommon.IsAttackMiss(mobInfo.monsterLv, mobInfo.monsterAvoid))
@@ -83,12 +79,12 @@ public class ThrowObjectFunction : MonoBehaviour
                 return;
             }
 
-            int hitDamage = CalDamage(mobInfo,throwAttack);
+            int hitDamage = CalDamage(mobInfo, throwAttack);
             //크리티컬 판정
             bool isCri = PlayerAttackCommon.IsCritical();
             if (isCri)
             {
-                hitDamage = (hitDamage *PlayerManager.PlayerInstance.CriticalDamagee)/100;//크리티컬 데미지 반영
+                hitDamage = (hitDamage * PlayerManager.PlayerInstance.CriticalDamagee) / 100;//크리티컬 데미지 반영
             }
 
             mobInfo.DecreaseMonsterHP(hitDamage);
@@ -96,20 +92,21 @@ public class ThrowObjectFunction : MonoBehaviour
             //데미지 띄우기
             if (isCri)
             {
-                PlayerAttackCommon.ShowCriticalDamageAsSkin(hitDamage, targetMob, hitNum);
+                PlayerAttackCommon.ShowCriticalDamageAsSkin(hitDamage, collision.gameObject, hitNum);
             }
             else
             {
-                PlayerAttackCommon.ShowDamageAsSkin(hitDamage, targetMob, hitNum);
+                PlayerAttackCommon.ShowDamageAsSkin(hitDamage, collision.gameObject, hitNum);
             }
 
             //사운드
             SoundManager._sound.PlaySfx(16);
 
+            //표창 오브젝트 비활성화
             gameObject.SetActive(false);
-            return;
         }
     }
+   
     /// <summary>
     /// 데미지 계산
     /// </summary>

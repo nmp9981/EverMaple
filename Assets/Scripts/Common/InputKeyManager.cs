@@ -26,6 +26,8 @@ public class InputKeyManager : MonoBehaviour
     GameObject equipmemtUIObj;
     [SerializeField]
     GameObject questManagerUIObj;
+    [SerializeField]
+    GameObject exitUIObj;
 
     //시간
     float curAttackSkillTime = 0;
@@ -238,6 +240,14 @@ public class InputKeyManager : MonoBehaviour
                 questManagerUIObj.SetActive(false);
             else
                 questManagerUIObj.SetActive(true);
+        }
+        //나가기 창
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (exitUIObj.activeSelf)
+                exitUIObj.SetActive(false);
+            else
+                exitUIObj.SetActive(true);
         }
     }
     void InputItemKey()

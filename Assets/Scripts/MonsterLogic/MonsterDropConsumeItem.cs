@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MonsterDropConsumeItem : MonoBehaviour
 {
@@ -59,21 +60,20 @@ public class MonsterDropConsumeItem : MonoBehaviour
         //itemIndex는 실제 아이템 인덱스
         if (itemIndex == ItemManager.itemInstance.UseHPPosionIndex)
             ItemManager.itemInstance.keySlotImage[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
-
-        if (itemIndex == ItemManager.itemInstance.UseMPPosionIndex)
+        else if (itemIndex == ItemManager.itemInstance.UseMPPosionIndex)
             ItemManager.itemInstance.keySlotImage[1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
-
-        if (itemIndex == ItemManager.itemInstance.UseElixerPosionIndex)
+        else if (itemIndex == ItemManager.itemInstance.UseElixerPosionIndex)
             ItemManager.itemInstance.keySlotImage[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
-
-
-        int inputKey = -1;
-        foreach (var key in ItemManager.itemInstance.keySlotBuffItems)
+        else//버프 물약
         {
-            if (key.Key == itemIndex)
-                inputKey = key.Key;
+            int inputKey = -1;
+            foreach (var key in ItemManager.itemInstance.keySlotBuffItems)
+            {
+                if (key.Value == itemIndex)
+                    inputKey = key.Key;
+            }
+            if (inputKey != -1)
+                ItemManager.itemInstance.keySlotImage[inputKey].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
         }
-        if (inputKey != -1)
-            ItemManager.itemInstance.keySlotImage[inputKey].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curConsumeItem.count.ToString();
     }
 }

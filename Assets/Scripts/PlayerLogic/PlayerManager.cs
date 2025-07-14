@@ -115,7 +115,7 @@ public class PlayerManager : MonoBehaviour
     };
     public int[] dragUpgradeLV = new int[12]//표창 업그레이드 레벨
     {
-        10,15,20,25,30,35,40,50,70,85,111,200
+        10,15,20,25,30,35,40,50,70,90,111,200
     };
 
     public int[] haveConsumeItem = new int[30];

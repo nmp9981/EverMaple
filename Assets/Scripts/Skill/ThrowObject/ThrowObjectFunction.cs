@@ -47,7 +47,7 @@ public class ThrowObjectFunction : MonoBehaviour
             moveDir = (targetMob.transform.position - startPos).normalized;
         else moveDir = lookDir;
 
-        if (moveDir == Vector3.right) dragSprite.flipX = true;
+        if (lookDir == Vector3.right) dragSprite.flipX = true;
         else dragSprite.flipX = false;
     }
 

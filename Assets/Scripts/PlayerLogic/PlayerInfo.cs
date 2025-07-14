@@ -11,7 +11,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void GetPlayerExp(int getExp)
     {
-        PlayerManager.PlayerInstance.PlayerCurExp += (getExp);
+        PlayerManager.PlayerInstance.PlayerCurExp += (getExp*550);
         playerInfoUI.ShowPlayerEXPBar();
         playerInfoUI.ShowGetExpMessage(getExp);
         PlayereLevelUP();
@@ -81,7 +81,7 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     void UpgradeDrag()
     {
-        if (PlayerManager.PlayerInstance.PlayerLV >= 86)
+        if (PlayerManager.PlayerInstance.PlayerLV >= 91)
         {
             return;
         }

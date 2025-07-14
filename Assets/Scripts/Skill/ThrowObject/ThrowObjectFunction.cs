@@ -13,6 +13,7 @@ public class ThrowObjectFunction : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 lookDir;
     private GameObject targetMob;
+    private SpriteRenderer dragSprite;
 
     float moveDist = 0;
     float destroyDist;
@@ -27,6 +28,7 @@ public class ThrowObjectFunction : MonoBehaviour
         destroyDist = PlayerManager.PlayerInstance.ThrowObjectMaxDist;
         lookDir = PlayerManager.PlayerInstance.PlayerLookDir;
         targetMob = PlayerAttackCommon.NearMonserFromPlayer(lookDir, startPos, destroyDist);
+        dragSprite = GetComponent<SpriteRenderer>();
 
         SetMoveDir();
     }
@@ -44,6 +46,9 @@ public class ThrowObjectFunction : MonoBehaviour
         if (targetMob != null)
             moveDir = (targetMob.transform.position - startPos).normalized;
         else moveDir = lookDir;
+
+        if (moveDir == Vector3.right) dragSprite.flipX = true;
+        else dragSprite.flipX = false;
     }
 
     /// <summary>

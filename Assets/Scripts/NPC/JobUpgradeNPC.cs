@@ -43,6 +43,12 @@ public class JobUpgradeNPC : MonoBehaviour
     [SerializeField]
     GameObject failUpgradeObj;
 
+    [SerializeField]
+    List<Image> quickSlotSkillImage = new List<Image>();
+
+    [SerializeField]
+    List<Sprite> activeSkillImage = new List<Sprite>();
+
     private void Start()
     {
         BindingUI();
@@ -112,6 +118,10 @@ public class JobUpgradeNPC : MonoBehaviour
 
             playerInfoUI.ShowPlayerHPBar();
             playerInfoUI.ShowPlayerMPBar();
+
+            //키슬롯 변경
+            quickSlotSkillImage[0].sprite = activeSkillImage[0];
+            quickSlotSkillImage[1].sprite = activeSkillImage[1];
         }
         else
         {
@@ -175,6 +185,9 @@ public class JobUpgradeNPC : MonoBehaviour
 
             playerInfoUI.ShowPlayerHPBar();
             playerInfoUI.ShowPlayerMPBar();
+
+            //키슬롯 변경
+            quickSlotSkillImage[2].sprite = activeSkillImage[2];
         }
         else{
             FailUpgrade(1);
@@ -197,6 +210,9 @@ public class JobUpgradeNPC : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerJob = "허밋";
                     playerInfoUI.ShowPlayerJob("허밋");
                     SuccessUpgrade(2, "허밋");
+
+                    //키슬롯 변경
+                    quickSlotSkillImage[2].sprite = activeSkillImage[3];
                 }
                 else
                 {
@@ -216,6 +232,9 @@ public class JobUpgradeNPC : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerMaxHP += 450; 
                     PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;                  
                     playerInfoUI.ShowPlayerHPBar();
+
+                    //키슬롯 변경
+                    quickSlotSkillImage[3].sprite = activeSkillImage[4];
                 }
                 else
                 {
@@ -230,6 +249,10 @@ public class JobUpgradeNPC : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerJob = "시프마스터";
                     playerInfoUI.ShowPlayerJob("시프마스터");
                     SuccessUpgrade(2, "시프마스터");
+
+                    //키슬롯 변경
+                    quickSlotSkillImage[3].sprite = activeSkillImage[5];
+                    quickSlotSkillImage[4].sprite = activeSkillImage[6];
                 }
                 else
                 {
@@ -249,6 +272,9 @@ public class JobUpgradeNPC : MonoBehaviour
                     PlayerManager.PlayerInstance.PlayerMaxHP += 450;
                     PlayerManager.PlayerInstance.PlayerCurHP = PlayerManager.PlayerInstance.PlayerMaxHP;
                     playerInfoUI.ShowPlayerHPBar();
+
+                    //키슬롯 변경
+                    quickSlotSkillImage[1].sprite = activeSkillImage[7];
                 }
                 else
                 {

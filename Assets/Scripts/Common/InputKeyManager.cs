@@ -125,8 +125,10 @@ public class InputKeyManager : MonoBehaviour
                 case KeyCode.Z://럭키세븐
                     await skillManager.LuckySeven(2);
                     break;
-                case KeyCode.X://더블 스텝
-                    await skillManager.DoubleStep(2);
+                case KeyCode.X://더블 스텝 or 부메랑스텝
+                    if(PlayerManager.PlayerInstance.PlayerJOBEnum == PlayerJobClass.Shadower)
+                        await skillManager.BumerangStep(2);
+                    else await skillManager.DoubleStep(2);
                     break;
                 case KeyCode.C://새비지블로우 or 어벤져
                     if(PlayerManager.PlayerInstance.PlayerJOBConfigEnum == PlayerJobConfig.Shadower)
@@ -140,9 +142,6 @@ public class InputKeyManager : MonoBehaviour
                     break;
                 case KeyCode.B://시브즈
                     await skillManager.Thieves();
-                    break;
-                case KeyCode.N://부메랑 스텝
-                    await skillManager.BumerangStep(2);
                     break;
                 default:
                     break;

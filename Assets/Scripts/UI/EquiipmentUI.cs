@@ -147,6 +147,13 @@ public class EquiipmentUI : MonoBehaviour
         PlayerManager.PlayerInstance.PlayerAddAvoid += equipmentOption.addAvoid;
         #endregion
 
+        //ÀåÂø ¹«±â
+        if (equipmentOption.equipmentType == EquipmentType.Claw)
+            PlayerManager.PlayerInstance.PlayerJOBConfigEnum = PlayerJobConfig.NightLoad;
+
+        if (equipmentOption.equipmentType == EquipmentType.Knife)
+            PlayerManager.PlayerInstance.PlayerJOBConfigEnum = PlayerJobConfig.Shadower;
+
         //½ºÅÈÃ¢ ¹Ý¿µ
         statUI.ShowCharacterBasicStat();
         statUI.ShowCharacterDetailStat();

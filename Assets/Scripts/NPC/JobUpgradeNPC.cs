@@ -19,6 +19,17 @@ public enum PlayerJobClass
     Count
 }
 
+/// <summary>
+/// 캐릭터 직업 계열
+/// </summary>
+public enum PlayerJobConfig
+{
+    Common,
+    NightLoad,
+    Shadower,
+    Count
+}
+
 public class JobUpgradeNPC : MonoBehaviour
 {
     [SerializeField]
@@ -118,6 +129,8 @@ public class JobUpgradeNPC : MonoBehaviour
             && PlayerManager.PlayerInstance.TotalUseSkillPoint>=52)
         {
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Assassin;
+            PlayerManager.PlayerInstance.PlayerJOBConfigEnum = PlayerJobConfig.NightLoad;
+
             PlayerManager.PlayerInstance.PlayerJob = "어쌔신";
             playerInfoUI.ShowPlayerJob("어쌔신");
             SuccessUpgrade(1, "어쌔신");
@@ -148,6 +161,7 @@ public class JobUpgradeNPC : MonoBehaviour
             && PlayerManager.PlayerInstance.TotalUseSkillPoint >= 52)
         {
             PlayerManager.PlayerInstance.PlayerJOBEnum = PlayerJobClass.Thief;
+            PlayerManager.PlayerInstance.PlayerJOBConfigEnum = PlayerJobConfig.Shadower;
             PlayerManager.PlayerInstance.PlayerJob = "시프";
             playerInfoUI.ShowPlayerJob("시프");
             SuccessUpgrade(1, "시프");

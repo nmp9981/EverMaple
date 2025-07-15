@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//장착 무기 종류
+public enum AttachWeapon
+{
+    Claw,
+    Knife,
+    Count
+}
 public class PlayerManager : MonoBehaviour 
 {
     public static PlayerManager PlayerInstance = null;
@@ -50,6 +57,7 @@ public class PlayerManager : MonoBehaviour
     int playerMaxLV = 110;
     string playerJob = "초보자";
     PlayerJobClass playerJobClass = PlayerJobClass.Beginer;
+    PlayerJobConfig playerJobConfig = PlayerJobConfig.Common;
     string playerName = "Aruru";
     int playerCurHP;
     int playerMaxHP = 50;
@@ -104,6 +112,8 @@ public class PlayerManager : MonoBehaviour
     bool isShadowPartner = false;//쉐도우파트너 진행중인가?
 
     bool isPlayerDie = false;//캐릭터가 사망했는가?
+
+    AttachWeapon playerAttachWeapon = AttachWeapon.Knife;//캐릭터가 장착한 무기 종류
 
     string curMapName = "Map0";
     bool isVillage = true;
@@ -162,6 +172,7 @@ public class PlayerManager : MonoBehaviour
     public int PlayerMaxLV { get { return playerMaxLV; } set { playerMaxLV = value; } }
     public string PlayerJob { get { return playerJob; } set { playerJob = value; } }
     public PlayerJobClass PlayerJOBEnum { get { return playerJobClass; } set { playerJobClass = value; } }
+    public PlayerJobConfig PlayerJOBConfigEnum { get { return playerJobConfig; } set { playerJobConfig = value; } }
     public string PlayerName { get { return playerName; } set { playerName = value; } }
     public int PlayerCurHP { get { return playerCurHP; } set {playerCurHP = value; } }
     public int PlayerMaxHP { get {return playerMaxHP; } set {playerMaxHP = value; } }
@@ -217,6 +228,8 @@ public class PlayerManager : MonoBehaviour
     public int PlayerAddAvoid { get { return playerAddAvoid; } set { playerAddAvoid = value; } }
 
     public bool IsPlayerDie { get { return isPlayerDie; } set { isPlayerDie = value; } }
+
+    public AttachWeapon PlayerAttackWeapon { get { return playerAttachWeapon; } set { playerAttachWeapon = value; } }
 
     #region 맵관련
     public string CurMapName {  get { return curMapName; } set { curMapName = value; } }

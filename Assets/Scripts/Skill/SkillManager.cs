@@ -61,6 +61,10 @@ public class SkillManager : MonoBehaviour
     //럭키 세븐
     public async UniTask LuckySeven(int hitNum)
     {
+        //무기 제한
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Knife)
+            return;
+
         //스킬 레벨 0
         if (SkillDamageCalCulate.LuckySevenLv == 0)
             return;
@@ -104,6 +108,10 @@ public class SkillManager : MonoBehaviour
     //트리플 스로우
     public async UniTask TripleThrow(int hitNum)
     {
+        //무기 제한
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Knife)
+            return;
+
         //스킬 레벨 0
         if (SkillDamageCalCulate.TripleThrowLv == 0)
             return;
@@ -148,6 +156,10 @@ public class SkillManager : MonoBehaviour
     //더블 스텝
     public async UniTask DoubleStep(int hitNum)
     {
+        //무기 제한
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)
+            return;
+
         //스킬 레벨 0
         if (SkillDamageCalCulate.DoubleStepLv == 0)
             return;
@@ -203,6 +215,10 @@ public class SkillManager : MonoBehaviour
     //새비지 블로우
     public async UniTask Savageblow(int hitNum)
     {
+        //무기 제한
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)
+            return;
+
         //스킬 레벨 0
         if (SkillDamageCalCulate.SavageblowLv == 0)
             return;
@@ -256,6 +272,10 @@ public class SkillManager : MonoBehaviour
     //어벤져
     public async UniTask Avenger(int hitNum)
     {
+        //무기 제한
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Knife)
+            return;
+
         //스킬 레벨 0
         if (SkillDamageCalCulate.AvengerLv == 0)
             return;
@@ -301,6 +321,10 @@ public class SkillManager : MonoBehaviour
     //부메랑 스텝
     public async UniTask BumerangStep(int hitNum)
     {
+        //무기 제한
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)
+            return;
+
         //스킬 레벨 0
         if (SkillDamageCalCulate.BumerangStepLv == 0)
             return;
@@ -330,6 +354,10 @@ public class SkillManager : MonoBehaviour
     //시브즈
     public async UniTask Thieves()
     {
+        //무기 제한
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)
+            return;
+
         //스킬 레벨 0
         if (SkillDamageCalCulate.ThievesLv == 0)
             return;
@@ -383,6 +411,10 @@ public class SkillManager : MonoBehaviour
     //어썰터
     public async UniTask Assertor()
     {
+        //무기 제한
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)
+            return;
+
         //스킬 레벨 0
         if (SkillDamageCalCulate.AssertorLv == 0)
             return;

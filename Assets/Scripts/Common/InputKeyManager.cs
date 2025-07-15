@@ -128,23 +128,21 @@ public class InputKeyManager : MonoBehaviour
                 case KeyCode.X://더블 스텝
                     await skillManager.DoubleStep(2);
                     break;
-                case KeyCode.C://새비지블로우
-                    await skillManager.Savageblow(SkillDamageCalCulate.SavageblowHitNum);
+                case KeyCode.C://새비지블로우 or 어벤져
+                    if(PlayerManager.PlayerInstance.PlayerJOBConfigEnum == PlayerJobConfig.Shadower)
+                        await skillManager.Savageblow(SkillDamageCalCulate.SavageblowHitNum);
+                    else await skillManager.Avenger(1);
                     break;
-                case KeyCode.V://트리플 스로우
-                    await skillManager.TripleThrow(3);
+                case KeyCode.V://트리플 스로우 or 어썰터
+                    if (PlayerManager.PlayerInstance.PlayerJOBConfigEnum == PlayerJobConfig.Shadower)
+                        await skillManager.Assertor();
+                    else await skillManager.TripleThrow(3);
                     break;
-                case KeyCode.B://어벤져
-                    await skillManager.Avenger(1);
+                case KeyCode.B://시브즈
+                    await skillManager.Thieves();
                     break;
                 case KeyCode.N://부메랑 스텝
                     await skillManager.BumerangStep(2);
-                    break;
-                case KeyCode.M://시브즈
-                    await skillManager.Thieves();
-                    break;
-                case KeyCode.L://어썰터
-                    await skillManager.Assertor();
                     break;
                 default:
                     break;

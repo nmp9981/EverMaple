@@ -43,6 +43,7 @@ public class EquiipmentUI : MonoBehaviour
     {
         //이미지 교체
         Sprite eauipSP = null;
+       
         switch (equipmentOption.equipmentType)
         {
             case EquipmentType.Knife:
@@ -115,6 +116,25 @@ public class EquiipmentUI : MonoBehaviour
             PlayerManager.PlayerInstance.PlayerAddAccurary -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAccuracy;
             PlayerManager.PlayerInstance.PlayerAddAvoid -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAvoid;
             #endregion
+        }
+
+
+        //무기 종류가 서로 다른 경우
+        if (PlayerManager.PlayerInstance.PlayerJOBConfigEnum == PlayerJobConfig.NightLoad)//아대 장착
+        {
+            if (equipmentOption.equipmentType == EquipmentType.Knife)
+            {
+                PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addLUK;
+                PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addAttack;
+            }
+        }
+        if (PlayerManager.PlayerInstance.PlayerJOBConfigEnum == PlayerJobConfig.Shadower)//단검 장착
+        {
+            if (equipmentOption.equipmentType == EquipmentType.Claw)
+            {
+                PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addLUK;
+                PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addAttack;
+            }
         }
 
         //장비 장착

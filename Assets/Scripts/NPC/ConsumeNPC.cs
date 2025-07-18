@@ -35,6 +35,9 @@ public class ConsumeNPC : NPCCommon
     [SerializeField]
     TextMeshProUGUI mesoText;
 
+    [SerializeField]
+    GameObject consumeToolTipObj;
+
     private int itemCount = 0;
     private int maxEquipmentCount = 24;
     private int maxConsumeNumber = 21;
@@ -83,7 +86,7 @@ public class ConsumeNPC : NPCCommon
         {
             string gmName = btn.name;
 
-            //소비 아이템
+            //아이템 판매
             if (btn.gameObject.tag.Contains("SellItem"))
             {
                 //소비 아이템
@@ -99,7 +102,7 @@ public class ConsumeNPC : NPCCommon
                     continue;
                 }
             }
-            else
+            else//아이템 구매
             {
                 //소비 아이템
                 if (gmName.Contains("Goods") && !gmName.Contains("Equipment"))
@@ -237,6 +240,16 @@ public class ConsumeNPC : NPCCommon
         curBuyConsumeInfo.idx = int.Parse(btn.gameObject.name.Substring(5));
         string priceText = btn.gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
         curBuyConsumeInfo.price = int.Parse(priceText.Substring(0, priceText.Length - 3));
+
+        //툴팁 보이게
+        if(consumeToolTipObj.activeSelf)
+            consumeToolTipObj.SetActive(false);
+        else
+        {
+            //내용 설정
+            //curBuyConsumeInfo.idx 이거로 설정
+            consumeToolTipObj.SetActive(true);
+        }
     }
     /// <summary>
     /// 아이템 구매 확정 여부

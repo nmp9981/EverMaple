@@ -229,6 +229,7 @@ public class ConsumeNPC : NPCCommon
     /// </summary>
     public void OutStore()
     {
+        consumeToolTipObj.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -247,8 +248,13 @@ public class ConsumeNPC : NPCCommon
         else
         {
             //내용 설정
-            //curBuyConsumeInfo.idx 이거로 설정
+            string nameText = btn.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
             consumeToolTipObj.SetActive(true);
+            consumeToolTipObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = nameText;
+            consumeToolTipObj.transform.GetChild(2).GetComponent<Image>().sprite 
+                = ItemManager.itemInstance.consumeItemToolTipDic[nameText].itemSprite;
+            consumeToolTipObj.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text 
+                = ItemManager.itemInstance.consumeItemToolTipDic[nameText].itemExplain;
         }
     }
     /// <summary>
@@ -258,6 +264,7 @@ public class ConsumeNPC : NPCCommon
     public void QuestionItemBuy(GameObject btn)
     {
         //구매 창 열림
+        consumeToolTipObj.SetActive(false);
         if (storeNPCIndex.Item1 == 0)
         {
             buyConsumeUI.SetActive(true);
@@ -275,6 +282,7 @@ public class ConsumeNPC : NPCCommon
         curBuyConsumeInfo.price = -1;
 
         buyConsumeUI.SetActive(false);
+        consumeToolTipObj.SetActive(false);
     }
     /// <summary>
     /// 소비아이템 구매 확정

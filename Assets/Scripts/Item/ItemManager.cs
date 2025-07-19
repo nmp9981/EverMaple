@@ -655,7 +655,7 @@ public class ItemManager : MonoBehaviour
     public Dictionary<string, EquiipmentOption> equipmentItemDic = new Dictionary<string, EquiipmentOption>();
 
     public Dictionary<int, ConsumeItem> consumeItems = new Dictionary<int, ConsumeItem>();
-    public Dictionary<int, ConsumeToolTipText> consumeItemToolTipDic = new Dictionary<int, ConsumeToolTipText>();
+    public Dictionary<string, ConsumeToolTipText> consumeItemToolTipDic = new Dictionary<string, ConsumeToolTipText>();
     public List<Sprite> consumeItemImage = new List<Sprite>();
 
     //키세팅 용 바인딩

@@ -19,6 +19,8 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     GameObject notWearUI;
     [SerializeField]
     GameObject equipmentInfoUI;
+    [SerializeField]
+    GameObject consumeInfoUI;
 
     //선택한 소비 아이템
     public GameObject clickedConsumeObject = null;
@@ -81,6 +83,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
         }
 
         equipmentInfoUI.gameObject.SetActive(false);
+        consumeInfoUI.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -165,6 +168,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     public void OpenSettingItemKeyWindow()
     {
         selectKeyObject.SetActive(true);
+        consumeInfoUI.SetActive(false);
     }
    
     /// <summary>
@@ -197,6 +201,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void CancelEnrollKey()
     {
+        consumeInfoUI.gameObject.SetActive(false);
         enrollKwySlotObject.SetActive(false);
     }
 
@@ -230,7 +235,25 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
 
         enrollKeySlotEquipmentObject.SetActive(false);
     }
+    /// <summary>
+    /// 소비 아이템 정보 보기
+    /// </summary>
+    public void ShowConsumeInfo()
+    {
+        //선택한 오브젝트가 없음
+        if (clickedConsumeObject == null)
+        {
+            consumeInfoUI.SetActive(false);
+            return;
+        }
 
+        //소비 아이템의 정보를 받아야함
+        //이미지 이름으로 구분
+        string itemName = clickedConsumeObject.GetComponent<Image>().sprite.name;
+        
+        //소비 아이템 정보 기록
+        RecordConSumeInfo(itemName);
+    }
     /// <summary>
     /// 장비 정보 보기
     /// </summary>
@@ -277,6 +300,7 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     public void CancelEquipmentInItemUI()
     {
         equipmentInfoUI.SetActive(false);
+        consumeInfoUI.SetActive(false);
         enrollKeySlotEquipmentObject.SetActive(false);
     }
 
@@ -286,6 +310,21 @@ public class UIMouseClick : MonoBehaviour, IPointerClickHandler
     public void CheckNotWearUI()
     {
         notWearUI.SetActive(false);
+    }
+
+    /// <summary>
+    /// 소비 아이템 정보 기록
+    /// </summary>
+    void RecordConSumeInfo(string itemName)
+    {
+        ConsumeToolTipText consumeOption = ItemManager.itemInstance.consumeItemToolTipDic[itemName];
+
+        consumeInfoUI.SetActive(true);
+        consumeInfoUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itemName;
+        consumeInfoUI.transform.GetChild(2).GetComponent<Image>().sprite
+            = ItemManager.itemInstance.consumeItemToolTipDic[itemName].itemSprite;
+        consumeInfoUI.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text
+            = ItemManager.itemInstance.consumeItemToolTipDic[itemName].itemExplain;
     }
 
     /// <summary>

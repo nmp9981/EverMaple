@@ -127,21 +127,21 @@ public class ItemManager : MonoBehaviour
         string posionCountText = string.Empty;
         switch (itemName)
         {
-            case "빨간포션":
+            case "빨간 포션":
                 //이미지, 남은 개수 표시
                 UseHPPosionIndex = 0;
                 posionSprite = consumeItems[UseHPPosionIndex].sprite;
                 posionCountText = consumeItems[UseHPPosionIndex].count.ToString();
                 HealHPAmount = 50;
                 break;
-            case "주황포션":
+            case "주황 포션":
                 //이미지, 남은 개수 표시
                 UseHPPosionIndex = 1;
                 posionSprite = consumeItems[UseHPPosionIndex].sprite;
                 posionCountText = consumeItems[UseHPPosionIndex].count.ToString();
                 HealHPAmount = 150;
                 break;
-            case "하얀포션":
+            case "하얀 포션":
                 //이미지, 남은 개수 표시
                 UseHPPosionIndex = 2;
                 posionSprite = consumeItems[UseHPPosionIndex].sprite;
@@ -183,21 +183,21 @@ public class ItemManager : MonoBehaviour
         string posionCountText = string.Empty;
         switch (itemName)
         {
-            case "파란포션":
+            case "파란 포션":
                 //이미지, 남은 개수 표시
                 UseMPPosionIndex = 3;
                 posionSprite = consumeItems[UseMPPosionIndex].sprite;
                 posionCountText = consumeItems[UseMPPosionIndex].count.ToString();
                 HealMPAmount = 100;
                 break;
-            case "마나엘릭서":
+            case "마나 엘릭서":
                 //이미지, 남은 개수 표시
                 UseMPPosionIndex = 4;
                 posionSprite = consumeItems[UseMPPosionIndex].sprite;
                 posionCountText = consumeItems[UseMPPosionIndex].count.ToString();
                 HealMPAmount = 300;
                 break;
-            case "맑은물":
+            case "맑은 물":
                 //이미지, 남은 개수 표시
                 UseMPPosionIndex = 6;
                 posionSprite = consumeItems[UseMPPosionIndex].sprite;
@@ -238,7 +238,7 @@ public class ItemManager : MonoBehaviour
                 posionSprite = consumeItems[UseElixerPosionIndex].sprite;
                 posionCountText = consumeItems[UseElixerPosionIndex].count.ToString();
                 break;
-            case "파워엘릭서":
+            case "파워 엘릭서":
                 //이미지, 남은 개수 표시
                 UseElixerPosionIndex = 20;
                 posionSprite = consumeItems[UseElixerPosionIndex].sprite;
@@ -265,31 +265,31 @@ public class ItemManager : MonoBehaviour
         string posionCountText = string.Empty;
         switch (itemName)
         {
-            case "전사물약":
+            case "전사의 물약":
                 UseBuffPosionIndex = 9;
                 break;
-            case "법사물약":
+            case "마법사의 물약":
                 UseBuffPosionIndex = 10;
                 break;
-            case "명사수물약":
+            case "명사수의 물약":
                 UseBuffPosionIndex = 11;
                 break;
-            case "민첩물약":
+            case "민첩함의 물약":
                 UseBuffPosionIndex = 12;
                 break;
-            case "이속물약":
+            case "속도 향상의 물약":
                 UseBuffPosionIndex = 13;
                 break;
-            case "현자물약":
+            case "현자의 물약":
                 UseBuffPosionIndex = 15;
                 break;
-            case "고목나무수액":
+            case "고목나무의 수액":
                 UseBuffPosionIndex = 16;
                 break;
-            case "드레이크피":
+            case "드레이크의 피":
                 UseBuffPosionIndex = 17;
                 break;
-            case "드레이크의고기":
+            case "드레이크의 고기":
                 UseBuffPosionIndex = 18;
                 break;
             default:
@@ -334,13 +334,13 @@ public class ItemManager : MonoBehaviour
 
         switch (objName)
         {
-            case "빨간포션":
+            case "빨간 포션":
                 UseHPPosion(0,50,false);
                 break;
-            case "주황포션":
+            case "주황 포션":
                 UseHPPosion(1, 150, false);
                 break;
-            case "하얀포션":
+            case "하얀 포션":
                 UseHPPosion(2, 300, false);
                 break;
             case "장어구이":
@@ -349,52 +349,52 @@ public class ItemManager : MonoBehaviour
             case "쭈쭈바":
                 UseHPPosion(7, 2000, false);
                 break;
-            case "파란포션":
+            case "파란 포션":
                 UseMPPosion(3, 100, false);
                 break;
-            case "마나엘릭서":
+            case "마나 엘릭서":
                 UseMPPosion(4, 300, false);
                 break;
-            case "맑은물":
+            case "맑은 물":
                 UseMPPosion(6, 800, false);
                 break;
             case "팥빙수":
                 UseMPPosion(8, 2000, false);
                 break;
-            case "전사물약":
+            case "전사의 물약":
                 UseBuffPosion(9, false);
                 break;
-            case "법사물약":
+            case "마법사의 물약":
                 UseBuffPosion(10, false);
                 break;
-            case "명사수물약":
+            case "명사수의 물약":
                 UseBuffPosion(11, false);
                 break;
-            case "민첩물약":
+            case "민첩함의 물약":
                 UseBuffPosion(12, false);
                 break;
-            case "이속물약":
+            case "속도 향상의 물약":
                 UseBuffPosion(13, false);
                 break;
-            case "마을귀환주문서":
+            case "마을 귀환 주문서":
                 UseMoveVillagePosion();
                 break;
-            case "현자물약":
+            case "현자의 물약":
                 UseBuffPosion(15, false);
                 break;
-            case "고목나무수액":
+            case "고목나무의 수액":
                 UseBuffPosion(16, false);
                 break;
-            case "드레이크피":
+            case "드레이크의 피":
                 UseBuffPosion(17, false);
                 break;
-            case "드레이크의고기":
+            case "드레이크의 고기":
                 UseBuffPosion(18, false);
                 break;
             case "엘릭서":
                 UseElixerPosion(19);
                 break;
-            case "파워엘릭서":
+            case "파워 엘릭서":
                 UseElixerPosion(20);
                 break;
             default:

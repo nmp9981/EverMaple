@@ -62,5 +62,61 @@ public class SkillToolTipClass : MonoBehaviour
         SkillToolTipText skillToolTip7
           = new SkillToolTipText(skillIconList[7], "헤이스트", "일정 시간동안 이동속도와 점프력을 증가시켜준다.");
         skillToolTipTextDic.Add("헤이스트", skillToolTip7);
+
+        SkillToolTipText skillToolTip8
+          = new SkillToolTipText(skillIconList[8], "대거 마스터리", "단검 계열 무기의 숙련도와 명중률을 상승시킨다.");
+        skillToolTipTextDic.Add("대거 마스터리", skillToolTip8);
+
+        SkillToolTipText skillToolTip9
+          = new SkillToolTipText(skillIconList[9], "대거 부스터", "HP, MP를 소비하여 일정 시간동안 딘검의 공격속도를 한 단계 상승시킨다. " +
+          "단검을 들고 있을 경우에만 발동이 가능하다.");
+        skillToolTipTextDic.Add("대거 부스터", skillToolTip9);
+
+        SkillToolTipText skillToolTip10
+         = new SkillToolTipText(skillIconList[10], "새비지블로우", "MP를 소비하여 단검으로 적에게 최고 6연속 공격을 가한다.");
+        skillToolTipTextDic.Add("새비지블로우", skillToolTip10);
+
+        SkillToolTipText skillToolTip11
+         = new SkillToolTipText(skillIconList[11], "알케미스트", "포션 등 회복 아이템의 효과가 상승하거나" +
+         "상태변화 아이템의 적용시간이 늘어난다. 단, 엘릭서와 같이 %로 회복시켜 주는 아이템에는 적용되지 않는다");
+        skillToolTipTextDic.Add("알케미스트", skillToolTip11);
+
+        SkillToolTipText skillToolTip12
+         = new SkillToolTipText(skillIconList[12], "쉐도우파트너", "일정 시간동안 자신과 똑같은 행동을 하는 그림자 동료를 소환해낸다. " +
+         "별도의 체력은 없으며시간이 지나면 사라지게된다.");
+        skillToolTipTextDic.Add("쉐도우파트너", skillToolTip12);
+
+        SkillToolTipText skillToolTip13
+         = new SkillToolTipText(skillIconList[13], "어벤져", "MP를 소모하여 커다란 표창을 만들어 던진다." +
+         " 던져진 표창은 적을 통과하며 그 뒤의 적까지 공격할 수 있다.");
+        skillToolTipTextDic.Add("어벤져", skillToolTip13);
+
+        SkillToolTipText skillToolTip14
+         = new SkillToolTipText(skillIconList[14], "메소업", "일정 시간동안 적으로부터 더욱 많은 메소가 떨어지도록 한다.");
+        skillToolTipTextDic.Add("메소업", skillToolTip14);
+
+        SkillToolTipText skillToolTip15
+         = new SkillToolTipText(skillIconList[15], "어썰터", "적 한 명을 강하고 빠르게 공격한다.");
+        skillToolTipTextDic.Add("어썰터", skillToolTip15);
+
+        SkillToolTipText skillToolTip16
+         = new SkillToolTipText(skillIconList[16], "시브즈", "동료를 소환하여 주변의 적 여러 명을 공격한다. 최대 5명까지 공격할 수 있다.");
+        skillToolTipTextDic.Add("시브즈", skillToolTip16);
+
+        SkillToolTipText skillToolTip17
+         = new SkillToolTipText(skillIconList[17], "메소가드", "일정 시간동안 메소로 데미지의 50%를 가드한다. 데미지를 받을 때마다 비율에 따라 메소가 소비된다.");
+        skillToolTipTextDic.Add("메소가드", skillToolTip17);
+
+        SkillToolTipText skillToolTip18
+         = new SkillToolTipText(skillIconList[18], "메이플 용사", "일정 시간동안 모든 스탯을 일정 페센트 올려준다.");
+        skillToolTipTextDic.Add("메이플 용사", skillToolTip18);
+
+        SkillToolTipText skillToolTip19
+         = new SkillToolTipText(skillIconList[19], "트리플스로우", "한 번에 표창 3개를 던져 공격을 한다.");
+        skillToolTipTextDic.Add("트리플스로우", skillToolTip19);
+
+        SkillToolTipText skillToolTip20
+         = new SkillToolTipText(skillIconList[20], "부메랑 스텝", "빠른 속도로 다수의 적을 두 번 벤다.");
+        skillToolTipTextDic.Add("부메랑 스텝", skillToolTip20);
     }
 }

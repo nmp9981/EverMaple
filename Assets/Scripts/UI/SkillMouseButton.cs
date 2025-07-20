@@ -25,11 +25,13 @@ public class SkillMouseButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         GameObject clickedObject = eventData.pointerCurrentRaycast.gameObject;
-        if (clickedObject.tag.Contains(skillTag))
+
+        if (clickedObject.transform.parent.tag.Contains(skillTag))
         {
             skillInfoUI.SetActive(true);
-            string skillName = gameObject.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
-            int skillLv = int.Parse(gameObject.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text);
+            GameObject clickObjParent = clickedObject.transform.parent.gameObject;
+            string skillName = clickObjParent.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text;
+            int skillLv = int.Parse(clickObjParent.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text);
             ShowSkillInfo(skillName, skillLv);
         }
         else

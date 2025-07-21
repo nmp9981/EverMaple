@@ -265,7 +265,7 @@ public class SkillManager : MonoBehaviour
             {
                 PlayerAttackCommon.PlayerAttackToOneMonster(nearMob, SkillDamageCalCulate.SavageblowCoff, i);
                 SoundManager._sound.PlaySfx(12);
-                await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed / 8);
+                await UniTask.Delay(PlayerManager.PlayerInstance.PlayerAttackSpeed / 6);
             }
         }
     }
@@ -475,13 +475,18 @@ public class SkillManager : MonoBehaviour
     #region 버프 스킬
     public void UseHasteSkill()
     {
+        //스킬을 아직 안배움
+        if (SkillLvManager.hasteLv <= 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 30)
+        int spendMP = SkillLvManager.hasteLv<=10? 15:30;
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(30);
-
+        DecreasePlayerMP(spendMP);
+        
         //사운드
         SoundManager._sound.PlaySfx(18);
 
@@ -493,13 +498,17 @@ public class SkillManager : MonoBehaviour
 
     public void UseJavelinBoosterSkill()
     {
+        //스킬을 아직 안배움
+        if (SkillLvManager.boosterLv <= 0)
+            return;
+
         //HP, MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 10 || PlayerManager.PlayerInstance.PlayerCurHP <= 10)
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 30 - SkillLvManager.boosterLv || PlayerManager.PlayerInstance.PlayerCurHP <= 30 - SkillLvManager.boosterLv)
             return;
 
         //HP, MP 소모
-        DecreasePlayerHP(10);
-        DecreasePlayerMP(10);
+        DecreasePlayerHP(30 - SkillLvManager.boosterLv);
+        DecreasePlayerMP(30 - SkillLvManager.boosterLv);
 
         //사운드
         SoundManager._sound.PlaySfx(10);
@@ -511,13 +520,17 @@ public class SkillManager : MonoBehaviour
     }
     public void UseDagerBoosterSkill()
     {
+        //스킬을 아직 안배움
+        if (SkillLvManager.boosterLv <= 0)
+            return;
+
         //HP, MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 10 || PlayerManager.PlayerInstance.PlayerCurHP <= 10)
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 30 - SkillLvManager.boosterLv || PlayerManager.PlayerInstance.PlayerCurHP <= 30 - SkillLvManager.boosterLv)
             return;
 
         //HP, MP 소모
-        DecreasePlayerHP(10);
-        DecreasePlayerMP(10);
+        DecreasePlayerHP(30-SkillLvManager.boosterLv);
+        DecreasePlayerMP(30 - SkillLvManager.boosterLv);
 
         //사운드
         SoundManager._sound.PlaySfx(10);
@@ -529,12 +542,16 @@ public class SkillManager : MonoBehaviour
     }
     public void UseShadowPartnerSkill()
     {
+        //스킬을 아직 안배움
+        if (SkillLvManager.shadowPartnerLv <= 0)
+            return;
+
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 55)
+        if (PlayerManager.PlayerInstance.PlayerCurMP < 205-SkillLvManager.shadowPartnerLv*5)
             return;
 
         //MP 소모
-        DecreasePlayerMP(55);
+        DecreasePlayerMP(205 - SkillLvManager.shadowPartnerLv * 5);
 
         //사운드
         SoundManager._sound.PlaySfx(13);
@@ -546,6 +563,10 @@ public class SkillManager : MonoBehaviour
     }
     public void UseMesoUPSkill()
     {
+        //스킬을 아직 안배움
+        if (SkillLvManager.mesoUpLv <= 0)
+            return;
+
         //MP검사
         if (PlayerManager.PlayerInstance.PlayerCurMP < 60)
             return;
@@ -563,6 +584,10 @@ public class SkillManager : MonoBehaviour
     }
     public void UseMesoGuardSkill()
     {
+        //스킬을 아직 안배움
+        if (SkillLvManager.mesoGuardLv <= 0)
+            return;
+
         //MP검사
         if (PlayerManager.PlayerInstance.PlayerCurMP < 35)
             return;
@@ -580,6 +605,10 @@ public class SkillManager : MonoBehaviour
     }
     public void UseMapleWarriorSkill()
     {
+        //스킬을 아직 안배움
+        if (SkillLvManager.mapleWarriorLv <= 0)
+            return;
+
         //MP검사
         if (PlayerManager.PlayerInstance.PlayerCurMP < 50)
             return;

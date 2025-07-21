@@ -172,6 +172,197 @@ public class SkillToolTipClass : MonoBehaviour
                 else
                     detailText = $"MP -{spendMP}, 데미지 {coff}% x 2";
                 break;
+            case "자벨린 마스터리":
+                coff = (skillLv == 0) ? 0 : 15 + 5 * ((skillLv - 1) / 2);
+                nextCoff = 15 + 5 * (skillLv / 2); ;
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"아대 계열의 무기 숙련도 {coff}%, 명중률 +{skillLv}\n아대 계열의 무기 숙련도 {nextCoff}%, 명중률 +{skillLv+1}";
+                }
+                else
+                    detailText = $"아대 계열의 무기 숙련도 {coff}%, 명중률 +{skillLv}";
+                break;
+            case "자벨린 부스터":
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"HP -{30 - skillLv}, MP -{30 - skillLv}소비하여 아대의 공격 속도 향상 {skillLv * 10} 초 지속\n" +
+                        $"HP -{29 - skillLv}, MP -{29 - skillLv}소비하여 아대의 공격 속도 향상 {skillLv * 10+10} 초 지속";
+                }
+                else
+                    detailText = $"HP -{30-skillLv}, MP -{30-skillLv}소비하여 아대의 공격 속도 향상 {skillLv*10} 초 지속";
+                break;
+            case "크리티컬 스로우":
+                int coffProb = skillLv<21? 2 * skillLv: 20 + skillLv;
+                int nextCoffProb = (skillLv+1) < 21 ? 2 * skillLv+2 : 21 + skillLv;
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"{coffProb}%의 확률, 크리티컬 데미지 {110 + 3 * skillLv}%\n" +
+                        $"{nextCoffProb}%의 확률, 크리티컬 데미지 {113 + 3 * skillLv}%";
+                }
+                else
+                    detailText = $"{coffProb}%의 확률, 크리티컬 데미지 {110 + 3 * skillLv}%";
+                break;
+            case "헤이스트":
+                spendMP = skillLv<=10?15:30;
+                nextSpendMP = (skillLv+1 <= 10) ? 15 : 30;
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{spendMP}, 이동속도 +{skillLv * 2}. 점프력 +{skillLv}, {skillLv * 10}초 지속\n" +
+                        $"MP -{nextSpendMP}, 이동속도 +{skillLv * 2+2}. 점프력 +{skillLv+1}, {skillLv * 10+10}초 지속";
+                }
+                else
+                    detailText = $"MP -{spendMP}, 이동속도 +{skillLv*2}. 점프력 +{skillLv}, {skillLv*10}초 지속";
+                break;
+            case "대거 마스터리":
+                coff = (skillLv == 0) ? 0 : 15 + 5 * ((skillLv - 1) / 2);
+                nextCoff = 15 + 5 * (skillLv / 2); ;
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"단검 계열의 무기 숙련도 {coff}%, 명중률 +{skillLv}\n단검 계열의 무기 숙련도 {nextCoff}%, 명중률 +{skillLv + 1}";
+                }
+                else
+                    detailText = $"단검 계열의 무기 숙련도 {coff}%, 명중률 +{skillLv}";
+                break;
+            case "대거 부스터":
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"HP -{30 - skillLv}, MP -{30 - skillLv}소비하여 단검의 공격 속도 향상 {skillLv * 10} 초 지속\n" +
+                        $"HP -{29 - skillLv}, MP -{29 - skillLv}소비하여 단검의 공격 속도 향상 {skillLv * 10 + 10} 초 지속";
+                }
+                else
+                    detailText = $"HP -{30 - skillLv}, MP -{30 - skillLv}소비하여 단검의 공격 속도 향상 {skillLv * 10} 초 지속";
+                break;
+            case "새비지블로우":
+                spendMP = 9 * ((skillLv + 9) / 10);
+                nextSpendMP = 9 * ((skillLv + 10) / 10);
+                coff = 50 + skillLv;
+                nextCoff = 51 + skillLv;
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{spendMP}, {2 * ((skillLv + 9) / 10)}번 적을 공격, 데미지 {coff}%\n" +
+                        $"MP -{nextSpendMP}, {2 * ((skillLv + 10) / 10)}번 적을 공격, 데미지 {nextCoff}%";
+                }
+                else
+                    detailText = $"MP -{spendMP}, {2 * ((skillLv + 9) / 10)}번 적을 공격, 데미지 {coff}%";
+                break;
+            case "알케미스트":
+                coff = (skillLv<11)? 100+3 * skillLv: 130 + 2 * skillLv;
+                nextCoff = (skillLv +1< 11) ?103+ 3 * skillLv : 132 + 2 * skillLv;
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"회복량 {coff}%, 적용 시간 {coff}%\n" +
+                        $"회복량 {nextCoff}%, 적용 시간 {nextCoff}%";
+                }
+                else
+                    detailText = $"회복량 {coff}%, 적용 시간 {coff}%";
+                break;
+            case "쉐도우파트너":
+               //현재 레벨 계수
+                if (skillLv < 8)
+                    coff = 21;
+                else if (skillLv >= 8 && skillLv <= 24)
+                    coff = 14 + skillLv;
+                else
+                    coff = 2 * skillLv - 10;
+
+                //다음 레벨 계수
+                if (skillLv < 7)
+                    nextCoff = 21;
+                else if (skillLv >= 7 && skillLv <= 23)
+                    nextCoff = 14 + skillLv;
+                else
+                    nextCoff = 2 * skillLv - 10;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{205 - skillLv * 5}, 데미지 {coff}%, {((skillLv + 9) / 10) * 60}초 지속\n" +
+                        $"MP -{200 - skillLv * 5}, 데미지 {nextCoff}%, {((skillLv + 10) / 10) * 60}초 지속";
+                }
+                else
+                    detailText = $"MP -{205 - skillLv * 5}, 데미지 {coff}%, {((skillLv + 9) / 10) * 60}초 지속";
+                break;
+            case "어벤져":
+                spendMP = 9 + 7 * ((skillLv + 9) / 10);
+                nextSpendMP = 9 + 7 * ((skillLv + 10) / 10);
+
+                //현재 레벨 계수
+                if (skillLv <= 10)
+                    coff = 60 + 5 * skillLv;
+                else if (skillLv > 20)
+                    coff = 90 + 3 * skillLv;
+                else
+                    coff = 70 + 4 * skillLv;
+
+                //다음 레벨 계수
+                if (skillLv <= 9)
+                    nextCoff = 60 + 5 * skillLv;
+                else if (skillLv > 19)
+                    nextCoff = 90 + 3 * skillLv;
+                else
+                    nextCoff = 70 + 4 * skillLv;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{spendMP}, 데미지 {coff}%, 표창 3개 소비하여 최대 {3 + (skillLv + 9) / 10}명 공격\n" +
+                        $"MP -{nextSpendMP}, 데미지 {nextCoff}%, 표창 3개 소비하여 최대 {3 + (skillLv + 10) / 10}명 공격";
+                }
+                else
+                    detailText = $"MP -{spendMP}, 데미지 {coff}%, 표창 3개 소비하여 최대 {3 + (skillLv + 9) / 10}명 공격";
+                break;
+            case "메소업":
+                coff = (skillLv <= 10) ? 3 * skillLv : 30 + 2 * skillLv;
+                nextCoff = (skillLv+1 <= 10) ? 3 * skillLv+3 : 32 + 2 * skillLv;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -60, 메소 드롭양 +{coff}%, {20 + 5 * skillLv}초 지속\n" +
+                        $"MP -60, 메소 드롭양 +{nextCoff}%, {25 + 5 * skillLv}초 지속";
+                }
+                else
+                    detailText = $"MP -60, 메소 드롭양 +{coff}%, {20 + 5 * skillLv}초 지속";
+                break;
+            case "어썰터":
+                spendMP = 5 + 7 * ((skillLv + 9) / 10);
+                nextSpendMP = 5 + 7 * ((skillLv + 10) / 10);
+                coff = (skillLv < 21) ? 200 + skillLv * 10 : 300 + 5 * skillLv;
+                nextCoff = (skillLv < 20) ? 210 + skillLv * 10 : 305 + 5 * skillLv;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{spendMP}, 데미지 {coff}%\n" +
+                        $"MP -{nextSpendMP}, 데미지 {nextCoff}%";
+                }
+                else
+                    detailText = $"MP -{spendMP}, 데미지 {coff}%";
+                break;
+            case "시브즈":
+                spendMP = 10 * ((skillLv + 9) / 10);
+                nextSpendMP = 10 * ((skillLv + 10) / 10);
+                int targetNum = 2 + ((skillLv + 9) / 10);
+                int nextTargetNum = 2 + ((skillLv + 10) / 10);
+                coff = 160 + skillLv * 5 - targetNum*20;
+                nextCoff = 165 + skillLv * 5 - nextTargetNum * 20;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{spendMP}, 데미지 {coff}%, {targetNum}명의 분신이 적을 공격\n" +
+                        $"MP -{nextSpendMP}, 데미지 {nextCoff}%, {nextTargetNum}명의 분신이 적을 공격";
+                }
+                else
+                    detailText = $"MP -{spendMP}, 데미지 {coff}%, {targetNum}명의 분신이 적을 공격";
+                break;
+            case "메소가드":
+                coff = (skillLv < 17) ? 90 - skillLv / 2 : 98 - skillLv;
+                nextCoff = (skillLv < 16) ? 90 - (skillLv + 1) / 2 : 97 - skillLv;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -35, 가드한 데미지의 {coff}%를 메소로 방어, {120 + skillLv * 3}초 지속\n" +
+                        $"MP -35, 가드한 데미지의 {nextCoff}%를 메소로 방어, {123 + skillLv * 3}초 지속";
+                }
+                else
+                    detailText = $"MP -35, 가드한 데미지의 {coff}%를 메소로 방어, {120 + skillLv * 3}초 지속";
+                break;
             default:
                 break;
         }

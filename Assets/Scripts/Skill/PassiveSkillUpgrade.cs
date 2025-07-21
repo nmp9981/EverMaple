@@ -90,7 +90,7 @@ public class PassiveSkillUpgrade
         }
         else
         {
-            PlayerManager.PlayerInstance.CriticalProbably = 40 + skillLv;
+            PlayerManager.PlayerInstance.CriticalProbably = 20 + skillLv;
         }
         PlayerManager.PlayerInstance.CriticalDamagee = 110 + 3 * skillLv;
     }

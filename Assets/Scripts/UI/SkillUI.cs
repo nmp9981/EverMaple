@@ -262,7 +262,7 @@ public class SkillUI : MonoBehaviour, IDragHandler
                 break;
             case "새비지블로우":
                 SkillDamageCalCulate.SavageblowLv = curSkillLv;
-                SkillDamageCalCulate.SavageblowCoff = 80;
+                SkillDamageCalCulate.SavageblowCoff = 50+curSkillLv;
                 SkillDamageCalCulate.SavageblowHitNum = 2*((curSkillLv + 9) / 10);
                 break;
             case "어벤져":

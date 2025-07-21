@@ -363,6 +363,48 @@ public class SkillToolTipClass : MonoBehaviour
                 else
                     detailText = $"MP -35, 가드한 데미지의 {coff}%를 메소로 방어, {120 + skillLv * 3}초 지속";
                 break;
+            case "메이플 용사":
+                spendMP = 10 * skillLv / 5 + 10;
+                nextSpendMP = 10 * (skillLv+1) / 5 + 10;
+                coff = (skillLv + 1) / 2;
+                nextCoff = (skillLv + 2) / 2;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{spendMP}, 모든 스탯 +{coff}%, 지속시간 {30 * skillLv}초\n" +
+                        $"MP -{nextSpendMP}, 모든 스탯 +{nextCoff}%, 지속시간 {30 * skillLv+30}초";
+                }
+                else
+                    detailText = $"MP -{spendMP}, 모든 스탯 +{coff}%, 지속시간 {30 * skillLv}초";
+                break;
+            case "트리플스로우":
+                spendMP = 10 + (skillLv + 2) / 3;
+                nextSpendMP = 10 + (skillLv + 3) / 3;
+                coff = (skillLv > 20) ? 120 + skillLv : 100 + 2 * skillLv;
+                nextCoff = (skillLv > 20) ? 121 + skillLv : 102 + 2 * skillLv;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{spendMP}, 데미지 {coff}%\n" +
+                        $"MP -{nextSpendMP}, 데미지 {nextCoff}%";
+                }
+                else
+                    detailText = $"MP -{spendMP}, 데미지 {coff}%";
+                break;
+            case "부메랑 스텝":
+                spendMP = 13 + 3 * ((skillLv + 5) / 6);
+                nextSpendMP = 13 + 3 * ((skillLv + 6) / 6);
+                coff = (skillLv > 20) ? 350 + 5 * skillLv : 250 + 10 * skillLv;
+                nextCoff = (skillLv > 19) ? 355 + 5 * skillLv : 260 + 10 * skillLv;
+
+                if (skillLv < skillToolTipTextDic[skillName].masterLv)
+                {
+                    detailText = $"MP -{spendMP}, {1 + (skillLv + 9) / 10}명의 적에게 데미지 {coff}%\n" +
+                        $"MP -{nextSpendMP}, {1 + (skillLv + 10) / 10}명의 적에게 데미지 {nextCoff}%";
+                }
+                else
+                    detailText = $"MP -{spendMP}, {1 + (skillLv + 9) / 10}명의 적에게 데미지 {coff}%";
+                break;
             default:
                 break;
         }

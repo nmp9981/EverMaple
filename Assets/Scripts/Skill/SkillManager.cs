@@ -610,11 +610,12 @@ public class SkillManager : MonoBehaviour
             return;
 
         //MP검사
-        if (PlayerManager.PlayerInstance.PlayerCurMP < 50)
+        int spendMP = 10 * SkillLvManager.mapleWarriorLv / 5+10;
+        if (PlayerManager.PlayerInstance.PlayerCurMP < spendMP)
             return;
 
         //MP 소모
-        DecreasePlayerMP(50);
+        DecreasePlayerMP(spendMP);
 
         //사운드
         SoundManager._sound.PlaySfx(7);

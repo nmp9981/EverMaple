@@ -164,7 +164,7 @@ public class SkillToolTipClass : MonoBehaviour
                 spendMP = 7 + (skillLv + 1) / 3;
                 nextSpendMP = 7 + (skillLv + 2) / 3;
                 coff = (skillLv == 0) ? 0 : 70 + (skillLv * 7) / 2;
-                nextCoff = 70 + (skillLv * 7) / 2;
+                nextCoff = 70 + ((skillLv+1) * 7) / 2;
                 if (skillLv < skillToolTipTextDic[skillName].masterLv)
                 {
                     detailText = $"MP -{spendMP}, 데미지 {coff}% x 2\nMP -{nextSpendMP}, 데미지 {nextCoff}% x 2";

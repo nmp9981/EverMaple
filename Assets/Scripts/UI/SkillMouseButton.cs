@@ -50,6 +50,9 @@ public class SkillMouseButton : MonoBehaviour, IPointerClickHandler
         skillNameToolTip.text = skillName;
         skillImageToolTip.sprite = skillToolTipClass.skillToolTipTextDic[skillName].skillSprite;
         skillExplainToolTip.text = skillToolTipClass.skillToolTipTextDic[skillName].skillExplain;
-        skillFunctionToolTip.text = $"[레벨 {skillLv} -> {skillLv+1}]\n{skillToolTipClass.SKillFunctionExplainDetail(skillName, skillLv)}";
+        int masterLv = skillToolTipClass.skillToolTipTextDic[skillName].masterLv;
+        if(skillLv != masterLv)
+            skillFunctionToolTip.text = $"[레벨 {skillLv} -> {skillLv+1}]\n{skillToolTipClass.SKillFunctionExplainDetail(skillName, skillLv)}";
+        else skillFunctionToolTip.text = $"[레벨 {skillLv}]\n{skillToolTipClass.SKillFunctionExplainDetail(skillName, skillLv)}";
     }
 }

@@ -11,6 +11,22 @@ public class EquiipmentUI : MonoBehaviour
     [SerializeField]
     StatUI statUI;
 
+    private void Start()
+    {
+        InitEquipmentSet();
+    }
+
+    /// <summary>
+    /// 초기 장비 착용
+    /// </summary>
+    void InitEquipmentSet()
+    {
+        EquiipmentOption initWeapon = ItemManager.itemInstance.equipmentItemDic["도루코 대거"];
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife] = initWeapon;
+        PlayerManager.PlayerInstance.PlayerAttack = initWeapon.addAttack;
+        equipmentTypeImage[0].sprite = initWeapon.equipmentImage;
+    }
+
     /// <summary>
     /// 해당 장비를 착용할 수 있는지 체크
     /// </summary>
@@ -90,6 +106,9 @@ public class EquiipmentUI : MonoBehaviour
         if (eauipSP!=null)
         {
             #region 기존에 낀 능력치 제거
+            //장착한 장비 제거
+            PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType] = null;
+
             //스탯 제거
             PlayerManager.PlayerInstance.PlayerAddSTR -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addSTR;
             PlayerManager.PlayerInstance.PlayerAddDEX -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addDEX;
@@ -185,6 +204,9 @@ public class EquiipmentUI : MonoBehaviour
     /// <param name="equipmentOption"></param>
     public void MinusEquipmentOption(EquiipmentOption equipmentOption)
     {
+        //장착한 장비 제거
+        PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType] = null;
+
         //이미지 교체
         switch (equipmentOption.equipmentType)
         {

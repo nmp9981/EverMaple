@@ -81,7 +81,7 @@ public class PlayerManager : MonoBehaviour
 
 
     int weaponConst = 36;//무기 상수
-    int playerAttack = 10;//플레이어 공격력
+    int playerAttack = 17;//플레이어 공격력
     int playerStatAttack;//플레이어 스탯 공격력
     int workmanship = 10;//숙련도
     int criticalProbably = 0;//크리티컬 확률

@@ -173,8 +173,6 @@ public class EquiipmentUI : MonoBehaviour
             PlayerManager.PlayerInstance.PlayerAddAccurary -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAccuracy;
             PlayerManager.PlayerInstance.PlayerAddAvoid -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAvoid;
 
-            //장착한 장비 제거
-            PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType] = null;
             #endregion
         }
 
@@ -229,10 +227,10 @@ public class EquiipmentUI : MonoBehaviour
 
         //장착 무기
         if (equipmentOption.equipmentType == EquipmentType.Claw)
-            PlayerManager.PlayerInstance.PlayerJOBConfigEnum = PlayerJobConfig.NightLoad;
+            PlayerManager.PlayerInstance.PlayerAttackWeapon = AttachWeapon.Claw;
 
         if (equipmentOption.equipmentType == EquipmentType.Knife)
-            PlayerManager.PlayerInstance.PlayerJOBConfigEnum = PlayerJobConfig.Shadower;
+            PlayerManager.PlayerInstance.PlayerAttackWeapon = AttachWeapon.Knife;
 
         //스탯창 반영
         statUI.ShowCharacterBasicStat();

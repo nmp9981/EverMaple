@@ -21,10 +21,51 @@ public class EquiipmentUI : MonoBehaviour
     /// </summary>
     void InitEquipmentSet()
     {
+        //맨 처음에 무기 하나 들고 시작
         EquiipmentOption initWeapon = ItemManager.itemInstance.equipmentItemDic["도루코 대거"];
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife] = initWeapon;
         PlayerManager.PlayerInstance.PlayerAttack = initWeapon.addAttack;
         equipmentTypeImage[0].sprite = initWeapon.equipmentImage;
+
+        //나머지 장비
+        EquiipmentOption initClawWeapon = new EquiipmentOption(string.Empty, null, EquipmentType.Claw, 0, 0, 0, 0, 0, "",
+            0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw] = initClawWeapon;
+
+        EquiipmentOption initHat = new EquiipmentOption(string.Empty, null, EquipmentType.Hat, 0, 0, 0, 0, 0, "",
+            0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Hat] = initHat;
+        equipmentTypeImage[1].sprite = null;
+
+        EquiipmentOption initUP = new EquiipmentOption(string.Empty, null, EquipmentType.Up, 0, 0, 0, 0, 0, "",
+           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Up] = initUP;
+        equipmentTypeImage[2].sprite = null;
+
+        EquiipmentOption initDown = new EquiipmentOption(string.Empty, null, EquipmentType.Down, 0, 0, 0, 0, 0, "",
+           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Down] = initDown;
+        equipmentTypeImage[3].sprite = null;
+
+        EquiipmentOption initGlove = new EquiipmentOption(string.Empty, null, EquipmentType.Glove, 0, 0, 0, 0, 0, "",
+           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Glove] = initGlove;
+        equipmentTypeImage[4].sprite = null;
+
+        EquiipmentOption initShoes = new EquiipmentOption(string.Empty, null, EquipmentType.Shoes, 0, 0, 0, 0, 0, "",
+           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Shoes] = initShoes;
+        equipmentTypeImage[5].sprite = null;
+
+        EquiipmentOption initEaring = new EquiipmentOption(string.Empty, null, EquipmentType.Earing, 0, 0, 0, 0, 0, "",
+           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Earing] = initEaring;
+        equipmentTypeImage[6].sprite = null;
+
+        EquiipmentOption initCape = new EquiipmentOption(string.Empty, null, EquipmentType.Cape, 0, 0, 0, 0, 0, "",
+           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+        PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Cape] = initCape;
+        equipmentTypeImage[7].sprite = null;
     }
 
     /// <summary>
@@ -106,9 +147,6 @@ public class EquiipmentUI : MonoBehaviour
         if (eauipSP!=null)
         {
             #region 기존에 낀 능력치 제거
-            //장착한 장비 제거
-            PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType] = null;
-
             //스탯 제거
             PlayerManager.PlayerInstance.PlayerAddSTR -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addSTR;
             PlayerManager.PlayerInstance.PlayerAddDEX -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addDEX;
@@ -134,6 +172,9 @@ public class EquiipmentUI : MonoBehaviour
             //명중, 회피
             PlayerManager.PlayerInstance.PlayerAddAccurary -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAccuracy;
             PlayerManager.PlayerInstance.PlayerAddAvoid -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAvoid;
+
+            //장착한 장비 제거
+            PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType] = null;
             #endregion
         }
 
@@ -204,9 +245,6 @@ public class EquiipmentUI : MonoBehaviour
     /// <param name="equipmentOption"></param>
     public void MinusEquipmentOption(EquiipmentOption equipmentOption)
     {
-        //장착한 장비 제거
-        PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType] = null;
-
         //이미지 교체
         switch (equipmentOption.equipmentType)
         {
@@ -268,6 +306,8 @@ public class EquiipmentUI : MonoBehaviour
         PlayerManager.PlayerInstance.PlayerAddAccurary -= equipmentOption.addAccuracy;
         PlayerManager.PlayerInstance.PlayerAddAvoid -= equipmentOption.addAvoid;
 
+        //장착한 장비 제거
+        PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType] = null;
         #endregion
 
         //스탯창 반영
@@ -286,6 +326,7 @@ public class EquiipmentUI : MonoBehaviour
         switch (objType)
         {
             case "WeaponImage":
+                Debug.Log(PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].equipmentImage.name);
                 if (PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].equipmentImage == null && PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].equipmentImage != null)
                     equipmentOption = PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw];
                 else if(PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].equipmentImage == null && PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].equipmentImage != null)

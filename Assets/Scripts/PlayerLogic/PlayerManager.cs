@@ -155,7 +155,7 @@ public class PlayerManager : MonoBehaviour
     //초기 요구 겸험치
     public int[] ealryRequireExpArray = new int[15]
     {
-        12,12,20,36,60,92,130,180,270,480,720,1100,1480,1880,2470
+        8,8,16,32,52,80,120,172,240,320,420,550,750,1000,1310
     };
 
     #region 이동 관련 변수

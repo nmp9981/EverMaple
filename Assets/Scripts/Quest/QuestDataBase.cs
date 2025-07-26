@@ -103,7 +103,7 @@ public class QuestDataBase : MonoBehaviour
         QuestData questData2
             = new QuestData(2, 1, 8, 0, "쿤의 수련 III","1더하기1은 창문", questSctipt2, "좀만 힘내", "잘했다. 초반에 폐사하면 안되니까 훈지좀 해줄게",
             reqmonsterNum2,reqMonsterName2, reqMonsterCount2, reqMonsterGoalCount2,
-            500, 4000, string.Empty);
+            300, 4000, string.Empty);
         questDataList.Add(questData2);
 
         //헤네시스
@@ -117,7 +117,7 @@ public class QuestDataBase : MonoBehaviour
         QuestData questData3
             = new QuestData(3, -1, 55, 0, "골렘 사냥", "나는 헤네시스의 장로라네", questSctipt3, "마을이 위험해!", "이제 좀 괜찮아지겠군",
             reqmonsterNum3, reqMonsterName3 ,reqMonsterCount3, reqMonsterGoalCount3,
-            30000, 30000, string.Empty);
+            20000, 30000, string.Empty);
         questDataList.Add(questData3);
 
         string[] questSctipt4 = new string[1]{
@@ -130,7 +130,7 @@ public class QuestDataBase : MonoBehaviour
         QuestData questData4
             = new QuestData(4, 3, 60, 0, "모든 버섯들의 어머니", "나는 헤네시스의 장로라네", questSctipt4, "머쉬맘을 잠재워야해!", "고맙네, 덕분에 버섯들의 횡포가 줄어들었어",
             reqmonsterNum4, reqMonsterName4,reqMonsterCount4, reqMonsterGoalCount4,
-            5000, 50000, "황갑충");
+            18000, 50000, "황갑충");
         questDataList.Add(questData4);
 
         //엘리니아
@@ -144,7 +144,7 @@ public class QuestDataBase : MonoBehaviour
         QuestData questData5
             = new QuestData(5, -1, 14, 0, "독버섯?", "이곳은 마법사의 마을 엘리니아", questSctipt5, "허허", "수고했어 오늘도",
             reqmonsterNum5, reqMonsterName5 ,reqMonsterCount5, reqMonsterGoalCount5,
-            1800, 3000, string.Empty);
+            1400, 3000, string.Empty);
         questDataList.Add(questData5);
 
         string[] questSctipt6 = new string[1]{
@@ -171,7 +171,7 @@ public class QuestDataBase : MonoBehaviour
         QuestData questData7
             = new QuestData(7, -1, 21, 0, "MBTI조사", "검술보다는 MBTI", questSctipt7, "아직 멀었나?", "이들은 아마도 ENTJ일듯",
             reqmonsterNum7,reqMonsterName7, reqMonsterCount7, reqMonsterGoalCount7,
-            5000, 13000, string.Empty);
+            3000, 13000, string.Empty);
         questDataList.Add(questData7);
 
         string[] questSctipt8 = new string[1]{
@@ -196,9 +196,9 @@ public class QuestDataBase : MonoBehaviour
         int[] reqMonsterCount9 = new int[1] { 0 };
         int[] reqMonsterGoalCount9 = new int[1] { 40 };
         QuestData questData9
-            = new QuestData(9, -1, 50, 0, "비싼 명품 가방", "나는 MZ소녀", questSctipt9, "나만 명품백 없어 빨리좀 퇴치해줘", "인스타에 자랑해야지",
+            = new QuestData(9, -1, 52, 0, "비싼 명품 가방", "나는 MZ소녀", questSctipt9, "나만 명품백 없어 빨리좀 퇴치해줘", "인스타에 자랑해야지",
             reqmonsterNum9,reqMonsterName9, reqMonsterCount9, reqMonsterGoalCount9,
-            30000, 20000, string.Empty);
+           17000, 20000, string.Empty);
         questDataList.Add(questData9);
 
         string[] questSctipt10 = new string[1]{
@@ -209,9 +209,9 @@ public class QuestDataBase : MonoBehaviour
         int[] reqMonsterCount10 = new int[1] { 0 };
         int[] reqMonsterGoalCount10 = new int[1] { 50 };
         QuestData questData10
-            = new QuestData(10, 9, 70, 0, "보석 장식", "나는 MZ소녀", questSctipt10, "이거 비싸보여야 가오가 살아", "인스타에 또 자랑해야지",
+            = new QuestData(10, 9, 77, 0, "보석 장식", "나는 MZ소녀", questSctipt10, "이거 비싸보여야 가오가 살아", "인스타에 또 자랑해야지",
             reqmonsterNum10, reqMonsterName10,reqMonsterCount10, reqMonsterGoalCount10,
-            70000, 50000, "캐스터스");
+            60000, 50000, "캐스터스");
         questDataList.Add(questData10);
     }
 }

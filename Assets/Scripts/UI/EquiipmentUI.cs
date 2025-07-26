@@ -26,44 +26,45 @@ public class EquiipmentUI : MonoBehaviour
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife] = initWeapon;
         PlayerManager.PlayerInstance.PlayerAttack = initWeapon.addAttack;
         equipmentTypeImage[0].sprite = initWeapon.equipmentImage;
+        PlayerManager.PlayerInstance.PlayerAttackWeapon = AttachWeapon.Knife;
 
         //나머지 장비
         EquiipmentOption initClawWeapon = new EquiipmentOption(string.Empty, null, EquipmentType.Claw, 0, 0, 0, 0, 0, "",
-            0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw] = initClawWeapon;
 
         EquiipmentOption initHat = new EquiipmentOption(string.Empty, null, EquipmentType.Hat, 0, 0, 0, 0, 0, "",
-            0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Hat] = initHat;
         equipmentTypeImage[1].sprite = null;
 
         EquiipmentOption initUP = new EquiipmentOption(string.Empty, null, EquipmentType.Up, 0, 0, 0, 0, 0, "",
-           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Up] = initUP;
         equipmentTypeImage[2].sprite = null;
 
         EquiipmentOption initDown = new EquiipmentOption(string.Empty, null, EquipmentType.Down, 0, 0, 0, 0, 0, "",
-           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Down] = initDown;
         equipmentTypeImage[3].sprite = null;
 
         EquiipmentOption initGlove = new EquiipmentOption(string.Empty, null, EquipmentType.Glove, 0, 0, 0, 0, 0, "",
-           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Glove] = initGlove;
         equipmentTypeImage[4].sprite = null;
 
         EquiipmentOption initShoes = new EquiipmentOption(string.Empty, null, EquipmentType.Shoes, 0, 0, 0, 0, 0, "",
-           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Shoes] = initShoes;
         equipmentTypeImage[5].sprite = null;
 
         EquiipmentOption initEaring = new EquiipmentOption(string.Empty, null, EquipmentType.Earing, 0, 0, 0, 0, 0, "",
-           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Earing] = initEaring;
         equipmentTypeImage[6].sprite = null;
 
         EquiipmentOption initCape = new EquiipmentOption(string.Empty, null, EquipmentType.Cape, 0, 0, 0, 0, 0, "",
-           0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0);
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Cape] = initCape;
         equipmentTypeImage[7].sprite = null;
     }
@@ -95,9 +96,16 @@ public class EquiipmentUI : MonoBehaviour
 
     /// <summary>
     /// 장비 능력치 추가
+    /// 매개 변수 : 장착할 장비
     /// </summary>
     public void AddEquipmentOption(EquiipmentOption equipmentOption)
     {
+        //같은 장비인지 검사
+        if (IsSameequipment(equipmentOption))
+        {
+            return;
+        }
+
         //이미지 교체
         Sprite eauipSP = null;
        
@@ -144,55 +152,52 @@ public class EquiipmentUI : MonoBehaviour
         }
 
         //기존에 낀 능력치는 제거
-        if (eauipSP!=null)
+        if (!(equipmentOption.equipmentType==EquipmentType.Claw) && !(equipmentOption.equipmentType == EquipmentType.Knife))
         {
-            #region 기존에 낀 능력치 제거
-            //스탯 제거
-            PlayerManager.PlayerInstance.PlayerAddSTR -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addSTR;
-            PlayerManager.PlayerInstance.PlayerAddDEX -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addDEX;
-            PlayerManager.PlayerInstance.PlayerAddINT -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addINT;
-            PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addLUK;
+            if (eauipSP != null)
+            {
+                #region 기존에 낀 능력치 제거
+                //스탯 제거
+                PlayerManager.PlayerInstance.PlayerAddSTR -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addSTR;
+                PlayerManager.PlayerInstance.PlayerAddDEX -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addDEX;
+                PlayerManager.PlayerInstance.PlayerAddINT -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addINT;
+                PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addLUK;
 
-            //공격력 제거
-            PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAttack;
-            PlayerManager.PlayerInstance.PlayerMagicPower -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMagicAttack;
+                //공격력 제거
+                PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAttack;
+                PlayerManager.PlayerInstance.PlayerMagicPower -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMagicAttack;
 
-            //체력, 마나 제거
-            PlayerManager.PlayerInstance.PlayerMaxHP -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addHP;
-            PlayerManager.PlayerInstance.PlayerMaxMP -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMP;
+                //체력, 마나 제거
+                PlayerManager.PlayerInstance.PlayerMaxHP -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addHP;
+                PlayerManager.PlayerInstance.PlayerMaxMP -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMP;
 
-            //방어력
-            PlayerManager.PlayerInstance.PlayerPhysicsArmor -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addPhysicsArmor;
-            PlayerManager.PlayerInstance.PlayerMagicArmor -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMagicArmor;
+                //방어력
+                PlayerManager.PlayerInstance.PlayerPhysicsArmor -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addPhysicsArmor;
+                PlayerManager.PlayerInstance.PlayerMagicArmor -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMagicArmor;
 
-            //이동 관련
-            PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMoveSpeed;
-            PlayerManager.PlayerInstance.JumpForceRate -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addJumpSpeed;
+                //이동 관련
+                PlayerManager.PlayerInstance.PlayerMoveSpeedRate -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addMoveSpeed;
+                PlayerManager.PlayerInstance.JumpForceRate -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addJumpSpeed;
 
-            //명중, 회피
-            PlayerManager.PlayerInstance.PlayerAddAccurary -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAccuracy;
-            PlayerManager.PlayerInstance.PlayerAddAvoid -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAvoid;
+                //명중, 회피
+                PlayerManager.PlayerInstance.PlayerAddAccurary -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAccuracy;
+                PlayerManager.PlayerInstance.PlayerAddAvoid -= PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].addAvoid;
 
-            #endregion
+                #endregion
+            }
         }
-
-
+       
+       
         //무기 종류가 서로 다른 경우
-        if (PlayerManager.PlayerInstance.PlayerJOBConfigEnum == PlayerJobConfig.NightLoad)//아대 장착
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)//아대 장착
         {
-            if (equipmentOption.equipmentType == EquipmentType.Knife)
-            {
-                PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addLUK;
-                PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addAttack;
-            }
+            PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addLUK;
+            PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addAttack;
         }
-        if (PlayerManager.PlayerInstance.PlayerJOBConfigEnum == PlayerJobConfig.Shadower)//단검 장착
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Knife)//단검 장착
         {
-            if (equipmentOption.equipmentType == EquipmentType.Claw)
-            {
-                PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addLUK;
-                PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addAttack;
-            }
+            PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addLUK;
+            PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addAttack;
         }
 
         //장비 장착
@@ -390,5 +395,28 @@ public class EquiipmentUI : MonoBehaviour
     public void ChangeDragImage(int dragNum)
     {
         equipmentTypeImage[8].sprite = dragImageList[dragNum];
+    }
+
+    /// <summary>
+    /// 같은 장비인지 검사
+    /// </summary>
+    /// <returns></returns>
+    bool IsSameequipment(EquiipmentOption equipmentOption)
+    {
+        //타입 동일하고 이름 같아야함
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Knife && equipmentOption.equipmentType == EquipmentType.Claw)
+        {
+            return false;
+        }
+        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw && equipmentOption.equipmentType == EquipmentType.Knife)
+        {
+            return false;
+        }
+
+        if (equipmentOption.name == PlayerManager.PlayerInstance.playerSetEquipment[equipmentOption.equipmentType].name)
+        {
+            return true;
+        }
+        return false;
     }
 }

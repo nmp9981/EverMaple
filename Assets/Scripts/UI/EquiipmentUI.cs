@@ -186,18 +186,21 @@ public class EquiipmentUI : MonoBehaviour
                 #endregion
             }
         }
-       
-       
+
+
         //무기 종류가 서로 다른 경우
-        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)//아대 장착
+        if (equipmentOption.equipmentType == EquipmentType.Claw || equipmentOption.equipmentType == EquipmentType.Knife)
         {
-            PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addLUK;
-            PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addAttack;
-        }
-        if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Knife)//단검 장착
-        {
-            PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addLUK;
-            PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addAttack;
+            if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)//아대 장착
+            {
+                PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addLUK;
+                PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Claw].addAttack;
+            }
+            if (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Knife)//단검 장착
+            {
+                PlayerManager.PlayerInstance.PlayerAddLUK -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addLUK;
+                PlayerManager.PlayerInstance.PlayerAttack -= PlayerManager.PlayerInstance.playerSetEquipment[EquipmentType.Knife].addAttack;
+            }
         }
 
         //장비 장착

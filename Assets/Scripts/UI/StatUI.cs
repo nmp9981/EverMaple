@@ -375,9 +375,10 @@ public class StatUI : MonoBehaviour, IDragHandler
         int totalLUK = PlayerManager.PlayerInstance.PlayerLUK + PlayerManager.PlayerInstance.PlayerAddLUK;
         int totalDEX = PlayerManager.PlayerInstance.PlayerDEX + PlayerManager.PlayerInstance.PlayerAddDEX;
         int totalSTR = PlayerManager.PlayerInstance.PlayerSTR + PlayerManager.PlayerInstance.PlayerAddSTR;
-        int statTotal = (totalLUK* PlayerManager.PlayerInstance.WeaponConst / 10)+ totalDEX + totalSTR;
+        int statTotal = ((totalLUK* PlayerManager.PlayerInstance.WeaponConst) / 10)+ totalDEX + totalSTR;
 
-        int dragAttack = PlayerManager.PlayerInstance.dragAttackPower[PlayerManager.PlayerInstance.ShootDragNum];
+        int dragAttack = (PlayerManager.PlayerInstance.PlayerAttackWeapon == AttachWeapon.Claw)?
+            PlayerManager.PlayerInstance.dragAttackPower[PlayerManager.PlayerInstance.ShootDragNum]:0;
         int totalAttack = PlayerManager.PlayerInstance.PlayerAttack + dragAttack;
         int finalAttack = (statTotal * totalAttack)/100;
         return finalAttack;

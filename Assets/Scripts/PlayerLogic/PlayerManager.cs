@@ -64,7 +64,7 @@ public class PlayerManager : MonoBehaviour
     int playerCurMP;
     int playerMaxMP = 5;
     int playerCurExp = 0;
-    int playerRequireExp = 12;
+    int playerRequireExp = 8;
     int playerMeso = 0;
 
     //플레이어 스탯
